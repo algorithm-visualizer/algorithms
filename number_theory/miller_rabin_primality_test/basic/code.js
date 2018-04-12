@@ -22,14 +22,14 @@ function power(x, y, p)
  * @return {Boolean}
  */
 function testProbablyPrime(n, k) {
-	logger._print("==> Testing number " + n);
+	logger.print("==> Testing number " + n);
 
 	if (n === 1 || n === 3) {
-		logger._print("==> Simple case, N is 1 or 3");
+		logger.print("==> Simple case, N is 1 or 3");
 		return true;
 	}
 	if (n % 2 === 0) {
-		logger._print("==> Simple case, " + n + " mod 2 = 0");
+		logger.print("==> Simple case, " + n + " mod 2 = 0");
 		return false;
 	}
 
@@ -38,27 +38,27 @@ function testProbablyPrime(n, k) {
 	while (d % 2 === 0) {
 		d /= 2;
 	}
-	logger._print("d = " + d);
+	logger.print("d = " + d);
 
 	// Do 5 iterations if none supplied
 	k = k || 5;
 	var P = 100 * (1 - (1/Math.pow(4, k)));
 
 	WitnessLoop: do {
-		logger._print("Remaining iterations: #" + k);
+		logger.print("Remaining iterations: #" + k);
 
 		var a = 2 + Math.floor(Math.random() * (n - 4));
-		logger._print("--> first test with random = " + a);
+		logger.print("--> first test with random = " + a);
 
 		// Compute a^d % n
 		var x = power(a, d, n);
 
 		if (x === 1 || x === n - 1) {
-			logger._print("--> continue WitnessLoop, x = 1 or x = n-1");
+			logger.print("--> continue WitnessLoop, x = 1 or x = n-1");
 			continue;
 		}
 
-		logger._print("--> second test");
+		logger.print("--> second test");
 		
 		// Keep squaring x while one of the following doesn't
     	// happen
@@ -71,21 +71,21 @@ function testProbablyPrime(n, k) {
     		i *= 2;
 
     		if (x == 1) {
-    			logger._print("--> exiting, " + n + " is composite");
+    			logger.print("--> exiting, " + n + " is composite");
     			return false;
     		}
 
     		if (x == n-1) {
-    			logger._print("--> continue WitnessLoop");
+    			logger.print("--> continue WitnessLoop");
 				continue WitnessLoop;
 			}
     	}
 
-		logger._print("--> exiting, " + n + " is composite 'cause (n-1) is reached");
+		logger.print("--> exiting, " + n + " is composite 'cause (n-1) is reached");
 		return false;
 
 	} while (--k);
  	
-	logger._print("End of tests, " + n + " is probably prime with probabilty of " + P + "%");
+	logger.print("End of tests, " + n + " is probably prime with probabilty of " + P + "%");
 	return true;
 }

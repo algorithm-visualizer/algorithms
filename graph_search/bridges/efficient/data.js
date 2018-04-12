@@ -9,4 +9,4 @@ var G = [
 	[0,0,0,1,0,0]
 ];
 
-graphTracer._setData (G);
+graphTracer.set (G);

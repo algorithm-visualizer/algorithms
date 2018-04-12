@@ -17,12 +17,12 @@ for (var i = 0; i < gridSize; i++) {
 	}
 }
 var tracer = new Array2DTracer ();
-tracer._setData(G);
+tracer.set(G);
 
 for (var gi = 0; gi < G.length; gi++) {
 	for (var gj = 0; gj < G[gi].length; gj++) {
 		if (G[gi][gj] == '#') {
-			tracer._notify(gi, gj, G[gi][gj]);
+			tracer.notify(gi, gj, G[gi][gj]);
 		}
 	}
 }

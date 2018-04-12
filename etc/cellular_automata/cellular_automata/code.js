@@ -37,15 +37,15 @@ function CellularAutomata(fillShape, emptyShape) {
 	
 	for (let i = 0; i < nextGrid.length; i++) {
 		for (let j = 0; j < nextGrid[i].length; j++) {
-			tracer._denotify(i, j, G[i][j]);
-			tracer._select(i, j)._wait();
+			tracer.denotify(i, j, G[i][j]);
+			tracer.select(i, j).wait();
 			G[i][j] = nextGrid[i][j];
 			if (G[i][j] == fillShape) {
-				tracer._notify(i, j, G[i][j]);
+				tracer.notify(i, j, G[i][j]);
 			} else {
-				tracer._notify(i, j, G[i][j]);
-				tracer._denotify(i, j, G[i][j]);
-				tracer._deselect(i, j);
+				tracer.notify(i, j, G[i][j]);
+				tracer.denotify(i, j, G[i][j]);
+				tracer.deselect(i, j);
 			}
 		}
 	}

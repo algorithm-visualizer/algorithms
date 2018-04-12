@@ -18,6 +18,6 @@ var boardTracer = new Array2DTracer ('Board'),
 	queenTracer = new Array2DTracer ('Queen Positions'),
 	logger = new LogTracer ('Progress');
 
-boardTracer._setData (board);
-queenTracer._setData (queens);
-logger._print ('N Queens: ' + N + 'X' + N + 'matrix, ' + N + ' queens');
+boardTracer.set (board);
+queenTracer.set (queens);
+logger.print ('N Queens: ' + N + 'X' + N + 'matrix, ' + N + ' queens');

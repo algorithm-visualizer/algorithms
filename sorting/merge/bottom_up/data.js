@@ -5,4 +5,4 @@ var D = [
     Array1D.random(20, 0, 0)
 ];
 
-tracer._setData(D);
+tracer.set(D);

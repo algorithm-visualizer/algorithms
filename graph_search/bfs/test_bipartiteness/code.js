@@ -4,16 +4,16 @@ function BFSCheckBipartiteness(s) {
     // Create a new matrix to set colors (0,1)
     var Colors = [];
     for (var _i = 0; _i < G.length; _i++) Colors[_i] = -1;
-    colorsTracer._setData(Colors);
+    colorsTracer.set(Colors);
 
     Colors[s] = 1;
-    colorsTracer._notify(s, 1);
+    colorsTracer.notify(s, 1);
 
     Q.push(s); // add start node to queue
 
     while (Q.length > 0) {
         var node = Q.shift(); // dequeue
-        tracer._visit(node)._wait();
+        tracer.visit(node).wait();
 
         for (var i = 0; i < G[node].length; i++) {
         	if (G[node][i]) {
@@ -21,20 +21,20 @@ function BFSCheckBipartiteness(s) {
         		if (Colors[i] === -1) {
 
         			Colors[i] = 1 - Colors[node];
-        			colorsTracer._notify(i, 1 - Colors[node]);
+        			colorsTracer.notify(i, 1 - Colors[node]);
 
         			Q.push(i);
-        			tracer._visit(i, node)._wait();
+        			tracer.visit(i, node).wait();
 
         		} else if (Colors[i] == Colors[node]) {
-        			logger._print('Graph is not biparted');
+        			logger.print('Graph is not biparted');
         			return false;
         		}
         	}
         }
     }
     
-    logger._print('Graph is biparted');
+    logger.print('Graph is biparted');
     return true;
 }
 

@@ -6,8 +6,8 @@ function FloodFill(i, j, oldColor, newColor) {
     // set the color of node to newColor
     G[i][j] = newColor;
 
-    tracer._select(i, j)._wait();
-    tracer._notify(i, j, G[i][j])._wait();
+    tracer.select(i, j).wait();
+    tracer.notify(i, j, G[i][j]).wait();
 
     // next step four-way
     FloodFill(i + 1, j, oldColor, newColor);

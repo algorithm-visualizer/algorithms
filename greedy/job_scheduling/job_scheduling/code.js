@@ -21,10 +21,10 @@ var result = new Array(N);
 for (var i = N - 1; i >= 0; i--) {
     result[i] = '-';
 }
-tracer._setData(jobId);
-tracer1._setData(deadline);
-tracer2._setData(profit);
-tracer3._setData(result);
+tracer.set(jobId);
+tracer1.set(deadline);
+tracer2.set(profit);
+tracer3.set(result);
 
 // Initialise all slots to free 
 for (var i = 0; i < N; i++) {
@@ -37,18 +37,18 @@ for (var i = 0; i < N; i++) {
      Start from the last possible slot.
      Find a slot for the job
      */
-    tracer._select(i)._wait();
-    tracer1._select(i)._wait();
+    tracer.select(i).wait();
+    tracer1.select(i).wait();
     for (var j = Math.min(N, deadline[i]) - 1; j >= 0; j--) {
         if (slot[j] === 0) {
-            tracer3._notify(j, jobId[i])._wait();
+            tracer3.notify(j, jobId[i]).wait();
             result[j] = jobId[i];
             slot[j] = 1;
-            tracer3._denotify(j);
+            tracer3.denotify(j);
             break;
         }
     }
-    tracer._deselect(i);
-    tracer1._deselect(i);
+    tracer.deselect(i);
+    tracer1.deselect(i);
 }
 

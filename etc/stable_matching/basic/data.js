@@ -17,7 +17,7 @@ var tracerB = new Array1DTracer('B');
 
 var _aKeys = Object.keys(ARank);
 var _bKeys = Object.keys(BRank);
-tracerA._setData(_aKeys);
-tracerB._setData(_bKeys);
+tracerA.set(_aKeys);
+tracerB.set(_bKeys);
 
 var logTracer = new LogTracer ( 'Console' );

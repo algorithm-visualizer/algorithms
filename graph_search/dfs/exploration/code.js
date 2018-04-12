@@ -4,7 +4,7 @@ function DFSExplore(graph, source) {
   for (i = 0; i < graph.length; i++) {
     visited.push(false);
   }
-  visitedTracer._setData(visited);
+  visitedTracer.set(visited);
 
   while (stack.length > 0) {
     temp = stack.pop();
@@ -13,12 +13,12 @@ function DFSExplore(graph, source) {
 
     if (!visited[node]) {
       visited[node] = true;
-      visitedTracer._notify(node, visited[node]);
+      visitedTracer.notify(node, visited[node]);
 
       if (prev !== undefined && graph[node][prev]) {
-        graphTracer._visit(node, prev)._wait();
+        graphTracer.visit(node, prev).wait();
       } else {
-        graphTracer._visit(node)._wait();
+        graphTracer.visit(node).wait();
       }
 
       for (i = 0; i < graph.length; i++) {
@@ -36,7 +36,7 @@ var visited = DFSExplore(G, 0);
 var check = true;
 for (var i = 0; i < visited.length; i++) check &= visited[i];
 if (check) {
-  logger._print('The Graph is CONNECTED');
+  logger.print('The Graph is CONNECTED');
 } else {
-  logger._print('The Graph is NOT CONNECTED');
+  logger.print('The Graph is NOT CONNECTED');
 }

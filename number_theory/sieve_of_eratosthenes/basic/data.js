@@ -6,5 +6,5 @@ for (var i = 1; i <= N; i++) {
   a.push(i);
   b.push(0);
 }
-tracer._setData(a);
+tracer.set(a);
 var logger = new LogTracer();

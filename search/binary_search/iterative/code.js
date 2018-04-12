@@ -8,36 +8,36 @@ function BinarySearch(array, element) { // array = sorted array, element = eleme
         var middleIndex = Math.floor((minIndex + maxIndex) / 2);
         testElement = array[middleIndex];
 
-        tracer._select(minIndex, maxIndex)._wait();
-        tracer._notify(middleIndex);
-        logger._print('Searching at index: ' + middleIndex)._wait();
-        tracer._denotify(middleIndex);
-        tracer._deselect(minIndex, maxIndex);
+        tracer.select(minIndex, maxIndex).wait();
+        tracer.notify(middleIndex);
+        logger.print('Searching at index: ' + middleIndex).wait();
+        tracer.denotify(middleIndex);
+        tracer.deselect(minIndex, maxIndex);
 
         if (testElement < element) {
 
-            logger._print('Going right.');
+            logger.print('Going right.');
             minIndex = middleIndex + 1;
 
         } else if (testElement > element) {
 
-            logger._print('Going left.');
+            logger.print('Going left.');
             maxIndex = middleIndex - 1;
 
         } else {
 
-            logger._print(element + ' is found at position ' + middleIndex + '!');
-            tracer._select(middleIndex);
+            logger.print(element + ' is found at position ' + middleIndex + '!');
+            tracer.select(middleIndex);
 
             return middleIndex;
         }
     }
 
-    logger._print(element + ' is not found!');
+    logger.print(element + ' is not found!');
     return -1;
 }
 
 var element = D[Integer.random(0, D.length - 1)];
 
-logger._print('Using iterative binary search to find ' + element);
+logger.print('Using iterative binary search to find ' + element);
 BinarySearch(D, element);

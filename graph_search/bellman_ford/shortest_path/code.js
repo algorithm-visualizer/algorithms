@@ -3,51 +3,51 @@ function BELLMAN_FORD(src, dest) {
 
   for (i = 0; i < G.length; i++) {
     weights[i] = MAX_VALUE;
-    tracer._weight(i, weights[i]);
+    tracer.weight(i, weights[i]);
   }
   weights[src] = 0;
-  tracer._weight(src, 0);
+  tracer.weight(src, 0);
 
-  logger._print('Initializing weights to: [' + weights + ']');
-  logger._print('');
+  logger.print('Initializing weights to: [' + weights + ']');
+  logger.print('');
 
   //begin BF algorithm execution
   var k = G.length;
   while (k--) {
-    logger._print('Iteration: ' + (G.length - k));
-    logger._print('------------------------------------------------------------------');
+    logger.print('Iteration: ' + (G.length - k));
+    logger.print('------------------------------------------------------------------');
 
     for (i = 0; i < G.length; i++) {
       for (j = 0; j < G.length; j++) {
         if (G[i][j]) {	//proceed to relax Edges only if a particular weight != 0 (0 represents no edge)
           if (weights[j] > (weights[i] + G[i][j])) {
             weights[j] = weights[i] + G[i][j];
-            logger._print('weights[' + j + '] = weights[' + i + '] + ' + G[i][j]);
+            logger.print('weights[' + j + '] = weights[' + i + '] + ' + G[i][j]);
           }
-          tracer._visit(j, i, weights[j])._wait();
-          tracer._leave(j, i)._wait();
+          tracer.visit(j, i, weights[j]).wait();
+          tracer.leave(j, i).wait();
         }
       }
     }
 
-    logger._print('updated weights: [' + weights.join(', ') + ']');
-    logger._print('');
+    logger.print('updated weights: [' + weights.join(', ') + ']');
+    logger.print('');
   }
 
   //check for cycle
-  logger._print('checking for cycle');
+  logger.print('checking for cycle');
   for (i = 0; i < G.length; i++) {
     for (j = 0; j < G.length; j++) {
       if (G[i][j]) {
         if (weights[j] > (weights[i] + G[i][j])) {
-          logger._print('A cycle was detected: weights[' + j + '] > weights[' + i + '] + ' + G[i][j]);
+          logger.print('A cycle was detected: weights[' + j + '] > weights[' + i + '] + ' + G[i][j]);
           return (MAX_VALUE);
         }
       }
     }
   }
 
-  logger._print('No cycles detected. Final weights for the source ' + src + ' are: [' + weights + ']');
+  logger.print('No cycles detected. Final weights for the source ' + src + ' are: [' + weights + ']');
 
   return weights[dest];
 }
@@ -66,12 +66,12 @@ do {
 }
 while (src === dest);
 
-logger._print('finding the shortest path from ' + src + ' to ' + dest);
+logger.print('finding the shortest path from ' + src + ' to ' + dest);
 
 minWeight = BELLMAN_FORD(src, dest);
 
 if (minWeight === MAX_VALUE) {
-  logger._print('there is no path from ' + src + ' to ' + dest);
+  logger.print('there is no path from ' + src + ' to ' + dest);
 } else {
-  logger._print('the shortest path from ' + src + ' to ' + dest + ' is ' + minWeight);
+  logger.print('the shortest path from ' + src + ' to ' + dest + ' is ' + minWeight);
 }

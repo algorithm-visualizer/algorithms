@@ -27,5 +27,5 @@ var T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1]
         [ 9,-1]
 ];
 
-var treeTracer = new DirectedGraphTracer( " Traversal Pre-order ")._setTreeData ( G, 5 );
+var treeTracer = new GraphTracer( " Traversal Pre-order ").setTreeData ( G, 5 );
 var logger = new LogTracer ( " Log ");

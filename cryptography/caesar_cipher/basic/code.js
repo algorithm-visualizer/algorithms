@@ -11,7 +11,7 @@ function getNextChar(currChar, direction) {
   var nextPos = direction === 'up' ? getPosUp(pos) : getPosDown(pos);
   var nextChar = alphabet.charAt(nextPos);
 
-  logger._print(currChar + ' -> ' + nextChar);
+  logger.print(currChar + ' -> ' + nextChar);
   return nextChar;
 }
 
@@ -20,43 +20,43 @@ function cipher(str, rotation, direction, cipherTracer) {
 
   for (var i = 0; i < str.length; i++) {
 
-    cipherTracer._wait();
+    cipherTracer.wait();
 
     var currChar = str.charAt(i);
     if (typeof alphabetMap[currChar] === 'number') { // don't encrpt/decrypt characters not in  alphabetMap
       var r = rotation;
 
-      logger._print('Rotating ' + currChar + ' ' + direction + ' ' + rotation + ' times');
-      cipherTracer._select(i)._wait();
+      logger.print('Rotating ' + currChar + ' ' + direction + ' ' + rotation + ' times');
+      cipherTracer.select(i).wait();
 
       // perform given amount of rotations in the given direction
       while (r-- > 0) {
         currChar = getNextChar(currChar, direction);
-        cipherTracer._notify(i, currChar)._wait();
+        cipherTracer.notify(i, currChar).wait();
       }
     } else {
-      logger._print('Ignore this character');
+      logger.print('Ignore this character');
     }
     str = str.substring(0, i) + currChar + str.substring(i + 1);
-    logger._print('Current result: ' + str);
+    logger.print('Current result: ' + str);
   }
 
   return str;
 }
 
 function encrypt(str, rotation) {
-  logger._print('Encrypting: ' + str);
+  logger.print('Encrypting: ' + str);
   return cipher(str, rotation, 'up', encryptTracer);
 }
 
 function decrypt(str, rotation) {
-  logger._print('Decrypting: ' + str);
+  logger.print('Decrypting: ' + str);
   return cipher(str, rotation, 'down', decryptTracer);
 }
 
 var encrypted = encrypt(string, rotation);
-logger._print('Encrypted result: ' + encrypted);
+logger.print('Encrypted result: ' + encrypted);
 
-decryptTracer._setData(encrypted);
+decryptTracer.set(encrypted);
 var decrypted = decrypt(encrypted, rotation);
-logger._print('Decrypted result: ' + decrypted);
+logger.print('Decrypted result: ' + decrypted);

@@ -1,24 +1,24 @@
 //set counts values
 for (let i = 0; i < A.length; i++) {
-    tracer._select(0, i)._wait();
+    tracer.select(0, i).wait();
     counts[A[i]]++;
-    tracer._notify(1, A[i], D[1][A[i]])._wait();
-    tracer._deselect(0, i);
-    tracer._denotify(1, A[i], D[1][A[i]])._wait();
+    tracer.notify(1, A[i], D[1][A[i]]).wait();
+    tracer.deselect(0, i);
+    tracer.denotify(1, A[i], D[1][A[i]]).wait();
 }
 
 //sort
 var i = 0;
 for (var j = 0; j <= maxValue; j++) {
     while (counts[j] > 0) {
-        tracer._select(1, j)._wait();
+        tracer.select(1, j).wait();
         sortedA[i] = j;
         counts[j]--;
-        tracer._notify(1, j, D[1][j]);
-        tracer._notify(2, i, D[2][i])._wait();
-        tracer._deselect(1, j);
-        tracer._denotify(1, j, D[1][j]);
-        tracer._denotify(2, i, D[2][i])._wait();
+        tracer.notify(1, j, D[1][j]);
+        tracer.notify(2, i, D[2][i]).wait();
+        tracer.deselect(1, j);
+        tracer.denotify(1, j, D[1][j]);
+        tracer.denotify(2, i, D[2][i]).wait();
         i++;
     }
 }

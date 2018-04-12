@@ -1,18 +1,18 @@
 function SCCVertex(u, disc, low,  st, stackMember, carry) 
 {
-	graphTracer._visit(u)._wait();
+	graphTracer.visit(u).wait();
 
     disc[u] = ++carry.time;
-    discTracer._notify(u, carry.time)._wait();
+    discTracer.notify(u, carry.time).wait();
 
     low[u] = carry.time;
-    lowTracer._notify(u, carry.time)._wait();
+    lowTracer.notify(u, carry.time).wait();
 
     st.push(u);
-    stTracer._setData(st)._wait();
+    stTracer.set(st).wait();
 
     stackMember[u] = true;
-    stackMemberTracer._notify(u, true)._wait();
+    stackMemberTracer.notify(u, true).wait();
 
     // Go through all vertices adjacent to this
     for (var v = 0; v < G[u].length; v++) {
@@ -25,14 +25,14 @@ function SCCVertex(u, disc, low,  st, stackMember, carry)
                 // Check if the subtree rooted with 'v' has a
                 // connection to one of the ancestors of 'u'
                 low[u]  = Math.min(low[u], low[v]);
-                lowTracer._notify(u, low[u]);
+                lowTracer.notify(u, low[u]);
             }
 
             // Update low value of 'u' only of 'v' is still in stack
             // (i.e. it's a back edge, not cross edge).
             else if (stackMember[v] == true) {
             	low[u]  = Math.min(low[u], disc[v]);
-            	lowTracer._notify(u, low[u])._wait();
+            	lowTracer.notify(u, low[u]).wait();
             }
 
         }
@@ -44,22 +44,22 @@ function SCCVertex(u, disc, low,  st, stackMember, carry)
     	
     	while (st[st.length-1] != u) {
     		w = st.pop();
-    		stTracer._setData(st)._wait();
+    		stTracer.set(st).wait();
     	
-    		logger._print(w)._wait();
+    		logger.print(w).wait();
 
     		stackMember[w] = false;
-    		stackMemberTracer._notify(w, false)._wait();
+    		stackMemberTracer.notify(w, false).wait();
     	}
 
     	w = st.pop();
-    	stTracer._setData(st)._wait();
+    	stTracer.set(st).wait();
 
-    	logger._print(w)._wait();
-    	logger._print('------');
+    	logger.print(w).wait();
+    	logger.print('------');
 
     	stackMember[w] = false;
-    	stackMemberTracer._notify(w, false)._wait();
+    	stackMemberTracer.notify(w, false).wait();
     }
 }
 
@@ -77,10 +77,10 @@ function SCC()
     	stackMember[i] = false;
     }
 
-    discTracer._setData(disc);
-    lowTracer._setData(low);
-    stackMemberTracer._setData(stackMember);
-    stTracer._setData(st);
+    discTracer.set(disc);
+    lowTracer.set(low);
+    stackMemberTracer.set(stackMember);
+    stTracer.set(st);
 
     for (var i = 0; i < G.length; i++) {
     	if (disc[i] == -1) {

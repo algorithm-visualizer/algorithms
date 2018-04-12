@@ -13,5 +13,5 @@ var saTracer = new Array2DTracer ('Suffix Array'),
 	wordTracer = new Array1DTracer ('Given Word'),
 	logger = new LogTracer ('Progress');
 
-saTracer._setData (suffixArray);
-wordTracer._setData (word);
+saTracer.set (suffixArray);
+wordTracer.set (word);

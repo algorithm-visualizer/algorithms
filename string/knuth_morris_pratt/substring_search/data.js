@@ -18,6 +18,6 @@ var trackTracer = new Array1DTracer('Tracker'),
   stringTracer = new Array1DTracer('Major String');
 var logger = new LogTracer();
 
-trackTracer._setData(track);
-substrTracer._setData(substring);
-stringTracer._setData(string);
+trackTracer.set(track);
+substrTracer.set(substring);
+stringTracer.set(string);

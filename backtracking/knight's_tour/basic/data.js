@@ -24,6 +24,6 @@ var Y = [ 1, 2,  2,  1, -1, -2, -2, -1 ];
 var pos = new Array (2);
 pos[0] = pos[1] = -1;
 
-var boardTracer = new Array2DTracer ('Board')._setData (board);
-var posTracer = new Array1DTracer ('Knight Position')._setData (pos);
+var boardTracer = new Array2DTracer ('Board').set (board);
+var posTracer = new Array1DTracer ('Knight Position').set (pos);
 var logTracer = new LogTracer ('Console');

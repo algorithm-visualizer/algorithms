@@ -54,4 +54,4 @@ for (var i = 0; i < v_end; i++) { // by row
     }
 }
 
-tracer._setData(G);
+tracer.set(G);

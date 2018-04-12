@@ -5,5 +5,5 @@ var Q = 101; // A prime number
 var D = 256; // number of characters in the input alphabet
 
 var logger = new LogTracer();
-var tracer1 = new Array1DTracer('Text')._setData(text);
-var tracer2 = new Array1DTracer('Pattern')._setData(pattern);
+var tracer1 = new Array1DTracer('Text').set(text);
+var tracer2 = new Array1DTracer('Pattern').set(pattern);

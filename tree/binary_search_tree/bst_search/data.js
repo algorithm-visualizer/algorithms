@@ -28,6 +28,6 @@ var T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1]
 ];
 
 var key = Integer.random(0, G.length - 1); // item to be searched
-var tracer = new DirectedGraphTracer(" Binary Search Tree ")._setTreeData(G, 5);
+var tracer = new GraphTracer(" Binary Search Tree ").setTreeData(G, 5);
 var logger = new LogTracer(" Log ");
-tracer.attach(logger);
+tracer.log(logger);

@@ -14,7 +14,7 @@ var len = pattern.length + text.length + 1;
 var z = new Array(len);
 z[0]=0;
 
-patt_tracer._setData(pattern);
-text_tracer._setData(text);
-tracer._setData(z);
+patt_tracer.set(pattern);
+text_tracer.set(text);
+tracer.set(z);
 var logger = new LogTracer();

@@ -7,8 +7,8 @@ var G = [
 [0,0,0,0,1,0]
 ];
 
-var graphTracer = new DirectedGraphTracer();
-graphTracer._setData(G);
+var graphTracer = new GraphTracer();
+graphTracer.set(G);
 
 var discTracer = new Array1DTracer('Disc');
 var lowTracer = new Array1DTracer('Low');

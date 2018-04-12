@@ -10,11 +10,11 @@ function DFSExplore (graph, source) {
 
 		if (!visited [node]) {
 			visited [node] = true;
-			//logger._print (node);
+			//logger.print (node);
 
 			/*
-			if (prev !== undefined && graph [node] [prev]) { tracer._visit (node, prev)._wait (); console.log ('tracer ' + prev + ', ' + node); }
-			else { tracer._visit (node)._wait (); console.log ('tracer ' + node); }
+			if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).wait (); console.log ('tracer ' + prev + ', ' + node); }
+			else { tracer.visit (node).wait (); console.log ('tracer ' + node); }
 			*/
 
 			for (i = 0; i < graph.length; i++) {
@@ -34,9 +34,9 @@ function findBridges (graph) {
 	for (var i = 0; i < graph.length; i++) {
 		for (var j = 0; j < graph.length; j++) {
 			if (graph [i] [j]) {	//check if an edge exists
-				logger._print ('Deleting edge ' + i + '->' + j + ' and calling DFSExplore ()');
-				tracer._visit (j, i)._wait ();
-				tracer._leave (j, i)._wait ();
+				logger.print ('Deleting edge ' + i + '->' + j + ' and calling DFSExplore ()');
+				tracer.visit (j, i).wait ();
+				tracer.leave (j, i).wait ();
 
 				tempGraph = JSON.parse (JSON.stringify (graph));
 				tempGraph [i] [j] = 0;
@@ -44,10 +44,10 @@ function findBridges (graph) {
 				visited = DFSExplore (tempGraph, 0);
 
 				if (Object.keys (visited).length === graph.length) {
-					logger._print ('Graph is CONNECTED. Edge is NOT a bridge');
+					logger.print ('Graph is CONNECTED. Edge is NOT a bridge');
 				}
 				else {
-					logger._print ('Graph is DISCONNECTED. Edge IS a bridge');
+					logger.print ('Graph is DISCONNECTED. Edge IS a bridge');
 					bridges.push ([i,j]);
 				}
 			}
@@ -59,8 +59,8 @@ function findBridges (graph) {
 
 var bridges = findBridges (G);
 
-logger._print ('The bridges are: ');
+logger.print ('The bridges are: ');
 for (var i in bridges) {
-	logger._print (bridges [i] [0] + ' to ' + bridges [i] [1]);
+	logger.print (bridges [i] [0] + ' to ' + bridges [i] [1]);
 }
-logger._print ('NOTE: A bridge is both ways, i.e., from A to B and from B to A, because this is an Undirected Graph');
+logger.print ('NOTE: A bridge is both ways, i.e., from A to B and from B to A, because this is an Undirected Graph');

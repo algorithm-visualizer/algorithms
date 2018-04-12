@@ -17,25 +17,25 @@ function FloydWarshall() {
   for (var k = 0; k < G.length; k++) {
     for (i = 0; i < G.length; i++) {
       if (k === i) continue;
-      tracer._visit(k, i)._wait();
+      tracer.visit(k, i).wait();
       for (j = 0; j < G.length; j++) {
         if (i === j || j === k) continue;
-        tracer._visit(j, k)._wait();
+        tracer.visit(j, k).wait();
         if (S[i][j] > S[i][k] + S[k][j]) {
-          tracer._visit(j, i, S[i][j])._wait();
+          tracer.visit(j, i, S[i][j]).wait();
           S[i][j] = S[i][k] + S[k][j];
-          tracer._leave(j, i, S[i][j]);
+          tracer.leave(j, i, S[i][j]);
         }
-        tracer._leave(j, k);
+        tracer.leave(j, k);
       }
-      tracer._leave(k, i)._wait();
+      tracer.leave(k, i).wait();
     }
   }
   for (i = 0; i < G.length; i++)
     for (j = 0; j < G.length; j++)
-      if (S[i][j] === MAX_VALUE) logger._print('there is no path from ' + i + ' to ' + j);
-      else logger._print('the shortest path from ' + i + ' to ' + j + ' is ' + S[i][j]);
+      if (S[i][j] === MAX_VALUE) logger.print('there is no path from ' + i + ' to ' + j);
+      else logger.print('the shortest path from ' + i + ' to ' + j + ' is ' + S[i][j]);
 }
 var MAX_VALUE = Infinity;
-logger._print('finding the shortest paths from and to all nodes');
+logger.print('finding the shortest paths from and to all nodes');
 FloydWarshall();

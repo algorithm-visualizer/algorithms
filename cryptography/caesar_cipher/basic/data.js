@@ -13,4 +13,4 @@ var encryptTracer = new Array1DTracer('Encryption');
 var decryptTracer = new Array1DTracer('Decryption');
 var logger = new LogTracer();
 
-encryptTracer._setData(string);
+encryptTracer.set(string);

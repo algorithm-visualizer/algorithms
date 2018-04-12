@@ -12,7 +12,7 @@ function buildMaze(){
 
 	mySet.addElements(width*height);
 
-    logger._print("initializing grid (all walls are up)");
+    logger.print("initializing grid (all walls are up)");
     // init 'graph'
     // each room has two walls, a down and right wall.
 	for (var i = 0; i < width; i++) {
@@ -30,7 +30,7 @@ function buildMaze(){
                 G[j*2 + 1][i*3 + 1] = location_string[0];
                 G[j*2 + 1][i*3 + 2] = location_string[1];
 
-                tracer._setData(G);
+                tracer.set(G);
             }
 
 			rightWalls.push({x:i, y:j});
@@ -39,7 +39,7 @@ function buildMaze(){
 		}
 	}
 
-    logger._print("shuffled the walls for random selection");
+    logger.print("shuffled the walls for random selection");
     // Randomly shuffle the walls
 	var rightWalls = shuffle(rightWalls);
 	var downWalls = shuffle(downWalls);
@@ -56,24 +56,24 @@ function buildMaze(){
 			if(i_y_down < height){
 				var u = graph[i_x][i_y];
 				var v = graph[i_x][i_y_down];
-                tracer._notify(i_y*2 + 1, i_x*3 + 1);
-                tracer._notify(i_y*2 + 1, i_x*3 + 2);
-                tracer._notify(i_y_down*2 + 1, i_x*3 + 1);
-                tracer._notify(i_y_down*2 + 1, i_x*3 + 2);
+                tracer.notify(i_y*2 + 1, i_x*3 + 1);
+                tracer.notify(i_y*2 + 1, i_x*3 + 2);
+                tracer.notify(i_y_down*2 + 1, i_x*3 + 1);
+                tracer.notify(i_y_down*2 + 1, i_x*3 + 2);
 				if(mySet.find(u) != mySet.find(v)){
-                    logger._print('Rooms: ' + u + ' & ' + v + ' now belong to the same set, delete wall between them');
+                    logger.print('Rooms: ' + u + ' & ' + v + ' now belong to the same set, delete wall between them');
 
-                    logger._wait();
+                    logger.wait();
 					mySet.setUnion(u,v);
 					setSize++;
                     // delete wall
 					walls[u].down = false;
 				}else{
-                    logger._print('Rooms: ' + u + ' & ' + v + ' would create a cycle! This is not good!');
-                    logger._wait();
+                    logger.print('Rooms: ' + u + ' & ' + v + ' would create a cycle! This is not good!');
+                    logger.wait();
                 }
 			}
-            tracer._clear();
+            tracer.clear();
 		}else if(randomWall === 2 && rightWalls.length > 0){
             // Right Wall
 			var current_room = rightWalls.pop();
@@ -83,30 +83,30 @@ function buildMaze(){
 			if(i_x_right < width){
 				var u = graph[i_x][i_y];
 				var v = graph[i_x_right][i_y];
-                tracer._notify(i_y*2 + 1, i_x*3 + 1);
-                tracer._notify(i_y*2 + 1, i_x*3 + 2);
-                tracer._notify(i_y*2 + 1, i_x_right*3 + 1);
-                tracer._notify(i_y*2 + 1, i_x_right*3 + 2);
+                tracer.notify(i_y*2 + 1, i_x*3 + 1);
+                tracer.notify(i_y*2 + 1, i_x*3 + 2);
+                tracer.notify(i_y*2 + 1, i_x_right*3 + 1);
+                tracer.notify(i_y*2 + 1, i_x_right*3 + 2);
                 if(mySet.find(u) != mySet.find(v)){
-                    logger._print('Rooms: ' + u + ' & ' + v + ' now belong to the same set, delete wall between them');
+                    logger.print('Rooms: ' + u + ' & ' + v + ' now belong to the same set, delete wall between them');
 
-                    logger._wait();
+                    logger.wait();
 					mySet.setUnion(u,v);
 					setSize++;
                     // delete wall
 					walls[u].right = false;
 				}else{
-                    logger._print('Rooms: ' + u + ' & ' + v + ' would create a cycle! This is not good!');
-                    logger._wait();
+                    logger.print('Rooms: ' + u + ' & ' + v + ' would create a cycle! This is not good!');
+                    logger.wait();
                 }
 			}
-            tracer._clear();
+            tracer.clear();
 		}
 	}
 
-    tracer._clear();
+    tracer.clear();
 
-    logger._print("deleting the walls");
+    logger.print("deleting the walls");
     //update deleted walls
     for (var i = 0; i < width; i++) {
         for(var j = 0; j < height; j++){
@@ -115,25 +115,25 @@ function buildMaze(){
             if(current_wall.down === false){
                 G[j*2 + 2][i*3 + 1] = ' ';
                 G[j*2 + 2][i*3 + 2] = ' ';
-                tracer._select(j*2 + 2, i*3 + 1)._wait();
-                tracer._select(j*2 + 2, i*3 + 2)._wait();
+                tracer.select(j*2 + 2, i*3 + 1).wait();
+                tracer.select(j*2 + 2, i*3 + 2).wait();
             }
 
             if(current_wall.right === false){
                 G[j*2 + 1][i*3 + 3] = ' ';
-                tracer._select(j*2 +1 , i*3 + 3)._wait();
+                tracer.select(j*2 +1 , i*3 + 3).wait();
             }
-            tracer._setData(G);
+            tracer.set(G);
         }
     }
-    logger._print('cleaning up the grid!');
+    logger.print('cleaning up the grid!');
     cleanUpGrid(width,height);
 
     // Clear out walls for the start and end locations.
     var random_start = Math.floor(Math.random()*width);
     var random_end = Math.floor(Math.random()*width);
 
-    logger._print('setting the Start (S) & End (E) locations');
+    logger.print('setting the Start (S) & End (E) locations');
 
     // Start Location
     G[0][random_start*3 + 1] = ' ';
@@ -148,10 +148,10 @@ function buildMaze(){
     cleanUpStartLocation(random_start);
     cleanUpEndLocation(random_end);
 
-    logger._print('maze is completed!');
+    logger.print('maze is completed!');
 
     // set the data
-    tracer._setData(G);
+    tracer.set(G);
 }
 function cleanUpStartLocation(start){
     if(G[0][start*3] === "┬" && G[1][start*3] === '│'){

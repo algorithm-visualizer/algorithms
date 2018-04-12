@@ -7,15 +7,15 @@ var G = new DirectedGraph.random (5, 0.4),
 	outgoingEdgeCounts = filledArray (G.length, 0),
 	incomingNodes;
 
-var graphTracer = new DirectedGraphTracer ('Web Page inter-connections'),
+var graphTracer = new GraphTracer ('Web Page inter-connections'),
 	rankTracer = new Array1DTracer ('Web Page Ranks'),
 	oecTracer = new Array1DTracer ('Outgoing Edge Counts'),
 	inTracer = new Array2DTracer ('Incoming Nodes');
 
 var logger = new LogTracer ();
 
-graphTracer._setData (G);
-oecTracer._setData (outgoingEdgeCounts);
+graphTracer.set (G);
+oecTracer.set (outgoingEdgeCounts);
 
 for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push (filledArray (G.length, -1)));
-inTracer._setData (incomingNodes);
+inTracer.set (incomingNodes);

@@ -23,24 +23,24 @@ for ( var i = 0 ; i <= N-M; i++ ) {
 	*/
 	if ( hashPattern === hashText ) {
 		var f = 0;
-		tracer1._select( i, i + M )._wait();
-		tracer2._select( 0, M - 1 )._wait();
+		tracer1.select( i, i + M ).wait();
+		tracer2.select( 0, M - 1 ).wait();
 		for( var j = 0; j < M; j++ ) {
 
-			tracer1._notify( i + j )._wait();
-			tracer2._notify( j )._wait();
+			tracer1.notify( i + j ).wait();
+			tracer2.notify( j ).wait();
 			if ( text[i + j] != pattern[j] ) {
 				f++;
 			}
-			tracer1._denotify( i + j );
-			tracer2._denotify( j );
+			tracer1.denotify( i + j );
+			tracer2.denotify( j );
 		}
 
 		if( f === 0 ) {
-			logger._print( ' Pattern found at index ' + i );
+			logger.print( ' Pattern found at index ' + i );
 		}
-		tracer1._deselect( i, i + M );
-		tracer2._deselect( 0, M - 1 );
+		tracer1.deselect( i, i + M );
+		tracer2.deselect( 0, M - 1 );
 	}
 
 	/*

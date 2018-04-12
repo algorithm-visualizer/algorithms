@@ -16,4 +16,4 @@ var D = [
 ];
 
 var tracer = new Array2DTracer();
-tracer._setData(D);
+tracer.set(D);

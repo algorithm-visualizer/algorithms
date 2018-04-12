@@ -1,24 +1,24 @@
-logger._print('original array = [' + D.join(', ') + ']');
+logger.print('original array = [' + D.join(', ') + ']');
 for (var i = 0; i < D.length - 1; i++) {
     var minJ = i;
-    tracer._select(i)._wait();
+    tracer.select(i).wait();
     for (var j = i + 1; j < D.length; j++) {
-    	tracer._select(j)._wait();
+    	tracer.select(j).wait();
         if (D[j] < D[minJ]) {
             minJ = j;
-            tracer._notify(j)._wait();
-            tracer._denotify(j);
+            tracer.notify(j).wait();
+            tracer.denotify(j);
         }
-        tracer._deselect(j);
+        tracer.deselect(j);
     }
     if (minJ != i) {
-        logger._print('swap ' + D[i] + ' and ' + D[minJ]);
+        logger.print('swap ' + D[i] + ' and ' + D[minJ]);
         var temp = D[i];
         D[i] = D[minJ];
         D[minJ] = temp;
-        tracer._notify(i, D[i])._notify(minJ, D[minJ])._wait();
-        tracer._denotify(i)._denotify(minJ);
+        tracer.notify(i, D[i]).notify(minJ, D[minJ]).wait();
+        tracer.denotify(i).denotify(minJ);
     }
-    tracer._deselect(i);
+    tracer.deselect(i);
 }
-logger._print('sorted array = [' + D.join(', ') + ']');
+logger.print('sorted array = [' + D.join(', ') + ']');

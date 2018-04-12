@@ -1,62 +1,62 @@
 function isMajorityElement ( element ) {
 	var count = 0;
-	logger._print ('Verify majority element ' + element );
+	logger.print ('Verify majority element ' + element );
 	for (var i = N - 1; i >= 0; i--) {
-		tracer._notify (i,A[i])._wait ();
+		tracer.notify (i,A[i]).wait ();
 		if (A[i] == element) {
 			count++;
 		} else {
-			tracer._denotify (i);
+			tracer.denotify (i);
 		}
 	}
-	logger._print ('Count of our assumed majority element ' + count);
+	logger.print ('Count of our assumed majority element ' + count);
 	if(count>Math.floor (N/2)) {
-		logger._print ('Our assumption was correct!');
+		logger.print ('Our assumption was correct!');
 		return true;
 	}
-	logger._print ('Our assumption was incorrect!');
+	logger.print ('Our assumption was incorrect!');
 	return false;
 }
 
 function findProbableElement () {
 	var index = 0, count = 1;
-	tracer._select (index)._wait();
-	logger._print ('Beginning with assumed majority element : ' + A[index] + ' count : ' +count);
-	logger._print ('--------------------------------------------------------');
+	tracer.select (index).wait();
+	logger.print ('Beginning with assumed majority element : ' + A[index] + ' count : ' +count);
+	logger.print ('--------------------------------------------------------');
 	for( var i = 1; i < N; i++ ) {
-		tracer._notify (i,A[i])._wait ();
+		tracer.notify (i,A[i]).wait ();
 		if(A[index]==A[i]) {
 			count++;
-			logger._print ('Same as assumed majority element! Count : ' + count);
+			logger.print ('Same as assumed majority element! Count : ' + count);
 		} else {
 			count--;
-			logger._print ('Not same as assumed majority element! Count : ' + count);
+			logger.print ('Not same as assumed majority element! Count : ' + count);
 		}
 
 		if(count===0) {
-			logger._print ('Wrong assumption in majority element');
-			tracer._deselect (index);
-			tracer._denotify (i);
+			logger.print ('Wrong assumption in majority element');
+			tracer.deselect (index);
+			tracer.denotify (i);
 			index = i;
 			count = 1;
-			tracer._select (i)._wait ();
-			logger._print ('New assumed majority element!'+ A[i]  +' Count : '+count);
-			logger._print ('--------------------------------------------------------');
+			tracer.select (i).wait ();
+			logger.print ('New assumed majority element!'+ A[i]  +' Count : '+count);
+			logger.print ('--------------------------------------------------------');
 		} else {
-			tracer._denotify (i);		
+			tracer.denotify (i);
 		}
 	}
-	logger._print ('Finally assumed majority element ' + A[index]);
-	logger._print ('--------------------------------------------------------');
+	logger.print ('Finally assumed majority element ' + A[index]);
+	logger.print ('--------------------------------------------------------');
 	return A[index];
 }
 
 function findMajorityElement () {
 	var element = findProbableElement ();
 	if(isMajorityElement (element) === true) {
-		logger._print ('Majority element is ' + element);
+		logger.print ('Majority element is ' + element);
 	} else {
-		logger._print ('No majority element');
+		logger.print ('No majority element');
 	}
 }
 

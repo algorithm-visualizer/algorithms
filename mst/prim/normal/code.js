@@ -10,7 +10,7 @@ function prim() {
             if (D[i]) // First node in an edge must be visited
                 for (var j = 0; j < G.length; j++)
                     if (!D[j] && G[i][j]) {
-                        tracer._visit(i, j)._wait();
+                        tracer.visit(i, j).wait();
                         // Second node must not be visited and must be connected to first node
                         if (G[i][j] < minD) {
                             // Searching for cheapest edge which satisfies requirements
@@ -18,14 +18,14 @@ function prim() {
                             minI = i;
                             minJ = j;
                         }
-                        tracer._leave(i, j)._wait();
+                        tracer.leave(i, j).wait();
                     }
-        tracer._visit(minI, minJ)._wait();
+        tracer.visit(minI, minJ).wait();
         D[minJ] = 1; // Visit second node and insert it into or tree
         sum += G[minI][minJ];
     }
-    logger._print("The sum of all edges is: " + sum);
+    logger.print("The sum of all edges is: " + sum);
 }
 
-logger._print("nodes that belong to minimum spanning tree are: ");
+logger.print("nodes that belong to minimum spanning tree are: ");
 prim();

@@ -19,5 +19,5 @@ for(i=0;i<N;i++) {
   L[i][i]=1;
 }
 
-tracer._setData(seq);
-matrix._setData(L);
+tracer.set(seq);
+matrix.set(L);

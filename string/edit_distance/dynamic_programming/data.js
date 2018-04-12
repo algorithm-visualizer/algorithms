@@ -8,4 +8,4 @@ for (var i = 1; i < str1.length + 1; i++) {
     table[i] [0] = i
 }
 
-tracer._setData(table);
+tracer.set(table);

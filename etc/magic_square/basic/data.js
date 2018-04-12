@@ -10,5 +10,5 @@ for ( var i = n -1; i >= 0; i-- ) {
 	}
 }
 
-var tracer = new Array2DTracer ('Magic Square')._setData(A);
+var tracer = new Array2DTracer ('Magic Square').set(A);
 var logTracer = new LogTracer ( 'Console' );

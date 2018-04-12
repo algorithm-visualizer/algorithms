@@ -1,12 +1,12 @@
 function lcaBT (parent, root, a, b) {
-    logger._print ('Beginning new Iteration of lcaBT () with parent: ' + parent + ', current root: ' + root);
+    logger.print ('Beginning new Iteration of lcaBT () with parent: ' + parent + ', current root: ' + root);
     if (root === -1) {
-        logger._print ('Reached end of path & target node(s) not found')
+        logger.print ('Reached end of path & target node(s) not found')
         return null;
     }
     
-    if (parent !== null) treeTracer._visit (root, parent)._wait ();
-    else treeTracer._visit (root)._wait ();
+    if (parent !== null) treeTracer.visit (root, parent).wait ();
+    else treeTracer.visit (root).wait ();
     
     if (root === a || root === b) return root;
     
@@ -15,11 +15,11 @@ function lcaBT (parent, root, a, b) {
     
     if (left !== null && right !== null) return root;
     if (left === null && right === null) {
-        treeTracer._leave (root, parent)._wait ();
+        treeTracer.leave (root, parent).wait ();
     }
     
     return (left !== null ? left : right);
 }
 
 var a = 7, b = 2;
-logger._print ('Lowest common ancestor of ' + a + ' & ' + b + ' is: ' + lcaBT (null, 5, a, b));
+logger.print ('Lowest common ancestor of ' + a + ' & ' + b + ' is: ' + lcaBT (null, 5, a, b));

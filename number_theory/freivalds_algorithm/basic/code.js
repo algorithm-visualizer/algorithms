@@ -3,7 +3,7 @@ function FreivaldsAlgorithm() {
 	var i, j, tmp, tmpB, tmpC, n = A.length;
 
 	while (k--) {
-		logger._print('Iterations remained: #' + k);
+		logger.print('Iterations remained: #' + k);
 
 		// Generate random vector
 		var r = [], P = [];
@@ -11,7 +11,7 @@ function FreivaldsAlgorithm() {
 			P.push(-1);
 			r.push( (Math.random() < 0.5) << 0);
 		}
-		_r._setData(r)._wait();
+		_r.set(r).wait();
 
 		// Compute Br, Cr
 		var Br = [], Cr = [];
@@ -35,16 +35,16 @@ function FreivaldsAlgorithm() {
 			}
 			P.push(tmp);
 		}
-		_p._setData(P)._wait();
+		_p.set(P).wait();
 
 		for (i = 0; i < n; i++) {
 			if (P[i] !== 0) {
-				logger._print('P[' + i + '] !== 0 (' + P[i] + '), exit');
+				logger.print('P[' + i + '] !== 0 (' + P[i] + '), exit');
 				return false;
 			}
 		}
 
-		logger._print('Result vector is identity, continue...');
+		logger.print('Result vector is identity, continue...');
 
 
 	}

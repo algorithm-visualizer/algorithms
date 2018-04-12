@@ -7,13 +7,13 @@ for ( var i = 0; i <= N; i++ ) {
 			then the total weight in our collection is 0
 			*/
 			DP[i][0] = 0;
-			tracer._notify( i, j, DP[i][j])._wait();
-			tracer._denotify( i, j);
+			tracer.notify( i, j, DP[i][j]).wait();
+			tracer.denotify( i, j);
 		} else if ( wt[i-1] <= j ) { // take the current item in our collection
 
-			dataViewer1._select(i-1)._wait();
-			dataViewer2._select(i-1)._wait();
-			tracer._select( i-1, j)._wait();
+			dataViewer1.select(i-1).wait();
+			dataViewer2.select(i-1).wait();
+			tracer.select( i-1, j).wait();
 
 			var A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
 			var B = DP[i - 1][j];
@@ -23,24 +23,24 @@ for ( var i = 0; i <= N; i++ ) {
 			 */
 			if (A > B) {
 				DP[i][j] = A;
-				tracer._notify( i, j, DP[i][j])._wait();
+				tracer.notify( i, j, DP[i][j]).wait();
 			} else {
 				DP[i][j] = B;
-				tracer._notify( i, j, DP[i][j])._wait();
+				tracer.notify( i, j, DP[i][j]).wait();
 			}
 
-			tracer._deselect( i-1, j);
-			tracer._denotify( i, j);
-			dataViewer2._deselect(i-1);
-			dataViewer1._deselect(i-1);
+			tracer.deselect( i-1, j);
+			tracer.denotify( i, j);
+			dataViewer2.deselect(i-1);
+			dataViewer1.deselect(i-1);
 
 		} else { // leave the current item from our collection 
 
 			DP[i][j] = DP[i - 1][j];
-			tracer._notify( i, j, DP[i][j])._wait();
-			tracer._denotify( i, j);
+			tracer.notify( i, j, DP[i][j]).wait();
+			tracer.denotify( i, j);
 		}
 	}
 }
 
-logger._print(' Best value we can achieve is ' + DP[N][W]);
+logger.print(' Best value we can achieve is ' + DP[N][W]);

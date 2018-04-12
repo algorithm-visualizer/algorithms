@@ -26,10 +26,10 @@ function kruskal() {
     var wsum = 0;
     for (var n = 0; n < vcount - 1 && edges.length > 0;) {
         var e = edges.shift(); // Get the edge of min weight
-        tracer._visit(e[0], e[1])._wait();
+        tracer.visit(e[0], e[1]).wait();
         if (t[e[0]] === t[e[1]]) {
             // e[0] & e[1] already in the same tree, ignore
-            tracer._leave(e[0], e[1])._wait();
+            tracer.leave(e[0], e[1]).wait();
             continue;
         }
 
@@ -45,7 +45,7 @@ function kruskal() {
         n += 1;
     }
 
-    logger._print("The sum of all edges is: " + wsum);
+    logger.print("The sum of all edges is: " + wsum);
 }
 
 kruskal();

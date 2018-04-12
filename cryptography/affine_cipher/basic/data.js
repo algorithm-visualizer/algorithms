@@ -15,4 +15,4 @@ var ptTracer = new Array1DTracer('Encryption');
 var ctTracer = new Array1DTracer('Decryption');
 var logger = new LogTracer();
 
-ptTracer._setData(plainText);
+ptTracer.set(plainText);

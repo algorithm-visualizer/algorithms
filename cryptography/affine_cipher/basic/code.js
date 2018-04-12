@@ -16,24 +16,24 @@ function encrypt(plainText) {
     var index = alpha.charCodeAt(0) - 'a'.charCodeAt(0);
     var result = ((keys.a * index) + keys.b).mod(N);
 
-    logger._print('Index of ' + alpha + ' = ' + index);
+    logger.print('Index of ' + alpha + ' = ' + index);
 
     result += 'a'.charCodeAt(0);
     return String.fromCharCode(result);
   }
 
-  logger._print('Beginning Affine Encryption');
-  logger._print('Encryption formula: <b>((keys.a * index_of_alphabet) + keys.b) % N</b>');
-  logger._print('keys.a=' + keys.a + ', keys.b=' + keys.b + ', N=' + N);
+  logger.print('Beginning Affine Encryption');
+  logger.print('Encryption formula: <b>((keys.a * index_of_alphabet) + keys.b) % N</b>');
+  logger.print('keys.a=' + keys.a + ', keys.b=' + keys.b + ', N=' + N);
 
   for (var i in plainText) {
-    ptTracer._select(i)._wait();
-    ptTracer._deselect(i);
+    ptTracer.select(i).wait();
+    ptTracer.deselect(i);
 
     cypherText += cryptAlpha(plainText [i]);
 
-    ptTracer._notify(i, cypherText.slice(-1))._wait();
-    ptTracer._denotify(i);
+    ptTracer.notify(i, cypherText.slice(-1)).wait();
+    ptTracer.denotify(i);
   }
 
   return cypherText;
@@ -49,35 +49,35 @@ function decrypt(cypherText) {
     }
   })();
 
-  logger._print('a<sup>-1</sup> = ' + aInverse);
+  logger.print('a<sup>-1</sup> = ' + aInverse);
 
   function decryptAlpha(alpha) {
     var index = alpha.charCodeAt(0) - 'a'.charCodeAt(0);
     var result = (aInverse * (index - keys.b)).mod(N);
 
-    logger._print('Index of ' + alpha + ' = ' + index);
+    logger.print('Index of ' + alpha + ' = ' + index);
 
     result += 'a'.charCodeAt(0);
     return String.fromCharCode(result);
   }
 
-  logger._print('Beginning Affine Decryption');
-  logger._print('Decryption formula: <b>(a<sup>-1</sup> * (index - keys.b)) % N</b>');
-  logger._print('keys.b=' + keys.b + ', N=' + N);
+  logger.print('Beginning Affine Decryption');
+  logger.print('Decryption formula: <b>(a<sup>-1</sup> * (index - keys.b)) % N</b>');
+  logger.print('keys.b=' + keys.b + ', N=' + N);
 
   for (var i in cypherText) {
-    ctTracer._select(i)._wait();
-    ctTracer._deselect(i)._wait();
+    ctTracer.select(i).wait();
+    ctTracer.deselect(i).wait();
 
     plainText += decryptAlpha(cypherText [i]);
 
-    ctTracer._notify(i, plainText.slice(-1))._wait();
-    ctTracer._denotify(i)._wait();
+    ctTracer.notify(i, plainText.slice(-1)).wait();
+    ctTracer.denotify(i).wait();
   }
 
   return plainText;
 }
 
 var cipherText = encrypt(plainText);
-ctTracer._setData(cipherText);
+ctTracer.set(cipherText);
 decrypt(cipherText);

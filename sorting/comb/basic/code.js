@@ -1,4 +1,4 @@
-logger._print('original array = [' + D.join(', ') + ']');
+logger.print('original array = [' + D.join(', ') + ']');
 var N = D.length;
 var swapped;
 var gap = N;            // initialize gap size
@@ -15,20 +15,20 @@ do{
     swapped = false;    // initialize swapped
     // a single comb over the input list
     for( var i=0; i+gap < N; i++ ){
-        tracer._select(i)._select(i+gap)._wait();
+        tracer.select(i).select(i+gap).wait();
 
         if( D[i] > D[i+gap] ){
-            logger._print('swap ' + D[i] + ' and ' + D[i+gap]);     // log swap event
+            logger.print('swap ' + D[i] + ' and ' + D[i+gap]);     // log swap event
             
             var temp = D[i];
             D[i] = D[i+gap];
             D[i+gap] = temp;
 
-            tracer._notify(i, D[i])._notify(i+gap, D[i+gap])._wait();
-            tracer._denotify(i)._denotify(i+gap);
+            tracer.notify(i, D[i]).notify(i+gap, D[i+gap]).wait();
+            tracer.denotify(i).denotify(i+gap);
 
             swapped = true;     // Flag swapped has happened and list is not guaranteed sorted
         }
-        tracer._deselect(i)._deselect(i+gap);
+        tracer.deselect(i).deselect(i+gap);
     } // End of combing
 } while( gap!=1 || swapped  )
