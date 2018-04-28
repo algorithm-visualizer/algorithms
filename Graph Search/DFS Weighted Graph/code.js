@@ -1,27 +1,27 @@
-var tracer = new GraphTracer({ directed: false, weighted: true });
-var logger = new LogTracer();
+const tracer = new GraphTracer({ directed: false, weighted: true });
+const logger = new LogTracer();
 tracer.log(logger);
-var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1 });
+const G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1 });
 tracer.set(G);
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
-    tracer.visit(node, parent, weight).wait();
-    D[node] = true; // label current node as discovered
-    for (var i = 0; i < G[node].length; i++) {
-        if (G[node][i]) { // if the edge from current node to the i-th node exists
-            if (!D[i]) { // if the i-th node is not labeled as discovered
-                DFS(i, node, weight + G[node][i]); // recursively call DFS
-            }
-        }
+  tracer.visit(node, parent, weight).wait();
+  D[node] = true; // label current node as discovered
+  for (let i = 0; i < G[node].length; i++) {
+    if (G[node][i]) { // if the edge from current node to the i-th node exists
+      if (!D[i]) { // if the i-th node is not labeled as discovered
+        DFS(i, node, weight + G[node][i]); // recursively call DFS
+      }
     }
-    D[node] = false; // label current node as undiscovered
-    tracer.leave(node, parent, 0).wait();
+  }
+  D[node] = false; // label current node as undiscovered
+  tracer.leave(node, parent, 0).wait();
 }
-var D; // D[i] indicates whether the i-th node is discovered or not
-for (var i = 0; i < G.length; i++) { // start from every node
-    logger.print('start from ' + i);
-    D = [];
-    for (var j = 0; j < G.length; j++) D.push(false);
-    DFS(i, undefined, 0);
-    tracer.clear();
+let D; // D[i] indicates whether the i-th node is discovered or not
+for (let i = 0; i < G.length; i++) { // start from every node
+  logger.print(`start from ${i}`);
+  D = [];
+  for (let j = 0; j < G.length; j++) D.push(false);
+  DFS(i, undefined, 0);
+  tracer.clear();
 }

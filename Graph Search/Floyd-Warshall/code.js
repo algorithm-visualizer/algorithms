@@ -1,13 +1,15 @@
-var tracer = new GraphTracer({ directed: true, weighted: true });
-var logger = new LogTracer();
+const tracer = new GraphTracer({ directed: true, weighted: true });
+const logger = new LogTracer();
 tracer.log(logger);
-var G = Randomize.graph(5, { directed: true, weighted: true, ratio: 1, min: 1, max: 9 });
+const G = Randomize.graph(5, {
+  directed: true, weighted: true, ratio: 1, min: 1, max: 9,
+});
 tracer.set(G);
 
 function FloydWarshall() {
   // Finds the shortest path between all nodes
-  var S = new Array(G.length);
-  for (var i = 0; i < G.length; i++) S[i] = new Array(G.length)
+  const S = new Array(G.length);
+  for (var i = 0; i < G.length; i++) S[i] = new Array(G.length);
   for (i = 0; i < G.length; i++) {
     for (var j = 0; j < G.length; j++) {
       // Distance to self is always 0
@@ -20,7 +22,7 @@ function FloydWarshall() {
     }
   }
   // If there is a shorter path using k, use it instead
-  for (var k = 0; k < G.length; k++) {
+  for (let k = 0; k < G.length; k++) {
     for (i = 0; i < G.length; i++) {
       if (k === i) continue;
       tracer.visit(k, i).wait();
@@ -37,10 +39,12 @@ function FloydWarshall() {
       tracer.leave(k, i).wait();
     }
   }
-  for (i = 0; i < G.length; i++)
-    for (j = 0; j < G.length; j++)
-      if (S[i][j] === MAX_VALUE) logger.print('there is no path from ' + i + ' to ' + j);
-      else logger.print('the shortest path from ' + i + ' to ' + j + ' is ' + S[i][j]);
+  for (i = 0; i < G.length; i++) {
+    for (j = 0; j < G.length; j++) {
+      if (S[i][j] === MAX_VALUE) logger.print(`there is no path from ${i} to ${j}`);
+      else logger.print(`the shortest path from ${i} to ${j} is ${S[i][j]}`);
+    }
+  }
 }
 var MAX_VALUE = Infinity;
 logger.print('finding the shortest paths from and to all nodes');

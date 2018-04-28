@@ -1,13 +1,17 @@
-var graphTracer = new GraphTracer({ directed: false });
-var visitedTracer = new Array1DTracer('visited');
-var logger = new LogTracer();
+const graphTracer = new GraphTracer({ directed: false });
+const visitedTracer = new Array1DTracer('visited');
+const logger = new LogTracer();
 graphTracer.log(logger);
-var G = Randomize.graph(8, { directed: false, ratio: .3 });
+const G = Randomize.graph(8, { directed: false, ratio: 0.3 });
 graphTracer.set(G);
 
 function DFSExplore(graph, source) {
-  var stack = [[source, null]], visited = [];
-  var node, prev, i, temp;
+  let stack = [[source, null]],
+    visited = [];
+  let node,
+    prev,
+    i,
+    temp;
   for (i = 0; i < graph.length; i++) {
     visited.push(false);
   }
@@ -15,8 +19,8 @@ function DFSExplore(graph, source) {
 
   while (stack.length > 0) {
     temp = stack.pop();
-    node = temp [0];
-    prev = temp [1];
+    node = temp[0];
+    prev = temp[1];
 
     if (!visited[node]) {
       visited[node] = true;
@@ -39,9 +43,9 @@ function DFSExplore(graph, source) {
   return visited;
 }
 
-var visited = DFSExplore(G, 0);
-var check = true;
-for (var i = 0; i < visited.length; i++) check &= visited[i];
+const visited = DFSExplore(G, 0);
+let check = true;
+for (let i = 0; i < visited.length; i++) check &= visited[i];
 if (check) {
   logger.print('The Graph is CONNECTED');
 } else {

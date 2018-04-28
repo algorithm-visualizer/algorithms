@@ -1,4 +1,4 @@
-var G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
+const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -9,11 +9,11 @@ var G = [ // G[i][j] indicates whether the path from the i-th node to the j-th n
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 ];
 
 
-var T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1] indicates right child
+const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1] indicates right child
   [-1, -1],
   [0, 2],
   [-1, -1],
@@ -24,12 +24,12 @@ var T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1]
   [-1, -1],
   [6, 10],
   [-1, -1],
-  [9, -1]
+  [9, -1],
 ];
 
-var key = Randomize.integer(0, G.length - 1); // item to be searched
-var tracer = new GraphTracer(" Binary Search Tree ").set(G, GraphData.LAYOUT.TREE, 5);;
-var logger = new LogTracer(" Log ");
+const key = Randomize.integer(0, G.length - 1); // item to be searched
+const tracer = new GraphTracer(' Binary Search Tree ').set(G, GraphData.LAYOUT.TREE, 5);
+const logger = new LogTracer(' Log ');
 tracer.log(logger);
 
 function bst(item, node, parent) { // node = current node , parent = previous node
@@ -51,5 +51,5 @@ function bst(item, node, parent) { // node = current node , parent = previous no
   }
 }
 
-logger.print('Finding number ' + key);
+logger.print(`Finding number ${key}`);
 bst(key, 5); // node with key 5 is the root

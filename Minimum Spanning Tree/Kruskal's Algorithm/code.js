@@ -1,63 +1,63 @@
-var tracer = new GraphTracer({ directed: false, weighted: true });
-var logger = new LogTracer();
-/*var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
+const tracer = new GraphTracer({ directed: false, weighted: true });
+const logger = new LogTracer();
+/* var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
  [0, 3, 0, 1, 0],
  [5, 0, 1, 2, 4],
  [1, 0, 0, 2, 0],
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
- ];*/
-var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1, min: 1, max: 9 });
+ ]; */
+const G = Randomize.graph(5, {
+  directed: false, weighted: true, ratio: 1, min: 1, max: 9,
+});
 tracer.set(G);
 
 function kruskal() {
-    var vcount = G.length;
+  const vcount = G.length;
 
-    // Preprocess: sort edges by weight.
-    var edges = [];
-    for (var vi = 0; vi < vcount - 1; vi++) {
-        for (var vj = vi + 1; vj < vcount; vj++) {
-            edges.push({
-                0: vi,
-                1: vj,
-                weight: G[vi][vj]
-            });
-        }
+  // Preprocess: sort edges by weight.
+  const edges = [];
+  for (let vi = 0; vi < vcount - 1; vi++) {
+    for (let vj = vi + 1; vj < vcount; vj++) {
+      edges.push({
+        0: vi,
+        1: vj,
+        weight: G[vi][vj],
+      });
     }
-    edges.sort(function (ei, ej) {
-        return ei.weight - ej.weight
-    });
+  }
+  edges.sort((ei, ej) => ei.weight - ej.weight);
 
-    // Give each vertex a tree to decide if they are already in the same tree.
-    var t = [];
-    for (var i = 0; i < vcount; i++) {
-        t[i] = {};
-        t[i][i] = true;
-    }
+  // Give each vertex a tree to decide if they are already in the same tree.
+  const t = [];
+  for (var i = 0; i < vcount; i++) {
+    t[i] = {};
+    t[i][i] = true;
+  }
 
-    var wsum = 0;
-    for (var n = 0; n < vcount - 1 && edges.length > 0;) {
-        var e = edges.shift(); // Get the edge of min weight
-        tracer.visit(e[0], e[1]).wait();
-        if (t[e[0]] === t[e[1]]) {
-            // e[0] & e[1] already in the same tree, ignore
-            tracer.leave(e[0], e[1]).wait();
-            continue;
-        }
-
-        // Choose the current edge.
-        wsum += e.weight;
-
-        // Merge tree of e[0] & e[1]
-        var tmerged = {};
-        for (i in t[e[0]]) tmerged[i] = true;
-        for (i in t[e[1]]) tmerged[i] = true;
-        for (i in tmerged) t[i] = tmerged;
-
-        n += 1;
+  let wsum = 0;
+  for (let n = 0; n < vcount - 1 && edges.length > 0;) {
+    const e = edges.shift(); // Get the edge of min weight
+    tracer.visit(e[0], e[1]).wait();
+    if (t[e[0]] === t[e[1]]) {
+      // e[0] & e[1] already in the same tree, ignore
+      tracer.leave(e[0], e[1]).wait();
+      continue;
     }
 
-    logger.print("The sum of all edges is: " + wsum);
+    // Choose the current edge.
+    wsum += e.weight;
+
+    // Merge tree of e[0] & e[1]
+    const tmerged = {};
+    for (i in t[e[0]]) tmerged[i] = true;
+    for (i in t[e[1]]) tmerged[i] = true;
+    for (i in tmerged) t[i] = tmerged;
+
+    n += 1;
+  }
+
+  logger.print(`The sum of all edges is: ${wsum}`);
 }
 
 kruskal();

@@ -1,30 +1,30 @@
-var N = 10;
-var A = new Array ( N+1 );
+const N = 10;
+const A = new Array(N + 1);
 for (var i = N; i >= 0; i--) {
-	A[i] = 0;
+  A[i] = 0;
 }
 
-var tracer = new Array1DTracer( ' Catalan Numbers ').set( A );
-var logger = new LogTracer();
+const tracer = new Array1DTracer(' Catalan Numbers ').set(A);
+const logger = new LogTracer();
 
 A[0] = 1;
-tracer.notify ( 0, A[0] ).wait();
-tracer.denotify ( 0 );
+tracer.notify(0, A[0]).wait();
+tracer.denotify(0);
 A[1] = 1;
-tracer.notify ( 1, A[1] ).wait();
-tracer.denotify ( 1 );
+tracer.notify(1, A[1]).wait();
+tracer.denotify(1);
 
 for (var i = 2; i <= N; i++) {
-	for (var j = 0; j < i; j++) {
-		A[i] += A[j] * A[i-j-1];
-		tracer.select( j ).wait();
-		tracer.select( i - j -1 ).wait();
-		tracer.notify( i, A[i]).wait();
-		tracer.deselect( j );
-		tracer.deselect( i - j - 1 );
-		tracer.denotify( i );
-	}
+  for (let j = 0; j < i; j++) {
+    A[i] += A[j] * A[i - j - 1];
+    tracer.select(j).wait();
+    tracer.select(i - j - 1).wait();
+    tracer.notify(i, A[i]).wait();
+    tracer.deselect(j);
+    tracer.deselect(i - j - 1);
+    tracer.denotify(i);
+  }
 }
 
-logger.print ( ' The ' + N + 'th Catalan Number is ' + A[N] );
-tracer.select( N ).wait();
+logger.print(` The ${N}th Catalan Number is ${A[N]}`);
+tracer.select(N).wait();
