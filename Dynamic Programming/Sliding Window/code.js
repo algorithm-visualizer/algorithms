@@ -1,7 +1,6 @@
 var tracer = new Array1DTracer();
 var logger = new LogTracer();
-tracer.log(logger);
-var D = Array1D.random(20, -5, 5);
+var D = Randomize.array1D(20, { min: -5, max: 5 });
 tracer.set(D);
 
 var sum = D[0] + D[1] + D[2];

@@ -1,7 +1,7 @@
-var tracer = new WeightedDirectedGraphTracer();
+var tracer = new GraphTracer({ directed: true, weighted: true });
 var logger = new LogTracer();
 tracer.log(logger);
-var G = WeightedDirectedGraph.random(5, .5, -2, 5);
+var G = Randomize.graph(5, { directed: true, weighted: true, ratio: .5, min: -2, max: 5 });
 tracer.set(G);
 
 
@@ -59,7 +59,7 @@ function BELLMAN_FORD(src, dest) {
   return weights[dest];
 }
 
-var src = Integer.random(0, G.length - 1), dest;
+var src = Randomize.integer(0, G.length - 1), dest;
 var MAX_VALUE = Infinity;
 var minWeight;
 
@@ -69,7 +69,7 @@ var minWeight;
  */
 
 do {
-  dest = Integer.random(0, G.length - 1);
+  dest = Randomize.integer(0, G.length - 1);
 }
 while (src === dest);
 

@@ -1,8 +1,8 @@
-var tracer = new WeightedUndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false, weighted: true });
 var tracerS = new Array1DTracer();
 var logger = new LogTracer();
 tracer.log(logger);
-var G = WeightedUndirectedGraph.random(5, 1, 1, 9);
+var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1, min: 1, max: 9 });
 tracer.set(G);
 var MAX_VALUE = Infinity;
 var S = []; // S[end] returns the distance from start node to end node
@@ -50,10 +50,10 @@ function Dijkstra(start, end) {
     }
 }
 
-var s = Integer.random(0, G.length - 1); // s = start node
+var s = Randomize.integer(0, G.length - 1); // s = start node
 var e; // e = end node
 do {
-    e = Integer.random(0, G.length - 1);
+    e = Randomize.integer(0, G.length - 1);
 } while (s === e);
 logger.print('finding the shortest path from ' + s + ' to ' + e).wait();
 Dijkstra(s, e);

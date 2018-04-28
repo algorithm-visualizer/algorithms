@@ -1,6 +1,6 @@
 var tracer = new Array1DTracer();
 var logger = new LogTracer();
-var A = Array1D.random(10, 0, 10);
+var A = Randomize.array1D(10, { min: 0, max: 10 });
 var LIS = new Array(A.length);
 tracer.set(A);
 

@@ -1,7 +1,7 @@
-var tracer = new WeightedDirectedGraphTracer();
+var tracer = new GraphTracer({ directed: true, weighted: true });
 var logger = new LogTracer();
 tracer.log(logger);
-var G = WeightedDirectedGraph.random(5, 1, 1, 9);
+var G = Randomize.graph(5, { directed: true, weighted: true, ratio: 1, min: 1, max: 9 });
 tracer.set(G);
 
 function FloydWarshall() {

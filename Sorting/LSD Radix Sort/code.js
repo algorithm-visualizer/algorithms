@@ -1,6 +1,6 @@
 var tracer = new Array2DTracer();
 var logger = new LogTracer();
-var k = Array1D.random(10, 1, 999);
+var k = Randomize.array1D(10, { min: 1, max: 999 });
 var D = [
     k,
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

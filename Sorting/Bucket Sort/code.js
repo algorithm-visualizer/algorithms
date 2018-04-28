@@ -3,7 +3,7 @@ var arraySize = 10;
 var numBuckets = 5;
 
 //initialize array values
-var array = Array1D.random(arraySize, 0, maxValue - 1);
+var array = Randomize.array1D(arraySize, { min: 0, max: maxValue - 1 });
 var buckets = [];
 var bucketsCount = [];
 var sortedArray = [];
@@ -13,7 +13,7 @@ for (let i = 0; i < arraySize; i++) {
 		bucketsCount[i] = 0;
 	}
     sortedArray[i] = 0;
-}	
+}
 var D = [
     array,
     bucketsCount,
@@ -46,7 +46,7 @@ for (let k = 0; k < buckets.length; k++) {
 		}
 		buckets[k][j + 1] = key;
 	}
-	
+
 	//place ordered buckets into sorted array
 	for (let i = 0; i < buckets[k].length; i++) {
 		sortedArray[sortLocation] = buckets[k][i];

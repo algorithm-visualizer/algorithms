@@ -1,5 +1,6 @@
-var tracer = new Array2DTracer().log(new LogTracer());
-var integer = Integer.random(5, 14);
+var tracer = new Array2DTracer();
+var logger = new LogTracer();
+var integer = Randomize.integer(5, 14);
 var D = [], A = [];
 for (var i = 0; i <= integer; i++) {
   D.push([]);
@@ -10,7 +11,7 @@ for (var i = 0; i <= integer; i++) {
 tracer.set(D);
 
 function partition(A, n, p){
-  if (n === 0) tracer.logTracer.print('[' + A.join(', ') + ']');
+  if (n === 0) logger.print('[' + A.join(', ') + ']');
   else {
     var end = n;
     if (p !== 0 && A[p-1] < n) end = A[p-1];
@@ -37,7 +38,7 @@ function integerPartition(n){
   return D[n][n];
 }
 
-tracer.logTracer.print('Partitioning: ' + integer);
+logger.print('Partitioning: ' + integer);
 partition(A, integer, 0);
 var part = integerPartition(integer);
-tracer.logTracer.print(part);
+logger.print(part);

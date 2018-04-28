@@ -3,7 +3,7 @@ function randString(length) {
   var text = '';
 
   for (var i = 0; i < length; i++) {
-    text += choices[Integer.random(0, choices.length - 1)];
+    text += choices[Randomize.integer(0, choices.length - 1)];
   }
 
   return text;

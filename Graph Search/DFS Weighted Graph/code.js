@@ -1,7 +1,7 @@
-var tracer = new WeightedUndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false, weighted: true });
 var logger = new LogTracer();
 tracer.log(logger);
-var G = WeightedUndirectedGraph.random(5, 1);
+var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1 });
 tracer.set(G);
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node

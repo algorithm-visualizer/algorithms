@@ -1,4 +1,4 @@
-var tracer = new WeightedUndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false, weighted: true });
 var logger = new LogTracer();
 tracer.log(logger);
 /*var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
@@ -8,7 +8,7 @@ tracer.log(logger);
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ];*/
-var G = WeightedUndirectedGraph.random(10, .4, 1, 9);
+var G = Randomize.graph(10, { directed: false, weighted: true, ratio: .4, min: 1, max: 9 });
 tracer.set(G);
 
 function prim() {

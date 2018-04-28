@@ -1,4 +1,4 @@
-var tracer = new WeightedUndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false, weighted: true });
 var logger = new LogTracer();
 /*var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
  [0, 3, 0, 1, 0],
@@ -7,7 +7,7 @@ var logger = new LogTracer();
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ];*/
-var G = WeightedUndirectedGraph.random(5, 1, 1, 9);
+var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1, min: 1, max: 9 });
 tracer.set(G);
 
 function kruskal() {

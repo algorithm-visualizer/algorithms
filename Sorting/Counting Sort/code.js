@@ -2,7 +2,7 @@ var maxValue = 9;
 var arrSize = 10;
 
 //initialize array values
-var A = Array1D.random(arrSize, 0, maxValue);
+var A = Randomize.array1D(arrSize, { min: 0, max: maxValue });
 var counts = [];
 var sortedA = [];
 for (let i = 0; i <= maxValue; i++) {

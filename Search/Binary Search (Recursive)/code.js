@@ -1,7 +1,7 @@
 var chart = new ChartTracer();
 var tracer = new Array1DTracer().chart(chart);
 var logger = new LogTracer();
-var D = Array1D.randomSorted(15, 0, 50);
+var D = Randomize.array1D(15, { sorted: true, min: 0, max: 50 });
 tracer.set(D);
 
 function BinarySearch(array, element, minIndex, maxIndex) { // array = sorted array, element = element to be found, minIndex = low index, maxIndex = high index
@@ -39,7 +39,7 @@ function BinarySearch(array, element, minIndex, maxIndex) { // array = sorted ar
     return -1;
 }
 
-var element = D[Integer.random(0, D.length - 1)];
+var element = D[Randomize.integer(0, D.length - 1)];
 
 logger.print('Using binary search to find ' + element);
 BinarySearch(D, element, 0, D.length - 1);

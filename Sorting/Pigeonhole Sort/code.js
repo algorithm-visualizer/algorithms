@@ -1,4 +1,4 @@
-var A = Array1D.random(7);
+var A = Randomize.array1D(7);
 var N = A.length;
 
 var tracer1 = new Array1DTracer ( 'Array' ).set ( A );

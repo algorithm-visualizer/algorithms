@@ -1,7 +1,7 @@
-var tracer = new UndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false });
 var logger = new LogTracer();
 tracer.log(logger);
-var G = UndirectedGraph.random(5, 1);
+var G = Randomize.graph(5, { directed: false, ratio: 1 });
 tracer.set(G);
 
 function DFS(node, parent) { // node = current node, parent = previous node

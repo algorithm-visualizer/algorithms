@@ -1,8 +1,8 @@
-var graphTracer = new UndirectedGraphTracer();
+var graphTracer = new GraphTracer({ directed: false });
 var visitedTracer = new Array1DTracer('visited');
 var logger = new LogTracer();
 graphTracer.log(logger);
-var G = UndirectedGraph.random(8, .3);
+var G = Randomize.graph(8, { directed: false, ratio: .3 });
 graphTracer.set(G);
 
 function DFSExplore(graph, source) {

@@ -1,4 +1,4 @@
-var tracer = new UndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false });
 var logger = new LogTracer();
 tracer.log(logger);
 

@@ -1,4 +1,4 @@
-var D = Array2D.random(5, 5, 1, 5);
+var D = Randomize.array2D(5, 5, { min: 1, max: 5 });
 var dataViewer = new Array2DTracer().set(D);
 var tracer = new Array2DTracer('Results Table');
 var logger = new LogTracer();

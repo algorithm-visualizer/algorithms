@@ -2,7 +2,7 @@ function filledArray (length, value) {
 	return Array.apply (null, Array (length)).map (Number.prototype.valueOf, value);
 }
 
-var G = new DirectedGraph.random (5, 0.4),
+var G = Randomize.graph(5, { ratio: .4 }),
 	ranks,
 	outgoingEdgeCounts = filledArray (G.length, 0),
 	incomingNodes;

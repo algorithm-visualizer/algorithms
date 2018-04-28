@@ -1,7 +1,7 @@
-var tracer = new WeightedUndirectedGraphTracer();
+var tracer = new GraphTracer({ directed: false, weighted: true });
 var logger = new LogTracer();
 tracer.log(logger);
-var G = WeightedUndirectedGraph.random(5, 1, 1, 9);
+var G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1, min: 1, max: 9 });
 tracer.set(G);
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
@@ -26,10 +26,10 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
     D[node] = false; // label current node as undiscovered
     tracer.leave(node, parent, 0).wait();
 }
-var s = Integer.random(0, G.length - 1); // s = start node
+var s = Randomize.integer(0, G.length - 1); // s = start node
 var e; // e = end node
 do {
-    e = Integer.random(0, G.length - 1);
+    e = Randomize.integer(0, G.length - 1);
 } while (s === e);
 var MAX_VALUE = Infinity;
 var minWeight = MAX_VALUE;

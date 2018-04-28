@@ -1,8 +1,8 @@
 var tracer = new Array2DTracer();
 var logger = new LogTracer();
 var D = [
-    Array1D.random(20, 0, 50),
-    Array1D.random(20, 0, 0)
+    Randomize.array1D(20, { min: 0, max: 50 }),
+    Randomize.array1D(20, { min: 0, max: 0 })
 ];
 
 tracer.set(D);
