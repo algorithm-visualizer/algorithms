@@ -14,7 +14,7 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-tracer.set(G, GraphTracer.LAYOUT.TREE, 0).wait();
+tracer.set(G).layoutTree(0).wait();
 
 function DFS(node, parent) { // node = current node, parent = previous node
   tracer.visit(node, parent).wait();

@@ -131,8 +131,11 @@ function buildMaze() {
           logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           logger.wait();
         }
+        tracer.denotify(iY * 2 + 1, iX * 3 + 1);
+        tracer.denotify(iY * 2 + 1, iX * 3 + 2);
+        tracer.denotify(iYdown * 2 + 1, iX * 3 + 1);
+        tracer.denotify(iYdown * 2 + 1, iX * 3 + 2);
       }
-      tracer.clear();
     } else if (randomWall === 2 && rightWalls.length > 0) {
       // Right Wall
       const currentRoom = rightWalls.pop();
@@ -158,12 +161,13 @@ function buildMaze() {
           logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           logger.wait();
         }
+        tracer.denotify(iY * 2 + 1, iX * 3 + 1);
+        tracer.denotify(iY * 2 + 1, iX * 3 + 2);
+        tracer.denotify(iY * 2 + 1, iXright * 3 + 1);
+        tracer.denotify(iY * 2 + 1, iXright * 3 + 2);
       }
-      tracer.clear();
     }
   }
-
-  tracer.clear();
 
   logger.print('deleting the walls');
   // update deleted walls

@@ -27,5 +27,4 @@ for (let i = 0; i < G.length; i++) { // start from every node
   for (let j = 0; j < G.length; j++) D.push(false);
   logger.print(`start from ${i}`);
   DFS(i);
-  tracer.clear();
 }

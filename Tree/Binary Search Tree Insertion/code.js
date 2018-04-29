@@ -1,15 +1,15 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+import { Array1DTracer, GraphTracer, LogTracer } from 'algorithm-visualizer';
 
 const T = {};
 
-const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be searched
-const tracer = new DirectedGraphConstructTracer(' BST - Elements marked red indicates the current status of tree ', 0);
-const tracer2 = new Array1DTracer(' Elements ').set(elements);
+const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be inserted
+const graphTracer = new GraphTracer(' BST - Elements marked red indicates the current status of tree ');
+const elemTracer = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
-tracer.log(logger).wait();
+graphTracer.log(logger).wait();
 
 function bstInsert(root, element, parent) { // root = current node , parent = previous node
-  tracer.visit(root, parent).wait();
+  graphTracer.visit(root, parent).wait();
   const treeNode = T[root];
   let propName = '';
   if (element < root) {
@@ -18,25 +18,25 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
     propName = 'right';
   }
   if (propName !== '') {
-    if (!treeNode.hasOwnProperty(propName)) { // insert as left child of root
+    if (!(propName in treeNode)) { // insert as left child of root
       treeNode[propName] = element;
       T[element] = {};
-      tracer.addNode(element, root).wait();
-      logger.print(`${element} Inserted `);
+      graphTracer.addNode(element).addEdge(root, element).select(element, root).wait().deselect(element, root);
+      logger.print(`${element} Inserted`);
     } else {
       bstInsert(treeNode[propName], element, root);
     }
   }
+  graphTracer.leave(root, parent).wait();
 }
 
 const Root = elements[0]; // take first element as root
 T[Root] = {};
-tracer.addRoot(Root);
+graphTracer.addNode(Root).layoutTree(Root, true);
 logger.print(`${Root} Inserted as root of tree `);
 
 for (let i = 1; i < elements.length; i++) {
-  tracer2.select(i).wait();
+  elemTracer.select(i).wait();
   bstInsert(Root, elements[i]); // insert ith element
-  tracer2.deselect(i).wait();
-  tracer.clearTraversal();
+  elemTracer.deselect(i).wait();
 }
