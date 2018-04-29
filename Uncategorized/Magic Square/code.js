@@ -1,3 +1,5 @@
+import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const n = 7;
 const A = new Array(n);
 for (let i = n - 1; i >= 0; i--) {
@@ -20,7 +22,7 @@ for (let num = 1; num <= n * n;) {
   logTracer.print(`i = ${i}`);
   logTracer.print(`j = ${j}`);
 
-  if (i == -1 && j == n) {
+  if (i === -1 && j === n) {
     j = n - 2;
     i = 0;
 
@@ -28,29 +30,28 @@ for (let num = 1; num <= n * n;) {
     logTracer.print(`i = ${i}`);
     logTracer.print(`j = ${j}`);
   } else {
-    if (j == n) {
+    if (j === n) {
       j = 0;
-      logTracer.print(`${'Changing : ' + 'j = '}${j}`);
+      logTracer.print(`Changing : j = ${j}`);
     }
     if (i < 0) {
       i = n - 1;
-      logTracer.print(`${'Changing : ' + 'i = '}${i}`);
+      logTracer.print(`Changing : i = ${i}`);
     }
   }
 
   if (A[i][j] > 0) {
-    logTracer.print(`${' Cell already filled : Changing ' + ' i = '}${i} j = ${j}`);
+    logTracer.print(`Cell already filled : Changing i = ${i} j = ${j}`);
     j -= 2;
     i++;
-    continue;
   } else {
     A[i][j] = num++;
     tracer.notify(i, j, A[i][j]).wait();
     tracer.denotify(i, j);
     tracer.select(i, j).wait();
+    j++;
+    i--;
   }
-  j++;
-  i--;
 }
 
 logTracer.print(`Magic Constant is ${n * (n * n + 1) / 2}`);

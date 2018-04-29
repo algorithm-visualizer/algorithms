@@ -1,3 +1,5 @@
+import { LogTracer, Tracer } from 'algorithm-visualizer';
+
 const logger = new LogTracer();
 
 let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
@@ -84,16 +86,16 @@ function testProbablyPrime(n, k) {
     	// (ii)  (x^2) % n is not 1
     	// (iii) (x^2) % n is not n-1
     	let i = d;
-    	while (i != n - 1) {
+    	while (i !== n - 1) {
     		x = (x * x) % n;
     		i *= 2;
 
-    		if (x == 1) {
+    		if (x === 1) {
     			logger.print(`--> exiting, ${n} is composite`);
     			return false;
     		}
 
-    		if (x == n - 1) {
+    		if (x === n - 1) {
     			logger.print('--> continue WitnessLoop');
         continue WitnessLoop;
       }

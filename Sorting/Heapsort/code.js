@@ -1,3 +1,5 @@
+import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
@@ -46,7 +48,7 @@ function heapify(array, size, root) {
     largest = right;
   }
 
-  if (largest != root) {
+  if (largest !== root) {
     temp = array[root];
     array[root] = array[largest];
     array[largest] = temp;

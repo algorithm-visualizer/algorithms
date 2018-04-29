@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const D = [-2, -3, 4, -1, -2, 1, 5, -3];

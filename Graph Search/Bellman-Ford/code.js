@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const tracer = new GraphTracer({ directed: true, weighted: true });
 const logger = new LogTracer();
 tracer.log(logger);
@@ -30,7 +32,7 @@ function BELLMAN_FORD(src, dest) {
 
     for (i = 0; i < G.length; i++) {
       for (j = 0; j < G.length; j++) {
-        if (G[i][j]) {	// proceed to relax Edges only if a particular weight != 0 (0 represents no edge)
+        if (G[i][j]) {	// proceed to relax Edges only if a particular weight !== 0 (0 represents no edge)
           if (weights[j] > (weights[i] + G[i][j])) {
             weights[j] = weights[i] + G[i][j];
             logger.print(`weights[${j}] = weights[${i}] + ${G[i][j]}`);

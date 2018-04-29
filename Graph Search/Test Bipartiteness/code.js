@@ -1,3 +1,5 @@
+import { Array1DTracer, GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new GraphTracer({ directed: false });
 const logger = new LogTracer();
 tracer.log(logger);
@@ -38,7 +40,7 @@ function BFSCheckBipartiteness(s) {
 
         			Q.push(i);
         			tracer.visit(i, node).wait();
-        		} else if (Colors[i] == Colors[node]) {
+        		} else if (Colors[i] === Colors[node]) {
         			logger.print('Graph is not biparted');
         			return false;
         		}

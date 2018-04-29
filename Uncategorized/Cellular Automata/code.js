@@ -1,3 +1,5 @@
+import { Array2DTracer, Tracer } from 'algorithm-visualizer';
+
 const gridSize = 10;
 const generations = 4;
 const fillChance = 0.55;
@@ -8,7 +10,7 @@ for (let i = 0; i < gridSize; i++) {
   G[i] = [];
   nextG[i] = [];
   for (let j = 0; j < gridSize; j++) {
-    if (Math.random() < fillChance || i === 0 || j === 0 || i == gridSize - 1 || j == gridSize - 1) {
+    if (Math.random() < fillChance || i === 0 || j === 0 || i === gridSize - 1 || j === gridSize - 1) {
       G[i][j] = '#';
     } else {
       G[i][j] = '.';
@@ -21,7 +23,7 @@ tracer.set(G);
 
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {
-    if (G[gi][gj] == '#') {
+    if (G[gi][gj] === '#') {
       tracer.notify(gi, gj, G[gi][gj]);
     }
   }
@@ -39,8 +41,8 @@ function CellularAutomata(fillShape, emptyShape) {
       for (let x = -2; x <= 2; x++) {
         for (let y = -2; y <= 2; y++) {
           if ((i + x >= 0 && i + x < G.length) && (j + y >= 0 && j + y < G[i].length)) {
-            if (!(x !== 0 && y !== 0) && G[i + x][j + y] == emptyShape) {
-              if (x == -2 || x == 2 || y == -2 || y == 2) {
+            if (!(x !== 0 && y !== 0) && G[i + x][j + y] === emptyShape) {
+              if (x === -2 || x === 2 || y === -2 || y === 2) {
                 twoAwayCount++;
               } else {
                 adjCount++;
@@ -69,7 +71,7 @@ function CellularAutomata(fillShape, emptyShape) {
       tracer.denotify(i, j, G[i][j]);
       tracer.select(i, j).wait();
       G[i][j] = nextGrid[i][j];
-      if (G[i][j] == fillShape) {
+      if (G[i][j] === fillShape) {
         tracer.notify(i, j, G[i][j]);
       } else {
         tracer.notify(i, j, G[i][j]);

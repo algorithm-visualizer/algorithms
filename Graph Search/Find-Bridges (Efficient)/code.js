@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const graphTracer = new UndirectedGraphTracer();
 const logger = new LogTracer();
 const G = [
@@ -46,7 +48,7 @@ const util = function (u, disc, low, parent) {
     if (disc[v] > -1 && v === parent) {
       trace(v);
       logger.print(`${u}'s neighbor ${v} is u's parent. Not visiting it.`);
-    } else if (disc[v] > -1 && v != parent) {
+    } else if (disc[v] > -1 && v !== parent) {
       trace(v);
 		    logger.print(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);
 		    if (low[u] > disc[v]) {
@@ -68,7 +70,7 @@ const util = function (u, disc, low, parent) {
       low[u] = Math.min(low[u], low[v]);
 
       if (low[v] === disc[v]) {
-        logger.print(`low [${v}] == disc [${v}], low[${v}]=${low[v]}, disc[${v}]=${disc[v]}`);
+        logger.print(`low [${v}] === disc [${v}], low[${v}]=${low[v]}, disc[${v}]=${disc[v]}`);
         logger.print(`${u} -> ${v} is a bridge. Adding ${u}->${v}to the set of bridges found`);
         bridges.push([u, v]);
       }

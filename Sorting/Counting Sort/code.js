@@ -1,3 +1,5 @@
+import { Array2DTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const maxValue = 9;
 const arrSize = 10;
 

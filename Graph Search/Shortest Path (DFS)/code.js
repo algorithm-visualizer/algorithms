@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
 tracer.log(logger);

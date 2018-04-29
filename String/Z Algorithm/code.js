@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const textTracer = new Array1DTracer('text');
 const pattTracer = new Array1DTracer('pattern');
 const concatTracer = new Array1DTracer('concatenated string');
@@ -33,7 +35,7 @@ function createZarr(concat) {
     tracer.select(i).wait();
     if (i > right) {
       left = right = i;
-      while (right < N && concat[right] == concat[right - left]) {
+      while (right < N && concat[right] === concat[right - left]) {
         concatTracer.notify(right).wait();
         concatTracer.select(right - left).wait();
         logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
@@ -61,7 +63,7 @@ function createZarr(concat) {
     } else {
       logger.print(`The substring from index ${i - left} will cross the right end.`);
       left = i;
-      while (right < N && concat[right] == concat[right - left]) {
+      while (right < N && concat[right] === concat[right - left]) {
         concatTracer.notify(right).wait();
         concatTracer.select(right - left).wait();
         logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
@@ -94,7 +96,7 @@ let i;
 logger.print('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');
 logger.print('===================================');
 for (i = 0; i < len; i++) {
-  if (z[i] == patLen) {
+  if (z[i] === patLen) {
     const pos = i - (patLen + 1);
     logger.print(`Pattern Found at index ${pos}`);
   }

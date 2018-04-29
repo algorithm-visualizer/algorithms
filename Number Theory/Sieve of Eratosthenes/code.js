@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array1DTracer('Sieve');
 const N = 30;
 const a = [];

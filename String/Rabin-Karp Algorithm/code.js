@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];
 
@@ -27,10 +29,10 @@ for (let i = 0; i < M; i++) {
 
 for (let i = 0; i <= N - M; i++) {
   /*
-	Check if hash values of current window of text matches
-	with hash values of pattern. If match is found then
-	check for characters one by one
-	*/
+  Check if hash values of current window of text matches
+  with hash values of pattern. If match is found then
+  check for characters one by one
+  */
   if (hashPattern === hashText) {
     let f = 0;
     tracer1.select(i, i + M).wait();
@@ -38,7 +40,7 @@ for (let i = 0; i <= N - M; i++) {
     for (let j = 0; j < M; j++) {
       tracer1.notify(i + j).wait();
       tracer2.notify(j).wait();
-      if (text[i + j] != pattern[j]) {
+      if (text[i + j] !== pattern[j]) {
         f++;
       }
       tracer1.denotify(i + j);
@@ -53,8 +55,8 @@ for (let i = 0; i <= N - M; i++) {
   }
 
   /*
-	Calculate hash value for next window of text :
-	*/
+  Calculate hash value for next window of text :
+  */
   if (i < N - M) {
     hashText = (D * (hashText - text[i].charCodeAt(0) * h) + text[i + M].charCodeAt(0)) % Q;
 

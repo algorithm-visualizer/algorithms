@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const T = {};
 
 const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be searched

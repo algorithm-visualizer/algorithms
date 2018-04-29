@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 function randString(length) {
   const choices = 'abcdefghijklmnopqrstuvwxyz';
   let text = '';

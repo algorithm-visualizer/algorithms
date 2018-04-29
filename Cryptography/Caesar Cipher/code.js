@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const string = 'hello! how are you doing?';
 const rotation = 5;
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';

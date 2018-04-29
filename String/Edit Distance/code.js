@@ -1,3 +1,5 @@
+import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array2DTracer('Distance Table');
 const logger = new LogTracer();
 let str1 = 'stack',

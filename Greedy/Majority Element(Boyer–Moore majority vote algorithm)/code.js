@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;
 
@@ -9,7 +11,7 @@ function isMajorityElement(element) {
   logger.print(`Verify majority element ${element}`);
   for (let i = N - 1; i >= 0; i--) {
     tracer.notify(i, A[i]).wait();
-    if (A[i] == element) {
+    if (A[i] === element) {
       count++;
     } else {
       tracer.denotify(i);
@@ -32,7 +34,7 @@ function findProbableElement() {
   logger.print('--------------------------------------------------------');
   for (let i = 1; i < N; i++) {
     tracer.notify(i, A[i]).wait();
-    if (A[index] == A[i]) {
+    if (A[index] === A[i]) {
       count++;
       logger.print(`Same as assumed majority element! Count : ${count}`);
     } else {

@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const A = Randomize.array1D(10, { min: 0, max: 10 });

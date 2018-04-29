@@ -1,3 +1,5 @@
+import { Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const D = Randomize.array2D(5, 5, { min: 1, max: 5 });
 const dataViewer = new Array2DTracer().set(D);
 const tracer = new Array2DTracer('Results Table');

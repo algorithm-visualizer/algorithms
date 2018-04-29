@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const string1 = 'AGGTAB';
 const string2 = 'GXTXAYB';
 const m = string1.length;
@@ -20,7 +22,7 @@ for (i = 0; i <= m; i++) {
  	for (j = 0; j <= n; j++) {
  		if (i === 0 || j === 0) {
  			A[i][j] = 0;
- 		} else if (string1[i - 1] == string2[j - 1]) {
+ 		} else if (string1[i - 1] === string2[j - 1]) {
  			tracer1.select(i - 1).wait();
  			tracer2.select(j - 1).wait();
  			tracer3.select(i - 1, j - 1).wait();
@@ -53,7 +55,7 @@ i = m;
 j = n;
 while (i >= 1 && j >= 1) {
   tracer3.select(i, j).wait();
-  if (string1[i - 1] == string2[j - 1]) {
+  if (string1[i - 1] === string2[j - 1]) {
     tracer1.select(i - 1).wait();
  		tracer2.select(j - 1).wait();
 

@@ -1,3 +1,5 @@
+import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
@@ -23,7 +25,7 @@ for (let gap = N; gap = parseInt(gap / 2);) {
     }
     const old = D[j];
     D[j] = k;
-    if (old != k) {
+    if (old !== k) {
       tracer.notify(j, D[j]).wait();
       tracer.denotify(j);
       logger.print(`Swapped ${D[j]} with ${old}`);

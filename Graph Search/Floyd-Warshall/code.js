@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const tracer = new GraphTracer({ directed: true, weighted: true });
 const logger = new LogTracer();
 tracer.log(logger);
@@ -13,7 +15,7 @@ function FloydWarshall() {
   for (i = 0; i < G.length; i++) {
     for (let j = 0; j < G.length; j++) {
       // Distance to self is always 0
-      if (i == j) S[i][i] = 0;
+      if (i === j) S[i][i] = 0;
       // Distance between connected nodes is their weight
       else if (G[i][j] > 0) {
         S[i][j] = G[i][j];

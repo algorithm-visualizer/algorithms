@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const A = Randomize.array1D(7);
 const N = A.length;
 

@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -28,7 +30,7 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 ];
 
 const key = Randomize.integer(0, G.length - 1); // item to be searched
-const tracer = new GraphTracer(' Binary Search Tree ').set(G, GraphData.LAYOUT.TREE, 5);
+const tracer = new GraphTracer(' Binary Search Tree ').set(G, GraphTracer.LAYOUT.TREE, 5);
 const logger = new LogTracer(' Log ');
 tracer.log(logger);
 

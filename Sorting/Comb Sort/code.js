@@ -1,3 +1,5 @@
+import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
@@ -37,4 +39,4 @@ do {
     }
     tracer.deselect(i).deselect(i + gap);
   } // End of combing
-} while (gap != 1 || swapped);
+} while (gap !== 1 || swapped);

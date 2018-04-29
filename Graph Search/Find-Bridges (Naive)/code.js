@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new UndirectedGraphTracer();
 const logger = new LogTracer();
 const G = [

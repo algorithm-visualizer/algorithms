@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const ARank = {
   Flavio: ['Valentine', 'July', 'Summer', 'Violet'],
   Stephen: ['Summer', 'July', 'Valentine', 'Violet'],
@@ -42,12 +44,11 @@ function extractUnstable(Q) {
   }
 }
 
-let A = init(ARank),
-  B = init(BRank);
-let a,
-  b;
+const A = init(ARank);
+const B = init(BRank);
+let a;
 
-while ((a = extractUnstable(A)) != null) {
+while ((a = extractUnstable(A))) {
   logTracer.print(`Selecting ${a.key}`).wait();
 
   const bKey = a.rankKeys.shift();

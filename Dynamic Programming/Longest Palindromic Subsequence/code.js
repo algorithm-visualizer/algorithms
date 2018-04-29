@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 
 const tracer = new Array1DTracer('Input Text');
 const matrix = new Array2DTracer('Matrix');
@@ -42,7 +44,7 @@ for (i = 2; i <= N; i++) {
 
     logger.print(`Comparing ${seq[j]} and ${seq[k]}`);
 
-    if (seq[j] == seq[k] && i == 2) {
+    if (seq[j] === seq[k] && i === 2) {
       logger.print(`They are equal and size of the string in the interval${j} to ${k} is 2, so the Longest Palindromic Subsequence in the Given range is 2`);
 
       matrix.notify(j, k).wait();
@@ -51,7 +53,7 @@ for (i = 2; i <= N; i++) {
       matrix.set(L);
 
       matrix.denotify(j, k).wait();
-    } else if (seq[j] == seq[k]) {
+    } else if (seq[j] === seq[k]) {
       logger.print(`They are equal, so the Longest Palindromic Subsequence in the Given range is 2 + the Longest Increasing Subsequence between the indices ${j + 1} to ${k - 1}`);
 
       matrix.notify(j, k).wait();

@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 /*
 For N>3 the time taken by this algorithm is sufficiently high
 Also it is not possible to visualise for N>6 due to stack overflow

@@ -1,3 +1,5 @@
+import { Array2DTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const maxValue = 100;
 const arraySize = 10;
 const numBuckets = 5;

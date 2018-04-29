@@ -1,3 +1,5 @@
+import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
@@ -17,7 +19,7 @@ for (let i = 0; i < D.length - 1; i++) {
     }
     tracer.deselect(j);
   }
-  if (minJ != i) {
+  if (minJ !== i) {
     logger.print(`swap ${D[i]} and ${D[minJ]}`);
     const temp = D[i];
     D[i] = D[minJ];

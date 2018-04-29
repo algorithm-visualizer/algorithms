@@ -1,3 +1,5 @@
+import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
@@ -27,7 +29,7 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
   [9, -1],
 ];
 
-const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G, GraphData.LAYOUT.TREE, 5);
+const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G, GraphTracer.LAYOUT.TREE, 5);
 const logger = new LogTracer(' Log ');
 
 function lcaBT(parent, root, a, b) {

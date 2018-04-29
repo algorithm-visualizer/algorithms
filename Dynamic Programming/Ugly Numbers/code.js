@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const N = 15;
 const A = new Array(N);
 for (let i = N - 1; i >= 0; i--) {

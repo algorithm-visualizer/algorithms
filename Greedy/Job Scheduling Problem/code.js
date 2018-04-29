@@ -1,3 +1,5 @@
+import { Array1DTracer, Tracer } from 'algorithm-visualizer';
+
 const jobId = ['a', 'b', 'c', 'd', 'e'];
 const deadline = [2, 1, 2, 1, 3];
 const profit = [100, 19, 27, 25, 15];

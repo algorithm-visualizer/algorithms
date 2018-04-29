@@ -1,3 +1,5 @@
+import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 function randString(length) {
   const result = Math.random().toString(36);
   return result.substring(result.length - length);

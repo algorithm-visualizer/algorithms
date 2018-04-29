@@ -1,3 +1,5 @@
+import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const N = 4;	// just change the value of N and the visuals will reflect the configuration!
 const board = (function createArray(N) {
   const result = [];

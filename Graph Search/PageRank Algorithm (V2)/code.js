@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+
 function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);
 }

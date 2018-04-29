@@ -1,3 +1,5 @@
+import { Array1DTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array1DTracer('Sequence');
 const index = 15;
 const D = [1, 1];

@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];
 const C = [[6, 5], [8, 7]];

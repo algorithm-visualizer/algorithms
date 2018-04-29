@@ -1,3 +1,5 @@
+import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const val = [1, 4, 5, 7]; // The value of all available items
 const wt = [1, 3, 4, 5]; // The weights of available items
 const W = 7; // The maximum weight we can carry in our collection

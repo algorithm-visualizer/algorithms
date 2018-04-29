@@ -1,3 +1,5 @@
+import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 const n = 6; // rows (change these!)
@@ -21,7 +23,7 @@ for (let i = 0; i < vEnd; i++) { // by row
       G[i][j] = '└';
     } else if (i === vEnd - 1 && j === hEnd - 1) { // bottom-right corner
       G[i][j] = '┘';
-    } else if ((j % 3 === 0) && (i % vEnd !== 0 && i !== vEnd - 1 && i % 2 == 1)) {
+    } else if ((j % 3 === 0) && (i % vEnd !== 0 && i !== vEnd - 1 && i % 2 === 1)) {
       G[i][j] = '│';
     } else if (i % 2 === 0) {
       G[i][j] = '─';
@@ -103,7 +105,7 @@ function buildMaze() {
   let downWalls = shuffle(downWalls);
 
   // Picking random walls to remove
-  while (setSize != mySet.elements - 1) {
+  while (setSize !== mySet.elements - 1) {
     const randomWall = Math.floor((Math.random() * 2) + 1);
     if (randomWall === 1 && downWalls.length > 0) {
       // Down wall
@@ -118,7 +120,7 @@ function buildMaze() {
         tracer.notify(iY * 2 + 1, iX * 3 + 2);
         tracer.notify(iYdown * 2 + 1, iX * 3 + 1);
         tracer.notify(iYdown * 2 + 1, iX * 3 + 2);
-        if (mySet.find(u) != mySet.find(v)) {
+        if (mySet.find(u) !== mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           logger.wait();
@@ -145,7 +147,7 @@ function buildMaze() {
         tracer.notify(iY * 2 + 1, iX * 3 + 2);
         tracer.notify(iY * 2 + 1, iXright * 3 + 1);
         tracer.notify(iY * 2 + 1, iXright * 3 + 2);
-        if (mySet.find(u) != mySet.find(v)) {
+        if (mySet.find(u) !== mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           logger.wait();
@@ -329,7 +331,7 @@ class disjointSet {
     const a = this.find(_a);
     const b = this.find(_b);
 
-    if (a != b) {
+    if (a !== b) {
       const newSize = (this.set[a] + this.set[b]);
       if (this.compareSize(a, b)) {
         this.set[b] = a;
