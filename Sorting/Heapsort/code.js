@@ -1,18 +1,17 @@
-import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(10);
-tracer.set(D);
-
+tracer.set(D).wait();
 
 logger.print(`Original array = [${D.join(', ')}]`);
 
 function heapSort(array, size) {
-  let i,
-    j,
-    temp;
+  let i;
+  let j;
+  let temp;
 
   for (i = Math.ceil(size / 2) - 1; i >= 0; i--) {
     heapify(array, size, i);

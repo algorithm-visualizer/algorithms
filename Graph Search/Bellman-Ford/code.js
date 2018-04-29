@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: true, weighted: true });
 const logger = new LogTracer();
@@ -6,13 +6,12 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: true, weighted: true, ratio: 0.5, min: -2, max: 5,
 });
-tracer.set(G);
-
+tracer.set(G).wait();
 
 function BELLMAN_FORD(src, dest) {
-  let weights = new Array(G.length),
-    i,
-    j;
+  const weights = new Array(G.length);
+  let i;
+  let j;
 
   for (i = 0; i < G.length; i++) {
     weights[i] = MAX_VALUE;
@@ -32,7 +31,7 @@ function BELLMAN_FORD(src, dest) {
 
     for (i = 0; i < G.length; i++) {
       for (j = 0; j < G.length; j++) {
-        if (G[i][j]) {	// proceed to relax Edges only if a particular weight !== 0 (0 represents no edge)
+        if (G[i][j]) { // proceed to relax Edges only if a particular weight !== 0 (0 represents no edge)
           if (weights[j] > (weights[i] + G[i][j])) {
             weights[j] = weights[i] + G[i][j];
             logger.print(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
@@ -65,8 +64,8 @@ function BELLMAN_FORD(src, dest) {
   return weights[dest];
 }
 
-let src = Randomize.integer(0, G.length - 1),
-  dest;
+const src = Randomize.integer(0, G.length - 1);
+let dest;
 let MAX_VALUE = Infinity;
 let minWeight;
 

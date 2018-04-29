@@ -1,4 +1,4 @@
-import { Array1DTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer('Sequence');
 const index = 15;
@@ -6,8 +6,7 @@ const D = [1, 1];
 for (let i = 2; i < index; i++) {
   D.push(0);
 }
-tracer.set(D);
-
+tracer.set(D).wait();
 
 for (let i = 2; i < index; i++) {
   D[i] = D[i - 2] + D[i - 1];

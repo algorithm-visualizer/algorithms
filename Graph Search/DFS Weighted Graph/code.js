@@ -1,10 +1,12 @@
-import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
 tracer.log(logger);
 const G = Randomize.graph(5, { directed: false, weighted: true, ratio: 1 });
-tracer.set(G);
+tracer.set(G).wait();
+
+let D; // D[i] indicates whether the i-th node is discovered or not
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
   tracer.visit(node, parent, weight).wait();
@@ -19,7 +21,7 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
   D[node] = false; // label current node as undiscovered
   tracer.leave(node, parent, 0).wait();
 }
-let D; // D[i] indicates whether the i-th node is discovered or not
+
 for (let i = 0; i < G.length; i++) { // start from every node
   logger.print(`start from ${i}`);
   D = [];

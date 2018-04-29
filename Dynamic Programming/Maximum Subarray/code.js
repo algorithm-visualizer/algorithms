@@ -1,13 +1,13 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const D = [-2, -3, 4, -1, -2, 1, 5, -3];
-tracer.set(D);
+tracer.set(D).wait();
 
 const maxSubarraySum = (function maxSubarray(array) {
-  let maxSoFar = 0,
-    maxEndingHere = 0;
+  let maxSoFar = 0;
+  let maxEndingHere = 0;
 
   logger.print('Initializing maxSoFar = 0 & maxEndingHere = 0');
 

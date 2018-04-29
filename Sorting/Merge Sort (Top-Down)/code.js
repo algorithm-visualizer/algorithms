@@ -1,10 +1,10 @@
-import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D);
+tracer.set(D).wait();
 
 logger.print(`original array = [${D.join(', ')}]`);
 
@@ -19,7 +19,7 @@ function mergeSort(start, end) {
   return mergeSort.merge(start, middle, end);
 }
 
-mergeSort.merge = function (start, middle, end) {
+mergeSort.merge = (start, middle, end) => {
   const leftSize = middle - start;
   const rightSize = end - middle;
   const maxSize = Math.max(leftSize, rightSize);

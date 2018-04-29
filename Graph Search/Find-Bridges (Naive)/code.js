@@ -1,6 +1,6 @@
-import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer } from 'algorithm-visualizer';
 
-const tracer = new UndirectedGraphTracer();
+const tracer = new GraphTracer({ directed: false });
 const logger = new LogTracer();
 const G = [
   [0, 1, 0, 0, 0, 0],
@@ -11,16 +11,16 @@ const G = [
   [0, 0, 0, 1, 0, 0],
 ];
 
-tracer.set(G);
+tracer.set(G).wait();
 
 // Depth First Search Exploration Algorithm to test connectedness of the Graph (see Graph Algorithms/DFS/exploration), without the tracer & logger commands
 function DFSExplore(graph, source) {
-  let stack = [[source, null]],
-    visited = {};
-  let node,
-    prev,
-    i,
-    temp;
+  const stack = [[source, null]];
+  const visited = {};
+  let node;
+  let prev;
+  let i;
+  let temp;
 
   while (stack.length > 0) {
     temp = stack.pop();
@@ -32,9 +32,9 @@ function DFSExplore(graph, source) {
       // logger.print (node);
 
       /*
-			if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).wait (); console.log ('tracer ' + prev + ', ' + node); }
-			else { tracer.visit (node).wait (); console.log ('tracer ' + node); }
-			*/
+      if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).wait (); console.log ('tracer ' + prev + ', ' + node); }
+      else { tracer.visit (node).wait (); console.log ('tracer ' + node); }
+      */
 
       for (i = 0; i < graph.length; i++) {
         if (graph[node][i]) {
@@ -48,13 +48,13 @@ function DFSExplore(graph, source) {
 }
 
 function findBridges(graph) {
-  let tempGraph,
-    bridges = [],
-    visited;
+  let tempGraph;
+  const bridges = [];
+  let visited;
 
   for (let i = 0; i < graph.length; i++) {
     for (let j = 0; j < graph.length; j++) {
-      if (graph[i][j]) {	// check if an edge exists
+      if (graph[i][j]) { // check if an edge exists
         logger.print(`Deleting edge ${i}->${j} and calling DFSExplore ()`);
         tracer.visit(j, i).wait();
         tracer.leave(j, i).wait();

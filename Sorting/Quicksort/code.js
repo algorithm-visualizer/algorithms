@@ -1,17 +1,17 @@
-import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D);
+tracer.set(D).wait();
 
 logger.print(`original array = [${D.join(', ')}]`);
 
 function partition(D, low, high) {
-  let i,
-    j,
-    s;
+  let i;
+  let j;
+  let s;
   while (high > low) {
     i = low;
     j = high;

@@ -1,18 +1,13 @@
-import { LogTracer, Tracer } from 'algorithm-visualizer';
+import { LogTracer } from 'algorithm-visualizer';
 
-const logger = new LogTracer();
+const logger = new LogTracer().wait();
 
-let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
-testProbablyPrime(a);
-logger.print('----------');
-
-let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
-testProbablyPrime(a);
-logger.print('----------');
-
-let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
-testProbablyPrime(a);
-logger.print('----------');
+for (let i = 0; i < 3; i++) {
+  let a = Math.floor(Math.random() * 300);
+  if (a % 2 === 0) a += 1;
+  testProbablyPrime(a);
+  logger.print('----------');
+}
 
 testProbablyPrime(151);
 logger.print('----------');
@@ -25,7 +20,7 @@ function power(x, y, p) {
   let res = 1;
   x %= p;
   while (y > 0) {
-    	// If y is odd, multiply x with result
+    // If y is odd, multiply x with result
     if (y & 1) res = (res * x) % p;
     // y must be even now
     y >>= 1; // y = y/2
@@ -41,7 +36,7 @@ function power(x, y, p) {
  * @param  {Number} k An integer that determine the accuracy of the solution
  * @return {Boolean}
  */
-function testProbablyPrime(n, k) {
+function testProbablyPrime(n, k = 5) {
   logger.print(`==> Testing number ${n}`);
 
   if (n === 1 || n === 3) {
@@ -60,8 +55,6 @@ function testProbablyPrime(n, k) {
   }
   logger.print(`d = ${d}`);
 
-  // Do 5 iterations if none supplied
-  k = k || 5;
   const P = 100 * (1 - (1 / Math.pow(4, k)));
 
   WitnessLoop: do {
@@ -81,25 +74,25 @@ function testProbablyPrime(n, k) {
     logger.print('--> second test');
 
     // Keep squaring x while one of the following doesn't
-    	// happen
-    	// (i)   d does not reach n-1
-    	// (ii)  (x^2) % n is not 1
-    	// (iii) (x^2) % n is not n-1
-    	let i = d;
-    	while (i !== n - 1) {
-    		x = (x * x) % n;
-    		i *= 2;
+    // happen
+    // (i)   d does not reach n-1
+    // (ii)  (x^2) % n is not 1
+    // (iii) (x^2) % n is not n-1
+    let i = d;
+    while (i !== n - 1) {
+      x = (x * x) % n;
+      i *= 2;
 
-    		if (x === 1) {
-    			logger.print(`--> exiting, ${n} is composite`);
-    			return false;
-    		}
+      if (x === 1) {
+        logger.print(`--> exiting, ${n} is composite`);
+        return false;
+      }
 
-    		if (x === n - 1) {
-    			logger.print('--> continue WitnessLoop');
+      if (x === n - 1) {
+        logger.print('--> continue WitnessLoop');
         continue WitnessLoop;
       }
-    	}
+    }
 
     logger.print(`--> exiting, ${n} is composite 'cause (n-1) is reached`);
     return false;

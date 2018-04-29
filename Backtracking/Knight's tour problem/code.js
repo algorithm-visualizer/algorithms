@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 /*
 For N>3 the time taken by this algorithm is sufficiently high
@@ -28,7 +28,7 @@ pos[0] = pos[1] = -1;
 
 const boardTracer = new Array2DTracer('Board').set(board);
 const posTracer = new Array1DTracer('Knight Position').set(pos);
-const logTracer = new LogTracer('Console');
+const logTracer = new LogTracer('Console').wait();
 
 function knightTour(x, y, moveNum) {
   if (moveNum === N * N) {
@@ -44,9 +44,9 @@ function knightTour(x, y, moveNum) {
     posTracer.denotify(0);
     posTracer.denotify(1);
     /*
-		Check if knight is still in the board
-		Check that knight does not visit an already visited square
-		*/
+    Check if knight is still in the board
+    Check that knight does not visit an already visited square
+    */
     if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < N && board[nextX][nextY] === -1) {
       board[nextX][nextY] = moveNum;
 

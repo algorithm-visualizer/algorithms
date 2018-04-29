@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
@@ -13,21 +13,22 @@ tracer.log(logger);
 const G = Randomize.graph(10, {
   directed: false, weighted: true, ratio: 0.4, min: 1, max: 9,
 });
-tracer.set(G);
+tracer.set(G).wait();
 
 function prim() {
   // Finds a tree so that there exists a path between
   // every two nodes while keeping the cost minimal
-  let minD,
-    minI,
-    minJ,
-    sum = 0,
-    D = [];
+  let minD;
+
+  let minI;
+  let minJ;
+  let sum = 0;
+  const D = [];
   for (let i = 0; i < G.length; i++) D.push(0);
   D[0] = 1; // First node is visited
   for (let k = 0; k < G.length - 1; k++) { // Searching for k edges
     minD = Infinity;
-    for (i = 0; i < G.length; i++) {
+    for (let i = 0; i < G.length; i++) {
       if (D[i]) // First node in an edge must be visited
       {
         for (let j = 0; j < G.length; j++) {
@@ -35,7 +36,7 @@ function prim() {
             tracer.visit(i, j).wait();
             // Second node must not be visited and must be connected to first node
             if (G[i][j] < minD) {
-            // Searching for cheapest edge which satisfies requirements
+              // Searching for cheapest edge which satisfies requirements
               minD = G[i][j];
               minI = i;
               minJ = j;

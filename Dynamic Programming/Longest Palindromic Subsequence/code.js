@@ -1,20 +1,17 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
-
+import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer('Input Text');
 const matrix = new Array2DTracer('Matrix');
 const logger = new LogTracer();
 
-
 const seq = 'BBABCBCAB';
 let N;
 N = seq.length;
 
-
 const L = new Array(N);
 
-let i,
-  j;
+let i;
+let j;
 for (i = 0; i < N; i++) {
   L[i] = new Array(N);
 }
@@ -23,8 +20,7 @@ for (i = 0; i < N; i++) {
 }
 
 tracer.set(seq);
-matrix.set(L);
-
+matrix.set(L).wait();
 
 function max(a, b) {
   if (a > b) {

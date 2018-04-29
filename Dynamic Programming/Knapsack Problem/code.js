@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const val = [1, 4, 5, 7]; // The value of all available items
 const wt = [1, 3, 4, 5]; // The weights of available items
@@ -16,16 +16,15 @@ for (let i = 0; i < N + 1; i++) {
 const tracer = new Array2DTracer('Knapsack Table').set(DP);
 const dataViewer1 = new Array1DTracer('Values').set(val);
 const dataViewer2 = new Array1DTracer('Weights').set(wt);
-const logger = new LogTracer();
-
+const logger = new LogTracer().wait();
 
 for (let i = 0; i <= N; i++) {
   for (let j = 0; j <= W; j++) {
     if (i === 0 || j === 0) {
       /*
-			If we have no items or maximum weight we can take in collection is 0
-			then the total weight in our collection is 0
-			*/
+      If we have no items or maximum weight we can take in collection is 0
+      then the total weight in our collection is 0
+      */
       DP[i][0] = 0;
       tracer.notify(i, j, DP[i][j]).wait();
       tracer.denotify(i, j);
@@ -37,9 +36,9 @@ for (let i = 0; i <= N; i++) {
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
       const B = DP[i - 1][j];
       /*
-			find the maximum of these two values
-			and take which gives us a greater weight
-			 */
+      find the maximum of these two values
+      and take which gives us a greater weight
+       */
       if (A > B) {
         DP[i][j] = A;
         tracer.notify(i, j, DP[i][j]).wait();

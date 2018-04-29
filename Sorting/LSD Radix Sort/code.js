@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
@@ -8,8 +8,7 @@ const D = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-tracer.set(D);
-
+tracer.set(D).wait();
 
 logger.print(`original array = [${D[0].join(', ')}]`);
 function pow(base, expo) {

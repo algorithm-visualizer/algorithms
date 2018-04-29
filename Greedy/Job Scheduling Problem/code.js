@@ -1,4 +1,4 @@
-import { Array1DTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer } from 'algorithm-visualizer';
 
 const jobId = ['a', 'b', 'c', 'd', 'e'];
 const deadline = [2, 1, 2, 1, 3];
@@ -9,7 +9,6 @@ const tracer3 = new Array1DTracer('Schedule');
 const tracer = new Array1DTracer('Job Ids');
 const tracer1 = new Array1DTracer('Deadlines');
 const tracer2 = new Array1DTracer('Profit');
-
 
 // sort according to decreasing order of profit
 // Bubble sort implemented ... Implement a better algorithm for better performance
@@ -37,7 +36,7 @@ for (let i = N - 1; i >= 0; i--) {
 tracer.set(jobId);
 tracer1.set(deadline);
 tracer2.set(profit);
-tracer3.set(result);
+tracer3.set(result).wait();
 
 // Initialise all slots to free
 for (let i = 0; i < N; i++) {

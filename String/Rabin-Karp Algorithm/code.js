@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];
@@ -8,8 +8,7 @@ const D = 256; // number of characters in the input alphabet
 
 const logger = new LogTracer();
 const tracer1 = new Array1DTracer('Text').set(text);
-const tracer2 = new Array1DTracer('Pattern').set(pattern);
-
+const tracer2 = new Array1DTracer('Pattern').set(pattern).wait();
 
 const N = text.length;
 const M = pattern.length;

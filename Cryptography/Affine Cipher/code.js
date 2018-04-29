@@ -1,23 +1,11 @@
-import { Array1DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
-function randString(length) {
-  const choices = 'abcdefghijklmnopqrstuvwxyz';
-  let text = '';
-
-  for (let i = 0; i < length; i++) {
-    text += choices[Randomize.integer(0, choices.length - 1)];
-  }
-
-  return text;
-}
-
-// let plainText = randString (5);
 const plainText = 'secret';
 const ptTracer = new Array1DTracer('Encryption');
 const ctTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 
-ptTracer.set(plainText);
+ptTracer.set(plainText).wait();
 
 /*
  code assumes that plainText contains ONLY LOWER CASE ALPHABETS
@@ -27,8 +15,8 @@ Number.prototype.mod = function (n) {
   return ((this % n) + n) % n;
 };
 
-let keys = { a: 5, b: 7 },
-  N = 26;
+const keys = { a: 5, b: 7 };
+const N = 26;
 
 function encrypt(plainText) {
   let cypherText = '';
@@ -62,13 +50,13 @@ function encrypt(plainText) {
 
 function decrypt(cypherText) {
   let plainText = '';
-  const aInverse = (function () {
+  const aInverse = ((() => {
     for (let i = 1; i < N; i++) {
       if (((keys.a * i).mod(N)) === 1) {
         return i;
       }
     }
-  }());
+  })());
 
   logger.print(`a<sup>-1</sup> = ${aInverse}`);
 

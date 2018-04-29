@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer();
 const logger = new LogTracer();
@@ -16,8 +16,7 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-tracer.set(G, GraphTracer.LAYOUT.TREE, 0);
-
+tracer.set(G, GraphTracer.LAYOUT.TREE, 0).wait();
 
 // This is a sample DLS applications where
 // we try to find number of descendant of root within some depth

@@ -1,6 +1,6 @@
-import { GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer } from 'algorithm-visualizer';
 
-const graphTracer = new UndirectedGraphTracer();
+const graphTracer = new GraphTracer({ directed: false });
 const logger = new LogTracer();
 const G = [
   [0, 1, 0, 0, 1, 0],
@@ -11,17 +11,18 @@ const G = [
   [0, 0, 0, 1, 0, 0],
 ];
 
-graphTracer.set(G);
+graphTracer.set(G).wait();
 
 /*
-	NOTE: Code assumes NO parallel edges
+  NOTE: Code assumes NO parallel edges
 */
 
-let timer = 0,
-  bridges = [],
-  adj = [];	// adj keeps track of the neighbors of each node
+let timer = 0; // adj keeps track of the neighbors of each node
 
-const util = function (u, disc, low, parent) {
+const bridges = [];
+const adj = [];
+
+const util = (u, disc, low, parent) => {
   // u is the node that is currently being processed in the DFS (depth-first search)
   // disc is the numbering of the vertices in the DFS, starting at 0
   // low[v] is the lowest numbered vertex that can be reached from vertex v along the DFS
@@ -36,10 +37,10 @@ const util = function (u, disc, low, parent) {
 
   logger.print(`Nodes adjacent to ${u} are: [ ${adj[u]} ]`);
   /* adj [u].forEach (function (v) {
-		graphTracer.visit (v, u).wait ();
-		graphTracer.leave (v, u).wait ();
-	}); */
-  const trace = function (v) {
+    graphTracer.visit (v, u).wait ();
+    graphTracer.leave (v, u).wait ();
+  }); */
+  const trace = (v) => {
     graphTracer.visit(v, u).wait();
     graphTracer.leave(v, u).wait();
   };
@@ -50,11 +51,11 @@ const util = function (u, disc, low, parent) {
       logger.print(`${u}'s neighbor ${v} is u's parent. Not visiting it.`);
     } else if (disc[v] > -1 && v !== parent) {
       trace(v);
-		    logger.print(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);
-		    if (low[u] > disc[v]) {
-		        logger.print(`low[${u}] is greater than disc[${v}]. Setting low[${u}] to disc[${v}]`);
-		        low[u] = disc[v];
-		    }
+      logger.print(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);
+      if (low[u] > disc[v]) {
+        logger.print(`low[${u}] is greater than disc[${v}]. Setting low[${u}] to disc[${v}]`);
+        low[u] = disc[v];
+      }
     }
 
     if (disc[v] === -1) {

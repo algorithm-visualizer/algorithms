@@ -1,4 +1,4 @@
-import { Array2DTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const G = [
@@ -12,7 +12,7 @@ const G = [
   ['#', '-', '-', '-', '#', '-', '-', '-', '#'],
   ['#', '#', '#', '#', '#', '#', '#', '#', '#'],
 ];
-tracer.set(G);
+tracer.set(G).wait();
 
 function FloodFill(i, j, oldColor, newColor) {
   if (i < 0 || i >= G.length || j < 0 || j >= G[i].length) return;

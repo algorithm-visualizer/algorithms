@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 function randString(length) {
   const result = Math.random().toString(36);
@@ -15,15 +15,14 @@ const substring = string.substr(startIndex, 5); // Substring of `string` of leng
 
 let track = Array(...Array(substring.length)).map(Number.prototype.valueOf, 0);
 
-let trackTracer = new Array1DTracer('Tracker'),
-  substrTracer = new Array1DTracer('Substring'),
-  stringTracer = new Array1DTracer('Major String');
+const trackTracer = new Array1DTracer('Tracker');
+const substrTracer = new Array1DTracer('Substring');
+const stringTracer = new Array1DTracer('Major String');
 const logger = new LogTracer();
 
 trackTracer.set(track);
 substrTracer.set(substring);
-stringTracer.set(string);
-
+stringTracer.set(string).wait();
 
 // Fix JS Negative number modulo Bug
 Number.prototype.mod = function (n) {
@@ -31,8 +30,8 @@ Number.prototype.mod = function (n) {
 };
 
 function tracker(substring) {
-  let i = 1,
-    j = 0;
+  let i = 1;
+  let j = 0;
 
   logger.print('Initializing i to 1, j to 0.');
   substrTracer.select(j);
@@ -75,9 +74,9 @@ function tracker(substring) {
 }
 
 function kmp(string, substr) {
-  let positions = [],
-    j = 0,
-    startPos;
+  const positions = [];
+  let j = 0;
+  let startPos;
 
   logger.print(`Constructing Tracker for substring <b>${substr}</b>`);
   track = tracker(substr);
@@ -114,7 +113,7 @@ function kmp(string, substr) {
       trackTracer.select(tempJ).wait();
       stringTracer.deselect(j).wait();
 
-      j = track[(j - 1).mod(substr.length)];	// use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
+      j = track[(j - 1).mod(substr.length)]; // use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
 
       logger.print(`Setting j to ${j}`);
       stringTracer.select(j).wait();

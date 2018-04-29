@@ -1,10 +1,10 @@
-import { Array1DTracer, ChartTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D);
+tracer.set(D).wait();
 
 logger.print(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -57,7 +57,7 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   while (pos !== cycleStart) {
     pos = cycleStart;
 
-    for (i = cycleStart + 1; i <= N - 1; i++) {
+    for (let i = cycleStart + 1; i <= N - 1; i++) {
       tracer.select(i).wait().deselect(i);
       if (D[i] < item) {
         pos++;

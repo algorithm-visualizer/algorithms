@@ -1,4 +1,4 @@
-import { Array2DTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer } from 'algorithm-visualizer';
 
 const gridSize = 10;
 const generations = 4;
@@ -19,7 +19,7 @@ for (let i = 0; i < gridSize; i++) {
   }
 }
 const tracer = new Array2DTracer();
-tracer.set(G);
+tracer.set(G).wait();
 
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {

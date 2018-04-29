@@ -1,17 +1,17 @@
-import { Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 const integer = Randomize.integer(5, 14);
-let D = [],
-  A = [];
+const D = [];
+const A = [];
 for (let i = 0; i <= integer; i++) {
   D.push([]);
   D[0][i] = 1;
   D[i][1] = 1;
   for (let j = 0; j <= integer; j++) D[i][j] = 0;
 }
-tracer.set(D);
+tracer.set(D).wait();
 
 function partition(A, n, p) {
   if (n === 0) logger.print(`[${A.join(', ')}]`);

@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const n = 7;
 const A = new Array(n);
@@ -13,7 +13,7 @@ for (let i = n - 1; i >= 0; i--) {
 }
 
 const tracer = new Array2DTracer('Magic Square').set(A);
-const logTracer = new LogTracer('Console');
+const logTracer = new LogTracer('Console').wait();
 
 let i = Math.floor(n / 2);
 let j = n - 1;

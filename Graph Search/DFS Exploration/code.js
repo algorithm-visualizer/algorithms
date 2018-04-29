@@ -1,19 +1,19 @@
-import { Array1DTracer, GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const graphTracer = new GraphTracer({ directed: false });
 const visitedTracer = new Array1DTracer('visited');
 const logger = new LogTracer();
 graphTracer.log(logger);
 const G = Randomize.graph(8, { directed: false, ratio: 0.3 });
-graphTracer.set(G);
+graphTracer.set(G).wait();
 
 function DFSExplore(graph, source) {
-  let stack = [[source, null]],
-    visited = [];
-  let node,
-    prev,
-    i,
-    temp;
+  const stack = [[source, null]];
+  const visited = [];
+  let node;
+  let prev;
+  let i;
+  let temp;
   for (i = 0; i < graph.length; i++) {
     visited.push(false);
   }

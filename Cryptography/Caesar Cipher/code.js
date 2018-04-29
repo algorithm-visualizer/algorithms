@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const string = 'hello! how are you doing?';
 const rotation = 5;
@@ -15,7 +15,7 @@ const encryptTracer = new Array1DTracer('Encryption');
 const decryptTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 
-encryptTracer.set(string);
+encryptTracer.set(string).wait();
 
 function getPosUp(pos) {
   return (pos === alphabet.length - 1) ? 0 : pos + 1;

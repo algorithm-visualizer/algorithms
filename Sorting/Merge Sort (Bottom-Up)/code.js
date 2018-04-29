@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
@@ -7,17 +7,17 @@ const D = [
   Randomize.array1D(20, { min: 0, max: 0 }),
 ];
 
-tracer.set(D);
+tracer.set(D).wait();
 
 logger.print(`original array = [${D[0].join(', ')}]`);
 
 function mergeSort(start, end) {
   if (Math.abs(end - start) <= 1) return;
 
-  let mergeFrom = 0,
-    mergeTo = 1,
-    width,
-    i;
+  let mergeFrom = 0;
+  let mergeTo = 1;
+  let width;
+  let i;
   for (width = 1; width < end; width *= 2) {
     /**/logger.print(`merging arrays of width: ${width}`);
     for (i = 0; i < end; i += 2 * width) {
@@ -36,9 +36,9 @@ function mergeSort(start, end) {
 }
 
 function merge(mergeFrom, start, middle, end, mergeTo) {
-  let i = start,
-    j = middle,
-    k;
+  let i = start;
+  let j = middle;
+  let k;
   // in an actual merge implementation, mergeFrom and mergeTo would be arrays
   // here for the ability to trace what is going on better, the arrays are D[mergeFrom] and D[mergeTo]
   /**/logger.print(`merging segments [${start}..${middle}] and [${middle}..${end}]`);

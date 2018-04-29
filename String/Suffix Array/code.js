@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 let word = 'virgo';
 const suffixArray = (function skeleton(word) {
@@ -11,14 +11,14 @@ const suffixArray = (function skeleton(word) {
   return arr;
 }(word));
 
-let saTracer = new Array2DTracer('Suffix Array'),
-  wordTracer = new Array1DTracer('Given Word'),
-  logger = new LogTracer('Progress');
+const saTracer = new Array2DTracer('Suffix Array');
+const wordTracer = new Array1DTracer('Given Word');
+const logger = new LogTracer('Progress');
 
 saTracer.set(suffixArray);
-wordTracer.set(word);
+wordTracer.set(word).wait();
 
-word += '$';	// special character
+word += '$'; // special character
 logger.print('Appended \'$\' at the end of word as terminating (special) character. Beginning filling of suffixes');
 
 function selectSuffix(word, i) {

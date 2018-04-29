@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const N = 10;
 const A = new Array(N + 1);
@@ -7,7 +7,7 @@ for (let i = N; i >= 0; i--) {
 }
 
 const tracer = new Array1DTracer(' Catalan Numbers ').set(A);
-const logger = new LogTracer();
+const logger = new LogTracer().wait();
 
 A[0] = 1;
 tracer.notify(0, A[0]).wait();

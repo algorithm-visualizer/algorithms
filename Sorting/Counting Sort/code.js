@@ -1,4 +1,4 @@
-import { Array2DTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, Randomize } from 'algorithm-visualizer';
 
 const maxValue = 9;
 const arrSize = 10;
@@ -18,8 +18,7 @@ const D = [
 ];
 
 const tracer = new Array2DTracer();
-tracer.set(D);
-
+tracer.set(D).wait();
 
 // set counts values
 for (let i = 0; i < A.length; i++) {

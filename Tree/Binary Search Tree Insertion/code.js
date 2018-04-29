@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const T = {};
 
@@ -6,7 +6,7 @@ const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be searched
 const tracer = new DirectedGraphConstructTracer(' BST - Elements marked red indicates the current status of tree ', 0);
 const tracer2 = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
-tracer.log(logger);
+tracer.log(logger).wait();
 
 function bstInsert(root, element, parent) { // root = current node , parent = previous node
   tracer.visit(root, parent).wait();

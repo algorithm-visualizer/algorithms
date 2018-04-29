@@ -1,11 +1,11 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const A = Randomize.array1D(7);
 const N = A.length;
 
 const tracer1 = new Array1DTracer('Array').set(A);
 const tracer2 = new Array2DTracer('Holes');
-const logTracer = new LogTracer('Console');
+const logTracer = new LogTracer('Console').wait();
 
 let min = A[0];
 let max = A[0];

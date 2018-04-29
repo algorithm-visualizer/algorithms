@@ -1,4 +1,4 @@
-import { Array2DTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, Randomize } from 'algorithm-visualizer';
 
 const maxValue = 100;
 const arraySize = 10;
@@ -23,8 +23,7 @@ const D = [
 ];
 
 const tracer = new Array2DTracer();
-tracer.set(D);
-
+tracer.set(D).wait();
 
 // place numbers into appropriate buckets
 for (let i = 0; i < array.length; i++) {

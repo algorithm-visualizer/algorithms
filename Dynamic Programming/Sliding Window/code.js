@@ -1,9 +1,9 @@
-import { Array1DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const D = Randomize.array1D(20, { min: -5, max: 5 });
-tracer.set(D);
+tracer.set(D).wait();
 
 let sum = D[0] + D[1] + D[2];
 let max = sum;

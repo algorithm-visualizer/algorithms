@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const textTracer = new Array1DTracer('text');
 const pattTracer = new Array1DTracer('pattern');
@@ -9,7 +9,6 @@ const tracer = new Array1DTracer('zArray');
 // let text = "aabxaabxcaabxaabxay";
 const pattern = 'abc';
 const text = 'xabcabzabc';
-let i;
 
 const len = pattern.length + text.length + 1;
 
@@ -19,19 +18,17 @@ z[0] = 0;
 pattTracer.set(pattern);
 textTracer.set(text);
 tracer.set(z);
-const logger = new LogTracer();
+const logger = new LogTracer().wait();
 
 
 function createZarr(concat) {
-  let i,
-    left,
-    right,
-    k,
-    N;
+  let left;
+  let right;
+  let N;
   N = concat.length;
   left = 0;
   right = 0;
-  for (i = 1; i < N; i++) {
+  for (let i = 1; i < N; i++) {
     tracer.select(i).wait();
     if (i > right) {
       left = right = i;
@@ -92,10 +89,9 @@ concatTracer.set(concat);
 const patLen = pattern.length;
 createZarr(concat);
 tracer.set(z);
-let i;
 logger.print('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');
 logger.print('===================================');
-for (i = 0; i < len; i++) {
+for (let i = 0; i < len; i++) {
   if (z[i] === patLen) {
     const pos = i - (patLen + 1);
     logger.print(`Pattern Found at index ${pos}`);

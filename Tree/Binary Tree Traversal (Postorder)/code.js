@@ -1,4 +1,4 @@
-import { Array1DTracer, GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, GraphTracer, LogTracer } from 'algorithm-visualizer';
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -13,7 +13,6 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 ];
-
 
 const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][1] indicates right child
   [-1, -1],
@@ -31,8 +30,7 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 
 const treeTracer = new GraphTracer(' Traversal Post-order ').set(G, GraphTracer.LAYOUT.TREE, 5);
 const arrayTracer = new Array1DTracer(' Print Post-order ').set(new Array(T.length).fill('-'));
-const logger = new LogTracer(' Log ');
-
+const logger = new LogTracer(' Log ').wait();
 
 let index = 0;
 

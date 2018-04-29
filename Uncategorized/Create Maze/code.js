@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
@@ -55,8 +55,7 @@ for (let i = 0; i < vEnd; i++) { // by row
   }
 }
 
-tracer.set(G);
-
+tracer.set(G).wait();
 
 function buildMaze() {
   const mySet = new disjointSet();
@@ -66,8 +65,8 @@ function buildMaze() {
   const graph = [];
   const visitedMap = {};
   const walls = {};
-  let rightWalls = [];
-  let downWalls = [];
+  const rightWalls = [];
+  const downWalls = [];
   let location = 0;
 
   mySet.addElements(width * height);
@@ -101,21 +100,21 @@ function buildMaze() {
 
   logger.print('shuffled the walls for random selection');
   // Randomly shuffle the walls
-  let rightWalls = shuffle(rightWalls);
-  let downWalls = shuffle(downWalls);
+  shuffle(rightWalls);
+  shuffle(downWalls);
 
   // Picking random walls to remove
   while (setSize !== mySet.elements - 1) {
     const randomWall = Math.floor((Math.random() * 2) + 1);
     if (randomWall === 1 && downWalls.length > 0) {
       // Down wall
-      let currentRoom = downWalls.pop();
-      let iX = currentRoom.x;
-      let iY = currentRoom.y;
+      const currentRoom = downWalls.pop();
+      const iX = currentRoom.x;
+      const iY = currentRoom.y;
       const iYdown = iY + 1;
       if (iYdown < height) {
-        let u = graph[iX][iY];
-        let v = graph[iX][iYdown];
+        const u = graph[iX][iY];
+        const v = graph[iX][iYdown];
         tracer.notify(iY * 2 + 1, iX * 3 + 1);
         tracer.notify(iY * 2 + 1, iX * 3 + 2);
         tracer.notify(iYdown * 2 + 1, iX * 3 + 1);
@@ -136,13 +135,13 @@ function buildMaze() {
       tracer.clear();
     } else if (randomWall === 2 && rightWalls.length > 0) {
       // Right Wall
-      let currentRoom = rightWalls.pop();
-      let iX = currentRoom.x;
-      let iY = currentRoom.y;
+      const currentRoom = rightWalls.pop();
+      const iX = currentRoom.x;
+      const iY = currentRoom.y;
       const iXright = iX + 1;
       if (iXright < width) {
-        let u = graph[iX][iY];
-        let v = graph[iXright][iY];
+        const u = graph[iX][iY];
+        const v = graph[iXright][iY];
         tracer.notify(iY * 2 + 1, iX * 3 + 1);
         tracer.notify(iY * 2 + 1, iX * 3 + 2);
         tracer.notify(iY * 2 + 1, iXright * 3 + 1);
@@ -213,6 +212,7 @@ function buildMaze() {
   // set the data
   tracer.set(G);
 }
+
 function cleanUpStartLocation(start) {
   if (G[0][start * 3] === '┬' && G[1][start * 3] === '│') {
     G[0][start * 3] = '┐';
@@ -315,18 +315,21 @@ class disjointSet {
     this.set = [];
     this.elements = 0;
   }
+
   addElements(numberOfElements) {
     for (let i = 0; i < numberOfElements; i++) {
       this.elements++;
       this.set.push(-1);
     }
   }
+
   find(element) {
     if (this.set[element] < 0) {
       return element;
     }
     return this.set[element] = this.find(this.set[element]);
   }
+
   setUnion(_a, _b) {
     const a = this.find(_a);
     const b = this.find(_b);
@@ -342,21 +345,22 @@ class disjointSet {
       }
     }
   }
+
   compareSize(a, b) {
     if (this.set[a] === this.set[b]) {
-    		return true;
-    	} else if (this.set[a] < this.set[b]) {
-    		return true;
-    	}
-    		return false;
+      return true;
+    } else if (this.set[a] < this.set[b]) {
+      return true;
+    }
+    return false;
   }
 }
 
 // http://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
-  let m = array.length,
-    t,
-    i;
+  let m = array.length;
+  let t;
+  let i;
   // While there remain elements to shuffle…
   while (m) {
     // Pick a remaining element…

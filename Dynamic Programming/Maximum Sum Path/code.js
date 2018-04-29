@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const D = Randomize.array2D(5, 5, { min: 1, max: 5 });
 const dataViewer = new Array2DTracer().set(D);
@@ -11,8 +11,7 @@ for (let i = 0; i < D.length; i++) {
     DP[i].push(Infinity);
   }
 }
-tracer.set(DP);
-
+tracer.set(DP).wait();
 
 const N = DP.length;
 const M = DP[0].length;

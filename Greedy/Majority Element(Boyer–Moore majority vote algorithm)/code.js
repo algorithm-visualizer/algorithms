@@ -1,10 +1,10 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;
 
 const tracer = new Array1DTracer('List of element').set(A);
-const logger = new LogTracer('Console');
+const logger = new LogTracer('Console').wait();
 
 function isMajorityElement(element) {
   let count = 0;
@@ -27,8 +27,8 @@ function isMajorityElement(element) {
 }
 
 function findProbableElement() {
-  let index = 0,
-    count = 1;
+  let index = 0;
+  let count = 1;
   tracer.select(index).wait();
   logger.print(`Beginning with assumed majority element : ${A[index]} count : ${count}`);
   logger.print('--------------------------------------------------------');

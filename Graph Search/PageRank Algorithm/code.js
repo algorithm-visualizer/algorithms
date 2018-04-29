@@ -1,18 +1,17 @@
-import { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);
 }
 
-let G = Randomize.graph(5, { ratio: 0.4 }),
-  ranks,
-  outgoingEdgeCounts = filledArray(G.length, 0),
-  incomingNodes;
-
-let graphTracer = new GraphTracer('Web Page inter-connections'),
-  rankTracer = new Array1DTracer('Web Page Ranks'),
-  oecTracer = new Array1DTracer('Outgoing Edge Counts'),
-  inTracer = new Array2DTracer('Incoming Nodes');
+const G = Randomize.graph(5, { ratio: 0.4 });
+let ranks;
+const outgoingEdgeCounts = filledArray(G.length, 0);
+let incomingNodes;
+const graphTracer = new GraphTracer('Web Page inter-connections');
+const rankTracer = new Array1DTracer('Web Page Ranks');
+const oecTracer = new Array1DTracer('Outgoing Edge Counts');
+const inTracer = new Array2DTracer('Incoming Nodes');
 
 const logger = new LogTracer();
 
@@ -20,19 +19,19 @@ graphTracer.set(G);
 oecTracer.set(outgoingEdgeCounts);
 
 for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(filledArray(G.length, -1)));
-inTracer.set(incomingNodes);
+inTracer.set(incomingNodes).wait();
 
 /*
-	PageRank Algorithm Version 1
-	Equation:
-		PR (X) = (1 - D) + D (Summation i->X (PR (I) / Out (i)))
-	NOTE: Algorithm uses the recommended damping factor (D). Number of iterations is small because only a small Web of 5 Pages is simulated
+  PageRank Algorithm Version 1
+  Equation:
+    PR (X) = (1 - D) + D (Summation i->X (PR (I) / Out (i)))
+  NOTE: Algorithm uses the recommended damping factor (D). Number of iterations is small because only a small Web of 5 Pages is simulated
 */
 
 function arraySum(array) {
   return array.reduce(
     (sum, curr) =>
-		 sum + (curr ? 1 : 0)	// if curr is 0 (no edge) or undefined (loop not allowed), sum remains unchanged
+      sum + (curr ? 1 : 0) // if curr is 0 (no edge) or undefined (loop not allowed), sum remains unchanged
     , 0,
   );
 }
@@ -47,7 +46,6 @@ function showOutgoingEdges(i) {
 
 logger.print('Calculate Outgoing Edge Count for each Node');
 (function calculateOEC() {
-  const count = 0;
   G.forEach((relations, i) => {
     outgoingEdgeCounts[i] = arraySum(relations);
     showOutgoingEdges(i);
@@ -82,8 +80,8 @@ logger.print('determine incoming nodes for each node');
 }());
 
 function updateRank(nodeIndex) {
-  let inNodeSummation = 0,
-    result;
+  let inNodeSummation = 0;
+  let result;
 
   logger.print(`Updating rank of ${nodeIndex}`);
   logger.print(`The incoming Nodes of ${nodeIndex} are being highlighted`);
@@ -105,8 +103,8 @@ function updateRank(nodeIndex) {
   return result;
 }
 
-let damping = 0.85,
-  iterations = 7;
+let damping = 0.85;
+let iterations = 7;
 const initialRank = 1.0;
 
 logger.print(`Initialized all Page ranks to ${initialRank}`);

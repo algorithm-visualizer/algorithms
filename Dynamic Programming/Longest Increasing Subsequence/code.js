@@ -1,10 +1,10 @@
-import { Array1DTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const A = Randomize.array1D(10, { min: 0, max: 10 });
 const LIS = new Array(A.length);
-tracer.set(A);
+tracer.set(A).wait();
 
 // Initialize LIS values for all indexes
 for (let i = 0; i < A.length; i++) {

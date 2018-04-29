@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
@@ -6,7 +6,7 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: false, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G);
+tracer.set(G).wait();
 
 function BFS() {
   const W = []; // W[i] indicates the length of the shortest path from start node to the i-th node

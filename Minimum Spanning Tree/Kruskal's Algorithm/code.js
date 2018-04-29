@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
@@ -12,7 +12,7 @@ const logger = new LogTracer();
 const G = Randomize.graph(5, {
   directed: false, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G);
+tracer.set(G).wait();
 
 function kruskal() {
   const vcount = G.length;
@@ -52,9 +52,9 @@ function kruskal() {
 
     // Merge tree of e[0] & e[1]
     const tmerged = {};
-    for (i in t[e[0]]) tmerged[i] = true;
-    for (i in t[e[1]]) tmerged[i] = true;
-    for (i in tmerged) t[i] = tmerged;
+    for (const i in t[e[0]]) tmerged[i] = true;
+    for (const i in t[e[1]]) tmerged[i] = true;
+    for (const i in tmerged) t[i] = tmerged;
 
     n += 1;
   }

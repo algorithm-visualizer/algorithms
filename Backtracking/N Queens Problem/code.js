@@ -1,6 +1,6 @@
-import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
-const N = 4;	// just change the value of N and the visuals will reflect the configuration!
+const N = 4; // just change the value of N and the visuals will reflect the configuration!
 const board = (function createArray(N) {
   const result = [];
   for (let i = 0; i < N; i++) {
@@ -16,13 +16,13 @@ const queens = (function qSetup(N) {
   return result;
 }(N));
 
-let boardTracer = new Array2DTracer('Board'),
-  queenTracer = new Array2DTracer('Queen Positions'),
-  logger = new LogTracer('Progress');
+const boardTracer = new Array2DTracer('Board');
+const queenTracer = new Array2DTracer('Queen Positions');
+const logger = new LogTracer('Progress');
 
 boardTracer.set(board);
 queenTracer.set(queens);
-logger.print(`N Queens: ${N}X${N}matrix, ${N} queens`);
+logger.print(`N Queens: ${N}X${N}matrix, ${N} queens`).wait();
 
 function validState(row, col, currentQueen) {
   for (let q = 0; q < currentQueen; q++) {
@@ -42,8 +42,8 @@ function nQ(currentQueen, currentCol) {
     return true;
   }
 
-  let found = false,
-    row = 0;
+  let found = false;
+  let row = 0;
   while ((row < N) && (!found)) {
     boardTracer.select(row, currentCol).wait();
     logger.print(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);

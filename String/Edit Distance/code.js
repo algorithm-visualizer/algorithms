@@ -1,19 +1,20 @@
-import { Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer('Distance Table');
 const logger = new LogTracer();
-let str1 = 'stack',
-  str2 = 'racket',
-  table = new Array(str1.length + 1);
+const str1 = 'stack';
+const str2 = 'racket';
+const table = new Array(str1.length + 1);
 
-table[0] = Array(...{ length: str2.length + 1 }).map(Number.call, Number);
-for (let i = 1; i < str1.length + 1; i++) {
-  table[i] = Array(...Array(str2.length + 1)).map(Number.prototype.valueOf, -1);
+for (let i = 0; i < str1.length + 1; i++) {
+  table[i] = new Array(str2.length + 1).fill(-1);
   table[i][0] = i;
 }
+for (let i = 1; i < str2.length + 1; i++) {
+  table[0][i] = i;
+}
 
-tracer.set(table);
-
+tracer.set(table).wait();
 
 logger.print('Initialized DP Table');
 logger.print(`Y-Axis (Top to Bottom): ${str1}`);

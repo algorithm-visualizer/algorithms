@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 
 const ARank = {
   Flavio: ['Valentine', 'July', 'Summer', 'Violet'],
@@ -22,7 +22,7 @@ const _bKeys = Object.keys(BRank);
 tracerA.set(_aKeys);
 tracerB.set(_bKeys);
 
-const logTracer = new LogTracer('Console');
+const logTracer = new LogTracer('Console').wait();
 
 function init(rank) {
   const o = {};

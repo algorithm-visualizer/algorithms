@@ -1,4 +1,4 @@
-import { Array1DTracer, GraphTracer, LogTracer, Randomize, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const tracerS = new Array1DTracer();
@@ -11,11 +11,11 @@ tracer.set(G);
 const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
 for (let i = 0; i < G.length; i++) S[i] = MAX_VALUE;
-tracerS.set(S);
+tracerS.set(S).wait();
 
 function Dijkstra(start, end) {
-  let minIndex,
-    minDistance;
+  let minIndex;
+  let minDistance;
   const D = []; // D[i] indicates whether the i-th node is discovered or not
   for (let i = 0; i < G.length; i++) D.push(false);
   S[start] = 0; // Starting node is at distance 0 from itself
@@ -25,7 +25,7 @@ function Dijkstra(start, end) {
   while (k--) {
     // Finding a node with the shortest distance from S[minIndex]
     minDistance = MAX_VALUE;
-    for (i = 0; i < G.length; i++) {
+    for (let i = 0; i < G.length; i++) {
       if (S[i] < minDistance && !D[i]) {
         minDistance = S[i];
         minIndex = i;
@@ -37,7 +37,7 @@ function Dijkstra(start, end) {
     tracer.visit(minIndex).wait();
     // For every unvisited neighbour of current node, we check
     // whether the path to it is shorter if going over the current node
-    for (i = 0; i < G.length; i++) {
+    for (let i = 0; i < G.length; i++) {
       if (G[minIndex][i] && S[i] > S[minIndex] + G[minIndex][i]) {
         S[i] = S[minIndex] + G[minIndex][i];
         tracerS.notify(i, S[i]);

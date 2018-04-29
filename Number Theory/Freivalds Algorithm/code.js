@@ -1,43 +1,44 @@
-import { Array1DTracer, Array2DTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
 
 const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];
 const C = [[6, 5], [8, 7]];
 
-const _a = new Array2DTracer('Matrix A'); _a.set(A);
-const _b = new Array2DTracer('Matrix B'); _b.set(B);
-const _c = new Array2DTracer('Matrix C'); _c.set(C);
+new Array2DTracer('Matrix A').set(A);
+new Array2DTracer('Matrix B').set(B);
+new Array2DTracer('Matrix C').set(C);
 
 const logger = new LogTracer();
 
-const _r = new Array1DTracer('Random Vector');
-const _p = new Array1DTracer('Result Vector');
-
+const randomVectorTracer = new Array1DTracer('Random Vector');
+const resultVectorTracer = new Array1DTracer('Result Vector').wait();
 
 function FreivaldsAlgorithm() {
   let k = 5;
-  let i,
-    j,
-    tmp,
-    tmpB,
-    tmpC,
-    n = A.length;
+  let i;
+  let j;
+  let tmp;
+  let tmpB;
+  let tmpC;
+  const n = A.length;
 
   while (k--) {
     logger.print(`Iterations remained: #${k}`);
 
     // Generate random vector
-    let r = [],
-      P = [];
+    const r = [];
+
+    let P = [];
     for (i = 0; i < n; i++) {
       P.push(-1);
       r.push((Math.random() < 0.5) << 0);
     }
-    _r.set(r).wait();
+    randomVectorTracer.set(r).wait();
 
     // Compute Br, Cr
-    let Br = [],
-      Cr = [];
+    const Br = [];
+
+    const Cr = [];
     for (i = 0; i < n; i++) {
       tmpB = 0;
       tmpC = 0;
@@ -58,7 +59,7 @@ function FreivaldsAlgorithm() {
       }
       P.push(tmp);
     }
-    _p.set(P).wait();
+    resultVectorTracer.set(P).wait();
 
     for (i = 0; i < n; i++) {
       if (P[i] !== 0) {

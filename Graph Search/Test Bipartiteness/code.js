@@ -1,4 +1,4 @@
-import { Array1DTracer, GraphTracer, LogTracer, Tracer } from 'algorithm-visualizer';
+import { Array1DTracer, GraphTracer, LogTracer } from 'algorithm-visualizer';
 
 const tracer = new GraphTracer({ directed: false });
 const logger = new LogTracer();
@@ -11,9 +11,9 @@ const G = [
   [1, 0, 1, 0, 0], // <-- replace latest 0 with 1 to make G not biparted
   [1, 0, 0, 0, 0],
 ];
-tracer.set(G, 0);
+tracer.set(G);
 
-const colorsTracer = new Array1DTracer('Colors');
+const colorsTracer = new Array1DTracer('Colors').wait();
 
 function BFSCheckBipartiteness(s) {
   const Q = [];
@@ -33,18 +33,18 @@ function BFSCheckBipartiteness(s) {
     tracer.visit(node).wait();
 
     for (let i = 0; i < G[node].length; i++) {
-        	if (G[node][i]) {
-        		if (Colors[i] === -1) {
-        			Colors[i] = 1 - Colors[node];
-        			colorsTracer.notify(i, 1 - Colors[node]);
+      if (G[node][i]) {
+        if (Colors[i] === -1) {
+          Colors[i] = 1 - Colors[node];
+          colorsTracer.notify(i, 1 - Colors[node]);
 
-        			Q.push(i);
-        			tracer.visit(i, node).wait();
-        		} else if (Colors[i] === Colors[node]) {
-        			logger.print('Graph is not biparted');
-        			return false;
-        		}
-        	}
+          Q.push(i);
+          tracer.visit(i, node).wait();
+        } else if (Colors[i] === Colors[node]) {
+          logger.print('Graph is not biparted');
+          return false;
+        }
+      }
     }
   }
 
