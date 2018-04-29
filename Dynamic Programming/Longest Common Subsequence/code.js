@@ -3,7 +3,7 @@ const string2 = 'GXTXAYB';
 const m = string1.length;
 const n = string2.length;
 const A = new Array(m + 1);
-for (var i = 0; i < m + 1; i++) {
+for (let i = 0; i < m + 1; i++) {
   A[i] = new Array(n + 1);
 }
 
@@ -12,7 +12,7 @@ const tracer2 = new Array1DTracer('String 2').set(string2);
 const tracer3 = new Array2DTracer('Memo Table').set(A);
 const logger = new LogTracer();
 
-var i,
+let i,
   j;
 
 // Build the memo table in bottom up fashion

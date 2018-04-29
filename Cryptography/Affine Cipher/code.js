@@ -9,7 +9,7 @@ function randString(length) {
   return text;
 }
 
-// var plainText = randString (5);
+// let plainText = randString (5);
 const plainText = 'secret';
 const ptTracer = new Array1DTracer('Encryption');
 const ctTracer = new Array1DTracer('Decryption');
@@ -42,7 +42,7 @@ function encrypt(plainText) {
   }
 
   logger.print('Beginning Affine Encryption');
-  logger.print('Encryption formula: <b>((keys.a * index_of_alphabet) + keys.b) % N</b>');
+  logger.print('Encryption formula: <b>((keys.a * indexOfAlphabet) + keys.b) % N</b>');
   logger.print(`keys.a=${keys.a}, keys.b=${keys.b}, N=${N}`);
 
   for (const i in plainText) {

@@ -4,9 +4,9 @@ const W = 7; // The maximum weight we can carry in our collection
 const N = val.length;
 const DP = new Array(N + 1);
 
-for (var i = 0; i < N + 1; i++) {
+for (let i = 0; i < N + 1; i++) {
   DP[i] = new Array(W + 1);
-  for (var j = 0; j < W + 1; j++) {
+  for (let j = 0; j < W + 1; j++) {
     DP[i][j] = 0;
   }
 }
@@ -17,8 +17,8 @@ const dataViewer2 = new Array1DTracer('Weights').set(wt);
 const logger = new LogTracer();
 
 
-for (var i = 0; i <= N; i++) {
-  for (var j = 0; j <= W; j++) {
+for (let i = 0; i <= N; i++) {
+  for (let j = 0; j <= W; j++) {
     if (i === 0 || j === 0) {
       /*
 			If we have no items or maximum weight we can take in collection is 0

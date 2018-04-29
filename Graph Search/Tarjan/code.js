@@ -87,7 +87,7 @@ function SCC() {
   const st = [];
   const carry = { time: 0 };
 
-  for (var i = 0; i < G.length; i++) {
+  for (let i = 0; i < G.length; i++) {
     	disc[i] = -1;
     	low[i] = -1;
     	stackMember[i] = false;
@@ -98,7 +98,7 @@ function SCC() {
   stackMemberTracer.set(stackMember);
   stTracer.set(st);
 
-  for (var i = 0; i < G.length; i++) {
+  for (let i = 0; i < G.length; i++) {
     	if (disc[i] == -1) {
     		SCCVertex(i, disc, low, st, stackMember, carry);
     	}

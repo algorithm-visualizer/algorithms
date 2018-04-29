@@ -19,7 +19,7 @@ tracer.set(G);
     i;
 
   logger.print('Calculating in-degrees for each Node...');
-  for (var currNode = 0; currNode < G.length; currNode++) {
+  for (let currNode = 0; currNode < G.length; currNode++) {
     for (let currNodeNeighbor = 0; currNodeNeighbor < G.length; currNodeNeighbor++) {
       if (G[currNode][currNodeNeighbor]) {
         logger.print(`${currNodeNeighbor} has an incoming edge from ${currNode}`);

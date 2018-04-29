@@ -6,7 +6,7 @@ const tracer2 = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
 tracer.log(logger);
 
-function bst_insert(root, element, parent) { // root = current node , parent = previous node
+function bstInsert(root, element, parent) { // root = current node , parent = previous node
   tracer.visit(root, parent).wait();
   const treeNode = T[root];
   let propName = '';
@@ -22,7 +22,7 @@ function bst_insert(root, element, parent) { // root = current node , parent = p
       tracer.addNode(element, root).wait();
       logger.print(`${element} Inserted `);
     } else {
-      bst_insert(treeNode[propName], element, root);
+      bstInsert(treeNode[propName], element, root);
     }
   }
 }
@@ -34,7 +34,7 @@ logger.print(`${Root} Inserted as root of tree `);
 
 for (let i = 1; i < elements.length; i++) {
   tracer2.select(i).wait();
-  bst_insert(Root, elements[i]); // insert ith element
+  bstInsert(Root, elements[i]); // insert ith element
   tracer2.deselect(i).wait();
   tracer.clearTraversal();
 }

@@ -1,13 +1,13 @@
 const N = 9;
 const A = new Array(N);
-for (var i = N - 1; i >= 0; i--) {
+for (let i = N - 1; i >= 0; i--) {
   A[i] = new Array(N);
 }
 
 const tracer = new Array2DTracer('Pascal\'s Triangle').set(A);
 
 
-for (var i = 0; i < N; i++) {
+for (let i = 0; i < N; i++) {
   for (let j = 0; j <= i; j++) {
     if (j === i || j === 0) { // First and last values in every row are 1
       A[i][j] = 1;

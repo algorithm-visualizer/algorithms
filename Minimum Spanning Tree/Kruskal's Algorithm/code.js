@@ -1,6 +1,6 @@
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
-/* var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
+/* let G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
  [0, 3, 0, 1, 0],
  [5, 0, 1, 2, 4],
  [1, 0, 0, 2, 0],
@@ -30,7 +30,7 @@ function kruskal() {
 
   // Give each vertex a tree to decide if they are already in the same tree.
   const t = [];
-  for (var i = 0; i < vcount; i++) {
+  for (let i = 0; i < vcount; i++) {
     t[i] = {};
     t[i][i] = true;
   }

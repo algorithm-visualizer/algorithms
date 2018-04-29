@@ -15,7 +15,7 @@ function Dijkstra(start, end) {
   let minIndex,
     minDistance;
   const D = []; // D[i] indicates whether the i-th node is discovered or not
-  for (var i = 0; i < G.length; i++) D.push(false);
+  for (let i = 0; i < G.length; i++) D.push(false);
   S[start] = 0; // Starting node is at distance 0 from itself
   tracerS.notify(start, S[start]).wait().denotify(start);
   tracerS.select(start);

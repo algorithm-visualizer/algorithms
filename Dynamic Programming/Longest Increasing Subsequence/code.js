@@ -5,13 +5,13 @@ const LIS = new Array(A.length);
 tracer.set(A);
 
 // Initialize LIS values for all indexes
-for (var i = 0; i < A.length; i++) {
+for (let i = 0; i < A.length; i++) {
   LIS[i] = 1;
 }
 
 logger.print('Calculating Longest Increasing Subsequence values in bottom up manner ');
 // Compute optimized LIS values in bottom up manner
-for (var i = 1; i < A.length; i++) {
+for (let i = 1; i < A.length; i++) {
   tracer.select(i);
   logger.print(` LIS[${i}] = ${LIS[i]}`);
   for (let j = 0; j < i; j++) {
@@ -28,7 +28,7 @@ for (var i = 1; i < A.length; i++) {
 // Pick maximum of all LIS values
 logger.print('Now calculate maximum of all LIS values ');
 let max = LIS[0];
-for (var i = 1; i < A.length; i++) {
+for (let i = 1; i < A.length; i++) {
   if (max < LIS[i]) {
     max = LIS[i];
   }

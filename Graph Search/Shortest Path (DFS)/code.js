@@ -34,9 +34,9 @@ do {
   e = Randomize.integer(0, G.length - 1);
 } while (s === e);
 const MAX_VALUE = Infinity;
-var minWeight = MAX_VALUE;
+let minWeight = MAX_VALUE;
 logger.print(`finding the shortest path from ${s} to ${e}`);
-var D = []; // D[i] indicates whether the i-th node is discovered or not
+let D = []; // D[i] indicates whether the i-th node is discovered or not
 for (let i = 0; i < G.length; i++) D.push(false);
 DFS(s, undefined, 0);
 if (minWeight === MAX_VALUE) {

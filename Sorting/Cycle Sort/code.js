@@ -17,7 +17,7 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   pos = cycleStart;
   tracer.select(cycleStart);
 
-  for (var i = cycleStart + 1; i <= N - 1; i++) {
+  for (let i = cycleStart + 1; i <= N - 1; i++) {
     tracer.select(i).wait().deselect(i);
     if (D[i] < item) {
       pos++;

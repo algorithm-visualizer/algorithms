@@ -16,16 +16,16 @@ let hashText = 0; // hash value for text
 let hashPattern = 0; // hash value for pattern
 let h = 1;
 
-for (var i = 0; i < (M - 1); i++) {
+for (let i = 0; i < (M - 1); i++) {
   h = (h * D) % Q;
 }
 
-for (var i = 0; i < M; i++) {
+for (let i = 0; i < M; i++) {
   hashPattern = (D * hashPattern + pattern[i].charCodeAt(0)) % Q;
   hashText = (D * hashText + text[i].charCodeAt(0)) % Q;
 }
 
-for (var i = 0; i <= N - M; i++) {
+for (let i = 0; i <= N - M; i++) {
   /*
 	Check if hash values of current window of text matches
 	with hash values of pattern. If match is found then

@@ -1,11 +1,11 @@
 const n = 7;
 const A = new Array(n);
-for (var i = n - 1; i >= 0; i--) {
+for (let i = n - 1; i >= 0; i--) {
   A[i] = new Array(n);
 }
 
-for (var i = n - 1; i >= 0; i--) {
-  for (var j = n - 1; j >= 0; j--) {
+for (let i = n - 1; i >= 0; i--) {
+  for (let j = n - 1; j >= 0; j--) {
     A[i][j] = 0;
   }
 }
@@ -13,8 +13,8 @@ for (var i = n - 1; i >= 0; i--) {
 const tracer = new Array2DTracer('Magic Square').set(A);
 const logTracer = new LogTracer('Console');
 
-var i = Math.floor(n / 2);
-var j = n - 1;
+let i = Math.floor(n / 2);
+let j = n - 1;
 
 for (let num = 1; num <= n * n;) {
   logTracer.print(`i = ${i}`);

@@ -22,9 +22,9 @@ function digit(i, exp) {
 }
 for (let exp = 0; exp < 3; exp++) {
   logger.print(`Digit: ${exp}`);
-  var i;
+  let i;
   for (i = 0; i < D[0].length; i++) {
-    var d = digit(i, exp);
+    const d = digit(i, exp);
     tracer.select(0, i).wait();
     D[2][d] += 1;
     tracer.notify(2, d, D[2][d]).wait();
@@ -39,7 +39,7 @@ for (let exp = 0; exp < 3; exp++) {
     tracer.deselect(2, i - 1);
   }
   for (i = D[0].length - 1; i >= 0; i--) {
-    var d = digit(i, exp);
+    const d = digit(i, exp);
     tracer.select(0, i).wait();
     D[2][d] -= 1;
     tracer.notify(2, d, D[2][d]).wait();

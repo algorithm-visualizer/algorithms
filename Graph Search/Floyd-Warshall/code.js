@@ -9,9 +9,9 @@ tracer.set(G);
 function FloydWarshall() {
   // Finds the shortest path between all nodes
   const S = new Array(G.length);
-  for (var i = 0; i < G.length; i++) S[i] = new Array(G.length);
+  for (let i = 0; i < G.length; i++) S[i] = new Array(G.length);
   for (i = 0; i < G.length; i++) {
-    for (var j = 0; j < G.length; j++) {
+    for (let j = 0; j < G.length; j++) {
       // Distance to self is always 0
       if (i == j) S[i][i] = 0;
       // Distance between connected nodes is their weight
@@ -46,6 +46,6 @@ function FloydWarshall() {
     }
   }
 }
-var MAX_VALUE = Infinity;
+let MAX_VALUE = Infinity;
 logger.print('finding the shortest paths from and to all nodes');
 FloydWarshall();

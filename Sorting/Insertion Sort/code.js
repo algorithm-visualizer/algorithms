@@ -9,7 +9,7 @@ for (let i = 1; i < D.length; i++) {
   const key = D[i];
   logger.print(`insert ${key}`);
   tracer.select(i).wait();
-  var j;
+  let j;
   for (j = i - 1; (j >= 0) && (D[j] > key); j--) {
     D[j + 1] = D[j];
     tracer.notify(j + 1, D[j + 1]).wait();

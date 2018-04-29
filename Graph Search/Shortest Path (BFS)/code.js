@@ -31,12 +31,12 @@ function BFS() {
   }
   return W[e];
 }
-var s = Randomize.integer(0, G.length - 1); // s = start node
+let s = Randomize.integer(0, G.length - 1); // s = start node
 let e; // e = start node
 do {
   e = Randomize.integer(0, G.length - 1);
 } while (s === e);
-var MAX_VALUE = Infinity;
+let MAX_VALUE = Infinity;
 logger.print(`finding the shortest path from ${s} to ${e}`);
 const minWeight = BFS(s);
 if (minWeight === MAX_VALUE) {

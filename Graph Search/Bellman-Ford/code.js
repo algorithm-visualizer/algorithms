@@ -65,7 +65,7 @@ function BELLMAN_FORD(src, dest) {
 
 let src = Randomize.integer(0, G.length - 1),
   dest;
-var MAX_VALUE = Infinity;
+let MAX_VALUE = Infinity;
 let minWeight;
 
 /*

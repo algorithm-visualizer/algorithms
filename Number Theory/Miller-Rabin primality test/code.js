@@ -1,14 +1,14 @@
 const logger = new LogTracer();
 
-var a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
+let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
 testProbablyPrime(a);
 logger.print('----------');
 
-var a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
+let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
 testProbablyPrime(a);
 logger.print('----------');
 
-var a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
+let a = Math.floor(Math.random() * 300); if (a % 2 === 0) a += 1;
 testProbablyPrime(a);
 logger.print('----------');
 

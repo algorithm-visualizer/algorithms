@@ -28,7 +28,7 @@ function init(rank) {
     o[k] = {
       key: k,
       stable: false,
-      rank_keys: rank[k],
+      rankKeys: rank[k],
     };
   }
   return o;
@@ -44,14 +44,14 @@ function extractUnstable(Q) {
 
 let A = init(ARank),
   B = init(BRank);
-var a,
+let a,
   b;
 
 while ((a = extractUnstable(A)) != null) {
   logTracer.print(`Selecting ${a.key}`).wait();
 
-  const bKey = a.rank_keys.shift();
-  var b = B[bKey];
+  const bKey = a.rankKeys.shift();
+  const b = B[bKey];
 
   logTracer.print(`--> Choicing ${b.key}`).wait();
 
@@ -64,9 +64,9 @@ while ((a = extractUnstable(A)) != null) {
     tracerA.select(_aKeys.indexOf(a.key)).wait();
     tracerB.select(_bKeys.indexOf(b.key)).wait();
   } else {
-    const rank_a_in_b = b.rank_keys.indexOf(a.key);
-    const rank_prev_a_in_b = b.rank_keys.indexOf(b.stable.key);
-    if (rank_a_in_b < rank_prev_a_in_b) {
+    const rankAinB = b.rankKeys.indexOf(a.key);
+    const rankPrevAinB = b.rankKeys.indexOf(b.stable.key);
+    if (rankAinB < rankPrevAinB) {
       logTracer.print(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`).wait();
 
       A[b.stable.key].stable = false;

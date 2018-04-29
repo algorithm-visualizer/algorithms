@@ -15,7 +15,7 @@ for (let gap = N; gap = parseInt(gap / 2);) {
     tracer.select(i).select(i - gap).wait();
     const k = D[i];
     logger.print(`Holding: ${k}`);
-    for (var j = i; j >= gap && k < D[j - gap]; j -= gap) {
+    for (let j = i; j >= gap && k < D[j - gap]; j -= gap) {
       logger.print(`${k} < ${D[j - gap]}`);
       D[j] = D[j - gap];
       tracer.notify(j, D[j]).wait();

@@ -3,9 +3,9 @@ const dataViewer = new Array2DTracer().set(D);
 const tracer = new Array2DTracer('Results Table');
 const logger = new LogTracer();
 const DP = [];
-for (var i = 0; i < D.length; i++) {
+for (let i = 0; i < D.length; i++) {
   DP.push([]);
-  for (var j = 0; j < D[i].length; j++) {
+  for (let j = 0; j < D[i].length; j++) {
     DP[i].push(Infinity);
   }
 }
@@ -21,8 +21,8 @@ function update(i, j, value) {
   tracer.denotify(i, j);
   dataViewer.deselect(i, j);
 }
-for (var i = 0; i < N; i++) {
-  for (var j = 0; j < M; j++) {
+for (let i = 0; i < N; i++) {
+  for (let j = 0; j < M; j++) {
     if (i === 0 && j === 0) {
       update(i, j, D[i][j]);
     } else if (i === 0) {

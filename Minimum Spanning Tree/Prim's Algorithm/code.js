@@ -1,7 +1,7 @@
 const tracer = new GraphTracer({ directed: false, weighted: true });
 const logger = new LogTracer();
 tracer.log(logger);
-/* var G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
+/* let G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
  [0, 3, 0, 1, 0],
  [5, 0, 1, 2, 4],
  [1, 0, 0, 2, 0],
@@ -21,7 +21,7 @@ function prim() {
     minJ,
     sum = 0,
     D = [];
-  for (var i = 0; i < G.length; i++) D.push(0);
+  for (let i = 0; i < G.length; i++) D.push(0);
   D[0] = 1; // First node is visited
   for (let k = 0; k < G.length - 1; k++) { // Searching for k edges
     minD = Infinity;

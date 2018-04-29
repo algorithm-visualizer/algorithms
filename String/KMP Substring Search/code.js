@@ -8,8 +8,8 @@ const string = randString(15);
 const startIndex = Math.floor(Math.random() * 10); // Random start index from 0 to 9
 const substring = string.substr(startIndex, 5); // Substring of `string` of length 5
 
-// var string = 'abcxabcdabxabcdabcdabxabcda', substring = 'xabcda';
-// var string = 'abcxabcdabxabcdabcdabcyiuhsiuhduiahdubhbuuabcdabcysbhbh', substring = 'abcdabcy';
+// let string = 'abcxabcdabxabcdabcdabxabcda', substring = 'xabcda';
+// let string = 'abcxabcdabxabcdabcdabcyiuhsiuhduiahdubhbuuabcdabcysbhbh', substring = 'abcdabcy';
 
 let track = Array(...Array(substring.length)).map(Number.prototype.valueOf, 0);
 

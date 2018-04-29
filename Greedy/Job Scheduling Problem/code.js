@@ -11,8 +11,8 @@ const tracer2 = new Array1DTracer('Profit');
 
 // sort according to decreasing order of profit
 // Bubble sort implemented ... Implement a better algorithm for better performance
-for (var i = 0; i < N - 1; i++) {
-  for (var j = 0; j < N - i - 1; j++) {
+for (let i = 0; i < N - 1; i++) {
+  for (let j = 0; j < N - i - 1; j++) {
     if (profit[j] < profit[j + 1]) {
       let temp = profit[j];
       profit[j] = profit[j + 1];
@@ -29,7 +29,7 @@ for (var i = 0; i < N - 1; i++) {
 
 const slot = new Array(N);
 const result = new Array(N);
-for (var i = N - 1; i >= 0; i--) {
+for (let i = N - 1; i >= 0; i--) {
   result[i] = '-';
 }
 tracer.set(jobId);
@@ -38,19 +38,19 @@ tracer2.set(profit);
 tracer3.set(result);
 
 // Initialise all slots to free
-for (var i = 0; i < N; i++) {
+for (let i = 0; i < N; i++) {
   slot[i] = 0;
 }
 
 // Iterate through all the given jobs
-for (var i = 0; i < N; i++) {
+for (let i = 0; i < N; i++) {
   /*
      Start from the last possible slot.
      Find a slot for the job
      */
   tracer.select(i).wait();
   tracer1.select(i).wait();
-  for (var j = Math.min(N, deadline[i]) - 1; j >= 0; j--) {
+  for (let j = Math.min(N, deadline[i]) - 1; j >= 0; j--) {
     if (slot[j] === 0) {
       tracer3.notify(j, jobId[i]).wait();
       result[j] = jobId[i];

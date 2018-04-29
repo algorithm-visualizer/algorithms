@@ -2,7 +2,7 @@ const tracer = new Array1DTracer('Sieve');
 const N = 30;
 const a = [];
 const b = [];
-for (var i = 1; i <= N; i++) {
+for (let i = 1; i <= N; i++) {
   a.push(i);
   b.push(0);
 }
@@ -12,7 +12,7 @@ const logger = new LogTracer();
 
 logger.print('1 is not prime');
 tracer.select(0).wait();
-for (var i = 2; i <= N; i++) {
+for (let i = 2; i <= N; i++) {
   if (b[i] === 0) {
     logger.print(`${i} is not marked, so it is prime`);
     // a[i-1] is prime mark by red indicators

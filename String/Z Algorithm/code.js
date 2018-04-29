@@ -1,21 +1,21 @@
-const text_tracer = new Array1DTracer('text');
-const patt_tracer = new Array1DTracer('pattern');
-const concat_tracer = new Array1DTracer('concatenated string');
-const tracer = new Array1DTracer('z_array');
+const textTracer = new Array1DTracer('text');
+const pattTracer = new Array1DTracer('pattern');
+const concatTracer = new Array1DTracer('concatenated string');
+const tracer = new Array1DTracer('zArray');
 
-// var pattern = "aab";
-// var text = "aabxaabxcaabxaabxay";
+// let pattern = "aab";
+// let text = "aabxaabxcaabxaabxay";
 const pattern = 'abc';
 const text = 'xabcabzabc';
-var i;
+let i;
 
 const len = pattern.length + text.length + 1;
 
 const z = new Array(len);
 z[0] = 0;
 
-patt_tracer.set(pattern);
-text_tracer.set(text);
+pattTracer.set(pattern);
+textTracer.set(text);
 tracer.set(z);
 const logger = new LogTracer();
 
@@ -34,18 +34,18 @@ function createZarr(concat) {
     if (i > right) {
       left = right = i;
       while (right < N && concat[right] == concat[right - left]) {
-        concat_tracer.notify(right).wait();
-        concat_tracer.select(right - left).wait();
+        concatTracer.notify(right).wait();
+        concatTracer.select(right - left).wait();
         logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
-        concat_tracer.denotify(right).wait();
-        concat_tracer.deselect(right - left).wait();
+        concatTracer.denotify(right).wait();
+        concatTracer.deselect(right - left).wait();
         right++;
       }
-      concat_tracer.notify(right).wait();
-      concat_tracer.select(right - left).wait();
+      concatTracer.notify(right).wait();
+      concatTracer.select(right - left).wait();
       logger.print(`${concat[right]} ( at position ${right} ) is NOT equal to ${concat[right - left]} (at position ${right - left})`);
-      concat_tracer.denotify(right).wait();
-      concat_tracer.deselect(right - left).wait();
+      concatTracer.denotify(right).wait();
+      concatTracer.deselect(right - left).wait();
       z[i] = (right - left);
       logger.print('--------------------------------');
       logger.print(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
@@ -53,27 +53,27 @@ function createZarr(concat) {
       right--;
     } else if (z[i - left] < (right - i + 1)) {
       logger.print(`The substring from index ${i - left} will not cross the right end.`);
-      concat_tracer.select(i - left).wait();
-      concat_tracer.notify(right - i + 1).wait();
+      concatTracer.select(i - left).wait();
+      concatTracer.notify(right - i + 1).wait();
       z[i] = z[i - left];
-      concat_tracer.deselect(i - left).wait();
-      concat_tracer.denotify(right - i + 1).wait();
+      concatTracer.deselect(i - left).wait();
+      concatTracer.denotify(right - i + 1).wait();
     } else {
       logger.print(`The substring from index ${i - left} will cross the right end.`);
       left = i;
       while (right < N && concat[right] == concat[right - left]) {
-        concat_tracer.notify(right).wait();
-        concat_tracer.select(right - left).wait();
+        concatTracer.notify(right).wait();
+        concatTracer.select(right - left).wait();
         logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
-        concat_tracer.denotify(right).wait();
-        concat_tracer.deselect(right - left).wait();
+        concatTracer.denotify(right).wait();
+        concatTracer.deselect(right - left).wait();
         right++;
       }
-      concat_tracer.notify(right).wait();
-      concat_tracer.select(right - left).wait();
+      concatTracer.notify(right).wait();
+      concatTracer.select(right - left).wait();
       logger.print(`${concat[right]} ( at position ${right} ) is NOT equal to ${concat[right - left]} (at position ${right - left})`);
-      concat_tracer.denotify(right).wait();
-      concat_tracer.deselect(right - left).wait();
+      concatTracer.denotify(right).wait();
+      concatTracer.deselect(right - left).wait();
       z[i] = (right - left);
       right--;
       logger.print('--------------------------------');
@@ -86,11 +86,11 @@ function createZarr(concat) {
 }
 
 const concat = `${pattern}$${text}`;
-concat_tracer.set(concat);
+concatTracer.set(concat);
 const patLen = pattern.length;
 createZarr(concat);
 tracer.set(z);
-var i;
+let i;
 logger.print('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');
 logger.print('===================================');
 for (i = 0; i < len; i++) {

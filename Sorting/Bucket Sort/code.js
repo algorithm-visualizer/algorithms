@@ -40,7 +40,7 @@ for (let k = 0; k < buckets.length; k++) {
   // do insertion sort
   for (let i = 1; i < buckets[k].length; i++) {
     const key = buckets[k][i];
-    var j;
+    let j;
     for (j = i - 1; (j >= 0) && (buckets[k][j] > key); j--) {
       buckets[k][j + 1] = buckets[k][j];
     }

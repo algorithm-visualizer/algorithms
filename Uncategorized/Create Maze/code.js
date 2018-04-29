@@ -3,50 +3,50 @@ const logger = new LogTracer();
 const n = 6; // rows (change these!)
 const m = 6; // columns (change these!)
 
-const h_end = m * 4 - (m - 1);
-const v_end = n * 3 - (n - 1);
+const hEnd = m * 4 - (m - 1);
+const vEnd = n * 3 - (n - 1);
 
 const G = [];
 
-for (let i = 0; i < v_end; i++) { // by row
-  G[i] = new Array(h_end);
-  for (let j = 0; j < h_end; j++) { // by column
+for (let i = 0; i < vEnd; i++) { // by row
+  G[i] = new Array(hEnd);
+  for (let j = 0; j < hEnd; j++) { // by column
     G[i][j] = ' ';
 
     if (i === 0 && j === 0) { // top-left corner
       G[i][j] = '┌';
-    } else if (i === 0 && j === h_end - 1) { // top-right corner
+    } else if (i === 0 && j === hEnd - 1) { // top-right corner
       G[i][j] = '┐';
-    } else if (i === v_end - 1 && j === 0) { // bottom-left corner
+    } else if (i === vEnd - 1 && j === 0) { // bottom-left corner
       G[i][j] = '└';
-    } else if (i === v_end - 1 && j === h_end - 1) { // bottom-right corner
+    } else if (i === vEnd - 1 && j === hEnd - 1) { // bottom-right corner
       G[i][j] = '┘';
-    } else if ((j % 3 === 0) && (i % v_end !== 0 && i !== v_end - 1 && i % 2 == 1)) {
+    } else if ((j % 3 === 0) && (i % vEnd !== 0 && i !== vEnd - 1 && i % 2 == 1)) {
       G[i][j] = '│';
     } else if (i % 2 === 0) {
       G[i][j] = '─';
     }
 
     if (m > 1) { // More than one column
-      if (j % 3 === 0 && j !== 0 && j !== h_end - 1 && i === 0) {
+      if (j % 3 === 0 && j !== 0 && j !== hEnd - 1 && i === 0) {
         G[i][j] = '┬';
       }
-      if (j % 3 === 0 && j !== 0 && j !== h_end - 1 && i === v_end - 1) {
+      if (j % 3 === 0 && j !== 0 && j !== hEnd - 1 && i === vEnd - 1) {
         G[i][j] = '┴';
       }
     }
 
     if (n > 1) { // More than one row
-      if (i % 2 === 0 && i !== 0 && i !== v_end - 1 && j === 0) {
+      if (i % 2 === 0 && i !== 0 && i !== vEnd - 1 && j === 0) {
         G[i][j] = '├';
       }
-      if (i % 2 === 0 && i !== 0 && i !== v_end - 1 && j === h_end - 1) {
+      if (i % 2 === 0 && i !== 0 && i !== vEnd - 1 && j === hEnd - 1) {
         G[i][j] = '┤';
       }
     }
 
     if (n > 1 && m > 1) { // More than one row and column
-      if (i % 2 === 0 && j % 3 === 0 && i !== 0 && j !== 0 && i !== v_end - 1 && j !== h_end - 1) {
+      if (i % 2 === 0 && j % 3 === 0 && i !== 0 && j !== 0 && i !== vEnd - 1 && j !== hEnd - 1) {
         G[i][j] = '┼';
       }
     }
@@ -57,15 +57,15 @@ tracer.set(G);
 
 
 function buildMaze() {
-  const mySet = new disjoint_set();
+  const mySet = new disjointSet();
   const width = m;
   const height = n;
   let setSize = 0;
   const graph = [];
   const visitedMap = {};
   const walls = {};
-  var rightWalls = [];
-  var downWalls = [];
+  let rightWalls = [];
+  let downWalls = [];
   let location = 0;
 
   mySet.addElements(width * height);
@@ -73,9 +73,9 @@ function buildMaze() {
   logger.print('initializing grid (all walls are up)');
   // init 'graph'
   // each room has two walls, a down and right wall.
-  for (var i = 0; i < width; i++) {
+  for (let i = 0; i < width; i++) {
     graph[i] = new Array(height);
-    for (var j = 0; j < height; j++) {
+    for (let j = 0; j < height; j++) {
       graph[i][j] = location;
 
       walls[location] = { down: true, right: true };
@@ -83,10 +83,10 @@ function buildMaze() {
 
       // If you can label the rooms with just 2 digits
       if (width * height < 100) {
-        const location_string = location.toString();
+        const locationString = location.toString();
 
-        G[j * 2 + 1][i * 3 + 1] = location_string[0];
-        G[j * 2 + 1][i * 3 + 2] = location_string[1];
+        G[j * 2 + 1][i * 3 + 1] = locationString[0];
+        G[j * 2 + 1][i * 3 + 2] = locationString[1];
 
         tracer.set(G);
       }
@@ -99,25 +99,25 @@ function buildMaze() {
 
   logger.print('shuffled the walls for random selection');
   // Randomly shuffle the walls
-  var rightWalls = shuffle(rightWalls);
-  var downWalls = shuffle(downWalls);
+  let rightWalls = shuffle(rightWalls);
+  let downWalls = shuffle(downWalls);
 
   // Picking random walls to remove
   while (setSize != mySet.elements - 1) {
     const randomWall = Math.floor((Math.random() * 2) + 1);
     if (randomWall === 1 && downWalls.length > 0) {
       // Down wall
-      var current_room = downWalls.pop();
-      var i_x = current_room.x;
-      var i_y = current_room.y;
-      const i_y_down = i_y + 1;
-      if (i_y_down < height) {
-        var u = graph[i_x][i_y];
-        var v = graph[i_x][i_y_down];
-        tracer.notify(i_y * 2 + 1, i_x * 3 + 1);
-        tracer.notify(i_y * 2 + 1, i_x * 3 + 2);
-        tracer.notify(i_y_down * 2 + 1, i_x * 3 + 1);
-        tracer.notify(i_y_down * 2 + 1, i_x * 3 + 2);
+      let currentRoom = downWalls.pop();
+      let iX = currentRoom.x;
+      let iY = currentRoom.y;
+      const iYdown = iY + 1;
+      if (iYdown < height) {
+        let u = graph[iX][iY];
+        let v = graph[iX][iYdown];
+        tracer.notify(iY * 2 + 1, iX * 3 + 1);
+        tracer.notify(iY * 2 + 1, iX * 3 + 2);
+        tracer.notify(iYdown * 2 + 1, iX * 3 + 1);
+        tracer.notify(iYdown * 2 + 1, iX * 3 + 2);
         if (mySet.find(u) != mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
@@ -134,17 +134,17 @@ function buildMaze() {
       tracer.clear();
     } else if (randomWall === 2 && rightWalls.length > 0) {
       // Right Wall
-      var current_room = rightWalls.pop();
-      var i_x = current_room.x;
-      var i_y = current_room.y;
-      const i_x_right = i_x + 1;
-      if (i_x_right < width) {
-        var u = graph[i_x][i_y];
-        var v = graph[i_x_right][i_y];
-        tracer.notify(i_y * 2 + 1, i_x * 3 + 1);
-        tracer.notify(i_y * 2 + 1, i_x * 3 + 2);
-        tracer.notify(i_y * 2 + 1, i_x_right * 3 + 1);
-        tracer.notify(i_y * 2 + 1, i_x_right * 3 + 2);
+      let currentRoom = rightWalls.pop();
+      let iX = currentRoom.x;
+      let iY = currentRoom.y;
+      const iXright = iX + 1;
+      if (iXright < width) {
+        let u = graph[iX][iY];
+        let v = graph[iXright][iY];
+        tracer.notify(iY * 2 + 1, iX * 3 + 1);
+        tracer.notify(iY * 2 + 1, iX * 3 + 2);
+        tracer.notify(iY * 2 + 1, iXright * 3 + 1);
+        tracer.notify(iY * 2 + 1, iXright * 3 + 2);
         if (mySet.find(u) != mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
@@ -166,18 +166,18 @@ function buildMaze() {
 
   logger.print('deleting the walls');
   // update deleted walls
-  for (var i = 0; i < width; i++) {
-    for (var j = 0; j < height; j++) {
-      const current_wall = walls[graph[i][j]];
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      const currentWall = walls[graph[i][j]];
 
-      if (current_wall.down === false) {
+      if (currentWall.down === false) {
         G[j * 2 + 2][i * 3 + 1] = ' ';
         G[j * 2 + 2][i * 3 + 2] = ' ';
         tracer.select(j * 2 + 2, i * 3 + 1).wait();
         tracer.select(j * 2 + 2, i * 3 + 2).wait();
       }
 
-      if (current_wall.right === false) {
+      if (currentWall.right === false) {
         G[j * 2 + 1][i * 3 + 3] = ' ';
         tracer.select(j * 2 + 1, i * 3 + 3).wait();
       }
@@ -188,23 +188,23 @@ function buildMaze() {
   cleanUpGrid(width, height);
 
   // Clear out walls for the start and end locations.
-  const random_start = Math.floor(Math.random() * width);
-  const random_end = Math.floor(Math.random() * width);
+  const randomStart = Math.floor(Math.random() * width);
+  const randomEnd = Math.floor(Math.random() * width);
 
   logger.print('setting the Start (S) & End (E) locations');
 
   // Start Location
-  G[0][random_start * 3 + 1] = ' ';
-  G[0][random_start * 3 + 2] = ' ';
-  G[1][random_start * 3 + 1] = 'S';
+  G[0][randomStart * 3 + 1] = ' ';
+  G[0][randomStart * 3 + 2] = ' ';
+  G[1][randomStart * 3 + 1] = 'S';
 
   // End Location
-  G[v_end - 1][random_end * 3 + 1] = ' ';
-  G[v_end - 1][random_end * 3 + 2] = ' ';
-  G[v_end - 2][random_end * 3 + 1] = 'E';
+  G[vEnd - 1][randomEnd * 3 + 1] = ' ';
+  G[vEnd - 1][randomEnd * 3 + 2] = ' ';
+  G[vEnd - 2][randomEnd * 3 + 1] = 'E';
 
-  cleanUpStartLocation(random_start);
-  cleanUpEndLocation(random_end);
+  cleanUpStartLocation(randomStart);
+  cleanUpEndLocation(randomEnd);
 
   logger.print('maze is completed!');
 
@@ -227,32 +227,32 @@ function cleanUpStartLocation(start) {
 }
 
 function cleanUpEndLocation(end) {
-  if (G[v_end - 1][end * 3] === '┴' && G[v_end - 2][end * 3] === '│') {
-    G[v_end - 1][end * 3] = '┘';
+  if (G[vEnd - 1][end * 3] === '┴' && G[vEnd - 2][end * 3] === '│') {
+    G[vEnd - 1][end * 3] = '┘';
   }
-  if (G[v_end - 1][end * 3 + 3] === '┴' && G[v_end - 2][end * 3 + 3] === '│') {
-    G[v_end - 1][end * 3 + 3] = '└';
+  if (G[vEnd - 1][end * 3 + 3] === '┴' && G[vEnd - 2][end * 3 + 3] === '│') {
+    G[vEnd - 1][end * 3 + 3] = '└';
   }
-  if (G[v_end - 1][end * 3] === '└') {
-    G[v_end - 1][end * 3] = '│';
+  if (G[vEnd - 1][end * 3] === '└') {
+    G[vEnd - 1][end * 3] = '│';
   }
-  if (G[v_end - 1][end * 3 + 3] === '┘') {
-    G[v_end - 1][end * 3 + 3] = '│';
+  if (G[vEnd - 1][end * 3 + 3] === '┘') {
+    G[vEnd - 1][end * 3 + 3] = '│';
   }
 }
 
 function cleanUpGrid(width, height) {
   // Remove room numbers
-  for (var i = 0; i < width; i++) {
-    for (var j = 0; j < height; j++) {
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
       G[j * 2 + 1][i * 3 + 1] = ' ';
       G[j * 2 + 1][i * 3 + 2] = ' ';
     }
   }
 
   // clean up grid for looks
-  for (var i = 0; i < v_end; i++) {
-    for (var j = 0; j < h_end; j++) {
+  for (let i = 0; i < vEnd; i++) {
+    for (let j = 0; j < hEnd; j++) {
       if (G[i][j] === '├') {
         if (G[i][j + 1] === ' ') {
           G[i][j] = '│';
@@ -308,7 +308,7 @@ function cleanUpGrid(width, height) {
   }
 }
 
-class disjoint_set {
+class disjointSet {
   constructor() {
     this.set = [];
     this.elements = 0;

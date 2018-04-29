@@ -5,11 +5,11 @@ caused by large number of recursive calls
 */
 const N = 3;
 const board = new Array(N);
-for (var i = board.length - 1; i >= 0; i--) {
+for (let i = board.length - 1; i >= 0; i--) {
   board[i] = new Array(N);
 }
 
-for (var i = board.length - 1; i >= 0; i--) {
+for (let i = board.length - 1; i >= 0; i--) {
   for (let j = board[i].length - 1; j >= 0; j--) {
     board[i][j] = -1;
   }

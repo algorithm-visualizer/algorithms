@@ -19,7 +19,7 @@ let timer = 0,
   bridges = [],
   adj = [];	// adj keeps track of the neighbors of each node
 
-var util = function (u, disc, low, parent) {
+const util = function (u, disc, low, parent) {
   // u is the node that is currently being processed in the DFS (depth-first search)
   // disc is the numbering of the vertices in the DFS, starting at 0
   // low[v] is the lowest numbered vertex that can be reached from vertex v along the DFS

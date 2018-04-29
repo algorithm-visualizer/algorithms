@@ -1,6 +1,6 @@
 const N = 15;
 const A = new Array(N);
-for (var i = N - 1; i >= 0; i--) {
+for (let i = N - 1; i >= 0; i--) {
   A[i] = 0;
 }
 A[0] = 1; // By convention 1 is an ugly number
@@ -13,7 +13,7 @@ const tracer2 = new Array1DTracer('Multiples of 2, 3, 5').set(M);
 const tracer3 = new Array1DTracer(' Iterators I0, I1, I2 ').set(I);
 const logger = new LogTracer();
 
-for (var i = 1; i < N; i++) {
+for (let i = 1; i < N; i++) {
   // next is minimum of m2, m3 and m5
   const next = (M[0] <= M[1]) ? (M[0] <= M[2]) ? M[0] : M[2] : (M[1] <= M[2]) ? M[1] : M[2];
   logger.print(` Minimum of ${M[0]}, ${M[1]}, ${M[2]} : ${next}`);

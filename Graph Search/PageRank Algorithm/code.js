@@ -103,7 +103,7 @@ function updateRank(nodeIndex) {
   return result;
 }
 
-var damping = 0.85,
+let damping = 0.85,
   iterations = 7;
 const initialRank = 1.0;
 
