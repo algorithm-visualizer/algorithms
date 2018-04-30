@@ -1,16 +1,12 @@
-{
-  "Z Algorithm": "Finding all the occurances of a pattern (length = M) in a text (length = N) in linear time",
-  "Applications": [
-    "Substring Search"
-  ],
-  "Complexity": {
-    "time": "worst $O(|M|+|N|)$",
-    "space": "worst $O(|M|+|N|)$"
-  },
-  "References": [
-    "<a href='http://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/'>GeeksForGeeks</a>"
-  ],
-  "files": {
-    "pattern_search": "Find the occurances and position of a pattern in a text"
-  }
-}
+# Z Algorithm
+Finding all the occurances of a pattern (length = M) in a text (length = N) in linear time
+
+## Applications
+* Substring Search
+
+## Complexity
+* **Time**: worst ![](https://latex.codecogs.com/svg.latex?O(|M|+|N|))
+* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(|M|+|N|))
+
+## References
+* [GeeksForGeeks](http://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/)
