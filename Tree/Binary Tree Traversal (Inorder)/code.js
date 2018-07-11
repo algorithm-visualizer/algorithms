@@ -30,27 +30,27 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 
 const treeTracer = new GraphTracer(' Traversal In-order ').set(G).layoutTree(5);
 const arrayTracer = new Array1DTracer(' Print In-order ').set(new Array(T.length).fill('-'));
-const logger = new LogTracer(' Log ').wait();
+const logger = new LogTracer(' Log ').delay();
 
 let index = 0;
 
 function inorder(root, parent) {
   if (root === -1) {
-    logger.print('No more nodes. Backtracking.').wait();
+    logger.print('No more nodes. Backtracking.').delay();
     return;
   }
 
   logger.print(`Reached ${root}`);
-  treeTracer.visit(root, parent).wait();
+  treeTracer.visit(root, parent).delay();
 
-  logger.print(` Going left from ${root}`).wait();
+  logger.print(` Going left from ${root}`).delay();
   inorder(T[root][0], root);
 
   logger.print(`Printing ${root}`);
   treeTracer.leave(root);
-  arrayTracer.notify(index++, root).wait();
+  arrayTracer.patch(index++, root).delay();
 
-  logger.print(` Going right from ${root}`).wait();
+  logger.print(` Going right from ${root}`).delay();
   inorder(T[root][1], root);
 }
 

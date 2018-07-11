@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 
@@ -32,12 +32,12 @@ mergeSort.merge = (start, middle, end) => {
     if (i < leftSize) {
       left.push(D[start + i]);
       tracer.select(start + i);
-      logger.print(`insert value into left array[${i}] = ${D[start + i]}`).wait();
+      logger.print(`insert value into left array[${i}] = ${D[start + i]}`).delay();
     }
     if (i < rightSize) {
       right.push(D[middle + i]);
       tracer.select(middle + i);
-      logger.print(`insert value into right array[${i}] = ${D[middle + i]}`).wait();
+      logger.print(`insert value into right array[${i}] = ${D[middle + i]}`).delay();
     }
   }
   logger.print(`left array = [${left.join(', ')}], ` + `right array = [${right.join(', ')}]`);
@@ -61,8 +61,8 @@ mergeSort.merge = (start, middle, end) => {
     }
 
     tracer.deselect(start + i);
-    tracer.notify(start + i, D[start + i]).wait();
-    tracer.denotify(start + i);
+    tracer.patch(start + i, D[start + i]).delay();
+    tracer.depatch(start + i);
     i++;
   }
 

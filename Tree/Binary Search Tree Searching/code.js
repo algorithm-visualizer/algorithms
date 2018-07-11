@@ -31,10 +31,10 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 const key = Randomize.integer(0, G.length - 1); // item to be searched
 const tracer = new GraphTracer(' Binary Search Tree ').set(G).layoutTree(5);
 const logger = new LogTracer(' Log ');
-tracer.log(logger).wait();
+tracer.log(logger).delay();
 
 function bst(item, node, parent) { // node = current node , parent = previous node
-  tracer.visit(node, parent).wait();
+  tracer.visit(node, parent).delay();
   if (item === node) { // key found
     logger.print(' Match Found ');
   } else if (item < node) { // key less than value of current node

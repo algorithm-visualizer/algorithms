@@ -5,7 +5,7 @@ const visitedTracer = new Array1DTracer('visited');
 const logger = new LogTracer();
 graphTracer.log(logger);
 const G = Randomize.graph(8, { directed: false, ratio: 0.3 });
-graphTracer.set(G).wait();
+graphTracer.set(G).delay();
 
 function DFSExplore(graph, source) {
   const stack = [[source, null]];
@@ -26,12 +26,12 @@ function DFSExplore(graph, source) {
 
     if (!visited[node]) {
       visited[node] = true;
-      visitedTracer.notify(node, visited[node]);
+      visitedTracer.patch(node, visited[node]);
 
       if (prev !== undefined && graph[node][prev]) {
-        graphTracer.visit(node, prev).wait();
+        graphTracer.visit(node, prev).delay();
       } else {
-        graphTracer.visit(node).wait();
+        graphTracer.visit(node).delay();
       }
 
       for (i = 0; i < graph.length; i++) {

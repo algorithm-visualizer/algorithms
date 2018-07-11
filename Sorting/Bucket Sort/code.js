@@ -23,17 +23,17 @@ const D = [
 ];
 
 const tracer = new Array2DTracer();
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 // place numbers into appropriate buckets
 for (let i = 0; i < array.length; i++) {
   const bucketPos = Math.floor(numBuckets * (array[i] / maxValue));
   buckets[bucketPos].push(array[i]);
   bucketsCount[bucketPos]++;
-  tracer.select(0, i).wait();
-  tracer.notify(1, bucketPos, D[1][bucketPos]).wait();
+  tracer.select(0, i).delay();
+  tracer.patch(1, bucketPos, D[1][bucketPos]).delay();
   tracer.deselect(0, i);
-  tracer.denotify(1, bucketPos, D[1][bucketPos]);
+  tracer.depatch(1, bucketPos, D[1][bucketPos]);
 }
 
 let sortLocation = 0;
@@ -52,10 +52,10 @@ for (let k = 0; k < buckets.length; k++) {
   for (let i = 0; i < buckets[k].length; i++) {
     sortedArray[sortLocation] = buckets[k][i];
     bucketsCount[k]--;
-    tracer.notify(1, k, D[1][k]);
-    tracer.notify(2, sortLocation, D[2][sortLocation]).wait();
-    tracer.denotify(1, k, D[1][k]);
-    tracer.denotify(2, sortLocation, D[2][sortLocation]);
+    tracer.patch(1, k, D[1][k]);
+    tracer.patch(2, sortLocation, D[2][sortLocation]).delay();
+    tracer.depatch(1, k, D[1][k]);
+    tracer.depatch(2, sortLocation, D[2][sortLocation]);
     sortLocation++;
   }
 }

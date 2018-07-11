@@ -19,12 +19,12 @@ for (let i = 0; i < gridSize; i++) {
   }
 }
 const tracer = new Array2DTracer();
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {
     if (G[gi][gj] === '#') {
-      tracer.notify(gi, gj, G[gi][gj]);
+      tracer.patch(gi, gj, G[gi][gj]);
     }
   }
 }
@@ -68,14 +68,14 @@ function CellularAutomata(fillShape, emptyShape) {
 
   for (let i = 0; i < nextGrid.length; i++) {
     for (let j = 0; j < nextGrid[i].length; j++) {
-      tracer.denotify(i, j, G[i][j]);
-      tracer.select(i, j).wait();
+      tracer.depatch(i, j, G[i][j]);
+      tracer.select(i, j).delay();
       G[i][j] = nextGrid[i][j];
       if (G[i][j] === fillShape) {
-        tracer.notify(i, j, G[i][j]);
+        tracer.patch(i, j, G[i][j]);
       } else {
-        tracer.notify(i, j, G[i][j]);
-        tracer.denotify(i, j, G[i][j]);
+        tracer.patch(i, j, G[i][j]);
+        tracer.depatch(i, j, G[i][j]);
         tracer.deselect(i, j);
       }
     }

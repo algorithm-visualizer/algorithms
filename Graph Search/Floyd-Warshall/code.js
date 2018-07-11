@@ -6,7 +6,7 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: true, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function FloydWarshall() {
   // Finds the shortest path between all nodes
@@ -27,18 +27,18 @@ function FloydWarshall() {
   for (let k = 0; k < G.length; k++) {
     for (let i = 0; i < G.length; i++) {
       if (k === i) continue;
-      tracer.visit(k, i).wait();
+      tracer.visit(k, i).delay();
       for (let j = 0; j < G.length; j++) {
         if (i === j || j === k) continue;
-        tracer.visit(j, k).wait();
+        tracer.visit(j, k).delay();
         if (S[i][j] > S[i][k] + S[k][j]) {
-          tracer.visit(j, i, S[i][j]).wait();
+          tracer.visit(j, i, S[i][j]).delay();
           S[i][j] = S[i][k] + S[k][j];
           tracer.leave(j, i, S[i][j]);
         }
         tracer.leave(j, k);
       }
-      tracer.leave(k, i).wait();
+      tracer.leave(k, i).delay();
     }
   }
   for (let i = 0; i < G.length; i++) {

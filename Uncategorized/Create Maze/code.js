@@ -55,7 +55,7 @@ for (let i = 0; i < vEnd; i++) { // by row
   }
 }
 
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function buildMaze() {
   const mySet = new disjointSet();
@@ -115,26 +115,26 @@ function buildMaze() {
       if (iYdown < height) {
         const u = graph[iX][iY];
         const v = graph[iX][iYdown];
-        tracer.notify(iY * 2 + 1, iX * 3 + 1);
-        tracer.notify(iY * 2 + 1, iX * 3 + 2);
-        tracer.notify(iYdown * 2 + 1, iX * 3 + 1);
-        tracer.notify(iYdown * 2 + 1, iX * 3 + 2);
+        tracer.patch(iY * 2 + 1, iX * 3 + 1);
+        tracer.patch(iY * 2 + 1, iX * 3 + 2);
+        tracer.patch(iYdown * 2 + 1, iX * 3 + 1);
+        tracer.patch(iYdown * 2 + 1, iX * 3 + 2);
         if (mySet.find(u) !== mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
-          logger.wait();
+          logger.delay();
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].down = false;
         } else {
           logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
-          logger.wait();
+          logger.delay();
         }
-        tracer.denotify(iY * 2 + 1, iX * 3 + 1);
-        tracer.denotify(iY * 2 + 1, iX * 3 + 2);
-        tracer.denotify(iYdown * 2 + 1, iX * 3 + 1);
-        tracer.denotify(iYdown * 2 + 1, iX * 3 + 2);
+        tracer.depatch(iY * 2 + 1, iX * 3 + 1);
+        tracer.depatch(iY * 2 + 1, iX * 3 + 2);
+        tracer.depatch(iYdown * 2 + 1, iX * 3 + 1);
+        tracer.depatch(iYdown * 2 + 1, iX * 3 + 2);
       }
     } else if (randomWall === 2 && rightWalls.length > 0) {
       // Right Wall
@@ -145,26 +145,26 @@ function buildMaze() {
       if (iXright < width) {
         const u = graph[iX][iY];
         const v = graph[iXright][iY];
-        tracer.notify(iY * 2 + 1, iX * 3 + 1);
-        tracer.notify(iY * 2 + 1, iX * 3 + 2);
-        tracer.notify(iY * 2 + 1, iXright * 3 + 1);
-        tracer.notify(iY * 2 + 1, iXright * 3 + 2);
+        tracer.patch(iY * 2 + 1, iX * 3 + 1);
+        tracer.patch(iY * 2 + 1, iX * 3 + 2);
+        tracer.patch(iY * 2 + 1, iXright * 3 + 1);
+        tracer.patch(iY * 2 + 1, iXright * 3 + 2);
         if (mySet.find(u) !== mySet.find(v)) {
           logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
-          logger.wait();
+          logger.delay();
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].right = false;
         } else {
           logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
-          logger.wait();
+          logger.delay();
         }
-        tracer.denotify(iY * 2 + 1, iX * 3 + 1);
-        tracer.denotify(iY * 2 + 1, iX * 3 + 2);
-        tracer.denotify(iY * 2 + 1, iXright * 3 + 1);
-        tracer.denotify(iY * 2 + 1, iXright * 3 + 2);
+        tracer.depatch(iY * 2 + 1, iX * 3 + 1);
+        tracer.depatch(iY * 2 + 1, iX * 3 + 2);
+        tracer.depatch(iY * 2 + 1, iXright * 3 + 1);
+        tracer.depatch(iY * 2 + 1, iXright * 3 + 2);
       }
     }
   }
@@ -178,13 +178,13 @@ function buildMaze() {
       if (currentWall.down === false) {
         G[j * 2 + 2][i * 3 + 1] = ' ';
         G[j * 2 + 2][i * 3 + 2] = ' ';
-        tracer.select(j * 2 + 2, i * 3 + 1).wait();
-        tracer.select(j * 2 + 2, i * 3 + 2).wait();
+        tracer.select(j * 2 + 2, i * 3 + 1).delay();
+        tracer.select(j * 2 + 2, i * 3 + 2).delay();
       }
 
       if (currentWall.right === false) {
         G[j * 2 + 1][i * 3 + 3] = ' ';
-        tracer.select(j * 2 + 1, i * 3 + 3).wait();
+        tracer.select(j * 2 + 1, i * 3 + 3).delay();
       }
       tracer.set(G);
     }

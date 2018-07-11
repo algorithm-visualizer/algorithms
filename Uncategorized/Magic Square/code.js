@@ -13,7 +13,7 @@ for (let i = n - 1; i >= 0; i--) {
 }
 
 const tracer = new Array2DTracer('Magic Square').set(A);
-const logTracer = new LogTracer('Console').wait();
+const logTracer = new LogTracer('Console').delay();
 
 let i = Math.floor(n / 2);
 let j = n - 1;
@@ -46,9 +46,9 @@ for (let num = 1; num <= n * n;) {
     i++;
   } else {
     A[i][j] = num++;
-    tracer.notify(i, j, A[i][j]).wait();
-    tracer.denotify(i, j);
-    tracer.select(i, j).wait();
+    tracer.patch(i, j, A[i][j]).delay();
+    tracer.depatch(i, j);
+    tracer.select(i, j).delay();
     j++;
     i--;
   }

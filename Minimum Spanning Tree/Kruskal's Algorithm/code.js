@@ -12,7 +12,7 @@ const logger = new LogTracer();
 const G = Randomize.graph(5, {
   directed: false, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function kruskal() {
   const vcount = G.length;
@@ -40,10 +40,10 @@ function kruskal() {
   let wsum = 0;
   for (let n = 0; n < vcount - 1 && edges.length > 0;) {
     const e = edges.shift(); // Get the edge of min weight
-    tracer.visit(e[0], e[1]).wait();
+    tracer.visit(e[0], e[1]).delay();
     if (t[e[0]] === t[e[1]]) {
       // e[0] & e[1] already in the same tree, ignore
-      tracer.leave(e[0], e[1]).wait();
+      tracer.leave(e[0], e[1]).delay();
       continue;
     }
 

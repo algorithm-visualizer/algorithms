@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15, { sorted: true, min: 0, max: 50 });
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 function BinarySearch(array, element) { // array = sorted array, element = element to be found
   let minIndex = 0;
@@ -15,10 +15,10 @@ function BinarySearch(array, element) { // array = sorted array, element = eleme
     const middleIndex = Math.floor((minIndex + maxIndex) / 2);
     testElement = array[middleIndex];
 
-    tracer.select(minIndex, maxIndex).wait();
-    tracer.notify(middleIndex);
-    logger.print(`Searching at index: ${middleIndex}`).wait();
-    tracer.denotify(middleIndex);
+    tracer.select(minIndex, maxIndex).delay();
+    tracer.patch(middleIndex);
+    logger.print(`Searching at index: ${middleIndex}`).delay();
+    tracer.depatch(middleIndex);
     tracer.deselect(minIndex, maxIndex);
 
     if (testElement < element) {

@@ -11,7 +11,7 @@ const G = [
   [0, 0, 0, 1, 0, 0],
 ];
 
-graphTracer.set(G).wait();
+graphTracer.set(G).delay();
 
 /*
   NOTE: Code assumes NO parallel edges
@@ -29,20 +29,20 @@ const util = (u, disc, low, parent) => {
   // parent is the node that u came from
   logger.print('');
   logger.print(`Visiting node ${u}`);
-  graphTracer.visit(u).wait();
-  graphTracer.leave(u).wait();
+  graphTracer.visit(u).delay();
+  graphTracer.leave(u).delay();
 
   // visited [u] = true;
   disc[u] = low[u] = timer++;
 
   logger.print(`Nodes adjacent to ${u} are: [ ${adj[u]} ]`);
   /* adj [u].forEach (function (v) {
-    graphTracer.visit (v, u).wait ();
-    graphTracer.leave (v, u).wait ();
+    graphTracer.visit (v, u).delay ();
+    graphTracer.leave (v, u).delay ();
   }); */
   const trace = (v) => {
-    graphTracer.visit(v, u).wait();
-    graphTracer.leave(v, u).wait();
+    graphTracer.visit(v, u).delay();
+    graphTracer.leave(v, u).delay();
   };
 
   adj[u].forEach((v) => {

@@ -22,7 +22,7 @@ const logger = new LogTracer('Progress');
 
 boardTracer.set(board);
 queenTracer.set(queens);
-logger.print(`N Queens: ${N}X${N}matrix, ${N} queens`).wait();
+logger.print(`N Queens: ${N}X${N}matrix, ${N} queens`).delay();
 
 function validState(row, col, currentQueen) {
   for (let q = 0; q < currentQueen; q++) {
@@ -45,23 +45,23 @@ function nQ(currentQueen, currentCol) {
   let found = false;
   let row = 0;
   while ((row < N) && (!found)) {
-    boardTracer.select(row, currentCol).wait();
+    boardTracer.select(row, currentCol).delay();
     logger.print(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);
 
     if (validState(row, currentCol, currentQueen)) {
       queens[currentQueen][0] = row;
       queens[currentQueen][1] = currentCol;
 
-      queenTracer.notify(currentQueen, 0, row).wait();
-      queenTracer.notify(currentQueen, 1, currentCol).wait();
-      queenTracer.denotify(currentQueen, 0).wait();
-      queenTracer.denotify(currentQueen, 1).wait();
+      queenTracer.patch(currentQueen, 0, row).delay();
+      queenTracer.patch(currentQueen, 1, currentCol).delay();
+      queenTracer.depatch(currentQueen, 0).delay();
+      queenTracer.depatch(currentQueen, 1).delay();
 
       found = nQ(currentQueen + 1, currentCol + 1);
     }
 
     if (!found) {
-      boardTracer.deselect(row, currentCol).wait();
+      boardTracer.deselect(row, currentCol).delay();
       logger.print(`row ${row} & col ${currentCol} didn't work out. Going down`);
     }
     row++;

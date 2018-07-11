@@ -8,7 +8,7 @@ const D = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D[0].join(', ')}]`);
 function pow(base, expo) {
@@ -26,41 +26,41 @@ for (let exp = 0; exp < 3; exp++) {
   let i;
   for (i = 0; i < D[0].length; i++) {
     const d = digit(i, exp);
-    tracer.select(0, i).wait();
+    tracer.select(0, i).delay();
     D[2][d] += 1;
-    tracer.notify(2, d, D[2][d]).wait();
-    tracer.denotify(2, d);
+    tracer.patch(2, d, D[2][d]).delay();
+    tracer.depatch(2, d);
     tracer.deselect(0, i);
   }
   for (i = 1; i < 10; i++) {
-    tracer.select(2, i - 1).wait();
+    tracer.select(2, i - 1).delay();
     D[2][i] += D[2][i - 1];
-    tracer.notify(2, i, D[2][i]).wait();
-    tracer.denotify(2, i);
+    tracer.patch(2, i, D[2][i]).delay();
+    tracer.depatch(2, i);
     tracer.deselect(2, i - 1);
   }
   for (i = D[0].length - 1; i >= 0; i--) {
     const d = digit(i, exp);
-    tracer.select(0, i).wait();
+    tracer.select(0, i).delay();
     D[2][d] -= 1;
-    tracer.notify(2, d, D[2][d]).wait();
-    tracer.denotify(2, d);
+    tracer.patch(2, d, D[2][d]).delay();
+    tracer.depatch(2, d);
     D[1][D[2][d]] = D[0][i];
-    tracer.notify(1, D[2][d], D[1][D[2][d]]).wait();
-    tracer.denotify(1, D[2][d]);
+    tracer.patch(1, D[2][d], D[1][D[2][d]]).delay();
+    tracer.depatch(1, D[2][d]);
     tracer.deselect(0, i);
   }
   for (i = 0; i < D[0].length; i++) {
-    tracer.select(1, i).wait();
+    tracer.select(1, i).delay();
     D[0][i] = D[1][i];
-    tracer.notify(0, i, D[0][i]).wait();
-    tracer.denotify(0, i);
+    tracer.patch(0, i, D[0][i]).delay();
+    tracer.depatch(0, i);
     tracer.deselect(1, i);
   }
   for (i = 0; i < 10; i++) {
     D[2][i] = 0;
-    tracer.notify(2, i, D[2][i]).wait();
-    tracer.denotify(2, i);
+    tracer.patch(2, i, D[2][i]).delay();
+    tracer.depatch(2, i);
   }
 }
 logger.print(`sorted array = [${D[0].join(', ')}]`);

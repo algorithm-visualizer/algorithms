@@ -16,12 +16,12 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-tracer.set(G).layoutTree(0).wait();
+tracer.set(G).layoutTree(0).delay();
 
 // This is a sample DLS applications where
 // we try to find number of descendant of root within some depth
 function DLSCount(limit, node, parent) { // node = current node, parent = previous node
-  tracer.visit(node, parent).wait();
+  tracer.visit(node, parent).delay();
   let child = 0;
   if (limit > 0) { // cut off the search
     for (let i = 0; i < G[node].length; i++) {

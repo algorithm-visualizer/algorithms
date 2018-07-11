@@ -33,22 +33,22 @@ for (let i = 0; i < G.length; i++) {
 discTracer.set(disc);
 lowTracer.set(low);
 stackMemberTracer.set(stackMember);
-stTracer.set(st).wait();
+stTracer.set(st).delay();
 
 function SCCVertex(u, disc, low, st, stackMember, carry) {
-  graphTracer.visit(u).wait();
+  graphTracer.visit(u).delay();
 
   disc[u] = ++carry.time;
-  discTracer.notify(u, carry.time).wait();
+  discTracer.patch(u, carry.time).delay();
 
   low[u] = carry.time;
-  lowTracer.notify(u, carry.time).wait();
+  lowTracer.patch(u, carry.time).delay();
 
   st.push(u);
-  stTracer.set(st).wait();
+  stTracer.set(st).delay();
 
   stackMember[u] = true;
-  stackMemberTracer.notify(u, true).wait();
+  stackMemberTracer.patch(u, true).delay();
 
   // Go through all vertices adjacent to this
   for (let v = 0; v < G[u].length; v++) {
@@ -60,14 +60,14 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
         // Check if the subtree rooted with 'v' has a
         // connection to one of the ancestors of 'u'
         low[u] = Math.min(low[u], low[v]);
-        lowTracer.notify(u, low[u]);
+        lowTracer.patch(u, low[u]);
       }
 
       // Update low value of 'u' only of 'v' is still in stack
       // (i.e. it's a back edge, not cross edge).
       else if (stackMember[v] === true) {
         low[u] = Math.min(low[u], disc[v]);
-        lowTracer.notify(u, low[u]).wait();
+        lowTracer.patch(u, low[u]).delay();
       }
     }
   }
@@ -77,22 +77,22 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
   if (low[u] === disc[u]) {
     while (st[st.length - 1] !== u) {
       w = st.pop();
-      stTracer.set(st).wait();
+      stTracer.set(st).delay();
 
-      logger.print(w).wait();
+      logger.print(w).delay();
 
       stackMember[w] = false;
-      stackMemberTracer.notify(w, false).wait();
+      stackMemberTracer.patch(w, false).delay();
     }
 
     w = st.pop();
-    stTracer.set(st).wait();
+    stTracer.set(st).delay();
 
-    logger.print(w).wait();
+    logger.print(w).delay();
     logger.print('------');
 
     stackMember[w] = false;
-    stackMemberTracer.notify(w, false).wait();
+    stackMemberTracer.patch(w, false).delay();
   }
 }
 

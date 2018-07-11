@@ -6,20 +6,20 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: false, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
   if (minWeight < weight) return;
   if (node === e) {
-    tracer.visit(node, parent, weight).wait();
+    tracer.visit(node, parent, weight).delay();
     if (minWeight > weight) {
       minWeight = weight;
     }
-    tracer.leave(node, parent, minWeight).wait();
+    tracer.leave(node, parent, minWeight).delay();
     return;
   }
   D[node] = true; // label current node as discovered
-  tracer.visit(node, parent, weight).wait();
+  tracer.visit(node, parent, weight).delay();
   for (let i = 0; i < G[node].length; i++) {
     if (G[node][i]) { // if the path from current node to the i-th node exists
       if (!D[i]) { // if the i-th node is not labeled as discovered
@@ -28,7 +28,7 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
     }
   }
   D[node] = false; // label current node as undiscovered
-  tracer.leave(node, parent, 0).wait();
+  tracer.leave(node, parent, 0).delay();
 }
 const s = Randomize.integer(0, G.length - 1); // s = start node
 let e; // e = end node

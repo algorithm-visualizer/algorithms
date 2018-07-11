@@ -3,7 +3,7 @@ import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const D = [-2, -3, 4, -1, -2, 1, 5, -3];
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 const maxSubarraySum = (function maxSubarray(array) {
   let maxSoFar = 0;
@@ -27,7 +27,7 @@ const maxSubarraySum = (function maxSubarray(array) {
       maxSoFar = maxEndingHere;
     }
 
-    tracer.wait();
+    tracer.delay();
     tracer.deselect(i);
   }
 

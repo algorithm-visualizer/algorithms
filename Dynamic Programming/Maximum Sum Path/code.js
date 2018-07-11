@@ -11,15 +11,15 @@ for (let i = 0; i < D.length; i++) {
     DP[i].push(Infinity);
   }
 }
-tracer.set(DP).wait();
+tracer.set(DP).delay();
 
 const N = DP.length;
 const M = DP[0].length;
 function update(i, j, value) {
   DP[i][j] = value;
-  dataViewer.select(i, j).wait();
-  tracer.notify(i, j, DP[i][j]).wait();
-  tracer.denotify(i, j);
+  dataViewer.select(i, j).delay();
+  tracer.patch(i, j, DP[i][j]).delay();
+  tracer.depatch(i, j);
   dataViewer.deselect(i, j);
 }
 for (let i = 0; i < N; i++) {

@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -20,7 +20,7 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   tracer.select(cycleStart);
 
   for (let i = cycleStart + 1; i <= N - 1; i++) {
-    tracer.select(i).wait().deselect(i);
+    tracer.select(i).delay().deselect(i);
     if (D[i] < item) {
       pos++;
     }
@@ -49,16 +49,16 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   } else {
     logger.print(`Rewrite ${D[pos]} to index ${pos}`);
   }
-  tracer.select(pos).wait().deselect(pos);
-  tracer.notify(pos, D[pos]).notify(cycleStart, D[cycleStart]).wait();
-  tracer.denotify(pos).denotify(cycleStart);
+  tracer.select(pos).delay().deselect(pos);
+  tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
+  tracer.depatch(pos).depatch(cycleStart);
 
   // rotate the rest of the cycle
   while (pos !== cycleStart) {
     pos = cycleStart;
 
     for (let i = cycleStart + 1; i <= N - 1; i++) {
-      tracer.select(i).wait().deselect(i);
+      tracer.select(i).delay().deselect(i);
       if (D[i] < item) {
         pos++;
       }
@@ -77,9 +77,9 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
     } else {
       logger.print(`Rewrite ${D[pos]} to index ${pos}`);
     }
-    tracer.select(pos).wait().deselect(pos);
-    tracer.notify(pos, D[pos]).notify(cycleStart, D[cycleStart]).wait();
-    tracer.denotify(pos).denotify(cycleStart);
+    tracer.select(pos).delay().deselect(pos);
+    tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
+    tracer.depatch(pos).depatch(cycleStart);
 
     writes++;
   }

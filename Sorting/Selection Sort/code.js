@@ -4,18 +4,18 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 for (let i = 0; i < D.length - 1; i++) {
   let minJ = i;
-  tracer.select(i).wait();
+  tracer.select(i).delay();
   for (let j = i + 1; j < D.length; j++) {
-    tracer.select(j).wait();
+    tracer.select(j).delay();
     if (D[j] < D[minJ]) {
       minJ = j;
-      tracer.notify(j).wait();
-      tracer.denotify(j);
+      tracer.patch(j).delay();
+      tracer.depatch(j);
     }
     tracer.deselect(j);
   }
@@ -24,8 +24,8 @@ for (let i = 0; i < D.length - 1; i++) {
     const temp = D[i];
     D[i] = D[minJ];
     D[minJ] = temp;
-    tracer.notify(i, D[i]).notify(minJ, D[minJ]).wait();
-    tracer.denotify(i).denotify(minJ);
+    tracer.patch(i, D[i]).patch(minJ, D[minJ]).delay();
+    tracer.depatch(i).depatch(minJ);
   }
   tracer.deselect(i);
 }

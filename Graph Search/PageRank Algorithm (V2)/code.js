@@ -19,7 +19,7 @@ graphTracer.set(G);
 oecTracer.set(outgoingEdgeCounts);
 
 for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(filledArray(G.length, -1)));
-inTracer.set(incomingNodes).wait();
+inTracer.set(incomingNodes).delay();
 
 /*
   PageRank Algorithm Version 2
@@ -38,7 +38,7 @@ function arraySum(array) {
 
 function showOutgoingEdges(i) {
   G[i].forEach((edgeExists, j) => {
-    edgeExists && graphTracer.visit(j, i).wait() && graphTracer.leave(j, i).wait();
+    edgeExists && graphTracer.visit(j, i).delay() && graphTracer.leave(j, i).delay();
   });
 }
 
@@ -50,8 +50,8 @@ logger.print('Calculate Outgoing Edge Count for each Node');
     outgoingEdgeCounts[i] = arraySum(relations);
     showOutgoingEdges(i);
 
-    oecTracer.notify(i, outgoingEdgeCounts[i]).wait();
-    oecTracer.denotify(i).wait();
+    oecTracer.patch(i, outgoingEdgeCounts[i]).delay();
+    oecTracer.depatch(i).delay();
   });
 }());
 
@@ -61,14 +61,14 @@ logger.print('determine incoming nodes for each node');
     for (let j = 0; j < G.length; j++) {
       if (G[i][j]) {
         // there's an edge FROM i TO j
-        graphTracer.visit(j, i).wait();
+        graphTracer.visit(j, i).delay();
 
         const nextPos = incomingNodes[j].indexOf(-1);
         incomingNodes[j][nextPos] = i;
-        inTracer.notify(j, nextPos, i).wait();
-        inTracer.denotify(j, nextPos).wait();
+        inTracer.patch(j, nextPos, i).delay();
+        inTracer.depatch(j, nextPos).delay();
 
-        graphTracer.leave(j, i).wait();
+        graphTracer.leave(j, i).delay();
       }
     }
   }
@@ -87,14 +87,14 @@ function updateRank(nodeIndex) {
   logger.print(`The incoming Nodes of ${nodeIndex} are being highlighted`);
 
   incomingNodes[nodeIndex].forEach((incoming, i) => {
-    inTracer.select(nodeIndex, i).wait();
+    inTracer.select(nodeIndex, i).delay();
     logger.print(`Outgoing edge count of ${incoming} is ${outgoingEdgeCounts[incoming]}`);
-    oecTracer.select(incoming).wait();
+    oecTracer.select(incoming).delay();
 
     inNodeSummation += (ranks[incoming] / outgoingEdgeCounts[incoming]);
 
-    oecTracer.deselect(incoming).wait();
-    inTracer.deselect(nodeIndex, i).wait();
+    oecTracer.deselect(incoming).delay();
+    inTracer.deselect(nodeIndex, i).delay();
   });
   logger.print(`In-Node summation of ${nodeIndex} = ${inNodeSummation}`);
 
@@ -119,8 +119,8 @@ logger.print('');
 while (iterations--) {
   for (let node = 0; node < ranks.length; node++) {
     ranks[node] = updateRank(node);
-    rankTracer.notify(node, ranks[node]).wait();
-    rankTracer.notify(node).wait();
+    rankTracer.patch(node, ranks[node]).delay();
+    rankTracer.patch(node).delay();
   }
 }
 

@@ -4,21 +4,21 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(10);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 const N = D.length;
 function flip(start) {
-  tracer.select(start, N).wait();
+  tracer.select(start, N).delay();
   let idx = 0;
   for (let i = start; i < (start + N) / 2; i++) {
-    tracer.select(i).wait();
+    tracer.select(i).delay();
     const temp = D[i];
     D[i] = D[N - idx - 1];
     D[N - idx - 1] = temp;
     idx++;
-    tracer.notify(i, D[i]).notify(N - idx, D[N - idx]).wait();
-    tracer.denotify(i).denotify(N - idx);
+    tracer.patch(i, D[i]).patch(N - idx, D[N - idx]).delay();
+    tracer.depatch(i).depatch(N - idx);
     tracer.deselect(i);
   }
   tracer.deselect(start, N);

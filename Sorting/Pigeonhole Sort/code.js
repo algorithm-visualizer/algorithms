@@ -5,7 +5,7 @@ const N = A.length;
 
 const tracer1 = new Array1DTracer('Array').set(A);
 const tracer2 = new Array2DTracer('Holes');
-const logTracer = new LogTracer('Console').wait();
+const logTracer = new LogTracer('Console').delay();
 
 let min = A[0];
 let max = A[0];
@@ -28,7 +28,7 @@ tracer2.set(holes);
 
 logTracer.print('Filling up holes');
 for (let i = 0; i < N; i++) {
-  tracer1.select(i).wait();
+  tracer1.select(i).delay();
 
   holes[A[i] - min].push(A[i]);
 
@@ -40,11 +40,11 @@ logTracer.print('Building sorted array');
 let k = 0;
 for (let i = 0; i < range; i++) {
   for (let j = 0; j < holes[i].length; j++) {
-    tracer2.select(i, j).wait();
+    tracer2.select(i, j).delay();
     A[k++] = holes[i][j];
-    tracer1.notify(k - 1, A[k - 1]).wait();
+    tracer1.patch(k - 1, A[k - 1]).delay();
     tracer2.deselect(i, j);
-    tracer1.denotify(k - 1);
+    tracer1.depatch(k - 1);
   }
 }
 

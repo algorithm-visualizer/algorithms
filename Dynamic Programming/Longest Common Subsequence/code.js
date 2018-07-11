@@ -12,7 +12,7 @@ for (let i = 0; i < m + 1; i++) {
 const tracer1 = new Array1DTracer('String 1').set(string1);
 const tracer2 = new Array1DTracer('String 2').set(string2);
 const tracer3 = new Array2DTracer('Memo Table').set(A);
-const logger = new LogTracer().wait();
+const logger = new LogTracer().delay();
 
 let i;
 let j;
@@ -23,9 +23,9 @@ for (i = 0; i <= m; i++) {
     if (i === 0 || j === 0) {
       A[i][j] = 0;
     } else if (string1[i - 1] === string2[j - 1]) {
-      tracer1.select(i - 1).wait();
-      tracer2.select(j - 1).wait();
-      tracer3.select(i - 1, j - 1).wait();
+      tracer1.select(i - 1).delay();
+      tracer2.select(j - 1).delay();
+      tracer3.select(i - 1, j - 1).delay();
 
       A[i][j] = A[i - 1][j - 1] + 1;
 
@@ -33,8 +33,8 @@ for (i = 0; i <= m; i++) {
       tracer2.deselect(j - 1);
       tracer3.deselect(i - 1, j - 1);
     } else {
-      tracer3.select(i - 1, j).wait();
-      tracer3.select(i, j - 1).wait();
+      tracer3.select(i - 1, j).delay();
+      tracer3.select(i, j - 1).delay();
 
       if (A[i - 1][j] > A[i][j - 1]) {
         A[i][j] = A[i - 1][j];
@@ -45,8 +45,8 @@ for (i = 0; i <= m; i++) {
       tracer3.deselect(i - 1, j);
       tracer3.deselect(i, j - 1);
     }
-    tracer3.notify(i, j, A[i][j]).wait();
-    tracer3.denotify(i, j);
+    tracer3.patch(i, j, A[i][j]).delay();
+    tracer3.depatch(i, j);
   }
 }
 
@@ -54,10 +54,10 @@ let finalString = '';
 i = m;
 j = n;
 while (i >= 1 && j >= 1) {
-  tracer3.select(i, j).wait();
+  tracer3.select(i, j).delay();
   if (string1[i - 1] === string2[j - 1]) {
-    tracer1.select(i - 1).wait();
-    tracer2.select(j - 1).wait();
+    tracer1.select(i - 1).delay();
+    tracer2.select(j - 1).delay();
 
     finalString = string1[i - 1] + finalString;
     i--;

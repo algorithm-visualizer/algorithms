@@ -5,7 +5,7 @@ const ptTracer = new Array1DTracer('Encryption');
 const ctTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 
-ptTracer.set(plainText).wait();
+ptTracer.set(plainText).delay();
 
 /*
  code assumes that plainText contains ONLY LOWER CASE ALPHABETS
@@ -36,13 +36,13 @@ function encrypt(plainText) {
   logger.print(`keys.a=${keys.a}, keys.b=${keys.b}, N=${N}`);
 
   for (const i in plainText) {
-    ptTracer.select(i).wait();
+    ptTracer.select(i).delay();
     ptTracer.deselect(i);
 
     cypherText += cryptAlpha(plainText[i]);
 
-    ptTracer.notify(i, cypherText.slice(-1)).wait();
-    ptTracer.denotify(i);
+    ptTracer.patch(i, cypherText.slice(-1)).delay();
+    ptTracer.depatch(i);
   }
 
   return cypherText;
@@ -75,13 +75,13 @@ function decrypt(cypherText) {
   logger.print(`keys.b=${keys.b}, N=${N}`);
 
   for (const i in cypherText) {
-    ctTracer.select(i).wait();
-    ctTracer.deselect(i).wait();
+    ctTracer.select(i).delay();
+    ctTracer.deselect(i).delay();
 
     plainText += decryptAlpha(cypherText[i]);
 
-    ctTracer.notify(i, plainText.slice(-1)).wait();
-    ctTracer.denotify(i).wait();
+    ctTracer.patch(i, plainText.slice(-1)).delay();
+    ctTracer.depatch(i).delay();
   }
 
   return plainText;

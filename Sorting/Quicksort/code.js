@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 
@@ -17,26 +17,26 @@ function partition(D, low, high) {
     j = high;
     s = D[low];
     while (i < j) {
-      tracer.select(high).select(low).wait();
+      tracer.select(high).select(low).delay();
       while (D[j] > s) {
-        tracer.select(j).wait();
+        tracer.select(j).delay();
         tracer.deselect(j);
         j--;
       }
       D[i] = D[j];
-      tracer.notify(i, D[j]).wait().denotify(i);
+      tracer.patch(i, D[j]).delay().depatch(i);
       while (s >= D[i] && i < j) {
-        tracer.select(i).wait();
+        tracer.select(i).delay();
         tracer.deselect(i);
         i++;
       }
       D[j] = D[i];
-      tracer.notify(j, D[i]).wait().denotify(j);
+      tracer.patch(j, D[i]).delay().depatch(j);
       tracer.deselect(high).deselect(low);
     }
     D[i] = s;
-    tracer.notify(i, s).wait();
-    tracer.denotify(i);
+    tracer.patch(i, s).delay();
+    tracer.depatch(i);
     partition(D, low, i - 1);
     low = i + 1;
   }

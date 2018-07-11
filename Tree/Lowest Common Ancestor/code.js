@@ -29,7 +29,7 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 ];
 
 const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G).layoutTree(5);
-const logger = new LogTracer(' Log ').wait();
+const logger = new LogTracer(' Log ').delay();
 
 function lcaBT(parent, root, a, b) {
   logger.print(`Beginning new Iteration of lcaBT () with parent: ${parent}, current root: ${root}`);
@@ -38,8 +38,8 @@ function lcaBT(parent, root, a, b) {
     return null;
   }
 
-  if (parent !== null) treeTracer.visit(root, parent).wait();
-  else treeTracer.visit(root).wait();
+  if (parent !== null) treeTracer.visit(root, parent).delay();
+  else treeTracer.visit(root).delay();
 
   if (root === a || root === b) return root;
 
@@ -48,7 +48,7 @@ function lcaBT(parent, root, a, b) {
 
   if (left !== null && right !== null) return root;
   if (left === null && right === null) {
-    treeTracer.leave(root, parent).wait();
+    treeTracer.leave(root, parent).delay();
   }
 
   return (left !== null ? left : right);

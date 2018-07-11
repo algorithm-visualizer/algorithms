@@ -13,7 +13,7 @@ const G = [
 ];
 tracer.set(G);
 
-const colorsTracer = new Array1DTracer('Colors').wait();
+const colorsTracer = new Array1DTracer('Colors').delay();
 
 function BFSCheckBipartiteness(s) {
   const Q = [];
@@ -24,22 +24,22 @@ function BFSCheckBipartiteness(s) {
   colorsTracer.set(Colors);
 
   Colors[s] = 1;
-  colorsTracer.notify(s, 1);
+  colorsTracer.patch(s, 1);
 
   Q.push(s); // add start node to queue
 
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
-    tracer.visit(node).wait();
+    tracer.visit(node).delay();
 
     for (let i = 0; i < G[node].length; i++) {
       if (G[node][i]) {
         if (Colors[i] === -1) {
           Colors[i] = 1 - Colors[node];
-          colorsTracer.notify(i, 1 - Colors[node]);
+          colorsTracer.patch(i, 1 - Colors[node]);
 
           Q.push(i);
-          tracer.visit(i, node).wait();
+          tracer.visit(i, node).delay();
         } else if (Colors[i] === Colors[node]) {
           logger.print('Graph is not biparted');
           return false;

@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 const D = Randomize.array1D(15);
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -23,7 +23,7 @@ do {
   swapped = false; // initialize swapped
   // a single comb over the input list
   for (let i = 0; i + gap < N; i++) {
-    tracer.select(i).select(i + gap).wait();
+    tracer.select(i).select(i + gap).delay();
 
     if (D[i] > D[i + gap]) {
       logger.print(`swap ${D[i]} and ${D[i + gap]}`); // log swap event
@@ -32,8 +32,8 @@ do {
       D[i] = D[i + gap];
       D[i + gap] = temp;
 
-      tracer.notify(i, D[i]).notify(i + gap, D[i + gap]).wait();
-      tracer.denotify(i).denotify(i + gap);
+      tracer.patch(i, D[i]).patch(i + gap, D[i + gap]).delay();
+      tracer.depatch(i).depatch(i + gap);
 
       swapped = true; // Flag swapped has happened and list is not guaranteed sorted
     }

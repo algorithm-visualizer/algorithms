@@ -7,7 +7,7 @@ const D = [
   Randomize.array1D(20, { min: 0, max: 0 }),
 ];
 
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 logger.print(`original array = [${D[0].join(', ')}]`);
 
@@ -42,7 +42,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
   // in an actual merge implementation, mergeFrom and mergeTo would be arrays
   // here for the ability to trace what is going on better, the arrays are D[mergeFrom] and D[mergeTo]
   /**/logger.print(`merging segments [${start}..${middle}] and [${middle}..${end}]`);
-  /**/tracer.selectRow(mergeFrom, start, end - 1).wait();
+  /**/tracer.selectRow(mergeFrom, start, end - 1).delay();
   /**/tracer.deselectRow(mergeFrom, start, end - 1);
 
   for (k = start; k < end; k++) {
@@ -53,7 +53,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
       /**/ tracer.select(mergeFrom, i);
       /**/ }
     /**/if (i < middle && j < end) {
-      /**/ logger.print(`compare index ${i} and ${j}, values: ${D[mergeFrom][i]} and ${D[mergeFrom][j]}`).wait();
+      /**/ logger.print(`compare index ${i} and ${j}, values: ${D[mergeFrom][i]} and ${D[mergeFrom][j]}`).delay();
       /**/ }
 
     if (i < middle && (j >= end || D[mergeFrom][i] <= D[mergeFrom][j])) {
@@ -62,8 +62,8 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
         /**/ } else {
         /**/ logger.print(`copying index ${i} to output`);
         /**/ }
-      /**/tracer.notify(mergeTo, k, D[mergeFrom][i]).wait();
-      /**/tracer.denotify(mergeTo, k);
+      /**/tracer.patch(mergeTo, k, D[mergeFrom][i]).delay();
+      /**/tracer.depatch(mergeTo, k);
       /**/tracer.deselect(mergeFrom, i);
 
       D[mergeTo][k] = D[mergeFrom][i];
@@ -74,8 +74,8 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
         /**/ } else {
         /**/ logger.print(`copying index ${j} to output`);
         /**/ }
-      /**/tracer.notify(mergeTo, k, D[mergeFrom][j]).wait();
-      /**/tracer.denotify(mergeTo, k);
+      /**/tracer.patch(mergeTo, k, D[mergeFrom][j]).delay();
+      /**/tracer.depatch(mergeTo, k);
       /**/tracer.deselect(mergeFrom, j);
 
       D[mergeTo][k] = D[mergeFrom][j];
@@ -88,12 +88,12 @@ function copy(mergeFrom, mergeTo, start, end) {
   let i;
   for (i = start; i < end; i++) {
     /**/tracer.select(mergeFrom, i);
-    /**/tracer.notify(mergeTo, i, D[mergeFrom][i]).wait();
+    /**/tracer.patch(mergeTo, i, D[mergeFrom][i]).delay();
 
     D[mergeTo][i] = D[mergeFrom][i];
 
     /**/tracer.deselect(mergeFrom, i);
-    /**/tracer.denotify(mergeTo, i);
+    /**/tracer.depatch(mergeTo, i);
   }
 }
 

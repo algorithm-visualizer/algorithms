@@ -22,7 +22,7 @@ const _bKeys = Object.keys(BRank);
 tracerA.set(_aKeys);
 tracerB.set(_bKeys);
 
-const logTracer = new LogTracer('Console').wait();
+const logTracer = new LogTracer('Console').delay();
 
 function init(rank) {
   const o = {};
@@ -49,35 +49,35 @@ const B = init(BRank);
 let a;
 
 while ((a = extractUnstable(A))) {
-  logTracer.print(`Selecting ${a.key}`).wait();
+  logTracer.print(`Selecting ${a.key}`).delay();
 
   const bKey = a.rankKeys.shift();
   const b = B[bKey];
 
-  logTracer.print(`--> Choicing ${b.key}`).wait();
+  logTracer.print(`--> Choicing ${b.key}`).delay();
 
   if (b.stable === false) {
-    logTracer.print(`--> ${b.key} is not stable, stabilizing with ${a.key}`).wait();
+    logTracer.print(`--> ${b.key} is not stable, stabilizing with ${a.key}`).delay();
 
     a.stable = b;
     b.stable = a;
 
-    tracerA.select(_aKeys.indexOf(a.key)).wait();
-    tracerB.select(_bKeys.indexOf(b.key)).wait();
+    tracerA.select(_aKeys.indexOf(a.key)).delay();
+    tracerB.select(_bKeys.indexOf(b.key)).delay();
   } else {
     const rankAinB = b.rankKeys.indexOf(a.key);
     const rankPrevAinB = b.rankKeys.indexOf(b.stable.key);
     if (rankAinB < rankPrevAinB) {
-      logTracer.print(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`).wait();
+      logTracer.print(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`).delay();
 
       A[b.stable.key].stable = false;
-      tracerA.deselect(_aKeys.indexOf(b.stable.key)).wait();
+      tracerA.deselect(_aKeys.indexOf(b.stable.key)).delay();
 
       a.stable = b;
       b.stable = a;
 
-      tracerA.select(_aKeys.indexOf(a.key)).wait();
-      tracerB.select(_bKeys.indexOf(b.key)).wait();
+      tracerA.select(_aKeys.indexOf(a.key)).delay();
+      tracerB.select(_bKeys.indexOf(b.key)).delay();
     }
   }
 }

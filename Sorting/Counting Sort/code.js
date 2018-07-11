@@ -18,29 +18,29 @@ const D = [
 ];
 
 const tracer = new Array2DTracer();
-tracer.set(D).wait();
+tracer.set(D).delay();
 
 // set counts values
 for (let i = 0; i < A.length; i++) {
-  tracer.select(0, i).wait();
+  tracer.select(0, i).delay();
   counts[A[i]]++;
-  tracer.notify(1, A[i], D[1][A[i]]).wait();
+  tracer.patch(1, A[i], D[1][A[i]]).delay();
   tracer.deselect(0, i);
-  tracer.denotify(1, A[i], D[1][A[i]]).wait();
+  tracer.depatch(1, A[i], D[1][A[i]]).delay();
 }
 
 // sort
 let i = 0;
 for (let j = 0; j <= maxValue; j++) {
   while (counts[j] > 0) {
-    tracer.select(1, j).wait();
+    tracer.select(1, j).delay();
     sortedA[i] = j;
     counts[j]--;
-    tracer.notify(1, j, D[1][j]);
-    tracer.notify(2, i, D[2][i]).wait();
+    tracer.patch(1, j, D[1][j]);
+    tracer.patch(2, i, D[2][i]).delay();
     tracer.deselect(1, j);
-    tracer.denotify(1, j, D[1][j]);
-    tracer.denotify(2, i, D[2][i]).wait();
+    tracer.depatch(1, j, D[1][j]);
+    tracer.depatch(2, i, D[2][i]).delay();
     i++;
   }
 }

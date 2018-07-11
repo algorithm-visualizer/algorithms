@@ -12,7 +12,7 @@ const G = [
   ['#', '-', '-', '-', '#', '-', '-', '-', '#'],
   ['#', '#', '#', '#', '#', '#', '#', '#', '#'],
 ];
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function FloodFill(i, j, oldColor, newColor) {
   if (i < 0 || i >= G.length || j < 0 || j >= G[i].length) return;
@@ -21,8 +21,8 @@ function FloodFill(i, j, oldColor, newColor) {
   // set the color of node to newColor
   G[i][j] = newColor;
 
-  tracer.select(i, j).wait();
-  tracer.notify(i, j, G[i][j]).wait();
+  tracer.select(i, j).delay();
+  tracer.patch(i, j, G[i][j]).delay();
 
   // next step four-way
   FloodFill(i + 1, j, oldColor, newColor);

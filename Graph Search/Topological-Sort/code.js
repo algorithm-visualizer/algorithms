@@ -12,7 +12,7 @@ const G = [
   [1, 0, 0, 1, 0, 0],
   [1, 1, 0, 0, 0, 0],
 ];
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 const inDegrees = Array(...Array(G.length)).map(Number.prototype.valueOf, 0); // create an Array of G.length number of 0s
 const Q = [];
@@ -24,9 +24,9 @@ for (let currNode = 0; currNode < G.length; currNode++) {
   for (let currNodeNeighbor = 0; currNodeNeighbor < G.length; currNodeNeighbor++) {
     if (G[currNode][currNodeNeighbor]) {
       logger.print(`${currNodeNeighbor} has an incoming edge from ${currNode}`);
-      tracer.visit(currNodeNeighbor, currNode).wait();
+      tracer.visit(currNodeNeighbor, currNode).delay();
       inDegrees[currNodeNeighbor]++;
-      tracer.leave(currNodeNeighbor, currNode).wait();
+      tracer.leave(currNodeNeighbor, currNode).delay();
     }
   }
 }
@@ -35,12 +35,12 @@ logger.print('');
 
 logger.print('Initializing queue with all the sources (nodes with no incoming edges)');
 inDegrees.map((indegrees, node) => {
-  tracer.visit(node).wait();
+  tracer.visit(node).delay();
   if (!indegrees) {
     logger.print(`${node} is a source`);
     Q.push(node);
   }
-  tracer.leave(node).wait();
+  tracer.leave(node).delay();
 });
 logger.print(`Done. Initial State of Queue: [ ${String(Q)} ]`);
 logger.print('');
@@ -49,14 +49,14 @@ logger.print('');
 while (Q.length > 0) {
   logger.print(`Iteration #${iter}. Queue state: [ ${String(Q)} ]`);
   const currNode = Q.shift();
-  tracer.visit(currNode).wait();
+  tracer.visit(currNode).delay();
 
   for (i = 0; i < G.length; i++) {
     if (G[currNode][i]) {
       logger.print(`${i} has an incoming edge from ${currNode}. Decrementing ${i}'s in-degree by 1.`);
-      tracer.visit(i, currNode).wait();
+      tracer.visit(i, currNode).delay();
       inDegrees[i]--;
-      tracer.leave(i, currNode).wait();
+      tracer.leave(i, currNode).delay();
 
       if (!inDegrees[i]) {
         logger.print(`${i}'s in-degree is now 0. Enqueuing ${i}`);
@@ -64,7 +64,7 @@ while (Q.length > 0) {
       }
     }
   }
-  tracer.leave(currNode).wait();
+  tracer.leave(currNode).delay();
   logger.print(`In-degrees are: [${String(inDegrees)} ]`);
   logger.print('-------------------------------------------------------------------');
 

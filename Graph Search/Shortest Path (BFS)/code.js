@@ -6,7 +6,7 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: false, weighted: true, ratio: 1, min: 1, max: 9,
 });
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function BFS() {
   const W = []; // W[i] indicates the length of the shortest path from start node to the i-th node
@@ -18,7 +18,7 @@ function BFS() {
   }
   W[s] = 0;
   Q.push(s); // add start node to queue
-  tracer.visit(s, undefined, 0).wait();
+  tracer.visit(s, undefined, 0).delay();
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
     for (i = 0; i < G[node].length; i++) {
@@ -26,7 +26,7 @@ function BFS() {
         if (W[i] > W[node] + G[node][i]) { // if current path is shorter than the previously shortest path
           W[i] = W[node] + G[node][i]; // update the length of the shortest path
           Q.push(i); // add child node to queue
-          tracer.visit(i, node, W[i]).wait();
+          tracer.visit(i, node, W[i]).delay();
         }
       }
     }

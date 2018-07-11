@@ -6,7 +6,7 @@ tracer.log(logger);
 const G = Randomize.graph(5, {
   directed: true, weighted: true, ratio: 0.5, min: -2, max: 5,
 });
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 function BELLMAN_FORD(src, dest) {
   const weights = new Array(G.length);
@@ -36,8 +36,8 @@ function BELLMAN_FORD(src, dest) {
             weights[j] = weights[i] + G[i][j];
             logger.print(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
           }
-          tracer.visit(j, i, weights[j]).wait();
-          tracer.leave(j, i).wait();
+          tracer.visit(j, i, weights[j]).delay();
+          tracer.leave(j, i).delay();
         }
       }
     }

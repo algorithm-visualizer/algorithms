@@ -1,6 +1,6 @@
 import { LogTracer } from 'algorithm-visualizer';
 
-const logger = new LogTracer().wait();
+const logger = new LogTracer().delay();
 
 for (let i = 0; i < 3; i++) {
   let a = Math.floor(Math.random() * 300);

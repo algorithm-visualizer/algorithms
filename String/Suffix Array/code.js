@@ -16,7 +16,7 @@ const wordTracer = new Array1DTracer('Given Word');
 const logger = new LogTracer('Progress');
 
 saTracer.set(suffixArray);
-wordTracer.set(word).wait();
+wordTracer.set(word).delay();
 
 word += '$'; // special character
 logger.print('Appended \'$\' at the end of word as terminating (special) character. Beginning filling of suffixes');
@@ -28,13 +28,13 @@ function selectSuffix(word, i) {
     wordTracer.select(i);
     i++;
   }
-  wordTracer.wait();
+  wordTracer.delay();
 
   while (c < word.length - 1) {
     wordTracer.deselect(c);
     c++;
   }
-  wordTracer.wait();
+  wordTracer.delay();
 }
 
 (function createSA(sa, word) {
@@ -42,8 +42,8 @@ function selectSuffix(word, i) {
     sa[i][1] = word.slice(i);
 
     selectSuffix(word, i);
-    saTracer.notify(i, 1, sa[i][1]).wait();
-    saTracer.denotify(i, 1).wait();
+    saTracer.patch(i, 1, sa[i][1]).delay();
+    saTracer.depatch(i, 1).delay();
   }
 }(suffixArray, word));
 
@@ -54,9 +54,9 @@ suffixArray.sort((a, b) => {
 });
 
 for (let i = 0; i < word.length; i++) {
-  saTracer.notify(i, 0, suffixArray[i][0]);
-  saTracer.notify(i, 1, suffixArray[i][1]).wait();
+  saTracer.patch(i, 0, suffixArray[i][0]);
+  saTracer.patch(i, 1, suffixArray[i][1]).delay();
 
-  saTracer.denotify(i, 0);
-  saTracer.denotify(i, 1);
+  saTracer.depatch(i, 0);
+  saTracer.depatch(i, 1);
 }

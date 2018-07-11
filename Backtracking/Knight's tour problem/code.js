@@ -28,7 +28,7 @@ pos[0] = pos[1] = -1;
 
 const boardTracer = new Array2DTracer('Board').set(board);
 const posTracer = new Array1DTracer('Knight Position').set(pos);
-const logTracer = new LogTracer('Console').wait();
+const logTracer = new LogTracer('Console').delay();
 
 function knightTour(x, y, moveNum) {
   if (moveNum === N * N) {
@@ -39,10 +39,10 @@ function knightTour(x, y, moveNum) {
     const nextX = x + X[i];
     const nextY = y + Y[i];
 
-    posTracer.notify(0, nextX).wait();
-    posTracer.notify(1, nextY).wait();
-    posTracer.denotify(0);
-    posTracer.denotify(1);
+    posTracer.patch(0, nextX).delay();
+    posTracer.patch(1, nextY).delay();
+    posTracer.depatch(0);
+    posTracer.depatch(1);
     /*
     Check if knight is still in the board
     Check that knight does not visit an already visited square
@@ -51,8 +51,8 @@ function knightTour(x, y, moveNum) {
       board[nextX][nextY] = moveNum;
 
       logTracer.print(`Move to ${nextX},${nextY}`);
-      boardTracer.notify(nextX, nextY, moveNum).wait();
-      boardTracer.denotify(nextX, nextY);
+      boardTracer.patch(nextX, nextY, moveNum).delay();
+      boardTracer.depatch(nextX, nextY);
       boardTracer.select(nextX, nextY);
 
       const nextMoveNum = moveNum + 1;
@@ -61,8 +61,8 @@ function knightTour(x, y, moveNum) {
       }
       logTracer.print(`No place to move from ${nextX},${nextY}: Backtrack`);
       board[nextX][nextY] = -1; // backtrack
-      boardTracer.notify(nextX, nextY, -1).wait();
-      boardTracer.denotify(nextX, nextY);
+      boardTracer.patch(nextX, nextY, -1).delay();
+      boardTracer.depatch(nextX, nextY);
       boardTracer.deselect(nextX, nextY);
     } else {
       logTracer.print(`${nextX},${nextY} is not a valid move`);
@@ -75,13 +75,13 @@ board[0][0] = 0; // start from this position
 pos[0] = 0;
 pos[0] = 0;
 
-boardTracer.notify(0, 0, 0).wait();
-posTracer.notify(0, 0).wait();
-posTracer.notify(1, 0).wait();
-boardTracer.denotify(0, 0);
-boardTracer.denotify(0, 0);
-posTracer.denotify(0);
-posTracer.denotify(1);
+boardTracer.patch(0, 0, 0).delay();
+posTracer.patch(0, 0).delay();
+posTracer.patch(1, 0).delay();
+boardTracer.depatch(0, 0);
+boardTracer.depatch(0, 0);
+posTracer.depatch(0);
+posTracer.depatch(1);
 
 if (knightTour(0, 0, 1) === false) {
   logTracer.print('Solution does not exist');

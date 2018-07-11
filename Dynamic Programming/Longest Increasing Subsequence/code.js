@@ -4,7 +4,7 @@ const tracer = new Array1DTracer();
 const logger = new LogTracer();
 const A = Randomize.array1D(10, { min: 0, max: 10 });
 const LIS = new Array(A.length);
-tracer.set(A).wait();
+tracer.set(A).delay();
 
 // Initialize LIS values for all indexes
 for (let i = 0; i < A.length; i++) {
@@ -17,8 +17,8 @@ for (let i = 1; i < A.length; i++) {
   tracer.select(i);
   logger.print(` LIS[${i}] = ${LIS[i]}`);
   for (let j = 0; j < i; j++) {
-    tracer.notify(j).wait();
-    tracer.denotify(j);
+    tracer.patch(j).delay();
+    tracer.depatch(j);
     if (A[i] > A[j] && LIS[i] < LIS[j] + 1) {
       LIS[i] = LIS[j] + 1;
       logger.print(` LIS[${i}] = ${LIS[i]}`);

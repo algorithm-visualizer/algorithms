@@ -16,7 +16,7 @@ for (let i = 0; i < N + 1; i++) {
 const tracer = new Array2DTracer('Knapsack Table').set(DP);
 const dataViewer1 = new Array1DTracer('Values').set(val);
 const dataViewer2 = new Array1DTracer('Weights').set(wt);
-const logger = new LogTracer().wait();
+const logger = new LogTracer().delay();
 
 for (let i = 0; i <= N; i++) {
   for (let j = 0; j <= W; j++) {
@@ -26,12 +26,12 @@ for (let i = 0; i <= N; i++) {
       then the total weight in our collection is 0
       */
       DP[i][0] = 0;
-      tracer.notify(i, j, DP[i][j]).wait();
-      tracer.denotify(i, j);
+      tracer.patch(i, j, DP[i][j]).delay();
+      tracer.depatch(i, j);
     } else if (wt[i - 1] <= j) { // take the current item in our collection
-      dataViewer1.select(i - 1).wait();
-      dataViewer2.select(i - 1).wait();
-      tracer.select(i - 1, j).wait();
+      dataViewer1.select(i - 1).delay();
+      dataViewer2.select(i - 1).delay();
+      tracer.select(i - 1, j).delay();
 
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
       const B = DP[i - 1][j];
@@ -41,20 +41,20 @@ for (let i = 0; i <= N; i++) {
        */
       if (A > B) {
         DP[i][j] = A;
-        tracer.notify(i, j, DP[i][j]).wait();
+        tracer.patch(i, j, DP[i][j]).delay();
       } else {
         DP[i][j] = B;
-        tracer.notify(i, j, DP[i][j]).wait();
+        tracer.patch(i, j, DP[i][j]).delay();
       }
 
       tracer.deselect(i - 1, j);
-      tracer.denotify(i, j);
+      tracer.depatch(i, j);
       dataViewer2.deselect(i - 1);
       dataViewer1.deselect(i - 1);
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
-      tracer.notify(i, j, DP[i][j]).wait();
-      tracer.denotify(i, j);
+      tracer.patch(i, j, DP[i][j]).delay();
+      tracer.depatch(i, j);
     }
   }
 }

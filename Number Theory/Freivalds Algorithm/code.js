@@ -11,7 +11,7 @@ new Array2DTracer('Matrix C').set(C);
 const logger = new LogTracer();
 
 const randomVectorTracer = new Array1DTracer('Random Vector');
-const resultVectorTracer = new Array1DTracer('Result Vector').wait();
+const resultVectorTracer = new Array1DTracer('Result Vector').delay();
 
 function FreivaldsAlgorithm() {
   let k = 5;
@@ -33,7 +33,7 @@ function FreivaldsAlgorithm() {
       P.push(-1);
       r.push((Math.random() < 0.5) << 0);
     }
-    randomVectorTracer.set(r).wait();
+    randomVectorTracer.set(r).delay();
 
     // Compute Br, Cr
     const Br = [];
@@ -59,7 +59,7 @@ function FreivaldsAlgorithm() {
       }
       P.push(tmp);
     }
-    resultVectorTracer.set(P).wait();
+    resultVectorTracer.set(P).delay();
 
     for (i = 0; i < n; i++) {
       if (P[i] !== 0) {

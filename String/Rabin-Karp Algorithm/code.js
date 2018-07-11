@@ -8,7 +8,7 @@ const D = 256; // number of characters in the input alphabet
 
 const logger = new LogTracer();
 const tracer1 = new Array1DTracer('Text').set(text);
-const tracer2 = new Array1DTracer('Pattern').set(pattern).wait();
+const tracer2 = new Array1DTracer('Pattern').set(pattern).delay();
 
 const N = text.length;
 const M = pattern.length;
@@ -34,16 +34,16 @@ for (let i = 0; i <= N - M; i++) {
   */
   if (hashPattern === hashText) {
     let f = 0;
-    tracer1.select(i, i + M).wait();
-    tracer2.select(0, M - 1).wait();
+    tracer1.select(i, i + M).delay();
+    tracer2.select(0, M - 1).delay();
     for (let j = 0; j < M; j++) {
-      tracer1.notify(i + j).wait();
-      tracer2.notify(j).wait();
+      tracer1.patch(i + j).delay();
+      tracer2.patch(j).delay();
       if (text[i + j] !== pattern[j]) {
         f++;
       }
-      tracer1.denotify(i + j);
-      tracer2.denotify(j);
+      tracer1.depatch(i + j);
+      tracer2.depatch(j);
     }
 
     if (f === 0) {

@@ -11,7 +11,7 @@ const G = [
   [0, 0, 0, 1, 0, 0],
 ];
 
-tracer.set(G).wait();
+tracer.set(G).delay();
 
 // Depth First Search Exploration Algorithm to test connectedness of the Graph (see Graph Algorithms/DFS/exploration), without the tracer & logger commands
 function DFSExplore(graph, source) {
@@ -32,8 +32,8 @@ function DFSExplore(graph, source) {
       // logger.print (node);
 
       /*
-      if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).wait (); console.log ('tracer ' + prev + ', ' + node); }
-      else { tracer.visit (node).wait (); console.log ('tracer ' + node); }
+      if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).delay (); console.log ('tracer ' + prev + ', ' + node); }
+      else { tracer.visit (node).delay (); console.log ('tracer ' + node); }
       */
 
       for (i = 0; i < graph.length; i++) {
@@ -56,8 +56,8 @@ function findBridges(graph) {
     for (let j = 0; j < graph.length; j++) {
       if (graph[i][j]) { // check if an edge exists
         logger.print(`Deleting edge ${i}->${j} and calling DFSExplore ()`);
-        tracer.visit(j, i).wait();
-        tracer.leave(j, i).wait();
+        tracer.visit(j, i).delay();
+        tracer.leave(j, i).delay();
 
         tempGraph = JSON.parse(JSON.stringify(graph));
         tempGraph[i][j] = 0;

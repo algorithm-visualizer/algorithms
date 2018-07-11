@@ -15,7 +15,7 @@ const encryptTracer = new Array1DTracer('Encryption');
 const decryptTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 
-encryptTracer.set(string).wait();
+encryptTracer.set(string).delay();
 
 function getPosUp(pos) {
   return (pos === alphabet.length - 1) ? 0 : pos + 1;
@@ -38,19 +38,19 @@ function cipher(str, rotation, direction, cipherTracer) {
   if (!str) return '';
 
   for (let i = 0; i < str.length; i++) {
-    cipherTracer.wait();
+    cipherTracer.delay();
 
     let currChar = str.charAt(i);
     if (typeof alphabetMap[currChar] === 'number') { // don't encrpt/decrypt characters not in  alphabetMap
       let r = rotation;
 
       logger.print(`Rotating ${currChar} ${direction} ${rotation} times`);
-      cipherTracer.select(i).wait();
+      cipherTracer.select(i).delay();
 
       // perform given amount of rotations in the given direction
       while (r-- > 0) {
         currChar = getNextChar(currChar, direction);
-        cipherTracer.notify(i, currChar).wait();
+        cipherTracer.patch(i, currChar).delay();
       }
     } else {
       logger.print('Ignore this character');
