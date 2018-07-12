@@ -2,7 +2,7 @@ import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
-const integer = Randomize.integer(5, 14);
+const integer = new Randomize.Integer(5, 14).create();
 const D = [];
 const A = [];
 for (let i = 0; i <= integer; i++) {

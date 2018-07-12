@@ -10,9 +10,7 @@ tracer.log(logger);
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ]; */
-const G = Randomize.graph(10, {
-  directed: false, weighted: true, ratio: 0.4, min: 1, max: 9,
-});
+const G = new Randomize.Graph(10, .4).directed(false).weighted().create();
 tracer.set(G).delay();
 
 function prim() {

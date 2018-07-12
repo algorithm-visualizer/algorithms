@@ -3,7 +3,7 @@ import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, { directed: false, ratio: 1 });
+const G = new Randomize.Graph(5, 1).directed(false).create();
 tracer.set(G).delay();
 
 let D; // D[i] indicates whether the i-th node is discovered or not

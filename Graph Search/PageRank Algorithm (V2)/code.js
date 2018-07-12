@@ -4,7 +4,7 @@ function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);
 }
 
-const G = Randomize.graph(5, { ratio: 0.4 });
+const G = new Randomize.Graph(5, .4).create();
 let ranks;
 const outgoingEdgeCounts = filledArray(G.length, 0);
 let incomingNodes;
@@ -18,7 +18,7 @@ const logger = new LogTracer();
 graphTracer.set(G);
 oecTracer.set(outgoingEdgeCounts);
 
-for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(filledArray(G.length, -1)));
+for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(filledArray(G.length, -1))) ;
 inTracer.set(incomingNodes).delay();
 
 /*

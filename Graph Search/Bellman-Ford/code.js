@@ -3,9 +3,7 @@ import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, {
-  directed: true, weighted: true, ratio: 0.5, min: -2, max: 5,
-});
+const G = new Randomize.Graph(5, .5, new Randomize.Integer(-2, 5)).weighted().create();
 tracer.set(G).delay();
 
 function BELLMAN_FORD(src, dest) {
@@ -64,7 +62,7 @@ function BELLMAN_FORD(src, dest) {
   return weights[dest];
 }
 
-const src = Randomize.integer(0, G.length - 1);
+const src = new Randomize.Integer(0, G.length - 1).create();
 let dest;
 let MAX_VALUE = Infinity;
 let minWeight;
@@ -75,7 +73,7 @@ let minWeight;
  */
 
 do {
-  dest = Randomize.integer(0, G.length - 1);
+  dest = new Randomize.Integer(0, G.length - 1).create();
 }
 while (src === dest);
 

@@ -3,9 +3,7 @@ import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, {
-  directed: false, weighted: true, ratio: 1, min: 1, max: 9,
-});
+const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G).delay();
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
@@ -30,10 +28,11 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
   D[node] = false; // label current node as undiscovered
   tracer.leave(node, parent, 0).delay();
 }
-const s = Randomize.integer(0, G.length - 1); // s = start node
+
+const s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
 let e; // e = end node
 do {
-  e = Randomize.integer(0, G.length - 1);
+  e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
 const MAX_VALUE = Infinity;
 let minWeight = MAX_VALUE;

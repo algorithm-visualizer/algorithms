@@ -4,7 +4,7 @@ const graphTracer = new GraphTracer().directed(false);
 const visitedTracer = new Array1DTracer('visited');
 const logger = new LogTracer();
 graphTracer.log(logger);
-const G = Randomize.graph(8, { directed: false, ratio: 0.3 });
+const G = new Randomize.Graph(8, .3).directed(false).create();
 graphTracer.set(G).delay();
 
 function DFSExplore(graph, source) {

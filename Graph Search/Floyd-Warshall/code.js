@@ -3,9 +3,7 @@ import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, {
-  directed: true, weighted: true, ratio: 1, min: 1, max: 9,
-});
+const G = new Randomize.Graph(5, 1).weighted().create();
 tracer.set(G).delay();
 
 function FloydWarshall() {
@@ -48,6 +46,7 @@ function FloydWarshall() {
     }
   }
 }
+
 let MAX_VALUE = Infinity;
 logger.print('finding the shortest paths from and to all nodes');
 FloydWarshall();

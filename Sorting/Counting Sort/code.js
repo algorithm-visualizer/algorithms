@@ -4,7 +4,7 @@ const maxValue = 9;
 const arrSize = 10;
 
 // initialize array values
-const A = Randomize.array1D(arrSize, { min: 0, max: maxValue });
+const A = new Randomize.Array1D(arrSize, new Randomize.Integer(0, maxValue)).create();
 const counts = [];
 const sortedA = [];
 for (let i = 0; i <= maxValue; i++) {

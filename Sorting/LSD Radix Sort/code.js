@@ -2,7 +2,7 @@ import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
-const k = Randomize.array1D(10, { min: 1, max: 999 });
+const k = new Randomize.Array1D(10, new Randomize.Integer(1, 999)).create();
 const D = [
   k,
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,6 +11,7 @@ const D = [
 tracer.set(D).delay();
 
 logger.print(`original array = [${D[0].join(', ')}]`);
+
 function pow(base, expo) {
   let ans = 1;
   for (let i = 0; i < expo; i++) {
@@ -18,9 +19,11 @@ function pow(base, expo) {
   }
   return ans;
 }
+
 function digit(i, exp) {
   return parseInt(D[0][i] / pow(10, exp) % 10);
 }
+
 for (let exp = 0; exp < 3; exp++) {
   logger.print(`Digit: ${exp}`);
   let i;

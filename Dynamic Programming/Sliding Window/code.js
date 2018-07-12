@@ -2,7 +2,7 @@ import { Array1DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
-const D = Randomize.array1D(20, { min: -5, max: 5 });
+const D = new Randomize.Array1D(20, new Randomize.Integer(-5, 5)).create();
 tracer.set(D).delay();
 
 let sum = D[0] + D[1] + D[2];

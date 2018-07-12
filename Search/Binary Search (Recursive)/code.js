@@ -3,7 +3,7 @@ import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visu
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
-const D = Randomize.array1D(15, { sorted: true, min: 0, max: 50 });
+const D = new Randomize.Array1D(15, new Randomize.Integer(0, 50)).sorted().create();
 tracer.set(D).delay();
 
 function BinarySearch(array, element, minIndex, maxIndex) { // array = sorted array, element = element to be found, minIndex = low index, maxIndex = high index
@@ -41,7 +41,7 @@ function BinarySearch(array, element, minIndex, maxIndex) { // array = sorted ar
   return -1;
 }
 
-const element = D[Randomize.integer(0, D.length - 1)];
+const element = D[new Randomize.Integer(0, D.length - 1).create()];
 
 logger.print(`Using binary search to find ${element}`);
 BinarySearch(D, element, 0, D.length - 1);

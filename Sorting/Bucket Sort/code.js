@@ -5,7 +5,7 @@ const arraySize = 10;
 const numBuckets = 5;
 
 // initialize array values
-const array = Randomize.array1D(arraySize, { min: 0, max: maxValue - 1 });
+const array = new Randomize.Array1D(arraySize, new Randomize.Integer(0, maxValue - 1)).create();
 const buckets = [];
 const bucketsCount = [];
 const sortedArray = [];

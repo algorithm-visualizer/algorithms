@@ -4,9 +4,7 @@ const tracer = new GraphTracer().directed(false).weighted();
 const tracerS = new Array1DTracer();
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, {
-  directed: false, weighted: true, ratio: 1, min: 1, max: 9,
-});
+const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G);
 const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
@@ -55,10 +53,10 @@ function Dijkstra(start, end) {
   }
 }
 
-const s = Randomize.integer(0, G.length - 1); // s = start node
+const s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
 let e; // e = end node
 do {
-  e = Randomize.integer(0, G.length - 1);
+  e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
 logger.print(`finding the shortest path from ${s} to ${e}`).delay();
 Dijkstra(s, e);

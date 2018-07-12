@@ -2,7 +2,7 @@ import { Array1DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
-const A = Randomize.array1D(10, { min: 0, max: 10 });
+const A = new Randomize.Array1D(10, new Randomize.Integer(0, 10)).create();
 const LIS = new Array(A.length);
 tracer.set(A).delay();
 

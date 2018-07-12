@@ -9,9 +9,7 @@ const logger = new LogTracer();
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ]; */
-const G = Randomize.graph(5, {
-  directed: false, weighted: true, ratio: 1, min: 1, max: 9,
-});
+const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G).delay();
 
 function kruskal() {

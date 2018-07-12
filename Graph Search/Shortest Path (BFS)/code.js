@@ -3,9 +3,7 @@ import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 tracer.log(logger);
-const G = Randomize.graph(5, {
-  directed: false, weighted: true, ratio: 1, min: 1, max: 9,
-});
+const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G).delay();
 
 function BFS() {
@@ -33,10 +31,11 @@ function BFS() {
   }
   return W[e];
 }
-let s = Randomize.integer(0, G.length - 1); // s = start node
+
+let s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
 let e; // e = start node
 do {
-  e = Randomize.integer(0, G.length - 1);
+  e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
 let MAX_VALUE = Infinity;
 logger.print(`finding the shortest path from ${s} to ${e}`);

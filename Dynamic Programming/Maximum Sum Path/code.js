@@ -1,6 +1,6 @@
 import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
-const D = Randomize.array2D(5, 5, { min: 1, max: 5 });
+const D = new Randomize.Array2D(5, 5, new Randomize.Integer(1, 5)).create();
 const dataViewer = new Array2DTracer().set(D);
 const tracer = new Array2DTracer('Results Table');
 const logger = new LogTracer();
@@ -15,6 +15,7 @@ tracer.set(DP).delay();
 
 const N = DP.length;
 const M = DP[0].length;
+
 function update(i, j, value) {
   DP[i][j] = value;
   dataViewer.select(i, j).delay();
@@ -22,6 +23,7 @@ function update(i, j, value) {
   tracer.depatch(i, j);
   dataViewer.deselect(i, j);
 }
+
 for (let i = 0; i < N; i++) {
   for (let j = 0; j < M; j++) {
     if (i === 0 && j === 0) {

@@ -3,7 +3,7 @@ import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visu
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
-const D = Randomize.array1D(10);
+const D = new Randomize.Array1D(10).create();
 tracer.set(D).delay();
 
 logger.print(`Original array = [${D.join(', ')}]`);
