@@ -1,6 +1,6 @@
 import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
-const tracer = new GraphTracer({ directed: false, weighted: true });
+const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 tracer.log(logger);
 /* let G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node

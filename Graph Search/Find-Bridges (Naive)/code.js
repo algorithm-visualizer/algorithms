@@ -1,6 +1,6 @@
 import { GraphTracer, LogTracer } from 'algorithm-visualizer';
 
-const tracer = new GraphTracer({ directed: false });
+const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
 const G = [
   [0, 1, 0, 0, 0, 0],

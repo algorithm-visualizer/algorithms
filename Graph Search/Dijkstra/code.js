@@ -1,6 +1,6 @@
 import { Array1DTracer, GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 
-const tracer = new GraphTracer({ directed: false, weighted: true });
+const tracer = new GraphTracer().directed(false).weighted();
 const tracerS = new Array1DTracer();
 const logger = new LogTracer();
 tracer.log(logger);
