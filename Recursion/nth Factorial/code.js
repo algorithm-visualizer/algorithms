@@ -9,8 +9,12 @@ for (var i = 1; i < index; i++) {
 tracer._setData(D);
 
 function fact(num) {
-  if (num === 1) {
-      return 1;
+  if (num < 0) {
+    return;
+  }
+
+  if (num === 0) {
+    return 1;
   }
 
   var res = num * fact(num - 1);
