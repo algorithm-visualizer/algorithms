@@ -34,7 +34,7 @@ for (let i = 0; i <= N - M; i++) {
   */
   if (hashPattern === hashText) {
     let f = 0;
-    tracer1.select(i, i + M).delay();
+    tracer1.select(i, i + M - 1).delay();
     tracer2.select(0, M - 1).delay();
     for (let j = 0; j < M; j++) {
       tracer1.patch(i + j).delay();
