@@ -3,8 +3,8 @@ import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 const D = [
-  new Randomize.Array1D(20, { min: 0, max: 50 }),
-  new Randomize.Array1D(20, { min: 0, max: 0 }),
+  new Randomize.Array1D(20, new Randomize.Integer(0, 50)).create(),
+  new Randomize.Array1D(20, new Randomize.Integer(0, 0)).create(),
 ];
 
 tracer.set(D).delay();
