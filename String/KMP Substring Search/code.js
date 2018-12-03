@@ -108,12 +108,12 @@ function kmp(string, substr) {
         stringTracer.select(j).delay();
       }
     } else {
-      const tempJ = j - 1;
+      const tempJ = (j - 1).mod(substr.length);
       logger.print('they\'re NOT equal');
       trackTracer.select(tempJ).delay();
       stringTracer.deselect(j).delay();
 
-      j = track[(j - 1).mod(substr.length)]; // use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
+      j = track[tempJ]; // use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
 
       logger.print(`Setting j to ${j}`);
       stringTracer.select(j).delay();
