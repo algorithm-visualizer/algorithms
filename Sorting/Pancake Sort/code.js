@@ -9,19 +9,19 @@ tracer.set(D).delay();
 logger.print(`original array = [${D.join(', ')}]`);
 const N = D.length;
 function flip(start) {
-  tracer.select(start, N).delay();
+  tracer.select(start, N - 1).delay();
   let idx = 0;
   for (let i = start; i < (start + N) / 2; i++) {
     tracer.select(i).delay();
     const temp = D[i];
     D[i] = D[N - idx - 1];
     D[N - idx - 1] = temp;
-    idx++;
-    tracer.patch(i, D[i]).patch(N - idx, D[N - idx]).delay();
-    tracer.depatch(i).depatch(N - idx);
+    tracer.patch(i, D[i]).patch(N - idx - 1, D[N - idx - 1]).delay();
+    tracer.depatch(i).depatch(N - idx - 1);
     tracer.deselect(i);
+    idx++;
   }
-  tracer.deselect(start, N);
+  tracer.deselect(start, N - 1);
 }
 for (let i = 0; i < N - 1; i++) {
   logger.print(`round ${i + 1}`);
