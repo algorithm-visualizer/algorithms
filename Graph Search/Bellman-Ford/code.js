@@ -13,10 +13,10 @@ function BELLMAN_FORD(src, dest) {
 
   for (i = 0; i < G.length; i++) {
     weights[i] = MAX_VALUE;
-    tracer.weight(i, weights[i]);
+    tracer.updateNode(i, weights[i]);
   }
   weights[src] = 0;
-  tracer.weight(src, 0);
+  tracer.updateNode(src, 0);
 
   logger.print(`Initializing weights to: [${weights}]`);
   logger.print('');
@@ -64,7 +64,7 @@ function BELLMAN_FORD(src, dest) {
 
 const src = new Randomize.Integer(0, G.length - 1).create();
 let dest;
-let MAX_VALUE = Infinity;
+let MAX_VALUE = 0x7fffffff;
 let minWeight;
 
 /*

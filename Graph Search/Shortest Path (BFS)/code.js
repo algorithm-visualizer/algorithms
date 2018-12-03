@@ -12,7 +12,7 @@ function BFS() {
   let i;
   for (i = 0; i < G.length; i++) {
     W.push(MAX_VALUE);
-    tracer.weight(i, MAX_VALUE);
+    tracer.updateNode(i, MAX_VALUE);
   }
   W[s] = 0;
   Q.push(s); // add start node to queue
@@ -37,7 +37,7 @@ let e; // e = start node
 do {
   e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
-let MAX_VALUE = Infinity;
+let MAX_VALUE = 0x7fffffff;
 logger.print(`finding the shortest path from ${s} to ${e}`);
 const minWeight = BFS(s);
 if (minWeight === MAX_VALUE) {
