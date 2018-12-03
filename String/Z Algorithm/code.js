@@ -33,18 +33,16 @@ function createZarr(concat) {
     if (i > right) {
       left = right = i;
       while (right < N && concat[right] === concat[right - left]) {
-        concatTracer.patch(right).delay();
-        concatTracer.select(right - left).delay();
-        logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
-        concatTracer.depatch(right).delay();
-        concatTracer.deselect(right - left).delay();
+        concatTracer.patch(right).select(right - left);
+        logger.print(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        concatTracer.depatch(right).deselect(right - left);
         right++;
       }
-      concatTracer.patch(right).delay();
-      concatTracer.select(right - left).delay();
-      logger.print(`${concat[right]} ( at position ${right} ) is NOT equal to ${concat[right - left]} (at position ${right - left})`);
-      concatTracer.depatch(right).delay();
-      concatTracer.deselect(right - left).delay();
+      if (right < N) {
+        concatTracer.patch(right).select(right - left);
+        logger.print(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        concatTracer.depatch(right).deselect(right - left);
+      }
       z[i] = (right - left);
       logger.print('--------------------------------');
       logger.print(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
@@ -52,35 +50,30 @@ function createZarr(concat) {
       right--;
     } else if (z[i - left] < (right - i + 1)) {
       logger.print(`The substring from index ${i - left} will not cross the right end.`);
-      concatTracer.select(i - left).delay();
-      concatTracer.patch(right - i + 1).delay();
+      concatTracer.patch(right - i + 1).select(i - left).delay();
       z[i] = z[i - left];
-      concatTracer.deselect(i - left).delay();
-      concatTracer.depatch(right - i + 1).delay();
+      concatTracer.depatch(right - i + 1).deselect(i - left);
     } else {
       logger.print(`The substring from index ${i - left} will cross the right end.`);
       left = i;
       while (right < N && concat[right] === concat[right - left]) {
-        concatTracer.patch(right).delay();
-        concatTracer.select(right - left).delay();
-        logger.print(`${concat[right]} ( at position ${right} ) is equal to ${concat[right - left]} (at position ${right - left})`);
-        concatTracer.depatch(right).delay();
-        concatTracer.deselect(right - left).delay();
+        concatTracer.patch(right).select(right - left);
+        logger.print(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        concatTracer.depatch(right).deselect(right - left);
         right++;
       }
-      concatTracer.patch(right).delay();
-      concatTracer.select(right - left).delay();
-      logger.print(`${concat[right]} ( at position ${right} ) is NOT equal to ${concat[right - left]} (at position ${right - left})`);
-      concatTracer.depatch(right).delay();
-      concatTracer.deselect(right - left).delay();
+      if (right < N) {
+        concatTracer.patch(right).select(right - left);
+        logger.print(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        concatTracer.depatch(right).deselect(right - left);
+      }
       z[i] = (right - left);
       right--;
       logger.print('--------------------------------');
       logger.print(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
       logger.print('--------------------------------');
     }
-    tracer.deselect(i).delay();
-    tracer.set(z);
+    tracer.deselect(i).set(z);
   }
 }
 
