@@ -31,12 +31,12 @@ We highly encourage you to test your visualization on Scratch Paper several time
 
 1. Fork this repository.
 
-    ![](https://github.com/algorithm-visualizer/algorithms/blob/master/.images/contributing/fork.png)
+    ![](https://raw.githubusercontent.com/algorithm-visualizer/algorithms/master/.images/contributing/fork.png)
     > 'Fork' button is at the top right corner of this page.
 
 2. Create a branch named the algorithm you'd like to add/improve.
 
-    ![](https://github.com/algorithm-visualizer/algorithms/blob/master/.images/contributing/create_branch.png)
+    ![](https://raw.githubusercontent.com/algorithm-visualizer/algorithms/master/.images/contributing/create_branch.png)
     > 'Branch' button is below the header of your forked repository.
     
 3. Make changes.
@@ -45,15 +45,15 @@ We highly encourage you to test your visualization on Scratch Paper several time
     
     If you want to create a directory, check out this [Stack Overflow answer](https://stackoverflow.com/questions/18773598/creating-folders-inside-github-com-repo-without-using-git).
     
-    ![](https://github.com/algorithm-visualizer/algorithms/blob/master/.images/contributing/commit_changes.png)
+    ![](https://raw.githubusercontent.com/algorithm-visualizer/algorithms/master/.images/contributing/commit_changes.png)
     > Input a commit message addressing your changes, and make sure you are committing to the branch you created.
 
 4. Create a pull request.
 
-    ![](https://github.com/algorithm-visualizer/algorithms/blob/master/.images/contributing/compare_and_pull_request.png)
+    ![](https://raw.githubusercontent.com/algorithm-visualizer/algorithms/master/.images/contributing/compare_and_pull_request.png)
     > 'Compare & pull request' button is below the header of the main page of your forked repository.
 
-    ![](https://github.com/algorithm-visualizer/algorithms/blob/master/.images/contributing/open_pull_request.png)
+    ![](https://raw.githubusercontent.com/algorithm-visualizer/algorithms/master/.images/contributing/open_pull_request.png)
     > Make sure you are merging to `algorithm-visualizer/algorithms`'s `master` branch from your forked repository's branch you created.
     
 5. Thanks for your contribution! Once we review and merge your pull request, your changes will be reflected on [algorithm-visualizer.org](https://algorithm-visualizer.org/).
