@@ -1,5 +1,12 @@
-# DFS
-Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible along each branch before backtracking.
+# Depth-First Search
+
+Depth-first search (DFS) is an algorithm for traversing or
+searching tree or graph data structures. One starts at
+the root (selecting some arbitrary node as the root in
+the case of a graph) and explores as far as possible
+along each branch before backtracking.
+
+![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
 
 ## Applications
 * Finding connected components.
@@ -14,9 +21,9 @@ Depth-first search (DFS) is an algorithm for traversing or searching tree or gra
 * Maze generation may use a randomized depth-first search.
 * Finding biconnectivity in graphs.
 
-## Complexity
-* **Time**: worst ![](https://latex.codecogs.com/svg.latex?O(|V|+|E|))
-* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(|V|))
-
 ## References
-* [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
+
+- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/depth-first-search)
+- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
+- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)

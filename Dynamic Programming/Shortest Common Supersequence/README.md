@@ -1,9 +1,25 @@
 # Shortest Common Supersequence
-n computer science, the shortest common supersequence problem is a problem closely related to the longest common subsequence problem. Given two sequences X = < x1,...,xm > and Y = < y1,...,yn >, a sequence U = < u1,...,uk > is a common supersequence of X and Y if U is a supersequence of both X and Y. In other words, a shortest common supersequence of strings x and y is a shortest string z such that both x and y are subsequences of z.
 
-## Complexity
-* **Time**: ![](https://latex.codecogs.com/svg.latex?O(m\cdot\,n))
-* **Space**: ![](https://latex.codecogs.com/svg.latex?O(m\cdot\,n))
+The shortest common supersequence (SCS) of two sequences `X` and `Y`
+is the shortest sequence which has `X` and `Y` as subsequences.
+
+In other words assume we're given two strings str1 and str2, find
+the shortest string that has both str1 and str2 as subsequences.
+
+This is a problem closely related to the longest common
+subsequence problem.
+
+## Example
+
+```
+Input:   str1 = "geek",  str2 = "eke"
+Output: "geeke"
+
+Input:   str1 = "AGGTAB",  str2 = "GXTXAYB"
+Output:  "AGXGTXAYB"
+```
 
 ## References
-* [Wikipedia](https://en.wikipedia.org/wiki/Shortest_common_supersequence_problem)
+
+- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sets/shortest-common-supersequence)
+- [GeeksForGeeks](https://www.geeksforgeeks.org/shortest-common-supersequence/)

@@ -1,13 +1,24 @@
 # Binary Search
-Binary Search is a search algorithm that finds the position of a target value within a sorted array. It works by comparing the target value to the middle element of the array; if they are unequal, the lower or upper half of the array is eliminated depending on the result and the search is repeated in the remaining subarray until it is successful.
 
-## Applications
-* Finding values in a sorted collection
-* Traversing binary search trees
+In computer science, binary search, also known as half-interval
+search, logarithmic search, or binary chop, is a search algorithm
+that finds the position of a target value within a sorted
+array. Binary search compares the target value to the middle
+element of the array; if they are unequal, the half in which
+the target cannot lie is eliminated and the search continues
+on the remaining half until it is successful. If the search
+ends with the remaining half being empty, the target is not
+in the array.
+
+![Binary Search](https://upload.wikimedia.org/wikipedia/commons/8/83/Binary_Search_Depiction.svg)
 
 ## Complexity
-* **Time**: worst ![](https://latex.codecogs.com/svg.latex?O(log(N))), best ![](https://latex.codecogs.com/svg.latex?O(1)), average ![](https://latex.codecogs.com/svg.latex?O(log(N)))
-* **Space**: worst ![](https://latex.codecogs.com/svg.latex?O(log(N))) - recursive, ![](https://latex.codecogs.com/svg.latex?O(1)) - iterative
+
+**Time Complexity**: `O(log(n))` - since we split search area by two for every
+next iteration.
 
 ## References
-* [Wikipedia](https://en.wikipedia.org/wiki/Binary_search_algorithm)
+
+- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/search/binary-search)
+- [Wikipedia](https://en.wikipedia.org/wiki/Binary_search_algorithm)
+- [YouTube](https://www.youtube.com/watch?v=P3YID7liBug&index=29&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)

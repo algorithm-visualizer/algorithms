@@ -1,5 +1,5 @@
-# Binary Tree Traversal
-The LCA of n1 and n2 in T is the shared ancestor of n1 and n2 that is located farthest from the root.
+# Lowest Common Ancestor
+The lowest common ancestor of n1 and n2 in T is the shared ancestor of n1 and n2 that is located farthest from the root.
 
 ## Applications
 
