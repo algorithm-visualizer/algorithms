@@ -22,9 +22,9 @@ for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(fil
 inTracer.set(incomingNodes).delay();
 
 /*
-  PageRank Algorithm Version 1
+  PageRank Algorithm Version 2
   Equation:
-    PR (X) = (1 - D) + D (Summation i->X (PR (I) / Out (i)))
+    PR (X) = ( (1 - D)/N ) + D (Summation i->X (PR (I) / Out (i)))
   NOTE: Algorithm uses the recommended damping factor (D). Number of iterations is small because only a small Web of 5 Pages is simulated
 */
 
@@ -98,7 +98,7 @@ function updateRank(nodeIndex) {
   });
   logger.print(`In-Node summation of ${nodeIndex} = ${inNodeSummation}`);
 
-  result = (1 - damping) + (damping * inNodeSummation);
+  result = ((1 - damping) / G.length) + (damping * inNodeSummation); // notice the subtle difference between equations of Basic PR & PR version 2 (divide by N)
   logger.print(`Therefore, using Equation, new rank of ${nodeIndex} = ${result}`);
   return result;
 }

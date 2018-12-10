@@ -28,13 +28,13 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
   [9, -1],
 ];
 
-const treeTracer = new GraphTracer(' Traversal Post-order ').set(G).layoutTree(5);
-const arrayTracer = new Array1DTracer(' Print Post-order ').set(new Array(T.length).fill('-'));
+const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G).layoutTree(5);
+const arrayTracer = new Array1DTracer(' Print Pre-order ').set(new Array(T.length).fill('-'));
 const logger = new LogTracer(' Log ').delay();
 
 let index = 0;
 
-function inorder(root, parent) {
+function preOrder(root, parent) {
   if (root === -1) {
     logger.print('No more nodes. Backtracking.').delay();
     return;
@@ -43,16 +43,16 @@ function inorder(root, parent) {
   logger.print(`Reached ${root}`);
   treeTracer.visit(root, parent).delay();
 
-  logger.print(` Going left from ${root}`).delay();
-  inorder(T[root][0], root);
-
-  logger.print(` Going right from ${root}`).delay();
-  inorder(T[root][1], root);
-
   logger.print(`Printing ${root}`);
   treeTracer.leave(root);
   arrayTracer.patch(index++, root).delay();
+
+  logger.print(` Going left from ${root}`).delay();
+  preOrder(T[root][0], root);
+
+  logger.print(` Going right from ${root}`).delay();
+  preOrder(T[root][1], root);
 }
 
-inorder(5); // node with key 5 is the root
+preOrder(5); // node with key 5 is the root
 logger.print('Finished');

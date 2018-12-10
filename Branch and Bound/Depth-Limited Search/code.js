@@ -18,16 +18,19 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
 ];
 tracer.set(G).layoutTree(0).delay();
 
-// This is a sample DLS where
+// This is a sample DLS applications where
 // we try to find number of descendant of root within some depth
-function DLS(limit, node, parent) { // node = current node, parent = previous node
+function DLSCount(limit, node, parent) { // node = current node, parent = previous node
   tracer.visit(node, parent).delay();
+  let child = 0;
   if (limit > 0) { // cut off the search
     for (let i = 0; i < G[node].length; i++) {
       if (G[node][i]) { // if current node has the i-th node as a child
-        DLS(limit - 1, i, node); // recursively call DLS
+        child += 1 + DLSCount(limit - 1, i, node); // recursively call DLS
       }
     }
+    return child;
   }
+  return child;
 }
-DLS(2, 0);
+logger.print(`Number of descendant is ${DLSCount(2, 0)}`);
