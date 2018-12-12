@@ -1,6 +1,6 @@
 # Algorithms
 
-This repository is a part of the project [algorithm-visualizer](https://github.com/algorithm-visualizer).
+This repository is a part of the project [Algorithm Visualizer](https://github.com/algorithm-visualizer).
 
 All the codes here are visualized on [algorithm-visualizer.org](https://algorithm-visualizer.org/).
 
