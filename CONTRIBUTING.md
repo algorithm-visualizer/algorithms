@@ -11,11 +11,11 @@ The project [Algorithm Visualizer](https://github.com/algorithm-visualizer) has 
 
 There are five tracers in the library to visualize different types of data.
 
-- [Array1DTracer](https://github.com/algorithm-visualizer/tracers/wiki/Array1DTracer)
-- [Array2DTracer](https://github.com/algorithm-visualizer/tracers/wiki/Array2DTracer)
-- [ChartTracer](https://github.com/algorithm-visualizer/tracers/wiki/ChartTracer)
-- [GraphTracer](https://github.com/algorithm-visualizer/tracers/wiki/GraphTracer)
-- [LogTracer](https://github.com/algorithm-visualizer/tracers/wiki/LogTracer)
+- [Array1DTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/Array1DTracer)
+- [Array2DTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/Array2DTracer)
+- [ChartTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/ChartTracer)
+- [GraphTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/GraphTracer)
+- [LogTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/LogTracer)
 
 There are also randomizers to help you create random data.
 
