@@ -7,7 +7,7 @@
 
 ## Learning About Tracers
 
-[`tracers`](https://github.com/algorithm-visualizer/tracers) is the visualization library we use to visualize codes.
+The project [Algorithm Visualizer](https://github.com/algorithm-visualizer) has a visualization library in each supported language ([JavaScript](https://github.com/algorithm-visualizer/tracers.js), [C++](https://github.com/algorithm-visualizer/tracers.cpp), and [Java](https://github.com/algorithm-visualizer/tracers.java)) to visualize codes.
 
 There are five tracers in the library to visualize different types of data.
 
@@ -19,7 +19,7 @@ There are five tracers in the library to visualize different types of data.
 
 There are also randomizers to help you create random data.
 
-Visit the [wiki](https://github.com/algorithm-visualizer/tracers/wiki) in [`tracers`](https://github.com/algorithm-visualizer/tracers) repo for more information.
+Visit the [wiki](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki) in [`algorithm-visualizer`](https://github.com/algorithm-visualizer/algorithm-visualizer) repo for more information.
 
 ## Running on Scratch Paper
 
