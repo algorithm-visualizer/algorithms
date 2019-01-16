@@ -19,7 +19,7 @@ There are five tracers in the library to visualize different types of data.
 
 There are also randomizers to help you create random data.
 
-Visit the [wiki](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki) in [`algorithm-visualizer`](https://github.com/algorithm-visualizer/algorithm-visualizer) repo for more information.
+Check out the [API reference](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki) for more information.
 
 ## Running on Scratch Paper
 
