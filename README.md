@@ -1,10 +1,12 @@
 # Algorithms
 
-This repository is a part of the project [algorithm-visualizer](https://github.com/algorithm-visualizer).
+> `algorithms` contains algorithm visualizations.
+
+This repository is part of the project [Algorithm Visualizer](https://github.com/algorithm-visualizer).
 
 All the codes here are visualized on [algorithm-visualizer.org](https://algorithm-visualizer.org/).
 
-The project currently supports C++, Java, and ECMAScript.
+The project currently supports JavaScript, C++, and Java.
 
 ## Contributing
 
