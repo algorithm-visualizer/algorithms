@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(15).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 for (let i = 0; i < D.length - 1; i++) {
   let minJ = i;
   tracer.select(i).delay();
@@ -20,7 +20,7 @@ for (let i = 0; i < D.length - 1; i++) {
     tracer.deselect(j);
   }
   if (minJ !== i) {
-    logger.print(`swap ${D[i]} and ${D[minJ]}`);
+    logger.println(`swap ${D[i]} and ${D[minJ]}`);
     const temp = D[i];
     D[i] = D[minJ];
     D[minJ] = temp;
@@ -29,4 +29,4 @@ for (let i = 0; i < D.length - 1; i++) {
   }
   tracer.deselect(i);
 }
-logger.print(`sorted array = [${D.join(', ')}]`);
+logger.println(`sorted array = [${D.join(', ')}]`);

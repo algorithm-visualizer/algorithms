@@ -26,7 +26,7 @@ for (let i = 0; i < range; i++) {
 }
 tracer2.set(holes);
 
-logTracer.print('Filling up holes');
+logTracer.println('Filling up holes');
 for (let i = 0; i < N; i++) {
   tracer1.select(i).delay();
 
@@ -36,7 +36,7 @@ for (let i = 0; i < N; i++) {
   tracer1.deselect(i);
 }
 
-logTracer.print('Building sorted array');
+logTracer.println('Building sorted array');
 let k = 0;
 for (let i = 0; i < range; i++) {
   for (let j = 0; j < holes[i].length; j++) {
@@ -48,4 +48,4 @@ for (let i = 0; i < range; i++) {
   }
 }
 
-logTracer.print(`Sorted array is ${A}`);
+logTracer.println(`Sorted array is ${A}`);

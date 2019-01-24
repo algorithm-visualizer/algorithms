@@ -19,29 +19,29 @@ let i = Math.floor(n / 2);
 let j = n - 1;
 
 for (let num = 1; num <= n * n;) {
-  logTracer.print(`i = ${i}`);
-  logTracer.print(`j = ${j}`);
+  logTracer.println(`i = ${i}`);
+  logTracer.println(`j = ${j}`);
 
   if (i === -1 && j === n) {
     j = n - 2;
     i = 0;
 
-    logTracer.print('Changing : ');
-    logTracer.print(`i = ${i}`);
-    logTracer.print(`j = ${j}`);
+    logTracer.println('Changing : ');
+    logTracer.println(`i = ${i}`);
+    logTracer.println(`j = ${j}`);
   } else {
     if (j === n) {
       j = 0;
-      logTracer.print(`Changing : j = ${j}`);
+      logTracer.println(`Changing : j = ${j}`);
     }
     if (i < 0) {
       i = n - 1;
-      logTracer.print(`Changing : i = ${i}`);
+      logTracer.println(`Changing : i = ${i}`);
     }
   }
 
   if (A[i][j] > 0) {
-    logTracer.print(`Cell already filled : Changing i = ${i} j = ${j}`);
+    logTracer.println(`Cell already filled : Changing i = ${i} j = ${j}`);
     j -= 2;
     i++;
   } else {
@@ -54,4 +54,4 @@ for (let num = 1; num <= n * n;) {
   }
 }
 
-logTracer.print(`Magic Constant is ${n * (n * n + 1) / 2}`);
+logTracer.println(`Magic Constant is ${n * (n * n + 1) / 2}`);

@@ -14,7 +14,7 @@ for (let i = 0; i <= integer; i++) {
 tracer.set(D).delay();
 
 function partition(A, n, p) {
-  if (n === 0) logger.print(`[${A.join(', ')}]`);
+  if (n === 0) logger.println(`[${A.join(', ')}]`);
   else {
     let end = n;
     if (p !== 0 && A[p - 1] < n) end = A[p - 1];
@@ -41,7 +41,7 @@ function integerPartition(n) {
   return D[n][n];
 }
 
-logger.print(`Partitioning: ${integer}`);
+logger.println(`Partitioning: ${integer}`);
 partition(A, integer, 0);
 const part = integerPartition(integer);
-logger.print(part);
+logger.println(part);

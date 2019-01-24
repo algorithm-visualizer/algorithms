@@ -59,4 +59,4 @@ for (let i = 0; i <= N; i++) {
   }
 }
 
-logger.print(` Best value we can achieve is ${DP[N][W]}`);
+logger.println(` Best value we can achieve is ${DP[N][W]}`);

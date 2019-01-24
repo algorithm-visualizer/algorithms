@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(15).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
 let writes = 0; // number of writing performed
 let pos; // the index of item in the sorted array
@@ -45,9 +45,9 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   writes++;
 
   if (pos !== cycleStart) {
-    logger.print(`Rewrite ${D[pos]} to index ${pos}; the next value to rewrite is ${item}`);
+    logger.println(`Rewrite ${D[pos]} to index ${pos}; the next value to rewrite is ${item}`);
   } else {
-    logger.print(`Rewrite ${D[pos]} to index ${pos}`);
+    logger.println(`Rewrite ${D[pos]} to index ${pos}`);
   }
   tracer.select(pos).delay().deselect(pos);
   tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
@@ -73,9 +73,9 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
     item = temp;
 
     if (pos !== cycleStart) {
-      logger.print(`Rewrite ${D[pos]} to index ${pos}; the next value to rewrite is ${item}`);
+      logger.println(`Rewrite ${D[pos]} to index ${pos}; the next value to rewrite is ${item}`);
     } else {
-      logger.print(`Rewrite ${D[pos]} to index ${pos}`);
+      logger.println(`Rewrite ${D[pos]} to index ${pos}`);
     }
     tracer.select(pos).delay().deselect(pos);
     tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
@@ -85,4 +85,4 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   }
 }
 
-logger.print(`Number of writes performed is ${writes}`);
+logger.println(`Number of writes performed is ${writes}`);

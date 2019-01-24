@@ -38,10 +38,10 @@ do {
   e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
 let MAX_VALUE = 0x7fffffff;
-logger.print(`finding the shortest path from ${s} to ${e}`);
+logger.println(`finding the shortest path from ${s} to ${e}`);
 const minWeight = BFS(s);
 if (minWeight === MAX_VALUE) {
-  logger.print(`there is no path from ${s} to ${e}`);
+  logger.println(`there is no path from ${s} to ${e}`);
 } else {
-  logger.print(`the shortest path from ${s} to ${e} is ${minWeight}`);
+  logger.println(`the shortest path from ${s} to ${e} is ${minWeight}`);
 }

@@ -32,9 +32,9 @@ const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G).layoutTree(5)
 const logger = new LogTracer(' Log ').delay();
 
 function lcaBT(parent, root, a, b) {
-  logger.print(`Beginning new Iteration of lcaBT () with parent: ${parent}, current root: ${root}`);
+  logger.println(`Beginning new Iteration of lcaBT () with parent: ${parent}, current root: ${root}`);
   if (root === -1) {
-    logger.print('Reached end of path & target node(s) not found');
+    logger.println('Reached end of path & target node(s) not found');
     return null;
   }
 
@@ -56,4 +56,4 @@ function lcaBT(parent, root, a, b) {
 
 const a = 7;
 const b = 2;
-logger.print(`Lowest common ancestor of ${a} & ${b} is: ${lcaBT(null, 5, a, b)}`);
+logger.println(`Lowest common ancestor of ${a} & ${b} is: ${lcaBT(null, 5, a, b)}`);

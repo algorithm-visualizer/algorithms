@@ -25,15 +25,15 @@ function encrypt(plainText) {
     const index = alpha.charCodeAt(0) - 'a'.charCodeAt(0);
     let result = ((keys.a * index) + keys.b).mod(N);
 
-    logger.print(`Index of ${alpha} = ${index}`);
+    logger.println(`Index of ${alpha} = ${index}`);
 
     result += 'a'.charCodeAt(0);
     return String.fromCharCode(result);
   }
 
-  logger.print('Beginning Affine Encryption');
-  logger.print('Encryption formula: <b>((keys.a * indexOfAlphabet) + keys.b) % N</b>');
-  logger.print(`keys.a=${keys.a}, keys.b=${keys.b}, N=${N}`);
+  logger.println('Beginning Affine Encryption');
+  logger.println('Encryption formula: <b>((keys.a * indexOfAlphabet) + keys.b) % N</b>');
+  logger.println(`keys.a=${keys.a}, keys.b=${keys.b}, N=${N}`);
 
   for (const i in plainText) {
     ptTracer.select(i).delay();
@@ -58,21 +58,21 @@ function decrypt(cypherText) {
     }
   })());
 
-  logger.print(`a<sup>-1</sup> = ${aInverse}`);
+  logger.println(`a<sup>-1</sup> = ${aInverse}`);
 
   function decryptAlpha(alpha) {
     const index = alpha.charCodeAt(0) - 'a'.charCodeAt(0);
     let result = (aInverse * (index - keys.b)).mod(N);
 
-    logger.print(`Index of ${alpha} = ${index}`);
+    logger.println(`Index of ${alpha} = ${index}`);
 
     result += 'a'.charCodeAt(0);
     return String.fromCharCode(result);
   }
 
-  logger.print('Beginning Affine Decryption');
-  logger.print('Decryption formula: <b>(a<sup>-1</sup> * (index - keys.b)) % N</b>');
-  logger.print(`keys.b=${keys.b}, N=${N}`);
+  logger.println('Beginning Affine Decryption');
+  logger.println('Decryption formula: <b>(a<sup>-1</sup> * (index - keys.b)) % N</b>');
+  logger.println(`keys.b=${keys.b}, N=${N}`);
 
   for (const i in cypherText) {
     ctTracer.select(i).delay();

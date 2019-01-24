@@ -47,9 +47,9 @@ function Dijkstra(start, end) {
     tracer.leave(minIndex).delay();
   }
   if (S[end] === MAX_VALUE) {
-    logger.print(`there is no path from ${start} to ${end}`);
+    logger.println(`there is no path from ${start} to ${end}`);
   } else {
-    logger.print(`the shortest path from ${start} to ${end} is ${S[end]}`);
+    logger.println(`the shortest path from ${start} to ${end} is ${S[end]}`);
   }
 }
 
@@ -58,5 +58,5 @@ let e; // e = end node
 do {
   e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
-logger.print(`finding the shortest path from ${s} to ${e}`).delay();
+logger.println(`finding the shortest path from ${s} to ${e}`).delay();
 Dijkstra(s, e);

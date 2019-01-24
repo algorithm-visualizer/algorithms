@@ -79,7 +79,7 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
       w = st.pop();
       stTracer.set(st).delay();
 
-      logger.print(w).delay();
+      logger.println(w).delay();
 
       stackMember[w] = false;
       stackMemberTracer.patch(w, false).delay();
@@ -88,8 +88,8 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
     w = st.pop();
     stTracer.set(st).delay();
 
-    logger.print(w).delay();
-    logger.print('------');
+    logger.println(w).delay();
+    logger.println('------');
 
     stackMember[w] = false;
     stackMemberTracer.patch(w, false).delay();

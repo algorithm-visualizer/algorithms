@@ -71,7 +71,7 @@ function buildMaze() {
 
   mySet.addElements(width * height);
 
-  logger.print('initializing grid (all walls are up)');
+  logger.println('initializing grid (all walls are up)');
   // init 'graph'
   // each room has two walls, a down and right wall.
   for (let i = 0; i < width; i++) {
@@ -98,7 +98,7 @@ function buildMaze() {
     }
   }
 
-  logger.print('shuffled the walls for random selection');
+  logger.println('shuffled the walls for random selection');
   // Randomly shuffle the walls
   shuffle(rightWalls);
   shuffle(downWalls);
@@ -120,7 +120,7 @@ function buildMaze() {
         tracer.patch(iYdown * 2 + 1, iX * 3 + 1);
         tracer.patch(iYdown * 2 + 1, iX * 3 + 2);
         if (mySet.find(u) !== mySet.find(v)) {
-          logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
+          logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           logger.delay();
           mySet.setUnion(u, v);
@@ -128,7 +128,7 @@ function buildMaze() {
           // delete wall
           walls[u].down = false;
         } else {
-          logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
+          logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           logger.delay();
         }
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
@@ -150,7 +150,7 @@ function buildMaze() {
         tracer.patch(iY * 2 + 1, iXright * 3 + 1);
         tracer.patch(iY * 2 + 1, iXright * 3 + 2);
         if (mySet.find(u) !== mySet.find(v)) {
-          logger.print(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
+          logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           logger.delay();
           mySet.setUnion(u, v);
@@ -158,7 +158,7 @@ function buildMaze() {
           // delete wall
           walls[u].right = false;
         } else {
-          logger.print(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
+          logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           logger.delay();
         }
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
@@ -169,7 +169,7 @@ function buildMaze() {
     }
   }
 
-  logger.print('deleting the walls');
+  logger.println('deleting the walls');
   // update deleted walls
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
@@ -189,14 +189,14 @@ function buildMaze() {
       tracer.set(G);
     }
   }
-  logger.print('cleaning up the grid!');
+  logger.println('cleaning up the grid!');
   cleanUpGrid(width, height);
 
   // Clear out walls for the start and end locations.
   const randomStart = Math.floor(Math.random() * width);
   const randomEnd = Math.floor(Math.random() * width);
 
-  logger.print('setting the Start (S) & End (E) locations');
+  logger.println('setting the Start (S) & End (E) locations');
 
   // Start Location
   G[0][randomStart * 3 + 1] = ' ';
@@ -211,7 +211,7 @@ function buildMaze() {
   cleanUpStartLocation(randomStart);
   cleanUpEndLocation(randomEnd);
 
-  logger.print('maze is completed!');
+  logger.println('maze is completed!');
 
   // set the data
   tracer.set(G);

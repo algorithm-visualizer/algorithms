@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(10).create();
 tracer.set(D).delay();
 
-logger.print(`Original array = [${D.join(', ')}]`);
+logger.println(`Original array = [${D.join(', ')}]`);
 
 function heapSort(array, size) {
   let i;
@@ -23,7 +23,7 @@ function heapSort(array, size) {
     array[j] = temp;
 
     tracer.patch(0, array[0]).patch(j, array[j]);
-    logger.print(`Swapping elements : ${array[0]} & ${array[j]}`).delay();
+    logger.println(`Swapping elements : ${array[0]} & ${array[j]}`).delay();
     tracer.depatch(0).depatch(j);
     tracer.select(j).delay();
 
@@ -53,7 +53,7 @@ function heapify(array, size, root) {
     array[largest] = temp;
 
     tracer.patch(root, array[root]).patch(largest, array[largest]);
-    logger.print(`Swapping elements : ${array[root]} & ${array[largest]}`).delay();
+    logger.println(`Swapping elements : ${array[root]} & ${array[largest]}`).delay();
     tracer.depatch(root).depatch(largest);
 
     heapify(array, size, largest);
@@ -62,4 +62,4 @@ function heapify(array, size, root) {
 
 heapSort(D, D.length);
 
-logger.print(`Final array = [${D.join(', ')}]`);
+logger.println(`Final array = [${D.join(', ')}]`);

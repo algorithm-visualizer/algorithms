@@ -47,7 +47,7 @@ for (let i = 0; i <= N - M; i++) {
     }
 
     if (f === 0) {
-      logger.print(` Pattern found at index ${i}`);
+      logger.println(` Pattern found at index ${i}`);
     }
     tracer1.deselect(i, i + M);
     tracer2.deselect(0, M - 1);

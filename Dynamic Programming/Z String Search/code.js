@@ -34,44 +34,44 @@ function createZarr(concat) {
       left = right = i;
       while (right < N && concat[right] === concat[right - left]) {
         concatTracer.patch(right).select(right - left);
-        logger.print(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
         concatTracer.depatch(right).deselect(right - left);
         right++;
       }
       if (right < N) {
         concatTracer.patch(right).select(right - left);
-        logger.print(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
         concatTracer.depatch(right).deselect(right - left);
       }
       z[i] = (right - left);
-      logger.print('--------------------------------');
-      logger.print(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
-      logger.print('--------------------------------');
+      logger.println('--------------------------------');
+      logger.println(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
+      logger.println('--------------------------------');
       right--;
     } else if (z[i - left] < (right - i + 1)) {
-      logger.print(`The substring from index ${i - left} will not cross the right end.`);
+      logger.println(`The substring from index ${i - left} will not cross the right end.`);
       concatTracer.patch(right - i + 1).select(i - left).delay();
       z[i] = z[i - left];
       concatTracer.depatch(right - i + 1).deselect(i - left);
     } else {
-      logger.print(`The substring from index ${i - left} will cross the right end.`);
+      logger.println(`The substring from index ${i - left} will cross the right end.`);
       left = i;
       while (right < N && concat[right] === concat[right - left]) {
         concatTracer.patch(right).select(right - left);
-        logger.print(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
         concatTracer.depatch(right).deselect(right - left);
         right++;
       }
       if (right < N) {
         concatTracer.patch(right).select(right - left);
-        logger.print(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
         concatTracer.depatch(right).deselect(right - left);
       }
       z[i] = (right - left);
       right--;
-      logger.print('--------------------------------');
-      logger.print(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
-      logger.print('--------------------------------');
+      logger.println('--------------------------------');
+      logger.println(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
+      logger.println('--------------------------------');
     }
     tracer.deselect(i).set(z);
   }
@@ -82,12 +82,12 @@ concatTracer.set(concat);
 const patLen = pattern.length;
 createZarr(concat);
 tracer.set(z);
-logger.print('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');
-logger.print('===================================');
+logger.println('The Values in Z array equal to the length of the pattern indicates the index at which the pattern is present');
+logger.println('===================================');
 for (let i = 0; i < len; i++) {
   if (z[i] === patLen) {
     const pos = i - (patLen + 1);
-    logger.print(`Pattern Found at index ${pos}`);
+    logger.println(`Pattern Found at index ${pos}`);
   }
 }
-logger.print('===================================');
+logger.println('===================================');

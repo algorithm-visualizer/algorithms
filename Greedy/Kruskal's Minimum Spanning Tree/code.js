@@ -57,7 +57,7 @@ function kruskal() {
     n += 1;
   }
 
-  logger.print(`The sum of all edges is: ${wsum}`);
+  logger.println(`The sum of all edges is: ${wsum}`);
 }
 
 kruskal();

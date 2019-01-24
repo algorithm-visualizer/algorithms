@@ -27,15 +27,15 @@ const util = (u, disc, low, parent) => {
   // disc is the numbering of the vertices in the DFS, starting at 0
   // low[v] is the lowest numbered vertex that can be reached from vertex v along the DFS
   // parent is the node that u came from
-  logger.print('');
-  logger.print(`Visiting node ${u}`);
+  logger.println('');
+  logger.println(`Visiting node ${u}`);
   graphTracer.visit(u).delay();
   graphTracer.leave(u).delay();
 
   // visited [u] = true;
   disc[u] = low[u] = timer++;
 
-  logger.print(`Nodes adjacent to ${u} are: [ ${adj[u]} ]`);
+  logger.println(`Nodes adjacent to ${u} are: [ ${adj[u]} ]`);
   /* adj [u].forEach (function (v) {
     graphTracer.visit (v, u).delay ();
     graphTracer.leave (v, u).delay ();
@@ -48,31 +48,31 @@ const util = (u, disc, low, parent) => {
   adj[u].forEach((v) => {
     if (disc[v] > -1 && v === parent) {
       trace(v);
-      logger.print(`${u}'s neighbor ${v} is u's parent. Not visiting it.`);
+      logger.println(`${u}'s neighbor ${v} is u's parent. Not visiting it.`);
     } else if (disc[v] > -1 && v !== parent) {
       trace(v);
-      logger.print(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);
+      logger.println(`${u}'s neighbor ${v} is not u's parent. Comparing low[u] with disc[v]`);
       if (low[u] > disc[v]) {
-        logger.print(`low[${u}] is greater than disc[${v}]. Setting low[${u}] to disc[${v}]`);
+        logger.println(`low[${u}] is greater than disc[${v}]. Setting low[${u}] to disc[${v}]`);
         low[u] = disc[v];
       }
     }
 
     if (disc[v] === -1) {
       trace(v);
-      logger.print(`${u}'s neighbor ${v} has not been visited yet`);
+      logger.println(`${u}'s neighbor ${v} has not been visited yet`);
 
-      logger.print(`recursively calling util (${v}, [${disc}], [${low}],${u})`);
+      logger.println(`recursively calling util (${v}, [${disc}], [${low}],${u})`);
       util(v, disc, low, u);
 
-      logger.print('--------------------------------------------------------------------');
+      logger.println('--------------------------------------------------------------------');
 
-      logger.print(`Setting low [${u}] to ${Math.min(low[u], low[v])}`);
+      logger.println(`Setting low [${u}] to ${Math.min(low[u], low[v])}`);
       low[u] = Math.min(low[u], low[v]);
 
       if (low[v] === disc[v]) {
-        logger.print(`low [${v}] === disc [${v}], low[${v}]=${low[v]}, disc[${v}]=${disc[v]}`);
-        logger.print(`${u} -> ${v} is a bridge. Adding ${u}->${v}to the set of bridges found`);
+        logger.println(`low [${v}] === disc [${v}], low[${v}]=${low[v]}, disc[${v}]=${disc[v]}`);
+        logger.println(`${u} -> ${v} is a bridge. Adding ${u}->${v}to the set of bridges found`);
         bridges.push([u, v]);
       }
     }
@@ -98,24 +98,24 @@ const util = (u, disc, low, parent) => {
     });
   }());
 
-  logger.print(`Initializing: <b>disc</b>: ${disc} <b>low</b>: ${low}`);
-  logger.print('');
-  logger.print('Beginning efficient Bridge Finding');
-  logger.print('NOTE: call to util () follows pattern: util (nodeToVisit, disc, low, parent). See code for clarity');
-  logger.print('');
+  logger.println(`Initializing: <b>disc</b>: ${disc} <b>low</b>: ${low}`);
+  logger.println('');
+  logger.println('Beginning efficient Bridge Finding');
+  logger.println('NOTE: call to util () follows pattern: util (nodeToVisit, disc, low, parent). See code for clarity');
+  logger.println('');
 
-  logger.print('Starting the main for loop (for each node)');
+  logger.println('Starting the main for loop (for each node)');
   for (let v = 0; v < graph.length; v++) {
     if (disc[v] === -1) {
-      logger.print(`${v} has not been visited yet. Calling util (${v},  [${disc}], [${low}],${v}) from the for loop`);
+      logger.println(`${v} has not been visited yet. Calling util (${v},  [${disc}], [${low}],${v}) from the for loop`);
       util(v, disc, low, v);
-      logger.print(`Returned in for loop after util (${v}, [${disc}], [${low}], [${v}])`);
+      logger.println(`Returned in for loop after util (${v}, [${disc}], [${low}], [${v}])`);
     }
   }
 }(G));
 
-logger.print(`There are ${bridges.length} bridges in the Graph`);
+logger.println(`There are ${bridges.length} bridges in the Graph`);
 for (let i = 0; i < bridges.length; i++) {
-  logger.print(`${bridges[i][0]}-->${bridges[i][1]}`);
+  logger.println(`${bridges[i][0]}-->${bridges[i][1]}`);
 }
-logger.print('NOTE: All bridges are both ways (just like in the Naive Algorithm) because the Graph is undirected. So, edge A->B and B->A, both are bridges');
+logger.println('NOTE: All bridges are both ways (just like in the Naive Algorithm) because the Graph is undirected. So, edge A->B and B->A, both are bridges');

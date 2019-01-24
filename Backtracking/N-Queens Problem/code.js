@@ -22,7 +22,7 @@ const logger = new LogTracer('Progress');
 
 boardTracer.set(board);
 queenTracer.set(queens);
-logger.print(`N Queens: ${N}X${N}matrix, ${N} queens`).delay();
+logger.println(`N Queens: ${N}X${N}matrix, ${N} queens`).delay();
 
 function validState(row, col, currentQueen) {
   for (let q = 0; q < currentQueen; q++) {
@@ -35,10 +35,10 @@ function validState(row, col, currentQueen) {
 }
 
 function nQ(currentQueen, currentCol) {
-  logger.print(`Starting new iteration of nQueens () with currentQueen = ${currentQueen} & currentCol = ${currentCol}`);
-  logger.print('------------------------------------------------------------------');
+  logger.println(`Starting new iteration of nQueens () with currentQueen = ${currentQueen} & currentCol = ${currentCol}`);
+  logger.println('------------------------------------------------------------------');
   if (currentQueen >= N) {
-    logger.print('The recursion has BOTTOMED OUT. All queens have been placed successfully');
+    logger.println('The recursion has BOTTOMED OUT. All queens have been placed successfully');
     return true;
   }
 
@@ -46,7 +46,7 @@ function nQ(currentQueen, currentCol) {
   let row = 0;
   while ((row < N) && (!found)) {
     boardTracer.select(row, currentCol).delay();
-    logger.print(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);
+    logger.println(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);
 
     if (validState(row, currentCol, currentQueen)) {
       queens[currentQueen][0] = row;
@@ -62,7 +62,7 @@ function nQ(currentQueen, currentCol) {
 
     if (!found) {
       boardTracer.deselect(row, currentCol).delay();
-      logger.print(`row ${row} & col ${currentCol} didn't work out. Going down`);
+      logger.println(`row ${row} & col ${currentCol} didn't work out. Going down`);
     }
     row++;
   }
@@ -70,6 +70,6 @@ function nQ(currentQueen, currentCol) {
   return found;
 }
 
-logger.print('Starting execution');
+logger.println('Starting execution');
 nQ(0, 0);
-logger.print('DONE');
+logger.println('DONE');

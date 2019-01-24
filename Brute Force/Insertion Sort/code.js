@@ -6,10 +6,10 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(15).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 for (let i = 1; i < D.length; i++) {
   const key = D[i];
-  logger.print(`insert ${key}`);
+  logger.println(`insert ${key}`);
   tracer.select(i).delay();
   let j;
   for (j = i - 1; (j >= 0) && (D[j] > key); j--) {
@@ -22,4 +22,4 @@ for (let i = 1; i < D.length; i++) {
   tracer.depatch(j + 1);
   tracer.deselect(i);
 }
-logger.print(`sorted array = [${D.join(', ')}]`);
+logger.println(`sorted array = [${D.join(', ')}]`);

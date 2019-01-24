@@ -9,7 +9,7 @@ const D = [
 
 tracer.set(D).delay();
 
-logger.print(`original array = [${D[0].join(', ')}]`);
+logger.println(`original array = [${D[0].join(', ')}]`);
 
 function mergeSort(start, end) {
   if (Math.abs(end - start) <= 1) return;
@@ -19,7 +19,7 @@ function mergeSort(start, end) {
   let width;
   let i;
   for (width = 1; width < end; width *= 2) {
-    /**/logger.print(`merging arrays of width: ${width}`);
+    /**/logger.println(`merging arrays of width: ${width}`);
     for (i = 0; i < end; i += 2 * width) {
       merge(mergeFrom, i, Math.min(i + width, end), Math.min(i + 2 * width, end), mergeTo);
     }
@@ -30,7 +30,7 @@ function mergeSort(start, end) {
     mergeTo = 1 - mergeFrom;
   }
   if (mergeFrom !== 0) {
-    /**/logger.print('final copy to original');
+    /**/logger.println('final copy to original');
     copy(mergeFrom, mergeTo, start, end);
   }
 }
@@ -41,7 +41,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
   let k;
   // in an actual merge implementation, mergeFrom and mergeTo would be arrays
   // here for the ability to trace what is going on better, the arrays are D[mergeFrom] and D[mergeTo]
-  /**/logger.print(`merging segments [${start}..${middle}] and [${middle}..${end}]`);
+  /**/logger.println(`merging segments [${start}..${middle}] and [${middle}..${end}]`);
   /**/tracer.selectRow(mergeFrom, start, end - 1).delay();
   /**/tracer.deselectRow(mergeFrom, start, end - 1);
 
@@ -53,14 +53,14 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
       /**/ tracer.select(mergeFrom, i);
       /**/ }
     /**/if (i < middle && j < end) {
-      /**/ logger.print(`compare index ${i} and ${j}, values: ${D[mergeFrom][i]} and ${D[mergeFrom][j]}`).delay();
+      /**/ logger.println(`compare index ${i} and ${j}, values: ${D[mergeFrom][i]} and ${D[mergeFrom][j]}`).delay();
       /**/ }
 
     if (i < middle && (j >= end || D[mergeFrom][i] <= D[mergeFrom][j])) {
       /**/if (j < end) {
-        /**/ logger.print('writing smaller value to output');
+        /**/ logger.println('writing smaller value to output');
         /**/ } else {
-        /**/ logger.print(`copying index ${i} to output`);
+        /**/ logger.println(`copying index ${i} to output`);
         /**/ }
       /**/tracer.patch(mergeTo, k, D[mergeFrom][i]).delay();
       /**/tracer.depatch(mergeTo, k);
@@ -70,9 +70,9 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
       i += 1;
     } else {
       /**/if (i < middle) {
-        /**/ logger.print('writing smaller value to output');
+        /**/ logger.println('writing smaller value to output');
         /**/ } else {
-        /**/ logger.print(`copying index ${j} to output`);
+        /**/ logger.println(`copying index ${j} to output`);
         /**/ }
       /**/tracer.patch(mergeTo, k, D[mergeFrom][j]).delay();
       /**/tracer.depatch(mergeTo, k);
@@ -98,4 +98,4 @@ function copy(mergeFrom, mergeTo, start, end) {
 }
 
 mergeSort(0, D[0].length);
-logger.print(`sorted array = [${D[0].join(', ')}]`);
+logger.println(`sorted array = [${D[0].join(', ')}]`);

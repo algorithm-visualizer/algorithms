@@ -41,12 +41,12 @@ function FloydWarshall() {
   }
   for (let i = 0; i < G.length; i++) {
     for (let j = 0; j < G.length; j++) {
-      if (S[i][j] === MAX_VALUE) logger.print(`there is no path from ${i} to ${j}`);
-      else logger.print(`the shortest path from ${i} to ${j} is ${S[i][j]}`);
+      if (S[i][j] === MAX_VALUE) logger.println(`there is no path from ${i} to ${j}`);
+      else logger.println(`the shortest path from ${i} to ${j} is ${S[i][j]}`);
     }
   }
 }
 
 let MAX_VALUE = Infinity;
-logger.print('finding the shortest paths from and to all nodes');
+logger.println('finding the shortest paths from and to all nodes');
 FloydWarshall();

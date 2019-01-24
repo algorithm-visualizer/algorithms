@@ -8,13 +8,13 @@ tracer.set(D).delay();
 let sum = D[0] + D[1] + D[2];
 let max = sum;
 tracer.select(0, 2);
-logger.print(`sum = ${sum}`).delay();
+logger.println(`sum = ${sum}`).delay();
 for (let i = 3; i < D.length; i++) {
   sum += D[i] - D[i - 3];
   if (max < sum) max = sum;
   tracer.deselect(i - 3);
   tracer.select(i);
-  logger.print(`sum = ${sum}`).delay();
+  logger.println(`sum = ${sum}`).delay();
 }
 tracer.deselect(D.length - 3, D.length - 1);
-logger.print(`max = ${max}`);
+logger.println(`max = ${max}`);

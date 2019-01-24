@@ -48,8 +48,8 @@ function prim() {
     D[minJ] = 1; // Visit second node and insert it into or tree
     sum += G[minI][minJ];
   }
-  logger.print(`The sum of all edges is: ${sum}`);
+  logger.println(`The sum of all edges is: ${sum}`);
 }
 
-logger.print('nodes that belong to minimum spanning tree are: ');
+logger.println('nodes that belong to minimum spanning tree are: ');
 prim();

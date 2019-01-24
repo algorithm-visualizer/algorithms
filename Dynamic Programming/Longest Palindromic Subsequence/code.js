@@ -28,20 +28,20 @@ function max(a, b) {
   }
   return b;
 }
-logger.print('LPS for any string with length = 1 is 1');
+logger.println('LPS for any string with length = 1 is 1');
 for (i = 2; i <= N; i++) {
-  logger.print('--------------------------------------------------');
-  logger.print(`Considering a sub-string of length ${i}`);
-  logger.print('--------------------------------------------------');
+  logger.println('--------------------------------------------------');
+  logger.println(`Considering a sub-string of length ${i}`);
+  logger.println('--------------------------------------------------');
   for (j = 0; j < N - i + 1; j++) {
     const k = j + i - 1;
     tracer.select(j).delay();
     tracer.patch(k).delay();
 
-    logger.print(`Comparing ${seq[j]} and ${seq[k]}`);
+    logger.println(`Comparing ${seq[j]} and ${seq[k]}`);
 
     if (seq[j] === seq[k] && i === 2) {
-      logger.print(`They are equal and size of the string in the interval${j} to ${k} is 2, so the Longest Palindromic Subsequence in the Given range is 2`);
+      logger.println(`They are equal and size of the string in the interval${j} to ${k} is 2, so the Longest Palindromic Subsequence in the Given range is 2`);
 
       matrix.patch(j, k).delay();
 
@@ -50,7 +50,7 @@ for (i = 2; i <= N; i++) {
 
       matrix.depatch(j, k).delay();
     } else if (seq[j] === seq[k]) {
-      logger.print(`They are equal, so the Longest Palindromic Subsequence in the Given range is 2 + the Longest Increasing Subsequence between the indices ${j + 1} to ${k - 1}`);
+      logger.println(`They are equal, so the Longest Palindromic Subsequence in the Given range is 2 + the Longest Increasing Subsequence between the indices ${j + 1} to ${k - 1}`);
 
       matrix.patch(j, k).delay();
       matrix.select(j + 1, k - 1).delay();
@@ -61,7 +61,7 @@ for (i = 2; i <= N; i++) {
       matrix.depatch(j, k).delay();
       matrix.deselect(j + 1, k - 1).delay();
     } else {
-      logger.print(`They are NOT equal, so the Longest Palindromic Subsequence in the Given range is the maximum Longest Increasing Subsequence between the indices ${j + 1} to ${k} and ${j} to ${k - 1}`);
+      logger.println(`They are NOT equal, so the Longest Palindromic Subsequence in the Given range is the maximum Longest Increasing Subsequence between the indices ${j + 1} to ${k} and ${j} to ${k - 1}`);
       matrix.patch(j, k).delay();
       matrix.select(j + 1, k).delay();
       matrix.select(j, k - 1).delay();
@@ -73,9 +73,9 @@ for (i = 2; i <= N; i++) {
       matrix.deselect(j + 1, k).delay();
       matrix.deselect(j, k - 1).delay();
     }
-    logger.print('--------------------------------------------------');
+    logger.println('--------------------------------------------------');
     tracer.deselect(j).delay();
     tracer.depatch(k).delay();
   }
 }
-logger.print(`Longest Increasing Subsequence of the given string = L[0][${N - 1}]=${L[0][N - 1]}`);
+logger.println(`Longest Increasing Subsequence of the given string = L[0][${N - 1}]=${L[0][N - 1]}`);

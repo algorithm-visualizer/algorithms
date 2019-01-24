@@ -22,7 +22,7 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
       treeNode[propName] = element;
       T[element] = {};
       graphTracer.addNode(element).addEdge(root, element).select(element, root).delay().deselect(element, root);
-      logger.print(`${element} Inserted`);
+      logger.println(`${element} Inserted`);
     } else {
       bstInsert(treeNode[propName], element, root);
     }
@@ -33,7 +33,7 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
 const Root = elements[0]; // take first element as root
 T[Root] = {};
 graphTracer.addNode(Root).layoutTree(Root, true);
-logger.print(`${Root} Inserted as root of tree `);
+logger.println(`${Root} Inserted as root of tree `);
 
 for (let i = 1; i < elements.length; i++) {
   elemTracer.select(i).delay();

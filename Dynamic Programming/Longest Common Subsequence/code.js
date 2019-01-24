@@ -69,5 +69,5 @@ while (i >= 1 && j >= 1) {
   }
 }
 
-logger.print(`Longest Common Subsequence Length is ${A[m][n]}`);
-logger.print(`Longest Common Subsequence is ${finalString}`);
+logger.println(`Longest Common Subsequence Length is ${A[m][n]}`);
+logger.println(`Longest Common Subsequence is ${finalString}`);

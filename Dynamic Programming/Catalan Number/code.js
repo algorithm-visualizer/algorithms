@@ -28,5 +28,5 @@ for (let i = 2; i <= N; i++) {
   }
 }
 
-logger.print(` The ${N}th Catalan Number is ${A[N]}`);
+logger.println(` The ${N}th Catalan Number is ${A[N]}`);
 tracer.select(N).delay();

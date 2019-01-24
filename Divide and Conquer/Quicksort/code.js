@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(15).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 
 function partition(D, low, high) {
   let i;
@@ -47,4 +47,4 @@ function quicksort(D) {
 }
 
 quicksort(D);
-logger.print(`sorted array = [${D.join(', ')}]`);
+logger.println(`sorted array = [${D.join(', ')}]`);

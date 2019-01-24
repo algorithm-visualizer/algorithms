@@ -52,4 +52,4 @@ for (i = 0; i <= m; i++) {
   }
 }
 
-logger.print(`Shortest Common Supersequence is ${A[m][n]}`);
+logger.println(`Shortest Common Supersequence is ${A[m][n]}`);

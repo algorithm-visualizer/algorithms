@@ -18,21 +18,21 @@ function BELLMAN_FORD(src, dest) {
   weights[src] = 0;
   tracer.updateNode(src, 0);
 
-  logger.print(`Initializing weights to: [${weights}]`);
-  logger.print('');
+  logger.println(`Initializing weights to: [${weights}]`);
+  logger.println('');
 
   // begin BF algorithm execution
   let k = G.length;
   while (k--) {
-    logger.print(`Iteration: ${G.length - k}`);
-    logger.print('------------------------------------------------------------------');
+    logger.println(`Iteration: ${G.length - k}`);
+    logger.println('------------------------------------------------------------------');
 
     for (i = 0; i < G.length; i++) {
       for (j = 0; j < G.length; j++) {
         if (G[i][j]) { // proceed to relax Edges only if a particular weight !== 0 (0 represents no edge)
           if (weights[j] > (weights[i] + G[i][j])) {
             weights[j] = weights[i] + G[i][j];
-            logger.print(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
+            logger.println(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
           }
           tracer.visit(j, i, weights[j]).delay();
           tracer.leave(j, i).delay();
@@ -40,24 +40,24 @@ function BELLMAN_FORD(src, dest) {
       }
     }
 
-    logger.print(`updated weights: [${weights.join(', ')}]`);
-    logger.print('');
+    logger.println(`updated weights: [${weights.join(', ')}]`);
+    logger.println('');
   }
 
   // check for cycle
-  logger.print('checking for cycle');
+  logger.println('checking for cycle');
   for (i = 0; i < G.length; i++) {
     for (j = 0; j < G.length; j++) {
       if (G[i][j]) {
         if (weights[j] > (weights[i] + G[i][j])) {
-          logger.print(`A cycle was detected: weights[${j}] > weights[${i}] + ${G[i][j]}`);
+          logger.println(`A cycle was detected: weights[${j}] > weights[${i}] + ${G[i][j]}`);
           return (MAX_VALUE);
         }
       }
     }
   }
 
-  logger.print(`No cycles detected. Final weights for the source ${src} are: [${weights}]`);
+  logger.println(`No cycles detected. Final weights for the source ${src} are: [${weights}]`);
 
   return weights[dest];
 }
@@ -77,12 +77,12 @@ do {
 }
 while (src === dest);
 
-logger.print(`finding the shortest path from ${src} to ${dest}`);
+logger.println(`finding the shortest path from ${src} to ${dest}`);
 
 minWeight = BELLMAN_FORD(src, dest);
 
 if (minWeight === MAX_VALUE) {
-  logger.print(`there is no path from ${src} to ${dest}`);
+  logger.println(`there is no path from ${src} to ${dest}`);
 } else {
-  logger.print(`the shortest path from ${src} to ${dest} is ${minWeight}`);
+  logger.println(`the shortest path from ${src} to ${dest} is ${minWeight}`);
 }

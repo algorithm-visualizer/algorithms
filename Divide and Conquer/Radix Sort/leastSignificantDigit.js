@@ -10,7 +10,7 @@ const D = [
 ];
 tracer.set(D).delay();
 
-logger.print(`original array = [${D[0].join(', ')}]`);
+logger.println(`original array = [${D[0].join(', ')}]`);
 
 function pow(base, expo) {
   let ans = 1;
@@ -25,7 +25,7 @@ function digit(i, exp) {
 }
 
 for (let exp = 0; exp < 3; exp++) {
-  logger.print(`Digit: ${exp}`);
+  logger.println(`Digit: ${exp}`);
   let i;
   for (i = 0; i < D[0].length; i++) {
     const d = digit(i, exp);
@@ -66,4 +66,4 @@ for (let exp = 0; exp < 3; exp++) {
     tracer.depatch(2, i);
   }
 }
-logger.print(`sorted array = [${D[0].join(', ')}]`);
+logger.println(`sorted array = [${D[0].join(', ')}]`);

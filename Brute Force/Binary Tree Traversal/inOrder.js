@@ -36,23 +36,23 @@ let index = 0;
 
 function inOrder(root, parent) {
   if (root === -1) {
-    logger.print('No more nodes. Backtracking.').delay();
+    logger.println('No more nodes. Backtracking.').delay();
     return;
   }
 
-  logger.print(`Reached ${root}`);
+  logger.println(`Reached ${root}`);
   treeTracer.visit(root, parent).delay();
 
-  logger.print(` Going left from ${root}`).delay();
+  logger.println(` Going left from ${root}`).delay();
   inOrder(T[root][0], root);
 
-  logger.print(`Printing ${root}`);
+  logger.println(`Printing ${root}`);
   treeTracer.leave(root);
   arrayTracer.patch(index++, root).delay();
 
-  logger.print(` Going right from ${root}`).delay();
+  logger.println(` Going right from ${root}`).delay();
   inOrder(T[root][1], root);
 }
 
 inOrder(5); // node with key 5 is the root
-logger.print('Finished');
+logger.println('Finished');

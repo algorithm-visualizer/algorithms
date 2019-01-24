@@ -33,4 +33,4 @@ function DLSCount(limit, node, parent) { // node = current node, parent = previo
   }
   return child;
 }
-logger.print(`Number of descendant is ${DLSCount(2, 0)}`);
+logger.println(`Number of descendant is ${DLSCount(2, 0)}`);

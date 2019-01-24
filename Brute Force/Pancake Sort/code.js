@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(10).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
 function flip(start) {
   tracer.select(start, N - 1).delay();
@@ -24,14 +24,14 @@ function flip(start) {
   tracer.deselect(start, N - 1);
 }
 for (let i = 0; i < N - 1; i++) {
-  logger.print(`round ${i + 1}`);
+  logger.println(`round ${i + 1}`);
   const currArr = D.slice(i, N);
   const currMax = currArr.reduce((prev, curr, idx) => ((curr > prev.val) ? { idx, val: curr } : prev), { idx: 0, val: currArr[0] });
   if (currMax.idx !== 0) { // if currMax.idx === 0 that means max element already at the bottom, no flip required
-    logger.print(`flip at ${currMax.idx + i} (step 1)`);
+    logger.println(`flip at ${currMax.idx + i} (step 1)`);
     flip(currMax.idx + i, N);
-    logger.print(`flip at ${i} (step 2)`);
+    logger.println(`flip at ${i} (step 2)`);
     flip(i, N);
   }
 }
-logger.print(`sorted array = [${D.join(', ')}]`);
+logger.println(`sorted array = [${D.join(', ')}]`);

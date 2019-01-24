@@ -18,7 +18,7 @@ const logger = new LogTracer().delay();
 for (let i = 1; i < N; i++) {
   // next is minimum of m2, m3 and m5
   const next = (M[0] <= M[1]) ? (M[0] <= M[2]) ? M[0] : M[2] : (M[1] <= M[2]) ? M[1] : M[2];
-  logger.print(` Minimum of ${M[0]}, ${M[1]}, ${M[2]} : ${next}`);
+  logger.println(` Minimum of ${M[0]}, ${M[1]}, ${M[2]} : ${next}`);
   A[i] = next;
 
   tracer.patch(i, A[i]).delay();

@@ -16,16 +16,16 @@ for (let i = 1; i < str2.length + 1; i++) {
 
 tracer.set(table).delay();
 
-logger.print('Initialized DP Table');
-logger.print(`Y-Axis (Top to Bottom): ${str1}`);
-logger.print(`X-Axis (Left to Right): ${str2}`);
+logger.println('Initialized DP Table');
+logger.println(`Y-Axis (Top to Bottom): ${str1}`);
+logger.println(`X-Axis (Left to Right): ${str2}`);
 
 const dist = (function editDistance(str1, str2, table) {
   // display grid with words
-  logger.print(`*** ${str2.split('').join(' ')}`);
+  logger.println(`*** ${str2.split('').join(' ')}`);
   table.forEach((item, index) => {
     const character = (index === 0) ? '*' : str1[index - 1];
-    logger.print(`${character}\t${item}`);
+    logger.println(`${character}\t${item}`);
   });
 
   // begin ED execution
@@ -55,4 +55,4 @@ const dist = (function editDistance(str1, str2, table) {
   return table[str1.length][str2.length];
 }(str1, str2, table));
 
-logger.print(`Minimum Edit Distance: ${dist}`);
+logger.println(`Minimum Edit Distance: ${dist}`);

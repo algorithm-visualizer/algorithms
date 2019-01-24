@@ -23,7 +23,7 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
 }
 
 for (let i = 0; i < G.length; i++) { // start from every node
-  logger.print(`start from ${i}`);
+  logger.println(`start from ${i}`);
   D = [];
   for (let j = 0; j < G.length; j++) D.push(false);
   DFS(i, undefined, 0);

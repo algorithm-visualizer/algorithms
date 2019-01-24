@@ -41,14 +41,14 @@ function BFSCheckBipartiteness(s) {
           Q.push(i);
           tracer.visit(i, node).delay();
         } else if (Colors[i] === Colors[node]) {
-          logger.print('Graph is not biparted');
+          logger.println('Graph is not biparted');
           return false;
         }
       }
     }
   }
 
-  logger.print('Graph is biparted');
+  logger.println('Graph is biparted');
   return true;
 }
 

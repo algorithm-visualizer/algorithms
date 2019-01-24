@@ -50,7 +50,7 @@ function knightTour(x, y, moveNum) {
     if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < N && board[nextX][nextY] === -1) {
       board[nextX][nextY] = moveNum;
 
-      logTracer.print(`Move to ${nextX},${nextY}`);
+      logTracer.println(`Move to ${nextX},${nextY}`);
       boardTracer.patch(nextX, nextY, moveNum).delay();
       boardTracer.depatch(nextX, nextY);
       boardTracer.select(nextX, nextY);
@@ -59,13 +59,13 @@ function knightTour(x, y, moveNum) {
       if (knightTour(nextX, nextY, nextMoveNum) === true) {
         return true;
       }
-      logTracer.print(`No place to move from ${nextX},${nextY}: Backtrack`);
+      logTracer.println(`No place to move from ${nextX},${nextY}: Backtrack`);
       board[nextX][nextY] = -1; // backtrack
       boardTracer.patch(nextX, nextY, -1).delay();
       boardTracer.depatch(nextX, nextY);
       boardTracer.deselect(nextX, nextY);
     } else {
-      logTracer.print(`${nextX},${nextY} is not a valid move`);
+      logTracer.println(`${nextX},${nextY} is not a valid move`);
     }
   }
   return false;
@@ -84,7 +84,7 @@ posTracer.depatch(0);
 posTracer.depatch(1);
 
 if (knightTour(0, 0, 1) === false) {
-  logTracer.print('Solution does not exist');
+  logTracer.println('Solution does not exist');
 } else {
-  logTracer.print('Solution found');
+  logTracer.println('Solution found');
 }

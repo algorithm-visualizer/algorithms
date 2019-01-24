@@ -23,7 +23,7 @@ function FreivaldsAlgorithm() {
   const n = A.length;
 
   while (k--) {
-    logger.print(`Iterations remained: #${k}`);
+    logger.println(`Iterations remained: #${k}`);
 
     // Generate random vector
     const r = [];
@@ -63,12 +63,12 @@ function FreivaldsAlgorithm() {
 
     for (i = 0; i < n; i++) {
       if (P[i] !== 0) {
-        logger.print(`P[${i}] !== 0 (${P[i]}), exit`);
+        logger.println(`P[${i}] !== 0 (${P[i]}), exit`);
         return false;
       }
     }
 
-    logger.print('Result vector is identity, continue...');
+    logger.println('Result vector is identity, continue...');
   }
 
   return true;

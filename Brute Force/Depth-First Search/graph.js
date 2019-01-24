@@ -49,7 +49,7 @@ const visited = DFSExplore(G, 0);
 let check = true;
 for (let i = 0; i < visited.length; i++) check &= visited[i];
 if (check) {
-  logger.print('The Graph is CONNECTED');
+  logger.println('The Graph is CONNECTED');
 } else {
-  logger.print('The Graph is NOT CONNECTED');
+  logger.println('The Graph is NOT CONNECTED');
 }

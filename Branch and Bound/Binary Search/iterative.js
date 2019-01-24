@@ -17,29 +17,29 @@ function BinarySearch(array, element) { // array = sorted array, element = eleme
 
     tracer.select(minIndex, maxIndex).delay();
     tracer.patch(middleIndex);
-    logger.print(`Searching at index: ${middleIndex}`).delay();
+    logger.println(`Searching at index: ${middleIndex}`).delay();
     tracer.depatch(middleIndex);
     tracer.deselect(minIndex, maxIndex);
 
     if (testElement < element) {
-      logger.print('Going right.');
+      logger.println('Going right.');
       minIndex = middleIndex + 1;
     } else if (testElement > element) {
-      logger.print('Going left.');
+      logger.println('Going left.');
       maxIndex = middleIndex - 1;
     } else {
-      logger.print(`${element} is found at position ${middleIndex}!`);
+      logger.println(`${element} is found at position ${middleIndex}!`);
       tracer.select(middleIndex);
 
       return middleIndex;
     }
   }
 
-  logger.print(`${element} is not found!`);
+  logger.println(`${element} is not found!`);
   return -1;
 }
 
 const element = D[new Randomize.Integer(0, D.length - 1).create()];
 
-logger.print(`Using iterative binary search to find ${element}`);
+logger.println(`Using iterative binary search to find ${element}`);
 BinarySearch(D, element);

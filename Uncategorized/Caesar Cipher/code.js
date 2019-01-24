@@ -30,7 +30,7 @@ function getNextChar(currChar, direction) {
   const nextPos = direction === 'up' ? getPosUp(pos) : getPosDown(pos);
   const nextChar = alphabet.charAt(nextPos);
 
-  logger.print(`${currChar} -> ${nextChar}`);
+  logger.println(`${currChar} -> ${nextChar}`);
   return nextChar;
 }
 
@@ -44,7 +44,7 @@ function cipher(str, rotation, direction, cipherTracer) {
     if (typeof alphabetMap[currChar] === 'number') { // don't encrpt/decrypt characters not in  alphabetMap
       let r = rotation;
 
-      logger.print(`Rotating ${currChar} ${direction} ${rotation} times`);
+      logger.println(`Rotating ${currChar} ${direction} ${rotation} times`);
       cipherTracer.select(i).delay();
 
       // perform given amount of rotations in the given direction
@@ -53,28 +53,28 @@ function cipher(str, rotation, direction, cipherTracer) {
         cipherTracer.patch(i, currChar).delay();
       }
     } else {
-      logger.print('Ignore this character');
+      logger.println('Ignore this character');
     }
     str = str.substring(0, i) + currChar + str.substring(i + 1);
-    logger.print(`Current result: ${str}`);
+    logger.println(`Current result: ${str}`);
   }
 
   return str;
 }
 
 function encrypt(str, rotation) {
-  logger.print(`Encrypting: ${str}`);
+  logger.println(`Encrypting: ${str}`);
   return cipher(str, rotation, 'up', encryptTracer);
 }
 
 function decrypt(str, rotation) {
-  logger.print(`Decrypting: ${str}`);
+  logger.println(`Decrypting: ${str}`);
   return cipher(str, rotation, 'down', decryptTracer);
 }
 
 const encrypted = encrypt(string, rotation);
-logger.print(`Encrypted result: ${encrypted}`);
+logger.println(`Encrypted result: ${encrypted}`);
 
 decryptTracer.set(encrypted);
 const decrypted = decrypt(encrypted, rotation);
-logger.print(`Decrypted result: ${decrypted}`);
+logger.println(`Decrypted result: ${decrypted}`);

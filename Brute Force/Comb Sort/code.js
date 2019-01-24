@@ -6,7 +6,7 @@ const logger = new LogTracer();
 const D = new Randomize.Array1D(15).create();
 tracer.set(D).delay();
 
-logger.print(`original array = [${D.join(', ')}]`);
+logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
 let swapped;
 let gap = N; // initialize gap size
@@ -26,7 +26,7 @@ do {
     tracer.select(i).select(i + gap).delay();
 
     if (D[i] > D[i + gap]) {
-      logger.print(`swap ${D[i]} and ${D[i + gap]}`); // log swap event
+      logger.println(`swap ${D[i]} and ${D[i + gap]}`); // log swap event
 
       const temp = D[i];
       D[i] = D[i + gap];

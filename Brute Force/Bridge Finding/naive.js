@@ -29,7 +29,7 @@ function DFSExplore(graph, source) {
 
     if (!visited[node]) {
       visited[node] = true;
-      // logger.print (node);
+      // logger.println (node);
 
       /*
       if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).delay (); console.log ('tracer ' + prev + ', ' + node); }
@@ -55,7 +55,7 @@ function findBridges(graph) {
   for (let i = 0; i < graph.length; i++) {
     for (let j = 0; j < graph.length; j++) {
       if (graph[i][j]) { // check if an edge exists
-        logger.print(`Deleting edge ${i}->${j} and calling DFSExplore ()`);
+        logger.println(`Deleting edge ${i}->${j} and calling DFSExplore ()`);
         tracer.visit(j, i).delay();
         tracer.leave(j, i).delay();
 
@@ -65,9 +65,9 @@ function findBridges(graph) {
         visited = DFSExplore(tempGraph, 0);
 
         if (Object.keys(visited).length === graph.length) {
-          logger.print('Graph is CONNECTED. Edge is NOT a bridge');
+          logger.println('Graph is CONNECTED. Edge is NOT a bridge');
         } else {
-          logger.print('Graph is DISCONNECTED. Edge IS a bridge');
+          logger.println('Graph is DISCONNECTED. Edge IS a bridge');
           bridges.push([i, j]);
         }
       }
@@ -79,8 +79,8 @@ function findBridges(graph) {
 
 const bridges = findBridges(G);
 
-logger.print('The bridges are: ');
+logger.println('The bridges are: ');
 for (const i in bridges) {
-  logger.print(`${bridges[i][0]} to ${bridges[i][1]}`);
+  logger.println(`${bridges[i][0]} to ${bridges[i][1]}`);
 }
-logger.print('NOTE: A bridge is both ways, i.e., from A to B and from B to A, because this is an Undirected Graph');
+logger.println('NOTE: A bridge is both ways, i.e., from A to B and from B to A, because this is an Undirected Graph');

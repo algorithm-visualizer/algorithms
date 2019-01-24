@@ -43,4 +43,4 @@ for (let i = 0; i < N; i++) {
     }
   }
 }
-logger.print(`max = ${DP[N - 1][M - 1]}`);
+logger.println(`max = ${DP[N - 1][M - 1]}`);

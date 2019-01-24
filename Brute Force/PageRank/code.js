@@ -44,7 +44,7 @@ function showOutgoingEdges(i) {
 
 // PRECOMPUTATIONS
 
-logger.print('Calculate Outgoing Edge Count for each Node');
+logger.println('Calculate Outgoing Edge Count for each Node');
 (function calculateOEC() {
   G.forEach((relations, i) => {
     outgoingEdgeCounts[i] = arraySum(relations);
@@ -55,7 +55,7 @@ logger.print('Calculate Outgoing Edge Count for each Node');
   });
 }());
 
-logger.print('determine incoming nodes for each node');
+logger.println('determine incoming nodes for each node');
 (function determineIN() {
   for (let i = 0; i < G.length; i++) {
     for (let j = 0; j < G.length; j++) {
@@ -73,7 +73,7 @@ logger.print('determine incoming nodes for each node');
     }
   }
 
-  // logger.print ('All -1s will be removed from incoming node records, they are irrelevant');
+  // logger.println ('All -1s will be removed from incoming node records, they are irrelevant');
   incomingNodes.forEach((arr) => {
     arr.splice(arr.indexOf(-1));
   });
@@ -83,12 +83,12 @@ function updateRank(nodeIndex) {
   let inNodeSummation = 0;
   let result;
 
-  logger.print(`Updating rank of ${nodeIndex}`);
-  logger.print(`The incoming Nodes of ${nodeIndex} are being highlighted`);
+  logger.println(`Updating rank of ${nodeIndex}`);
+  logger.println(`The incoming Nodes of ${nodeIndex} are being highlighted`);
 
   incomingNodes[nodeIndex].forEach((incoming, i) => {
     inTracer.select(nodeIndex, i).delay();
-    logger.print(`Outgoing edge count of ${incoming} is ${outgoingEdgeCounts[incoming]}`);
+    logger.println(`Outgoing edge count of ${incoming} is ${outgoingEdgeCounts[incoming]}`);
     oecTracer.select(incoming).delay();
 
     inNodeSummation += (ranks[incoming] / outgoingEdgeCounts[incoming]);
@@ -96,10 +96,10 @@ function updateRank(nodeIndex) {
     oecTracer.deselect(incoming).delay();
     inTracer.deselect(nodeIndex, i).delay();
   });
-  logger.print(`In-Node summation of ${nodeIndex} = ${inNodeSummation}`);
+  logger.println(`In-Node summation of ${nodeIndex} = ${inNodeSummation}`);
 
   result = ((1 - damping) / G.length) + (damping * inNodeSummation); // notice the subtle difference between equations of Basic PR & PR version 2 (divide by N)
-  logger.print(`Therefore, using Equation, new rank of ${nodeIndex} = ${result}`);
+  logger.println(`Therefore, using Equation, new rank of ${nodeIndex} = ${result}`);
   return result;
 }
 
@@ -107,14 +107,14 @@ let damping = 0.85;
 let iterations = 7;
 const initialRank = 1.0;
 
-logger.print(`Initialized all Page ranks to ${initialRank}`);
+logger.println(`Initialized all Page ranks to ${initialRank}`);
 ranks = filledArray(G.length, initialRank);
 
 rankTracer.set(ranks);
-logger.print('Begin execution of PageRank Version #1');
-logger.print('Equation used: PR (X) = (1 - D) + D (In-Node-Summation i->X (PR (I) / Out (i)))');
-logger.print('D = Damping Factor, PR (X) = Page rank of Node X, i = the ith In-Node of X, Out (i) = outgoing Edge Count of i');
-logger.print('');
+logger.println('Begin execution of PageRank Version #1');
+logger.println('Equation used: PR (X) = (1 - D) + D (In-Node-Summation i->X (PR (I) / Out (i)))');
+logger.println('D = Damping Factor, PR (X) = Page rank of Node X, i = the ith In-Node of X, Out (i) = outgoing Edge Count of i');
+logger.println('');
 
 while (iterations--) {
   for (let node = 0; node < ranks.length; node++) {
@@ -124,8 +124,8 @@ while (iterations--) {
   }
 }
 
-logger.print('Page Ranks have been converged to.');
+logger.println('Page Ranks have been converged to.');
 ranks.forEach((rank, node) => {
-  logger.print(`Rank of Node #${node} = ${rank}`);
+  logger.println(`Rank of Node #${node} = ${rank}`);
 });
-logger.print('Done');
+logger.println('Done');

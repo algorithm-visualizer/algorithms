@@ -49,15 +49,15 @@ const B = init(BRank);
 let a;
 
 while ((a = extractUnstable(A))) {
-  logTracer.print(`Selecting ${a.key}`).delay();
+  logTracer.println(`Selecting ${a.key}`).delay();
 
   const bKey = a.rankKeys.shift();
   const b = B[bKey];
 
-  logTracer.print(`--> Choicing ${b.key}`).delay();
+  logTracer.println(`--> Choicing ${b.key}`).delay();
 
   if (b.stable === false) {
-    logTracer.print(`--> ${b.key} is not stable, stabilizing with ${a.key}`).delay();
+    logTracer.println(`--> ${b.key} is not stable, stabilizing with ${a.key}`).delay();
 
     a.stable = b;
     b.stable = a;
@@ -68,7 +68,7 @@ while ((a = extractUnstable(A))) {
     const rankAinB = b.rankKeys.indexOf(a.key);
     const rankPrevAinB = b.rankKeys.indexOf(b.stable.key);
     if (rankAinB < rankPrevAinB) {
-      logTracer.print(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`).delay();
+      logTracer.println(`--> ${bKey} is more stable with ${a.key} rather than ${b.stable.key} - stabilizing again`).delay();
 
       A[b.stable.key].stable = false;
       tracerA.deselect(_aKeys.indexOf(b.stable.key)).delay();

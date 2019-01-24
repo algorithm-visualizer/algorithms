@@ -36,12 +36,12 @@ do {
 } while (s === e);
 const MAX_VALUE = Infinity;
 let minWeight = MAX_VALUE;
-logger.print(`finding the shortest path from ${s} to ${e}`);
+logger.println(`finding the shortest path from ${s} to ${e}`);
 let D = []; // D[i] indicates whether the i-th node is discovered or not
 for (let i = 0; i < G.length; i++) D.push(false);
 DFS(s, undefined, 0);
 if (minWeight === MAX_VALUE) {
-  logger.print(`there is no path from ${s} to ${e}`);
+  logger.println(`there is no path from ${s} to ${e}`);
 } else {
-  logger.print(`the shortest path from ${s} to ${e} is ${minWeight}`);
+  logger.println(`the shortest path from ${s} to ${e} is ${minWeight}`);
 }
