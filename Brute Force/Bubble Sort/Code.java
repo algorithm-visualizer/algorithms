@@ -4,7 +4,7 @@ import org.algorithm_visualizer.Randomize;
 
 import java.util.Arrays;
 
-public class Code {
+public class Main {
 
     private static ChartTracer chartTracer = new ChartTracer();
 
@@ -28,7 +28,7 @@ public class Code {
                 chartTracer.select(j).delay();
                 chartTracer.select(j + 1).delay();
                 if (array[j] > array[j + 1]) {
-                    logTracer.printf("swap %s and %s \t",array[j],array[j + 1]);
+                    logTracer.printf("swap %s and %s \n",array[j],array[j + 1]);
                     swap(j, j + 1, array);
                     flag = false;
                 }
