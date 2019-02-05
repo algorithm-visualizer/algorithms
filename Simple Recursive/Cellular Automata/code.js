@@ -1,4 +1,4 @@
-import { Array2DTracer } from 'algorithm-visualizer';
+const { Array2DTracer } = require('algorithm-visualizer');
 
 const gridSize = 10;
 const generations = 4;

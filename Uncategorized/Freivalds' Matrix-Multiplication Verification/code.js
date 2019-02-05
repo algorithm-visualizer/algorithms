@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
 
 const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];

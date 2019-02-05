@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
+const { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize } = require('algorithm-visualizer');
 
 function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);

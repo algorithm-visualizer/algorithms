@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
 
 const plainText = 'secret';
 const ptTracer = new Array1DTracer('Encryption');

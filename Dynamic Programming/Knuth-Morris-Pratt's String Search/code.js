@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
 
 function randString(length) {
   const result = Math.random().toString(36);

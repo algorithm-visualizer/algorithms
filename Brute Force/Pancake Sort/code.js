@@ -1,4 +1,4 @@
-import { Array1DTracer, ChartTracer, LogTracer, Randomize } from 'algorithm-visualizer';
+const { Array1DTracer, ChartTracer, LogTracer, Randomize } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);

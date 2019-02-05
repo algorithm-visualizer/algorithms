@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
 
 let word = 'virgo';
 const suffixArray = (function skeleton(word) {

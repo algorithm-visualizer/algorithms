@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
 
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;

@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
 
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];

@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
 
 /*
 For N>3 the time taken by this algorithm is sufficiently high

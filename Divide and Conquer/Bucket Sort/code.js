@@ -1,4 +1,4 @@
-import { Array2DTracer, Randomize } from 'algorithm-visualizer';
+const { Array2DTracer, Randomize } = require('algorithm-visualizer');
 
 const maxValue = 100;
 const arraySize = 10;

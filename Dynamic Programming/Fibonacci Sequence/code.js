@@ -1,4 +1,4 @@
-import { Array1DTracer } from 'algorithm-visualizer';
+const { Array1DTracer } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Sequence');
 const index = 15;

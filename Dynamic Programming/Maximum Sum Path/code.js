@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
+const { Array2DTracer, LogTracer, Randomize } = require('algorithm-visualizer');
 
 const D = new Randomize.Array2D(5, 5, new Randomize.Integer(1, 5)).create();
 const dataViewer = new Array2DTracer().set(D);

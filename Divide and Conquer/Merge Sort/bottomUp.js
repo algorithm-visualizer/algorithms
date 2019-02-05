@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer, Randomize } from 'algorithm-visualizer';
+const { Array2DTracer, LogTracer, Randomize } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();

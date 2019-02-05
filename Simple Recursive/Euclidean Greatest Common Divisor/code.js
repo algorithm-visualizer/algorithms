@@ -1,4 +1,4 @@
-import { Array1DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Euclidean Algorithm');
 const a = [];

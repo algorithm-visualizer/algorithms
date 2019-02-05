@@ -1,4 +1,4 @@
-import { Array1DTracer, Array2DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Input Text');
 const matrix = new Array2DTracer('Matrix');

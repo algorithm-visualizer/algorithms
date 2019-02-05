@@ -1,4 +1,4 @@
-import { LogTracer } from 'algorithm-visualizer';
+const { LogTracer } = require('algorithm-visualizer');
 
 const logger = new LogTracer().delay();
 

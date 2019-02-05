@@ -1,4 +1,4 @@
-import { Array1DTracer } from 'algorithm-visualizer';
+const { Array1DTracer } = require('algorithm-visualizer');
 
 const jobId = ['a', 'b', 'c', 'd', 'e'];
 const deadline = [2, 1, 2, 1, 3];

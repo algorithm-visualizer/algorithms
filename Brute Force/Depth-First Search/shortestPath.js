@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer, Randomize } from 'algorithm-visualizer';
+const { GraphTracer, LogTracer, Randomize } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();

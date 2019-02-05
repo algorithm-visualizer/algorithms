@@ -1,4 +1,4 @@
-import { Array1DTracer, GraphTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();

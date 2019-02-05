@@ -1,4 +1,4 @@
-import { Array2DTracer, LogTracer } from 'algorithm-visualizer';
+const { Array2DTracer, LogTracer } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer('Distance Table');
 const logger = new LogTracer();

@@ -1,4 +1,4 @@
-import { GraphTracer, LogTracer } from 'algorithm-visualizer';
+const { GraphTracer, LogTracer } = require('algorithm-visualizer');
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

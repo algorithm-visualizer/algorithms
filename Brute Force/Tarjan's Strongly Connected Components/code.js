@@ -1,4 +1,4 @@
-import { Array1DTracer, GraphTracer, LogTracer } from 'algorithm-visualizer';
+const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
 
 const G = [
   [0, 0, 1, 1, 0, 0],
