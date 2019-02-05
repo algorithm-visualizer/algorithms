@@ -1,61 +1,83 @@
-const { Array2DTracer, Randomize } = require('algorithm-visualizer');
+// import visualization libraries {
+const { Array1DTracer, Array2DTracer, ChartTracer, Randomize } = require('algorithm-visualizer');
+// }
 
-const maxValue = 100;
-const arraySize = 10;
-const numBuckets = 5;
+// define tracer variables {
+const chartTracer = new ChartTracer('Chart');
+const arrayTracer = new Array1DTracer('Array');
+const bucketsTracer = new Array2DTracer('Buckets');
+// }
 
-// initialize array values
-const array = new Randomize.Array1D(arraySize, new Randomize.Integer(0, maxValue - 1)).create();
-const buckets = [];
-const bucketsCount = [];
-const sortedArray = [];
-for (let i = 0; i < arraySize; i++) {
-  if (i < numBuckets) {
-    buckets[i] = [];
-    bucketsCount[i] = 0;
-  }
-  sortedArray[i] = 0;
-}
-const D = [
-  array,
-  bucketsCount,
-  sortedArray,
-];
+// define input variables
+const N = 25; // the size of an array
+const K = 5; // the number of buckets
+const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
 
-const tracer = new Array2DTracer();
-tracer.set(D).delay();
+(function main() {
+  // create K buckets
+  const buckets = [...new Array(K)].map(() => []);
+  // visualize {
+  arrayTracer
+    .chart(chartTracer)
+    .set(array);
+  bucketsTracer
+    .set(buckets)
+    .delay();
+  // }
 
-// place numbers into appropriate buckets
-for (let i = 0; i < array.length; i++) {
-  const bucketPos = Math.floor(numBuckets * (array[i] / maxValue));
-  buckets[bucketPos].push(array[i]);
-  bucketsCount[bucketPos]++;
-  tracer.select(0, i).delay();
-  tracer.patch(1, bucketPos, D[1][bucketPos]).delay();
-  tracer.deselect(0, i);
-  tracer.depatch(1, bucketPos, D[1][bucketPos]);
-}
+  // find the maximum value that will be used for distribution
+  const max = Math.max(...array);
 
-let sortLocation = 0;
-for (let k = 0; k < buckets.length; k++) {
-  // do insertion sort
-  for (let i = 1; i < buckets[k].length; i++) {
-    const key = buckets[k][i];
-    let j;
-    for (j = i - 1; (j >= 0) && (buckets[k][j] > key); j--) {
-      buckets[k][j + 1] = buckets[k][j];
+  // distribute the elements into the buckets
+  for (let i = 0; i < N; i++) {
+    const number = array[i];
+    const bucketIndex = Math.floor(number / (max + 1) * K);
+    const bucket = buckets[bucketIndex];
+    bucket.push(number);
+    // visualize {
+    arrayTracer.select(i);
+    bucketsTracer
+      .patch(bucketIndex, bucket.length - 1, number)
+      .delay()
+      .depatch(bucketIndex, bucket.length - 1);
+    // }
+
+    // insertion sort within the bucket
+    let j = bucket.length - 1;
+    while (j > 0 && bucket[j - 1] > bucket[j]) {
+      const temp = bucket[j - 1];
+      bucket[j - 1] = bucket[j];
+      bucket[j] = temp;
+      // visualize {
+      bucketsTracer
+        .patch(bucketIndex, j - 1, bucket[j - 1])
+        .patch(bucketIndex, j, bucket[j])
+        .delay()
+        .depatch(bucketIndex, j - 1)
+        .depatch(bucketIndex, j);
+      // }
+      j--;
     }
-    buckets[k][j + 1] = key;
+    // visualize {
+    arrayTracer.deselect(i);
+    // }
   }
 
-  // place ordered buckets into sorted array
-  for (let i = 0; i < buckets[k].length; i++) {
-    sortedArray[sortLocation] = buckets[k][i];
-    bucketsCount[k]--;
-    tracer.patch(1, k, D[1][k]);
-    tracer.patch(2, sortLocation, D[2][sortLocation]).delay();
-    tracer.depatch(1, k, D[1][k]);
-    tracer.depatch(2, sortLocation, D[2][sortLocation]);
-    sortLocation++;
+  // concatenate the buckets back into the array
+  let i = 0;
+  for (let bucketIndex = 0; bucketIndex < K; bucketIndex++) {
+    const bucket = buckets[bucketIndex];
+    for (let j = 0; j < bucket.length; j++) {
+      array[i] = bucket[j];
+      // visualize {
+      arrayTracer.patch(i, array[i]);
+      bucketsTracer
+        .select(bucketIndex, j)
+        .delay()
+        .deselect(bucketIndex, j);
+      arrayTracer.depatch(i);
+      // }
+      i++;
+    }
   }
-}
+})();
