@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 /*
 For N>3 the time taken by this algorithm is sufficiently high
@@ -28,7 +28,8 @@ pos[0] = pos[1] = -1;
 
 const boardTracer = new Array2DTracer('Board').set(board);
 const posTracer = new Array1DTracer('Knight Position').set(pos);
-const logTracer = new LogTracer('Console').delay();
+const logTracer = new LogTracer('Console');
+Layout.setRoot(new VerticalLayout([boardTracer, posTracer, logTracer])).delay();
 
 function knightTour(x, y, moveNum) {
   if (moveNum === N * N) {

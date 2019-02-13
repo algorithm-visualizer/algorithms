@@ -1,11 +1,12 @@
 // import visualization libraries {
-const { Array1DTracer, Randomize } = require('algorithm-visualizer');
+const { Array1DTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
 // define tracer variables {
 const arrayTracer = new Array1DTracer('Array');
 const countsTracer = new Array1DTracer('Counts');
 const sortedArrayTracer = new Array1DTracer('Sorted Array');
+Layout.setRoot(new VerticalLayout([arrayTracer, countsTracer, sortedArrayTracer]));
 // }
 
 // define input variables

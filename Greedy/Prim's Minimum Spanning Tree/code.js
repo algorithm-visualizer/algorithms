@@ -1,7 +1,8 @@
-const { GraphTracer, LogTracer, Randomize } = require('algorithm-visualizer');
+const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 /* let G = [ // G[i][j] indicates the weight of the path from the i-th node to the j-th node
  [0, 3, 0, 1, 0],

@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -30,7 +30,8 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 
 const treeTracer = new GraphTracer(' Traversal Pre-order ').set(G).layoutTree(5);
 const arrayTracer = new Array1DTracer(' Print Pre-order ').set(new Array(T.length).fill('-'));
-const logger = new LogTracer(' Log ').delay();
+const logger = new LogTracer(' Log ');
+Layout.setRoot(new VerticalLayout([treeTracer, arrayTracer, logger])).delay();
 
 let index = 0;
 

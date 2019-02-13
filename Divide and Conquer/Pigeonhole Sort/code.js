@@ -1,11 +1,12 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Randomize } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = new Randomize.Array1D(7).create();
 const N = A.length;
 
 const tracer1 = new Array1DTracer('Array').set(A);
 const tracer2 = new Array2DTracer('Holes');
-const logTracer = new LogTracer('Console').delay();
+const logTracer = new LogTracer('Console');
+Layout.setRoot(new VerticalLayout([tracer1, tracer2, logTracer])).delay();
 
 let min = A[0];
 let max = A[0];

@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const string1 = 'AGGTAB';
 const string2 = 'GXTXAYB';
@@ -12,7 +12,8 @@ for (let i = 0; i < m + 1; i++) {
 const tracer1 = new Array1DTracer('String 1').set(string1);
 const tracer2 = new Array1DTracer('String 2').set(string2);
 const tracer3 = new Array2DTracer('Memo Table').set(A);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer1, tracer2, tracer3, logger])).delay();
 
 let i;
 let j;

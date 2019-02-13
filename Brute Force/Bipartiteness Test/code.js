@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
@@ -13,7 +13,8 @@ const G = [
 ];
 tracer.set(G);
 
-const colorsTracer = new Array1DTracer('Colors').delay();
+const colorsTracer = new Array1DTracer('Colors');
+Layout.setRoot(new VerticalLayout([tracer, logger, colorsTracer])).delay();
 
 function BFSCheckBipartiteness(s) {
   const Q = [];

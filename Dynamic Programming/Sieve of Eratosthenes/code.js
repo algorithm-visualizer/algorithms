@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Sieve');
 const N = 30;
@@ -9,7 +9,8 @@ for (let i = 1; i <= N; i++) {
   b.push(0);
 }
 tracer.set(a);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
 
 logger.println('1 is not prime');
 tracer.select(0).delay();

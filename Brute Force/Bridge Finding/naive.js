@@ -1,7 +1,8 @@
-const { GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 const G = [
   [0, 1, 0, 0, 0, 0],
   [1, 0, 0, 1, 1, 0],

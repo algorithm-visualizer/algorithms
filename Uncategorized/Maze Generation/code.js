@@ -1,7 +1,8 @@
-const { Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 const n = 6; // rows (change these!)
 const m = 6; // columns (change these!)
 

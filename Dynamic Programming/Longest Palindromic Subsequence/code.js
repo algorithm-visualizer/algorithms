@@ -1,8 +1,9 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Input Text');
 const matrix = new Array2DTracer('Matrix');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, matrix, logger]));
 
 const seq = 'BBABCBCAB';
 let N;

@@ -1,7 +1,8 @@
-const { GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer();
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not. NOTE: The graph must be Directed-Acyclic
 const G = [

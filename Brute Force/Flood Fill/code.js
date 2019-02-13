@@ -1,6 +1,7 @@
-const { Array2DTracer } = require('algorithm-visualizer');
+const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
+Layout.setRoot(new VerticalLayout([tracer]));
 const G = [
   ['#', '#', '#', '#', '#', '#', '#', '#', '#'],
   ['#', '-', '-', '-', '#', '-', '-', '-', '#'],

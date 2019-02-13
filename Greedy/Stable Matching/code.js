@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const ARank = {
   Flavio: ['Valentine', 'July', 'Summer', 'Violet'],
@@ -22,7 +22,8 @@ const _bKeys = Object.keys(BRank);
 tracerA.set(_aKeys);
 tracerB.set(_bKeys);
 
-const logTracer = new LogTracer('Console').delay();
+const logTracer = new LogTracer('Console');
+Layout.setRoot(new VerticalLayout([tracerA, tracerB, logTracer])).delay();
 
 function init(rank) {
   const o = {};

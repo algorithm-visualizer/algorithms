@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const T = {};
 
@@ -6,6 +6,7 @@ const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be inserted
 const graphTracer = new GraphTracer(' BST - Elements marked red indicates the current status of tree ');
 const elemTracer = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
+Layout.setRoot(new VerticalLayout([graphTracer, elemTracer, logger]));
 graphTracer.log(logger).delay();
 
 function bstInsert(root, element, parent) { // root = current node , parent = previous node

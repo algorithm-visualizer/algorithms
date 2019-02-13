@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 function randString(length) {
   const result = Math.random().toString(36);
@@ -19,6 +19,7 @@ const trackTracer = new Array1DTracer('Tracker');
 const substrTracer = new Array1DTracer('Substring');
 const stringTracer = new Array1DTracer('Major String');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([trackTracer, substrTracer, stringTracer, logger]));
 
 trackTracer.set(track);
 substrTracer.set(substring);

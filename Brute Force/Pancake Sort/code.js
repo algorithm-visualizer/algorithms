@@ -1,8 +1,9 @@
-const { Array1DTracer, ChartTracer, LogTracer, Randomize } = require('algorithm-visualizer');
+const { Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(10).create();
 tracer.set(D).delay();
 

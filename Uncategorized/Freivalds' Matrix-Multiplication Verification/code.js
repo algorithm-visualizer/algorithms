@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];
@@ -11,7 +11,8 @@ new Array2DTracer('Matrix C').set(C);
 const logger = new LogTracer();
 
 const randomVectorTracer = new Array1DTracer('Random Vector');
-const resultVectorTracer = new Array1DTracer('Result Vector').delay();
+const resultVectorTracer = new Array1DTracer('Result Vector');
+Layout.setRoot(new VerticalLayout([logger, randomVectorTracer, resultVectorTracer])).delay();
 
 function FreivaldsAlgorithm() {
   let k = 5;

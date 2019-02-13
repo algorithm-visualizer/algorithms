@@ -1,6 +1,7 @@
-const { Array1DTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Sequence');
+Layout.setRoot(new VerticalLayout([tracer]));
 const index = 15;
 const D = [1, 1];
 for (let i = 2; i < index; i++) {

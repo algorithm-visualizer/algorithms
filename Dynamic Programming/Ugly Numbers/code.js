@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 15;
 const A = new Array(N);
@@ -13,7 +13,8 @@ const I = [0, 0, 0]; // iterators of 2, 3, 5 respectively
 const tracer = new Array1DTracer('Ugly Numbers').set(A);
 const tracer2 = new Array1DTracer('Multiples of 2, 3, 5').set(M);
 const tracer3 = new Array1DTracer(' Iterators I0, I1, I2 ').set(I);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, tracer2, tracer3, logger])).delay();
 
 for (let i = 1; i < N; i++) {
   // next is minimum of m2, m3 and m5

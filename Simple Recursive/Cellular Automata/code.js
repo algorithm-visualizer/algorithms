@@ -1,4 +1,4 @@
-const { Array2DTracer } = require('algorithm-visualizer');
+const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const gridSize = 10;
 const generations = 4;
@@ -19,6 +19,7 @@ for (let i = 0; i < gridSize; i++) {
   }
 }
 const tracer = new Array2DTracer();
+Layout.setRoot(new VerticalLayout([tracer]));
 tracer.set(G).delay();
 
 for (let gi = 0; gi < G.length; gi++) {

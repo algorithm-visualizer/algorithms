@@ -1,7 +1,8 @@
-const { GraphTracer, LogTracer, Randomize } = require('algorithm-visualizer');
+const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, .5, new Randomize.Integer(-2, 5)).weighted().create();
 tracer.set(G).delay();

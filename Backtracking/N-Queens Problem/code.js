@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 4; // just change the value of N and the visuals will reflect the configuration!
 const board = (function createArray(N) {
@@ -19,6 +19,7 @@ const queens = (function qSetup(N) {
 const boardTracer = new Array2DTracer('Board');
 const queenTracer = new Array2DTracer('Queen Positions');
 const logger = new LogTracer('Progress');
+Layout.setRoot(new VerticalLayout([boardTracer, queenTracer, logger]));
 
 boardTracer.set(board);
 queenTracer.set(queens);

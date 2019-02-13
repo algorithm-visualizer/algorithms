@@ -1,11 +1,12 @@
 // import visualization libraries {
-const { Array1DTracer, Array2DTracer, ChartTracer, Randomize } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, ChartTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
 // define tracer variables {
 const chartTracer = new ChartTracer('Chart');
 const arrayTracer = new Array1DTracer('Array');
 const bucketsTracer = new Array2DTracer('Buckets');
+Layout.setRoot(new VerticalLayout([chartTracer, arrayTracer, bucketsTracer]));
 // }
 
 // define input variables

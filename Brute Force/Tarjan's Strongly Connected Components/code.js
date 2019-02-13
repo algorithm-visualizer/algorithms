@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [
   [0, 0, 1, 1, 0, 0],
@@ -17,6 +17,7 @@ const lowTracer = new Array1DTracer('Low');
 const stackMemberTracer = new Array1DTracer('stackMember');
 const stTracer = new Array1DTracer('st');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([graphTracer, discTracer, lowTracer, stackMemberTracer, stTracer, logger]));
 
 const disc = new Array(G.length);
 const low = new Array(G.length);

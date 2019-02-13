@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);
@@ -14,6 +14,7 @@ const oecTracer = new Array1DTracer('Outgoing Edge Counts');
 const inTracer = new Array2DTracer('Incoming Nodes');
 
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([graphTracer, rankTracer, oecTracer, inTracer, logger]));
 
 graphTracer.set(G);
 oecTracer.set(outgoingEdgeCounts);

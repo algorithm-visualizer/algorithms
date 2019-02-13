@@ -1,7 +1,8 @@
-const { Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer('Distance Table');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 const str1 = 'stack';
 const str2 = 'racket';
 const table = new Array(str1.length + 1);

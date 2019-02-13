@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];
@@ -8,7 +8,8 @@ const D = 256; // number of characters in the input alphabet
 
 const logger = new LogTracer();
 const tracer1 = new Array1DTracer('Text').set(text);
-const tracer2 = new Array1DTracer('Pattern').set(pattern).delay();
+const tracer2 = new Array1DTracer('Pattern').set(pattern);
+Layout.setRoot(new VerticalLayout([logger, tracer1, tracer2])).delay();
 
 const N = text.length;
 const M = pattern.length;

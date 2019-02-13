@@ -1,4 +1,4 @@
-const { Array2DTracer } = require('algorithm-visualizer');
+const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 9;
 const A = new Array(N);
@@ -6,7 +6,8 @@ for (let i = N - 1; i >= 0; i--) {
   A[i] = new Array(N);
 }
 
-const tracer = new Array2DTracer('Pascal\'s Triangle').set(A).delay();
+const tracer = new Array2DTracer('Pascal\'s Triangle').set(A);
+Layout.setRoot(new VerticalLayout([tracer])).delay();
 
 for (let i = 0; i < N; i++) {
   for (let j = 0; j <= i; j++) {

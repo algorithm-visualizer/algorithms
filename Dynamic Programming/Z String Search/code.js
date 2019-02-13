@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const textTracer = new Array1DTracer('text');
 const pattTracer = new Array1DTracer('pattern');
@@ -18,7 +18,8 @@ z[0] = 0;
 pattTracer.set(pattern);
 textTracer.set(text);
 tracer.set(z);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([textTracer, pattTracer, concatTracer, tracer, logger])).delay();
 
 
 function createZarr(concat) {

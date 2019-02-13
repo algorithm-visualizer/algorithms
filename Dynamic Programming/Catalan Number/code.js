@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 10;
 const A = new Array(N + 1);
@@ -7,7 +7,8 @@ for (let i = N; i >= 0; i--) {
 }
 
 const tracer = new Array1DTracer(' Catalan Numbers ').set(A);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
 
 A[0] = 1;
 tracer.patch(0, A[0]).delay();

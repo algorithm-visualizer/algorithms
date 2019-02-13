@@ -1,11 +1,12 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Euclidean Algorithm');
 const a = [];
 a.push(465);
 a.push(255);
 tracer.set(a);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
 
 logger.println(`Finding the greatest common divisor of ${a[0]} and ${a[1]}`);
 

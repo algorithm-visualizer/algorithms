@@ -1,9 +1,10 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const plainText = 'secret';
 const ptTracer = new Array1DTracer('Encryption');
 const ctTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([ptTracer, ctTracer, logger]));
 
 ptTracer.set(plainText).delay();
 

@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 let word = 'virgo';
 const suffixArray = (function skeleton(word) {
@@ -14,6 +14,7 @@ const suffixArray = (function skeleton(word) {
 const saTracer = new Array2DTracer('Suffix Array');
 const wordTracer = new Array1DTracer('Given Word');
 const logger = new LogTracer('Progress');
+Layout.setRoot(new VerticalLayout([saTracer, wordTracer, logger]));
 
 saTracer.set(suffixArray);
 wordTracer.set(word).delay();

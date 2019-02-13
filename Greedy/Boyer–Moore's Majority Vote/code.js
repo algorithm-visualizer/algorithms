@@ -1,10 +1,11 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;
 
 const tracer = new Array1DTracer('List of element').set(A);
-const logger = new LogTracer('Console').delay();
+const logger = new LogTracer('Console');
+Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
 
 function isMajorityElement(element) {
   let count = 0;

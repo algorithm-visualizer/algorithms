@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const n = 7;
 const A = new Array(n);
@@ -13,7 +13,8 @@ for (let i = n - 1; i >= 0; i--) {
 }
 
 const tracer = new Array2DTracer('Magic Square').set(A);
-const logTracer = new LogTracer('Console').delay();
+const logTracer = new LogTracer('Console');
+Layout.setRoot(new VerticalLayout([tracer, logTracer])).delay();
 
 let i = Math.floor(n / 2);
 let j = n - 1;

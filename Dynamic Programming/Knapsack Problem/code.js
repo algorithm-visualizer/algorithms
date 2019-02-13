@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const val = [1, 4, 5, 7]; // The value of all available items
 const wt = [1, 3, 4, 5]; // The weights of available items
@@ -16,7 +16,8 @@ for (let i = 0; i < N + 1; i++) {
 const tracer = new Array2DTracer('Knapsack Table').set(DP);
 const dataViewer1 = new Array1DTracer('Values').set(val);
 const dataViewer2 = new Array1DTracer('Weights').set(wt);
-const logger = new LogTracer().delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, dataViewer1, dataViewer2, logger])).delay();
 
 for (let i = 0; i <= N; i++) {
   for (let j = 0; j <= W; j++) {

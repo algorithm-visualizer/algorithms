@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer } = require('algorithm-visualizer');
+const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const string = 'hello! how are you doing?';
 const rotation = 5;
@@ -14,6 +14,7 @@ const alphabetMap = alphabet.split('').reduce((map, curr, idx) => {
 const encryptTracer = new Array1DTracer('Encryption');
 const decryptTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([encryptTracer, decryptTracer, logger]));
 
 encryptTracer.set(string).delay();
 

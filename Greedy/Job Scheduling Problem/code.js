@@ -1,4 +1,4 @@
-const { Array1DTracer } = require('algorithm-visualizer');
+const { Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const jobId = ['a', 'b', 'c', 'd', 'e'];
 const deadline = [2, 1, 2, 1, 3];
@@ -9,6 +9,7 @@ const tracer3 = new Array1DTracer('Schedule');
 const tracer = new Array1DTracer('Job Ids');
 const tracer1 = new Array1DTracer('Deadlines');
 const tracer2 = new Array1DTracer('Profit');
+Layout.setRoot(new VerticalLayout([tracer3, tracer, tracer1, tracer2]));
 
 // sort according to decreasing order of profit
 // Bubble sort implemented ... Implement a better algorithm for better performance
