@@ -10,7 +10,8 @@ for (let i = 1; i <= N; i++) {
 }
 tracer.set(a);
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
+Tracer.delay();
 
 logger.println('1 is not prime');
 tracer.select(0);

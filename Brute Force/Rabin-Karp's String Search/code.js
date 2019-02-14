@@ -7,9 +7,12 @@ const Q = 101; // A prime number
 const D = 256; // number of characters in the input alphabet
 
 const logger = new LogTracer();
-const tracer1 = new Array1DTracer('Text').set(text);
-const tracer2 = new Array1DTracer('Pattern').set(pattern);
-Layout.setRoot(new VerticalLayout([logger, tracer1, tracer2])).delay();
+const tracer1 = new Array1DTracer('Text');
+const tracer2 = new Array1DTracer('Pattern');
+Layout.setRoot(new VerticalLayout([logger, tracer1, tracer2]));
+tracer1.set(text);
+tracer2.set(pattern);
+Tracer.delay();
 
 const N = text.length;
 const M = pattern.length;

@@ -26,10 +26,13 @@ const Y = [1, 2, 2, 1, -1, -2, -2, -1];
 const pos = new Array(2);
 pos[0] = pos[1] = -1;
 
-const boardTracer = new Array2DTracer('Board').set(board);
-const posTracer = new Array1DTracer('Knight Position').set(pos);
+const boardTracer = new Array2DTracer('Board');
+const posTracer = new Array1DTracer('Knight Position');
 const logTracer = new LogTracer('Console');
-Layout.setRoot(new VerticalLayout([boardTracer, posTracer, logTracer])).delay();
+boardTracer.set(board);
+posTracer.set(pos);
+Layout.setRoot(new VerticalLayout([boardTracer, posTracer, logTracer]));
+Tracer.delay();
 
 function knightTour(x, y, moveNum) {
   if (moveNum === N * N) {

@@ -6,8 +6,10 @@ for (let i = N - 1; i >= 0; i--) {
   A[i] = new Array(N);
 }
 
-const tracer = new Array2DTracer('Pascal\'s Triangle').set(A);
-Layout.setRoot(new VerticalLayout([tracer])).delay();
+const tracer = new Array2DTracer('Pascal\'s Triangle');
+Layout.setRoot(new VerticalLayout([tracer]));
+tracer.set(A);
+Tracer.delay();
 
 for (let i = 0; i < N; i++) {
   for (let j = 0; j <= i; j++) {

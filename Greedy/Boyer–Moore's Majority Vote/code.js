@@ -3,9 +3,11 @@ const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('al
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;
 
-const tracer = new Array1DTracer('List of element').set(A);
+const tracer = new Array1DTracer('List of element');
 const logger = new LogTracer('Console');
-Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
+tracer.set(A);
+Tracer.delay();
 
 function isMajorityElement(element) {
   let count = 0;

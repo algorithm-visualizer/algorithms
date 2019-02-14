@@ -19,7 +19,8 @@ pattTracer.set(pattern);
 textTracer.set(text);
 tracer.set(z);
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([textTracer, pattTracer, concatTracer, tracer, logger])).delay();
+Layout.setRoot(new VerticalLayout([textTracer, pattTracer, concatTracer, tracer, logger]));
+Tracer.delay();
 
 
 function createZarr(concat) {
@@ -37,7 +38,8 @@ function createZarr(concat) {
       while (right < N && concat[right] === concat[right - left]) {
         concatTracer.patch(right);
         concatTracer.select(right - left);
-        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);
+Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
         right++;
@@ -45,7 +47,8 @@ function createZarr(concat) {
       if (right < N) {
         concatTracer.patch(right);
         concatTracer.select(right - left);
-        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);
+Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
       }
@@ -68,7 +71,8 @@ function createZarr(concat) {
       while (right < N && concat[right] === concat[right - left]) {
         concatTracer.patch(right);
         concatTracer.select(right - left);
-        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);
+Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
         right++;
@@ -76,7 +80,8 @@ function createZarr(concat) {
       if (right < N) {
         concatTracer.patch(right);
         concatTracer.select(right - left);
-        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
+        logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);
+Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
       }

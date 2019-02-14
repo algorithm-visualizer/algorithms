@@ -12,9 +12,11 @@ for (let i = n - 1; i >= 0; i--) {
   }
 }
 
-const tracer = new Array2DTracer('Magic Square').set(A);
+const tracer = new Array2DTracer('Magic Square');
 const logTracer = new LogTracer('Console');
-Layout.setRoot(new VerticalLayout([tracer, logTracer])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logTracer]));
+tracer.set(A);
+Tracer.delay();
 
 let i = Math.floor(n / 2);
 let j = n - 1;

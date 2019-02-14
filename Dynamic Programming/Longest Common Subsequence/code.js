@@ -9,11 +9,15 @@ for (let i = 0; i < m + 1; i++) {
   A[i] = new Array(n + 1);
 }
 
-const tracer1 = new Array1DTracer('String 1').set(string1);
-const tracer2 = new Array1DTracer('String 2').set(string2);
-const tracer3 = new Array2DTracer('Memo Table').set(A);
+const tracer1 = new Array1DTracer('String 1');
+const tracer2 = new Array1DTracer('String 2');
+const tracer3 = new Array2DTracer('Memo Table');
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer1, tracer2, tracer3, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer1, tracer2, tracer3, logger]));
+tracer1.set(string1);
+tracer2.set(string2);
+tracer3.set(A);
+Tracer.delay();
 
 let i;
 let j;

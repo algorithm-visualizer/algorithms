@@ -4,15 +4,17 @@ const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];
 const C = [[6, 5], [8, 7]];
 
-new Array2DTracer('Matrix A').set(A);
-new Array2DTracer('Matrix B').set(B);
-new Array2DTracer('Matrix C').set(C);
-
-const logger = new LogTracer();
-
+const matrixATracer = new Array2DTracer('Matrix A');
+const matrixBTracer = new Array2DTracer('Matrix B');
+const matrixCTracer = new Array2DTracer('Matrix C');
 const randomVectorTracer = new Array1DTracer('Random Vector');
 const resultVectorTracer = new Array1DTracer('Result Vector');
-Layout.setRoot(new VerticalLayout([logger, randomVectorTracer, resultVectorTracer])).delay();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([matrixATracer, matrixBTracer, matrixCTracer, randomVectorTracer, resultVectorTracer, logger]));
+matrixATracer.set(A);
+matrixBTracer.set(B);
+matrixCTracer.set(C);
+Tracer.delay();
 
 function FreivaldsAlgorithm() {
   let k = 5;

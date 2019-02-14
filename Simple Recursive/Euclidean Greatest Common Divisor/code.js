@@ -6,7 +6,8 @@ a.push(465);
 a.push(255);
 tracer.set(a);
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
+Tracer.delay();
 
 logger.println(`Finding the greatest common divisor of ${a[0]} and ${a[1]}`);
 

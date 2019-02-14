@@ -10,11 +10,15 @@ A[0] = 1; // By convention 1 is an ugly number
 const M = [2, 3, 5]; // multiples of 2, 3, 5 respectively
 const I = [0, 0, 0]; // iterators of 2, 3, 5 respectively
 
-const tracer = new Array1DTracer('Ugly Numbers').set(A);
-const tracer2 = new Array1DTracer('Multiples of 2, 3, 5').set(M);
-const tracer3 = new Array1DTracer(' Iterators I0, I1, I2 ').set(I);
+const tracer = new Array1DTracer('Ugly Numbers');
+const tracer2 = new Array1DTracer('Multiples of 2, 3, 5');
+const tracer3 = new Array1DTracer(' Iterators I0, I1, I2 ');
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, tracer2, tracer3, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, tracer2, tracer3, logger]));
+tracer.set(A);
+tracer2.set(M);
+tracer3.set(I);
+Tracer.delay();
 
 for (let i = 1; i < N; i++) {
   // next is minimum of m2, m3 and m5

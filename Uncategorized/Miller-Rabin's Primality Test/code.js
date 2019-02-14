@@ -1,7 +1,8 @@
 const { Tracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([logger])).delay();
+Layout.setRoot(new VerticalLayout([logger]));
+Tracer.delay();
 
 for (let i = 0; i < 3; i++) {
   let a = Math.floor(Math.random() * 300);

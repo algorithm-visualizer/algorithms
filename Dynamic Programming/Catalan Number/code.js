@@ -6,9 +6,11 @@ for (let i = N; i >= 0; i--) {
   A[i] = 0;
 }
 
-const tracer = new Array1DTracer(' Catalan Numbers ').set(A);
+const tracer = new Array1DTracer(' Catalan Numbers ');
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
+tracer.set(A);
+Tracer.delay();
 
 A[0] = 1;
 tracer.patch(0, A[0]);

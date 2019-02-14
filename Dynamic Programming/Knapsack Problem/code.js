@@ -13,11 +13,15 @@ for (let i = 0; i < N + 1; i++) {
   }
 }
 
-const tracer = new Array2DTracer('Knapsack Table').set(DP);
-const dataViewer1 = new Array1DTracer('Values').set(val);
-const dataViewer2 = new Array1DTracer('Weights').set(wt);
+const tracer = new Array2DTracer('Knapsack Table');
+const dataViewer1 = new Array1DTracer('Values');
+const dataViewer2 = new Array1DTracer('Weights');
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, dataViewer1, dataViewer2, logger])).delay();
+Layout.setRoot(new VerticalLayout([tracer, dataViewer1, dataViewer2, logger]));
+tracer.set(DP);
+dataViewer1.set(val);
+dataViewer2.set(wt);
+Tracer.delay();
 
 for (let i = 0; i <= N; i++) {
   for (let j = 0; j <= W; j++) {

@@ -29,9 +29,11 @@ const T = [ // mapping to G as a binary tree , [i][0] indicates left child, [i][
 ];
 
 const key = new Randomize.Integer(0, G.length - 1).create(); // item to be searched
-const tracer = new GraphTracer(' Binary Search Tree ').set(G).layoutTree(5);
+const tracer = new GraphTracer(' Binary Search Tree ');
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([tracer, logger]));
+tracer.set(G);
+tracer.layoutTree(5);
 tracer.log(logger);
 Tracer.delay();
 

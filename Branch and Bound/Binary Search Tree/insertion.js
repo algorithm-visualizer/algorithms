@@ -4,9 +4,10 @@ const T = {};
 
 const elements = [5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4]; // item to be inserted
 const graphTracer = new GraphTracer(' BST - Elements marked red indicates the current status of tree ');
-const elemTracer = new Array1DTracer(' Elements ').set(elements);
+const elemTracer = new Array1DTracer(' Elements ');
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([graphTracer, elemTracer, logger]));
+elemTracer.set(elements);
 graphTracer.log(logger);
 Tracer.delay();
 

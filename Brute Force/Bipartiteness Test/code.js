@@ -14,7 +14,8 @@ const G = [
 tracer.set(G);
 
 const colorsTracer = new Array1DTracer('Colors');
-Layout.setRoot(new VerticalLayout([tracer, logger, colorsTracer])).delay();
+Layout.setRoot(new VerticalLayout([tracer, logger, colorsTracer]));
+Tracer.delay();
 
 function BFSCheckBipartiteness(s) {
   const Q = [];
