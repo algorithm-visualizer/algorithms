@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
@@ -57,7 +57,7 @@ for (let i = 0; i < vEnd; i++) { // by row
 }
 
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function buildMaze() {
   const mySet = new disjointSet();
@@ -124,14 +124,14 @@ function buildMaze() {
         if (mySet.find(u) !== mySet.find(v)) {
           logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
-          logger.delay();
+          Tracer.delay();
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].down = false;
         } else {
           logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
-          logger.delay();
+          Tracer.delay();
         }
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
         tracer.depatch(iY * 2 + 1, iX * 3 + 2);
@@ -154,14 +154,14 @@ function buildMaze() {
         if (mySet.find(u) !== mySet.find(v)) {
           logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
-          logger.delay();
+          Tracer.delay();
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].right = false;
         } else {
           logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
-          logger.delay();
+          Tracer.delay();
         }
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
         tracer.depatch(iY * 2 + 1, iX * 3 + 2);
@@ -181,15 +181,15 @@ function buildMaze() {
         G[j * 2 + 2][i * 3 + 1] = ' ';
         G[j * 2 + 2][i * 3 + 2] = ' ';
         tracer.select(j * 2 + 2, i * 3 + 1);
-        tracer.delay();
+        Tracer.delay();
         tracer.select(j * 2 + 2, i * 3 + 2);
-        tracer.delay();
+        Tracer.delay();
       }
 
       if (currentWall.right === false) {
         G[j * 2 + 1][i * 3 + 3] = ' ';
         tracer.select(j * 2 + 1, i * 3 + 3);
-        tracer.delay();
+        Tracer.delay();
       }
       tracer.set(G);
     }

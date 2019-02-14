@@ -1,4 +1,4 @@
-const { Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
@@ -6,7 +6,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15).create();
 tracer.set(D);
-tracer.delay();
+Tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -23,7 +23,7 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
 
   for (let i = cycleStart + 1; i <= N - 1; i++) {
     tracer.select(i);
-    tracer.delay();
+    Tracer.delay();
     tracer.deselect(i);
     if (D[i] < item) {
       pos++;
@@ -54,11 +54,11 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
     logger.println(`Rewrite ${D[pos]} to index ${pos}`);
   }
   tracer.select(pos);
-  tracer.delay();
+  Tracer.delay();
   tracer.deselect(pos);
   tracer.patch(pos, D[pos]);
   tracer.patch(cycleStart, D[cycleStart]);
-  tracer.delay();
+  Tracer.delay();
   tracer.depatch(pos);
   tracer.depatch(cycleStart);
 
@@ -68,7 +68,7 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
 
     for (let i = cycleStart + 1; i <= N - 1; i++) {
       tracer.select(i);
-      tracer.delay();
+      Tracer.delay();
       tracer.deselect(i);
       if (D[i] < item) {
         pos++;
@@ -89,11 +89,11 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
       logger.println(`Rewrite ${D[pos]} to index ${pos}`);
     }
     tracer.select(pos);
-    tracer.delay();
+    Tracer.delay();
     tracer.deselect(pos);
     tracer.patch(pos, D[pos]);
     tracer.patch(cycleStart, D[cycleStart]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(pos);
     tracer.depatch(cycleStart);
 

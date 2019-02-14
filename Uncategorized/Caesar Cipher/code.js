@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const string = 'hello! how are you doing?';
 const rotation = 5;
@@ -17,7 +17,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([encryptTracer, decryptTracer, logger]));
 
 encryptTracer.set(string);
-encryptTracer.delay();
+Tracer.delay();
 
 function getPosUp(pos) {
   return (pos === alphabet.length - 1) ? 0 : pos + 1;
@@ -40,7 +40,7 @@ function cipher(str, rotation, direction, cipherTracer) {
   if (!str) return '';
 
   for (let i = 0; i < str.length; i++) {
-    cipherTracer.delay();
+    Tracer.delay();
 
     let currChar = str.charAt(i);
     if (typeof alphabetMap[currChar] === 'number') { // don't encrpt/decrypt characters not in  alphabetMap
@@ -48,13 +48,13 @@ function cipher(str, rotation, direction, cipherTracer) {
 
       logger.println(`Rotating ${currChar} ${direction} ${rotation} times`);
       cipherTracer.select(i);
-      cipherTracer.delay();
+      Tracer.delay();
 
       // perform given amount of rotations in the given direction
       while (r-- > 0) {
         currChar = getNextChar(currChar, direction);
         cipherTracer.patch(i, currChar);
-        cipherTracer.delay();
+        Tracer.delay();
       }
     } else {
       logger.println('Ignore this character');

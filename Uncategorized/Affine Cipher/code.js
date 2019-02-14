@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const plainText = 'secret';
 const ptTracer = new Array1DTracer('Encryption');
@@ -7,7 +7,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([ptTracer, ctTracer, logger]));
 
 ptTracer.set(plainText);
-ptTracer.delay();
+Tracer.delay();
 
 /*
  code assumes that plainText contains ONLY LOWER CASE ALPHABETS
@@ -39,7 +39,7 @@ function encrypt(plainText) {
 
   for (const i in plainText) {
     ptTracer.select(i);
-    ptTracer.delay();
+    Tracer.delay();
     ptTracer.deselect(i);
 
     cypherText += cryptAlpha(plainText[i]);
@@ -79,15 +79,15 @@ function decrypt(cypherText) {
 
   for (const i in cypherText) {
     ctTracer.select(i);
-    ctTracer.delay();
+    Tracer.delay();
     ctTracer.deselect(i);
-    ctTracer.delay();
+    Tracer.delay();
 
     plainText += decryptAlpha(cypherText[i]);
 
     ctTracer.patch(i, plainText.slice(-1)).delay();
     ctTracer.depatch(i);
-    ctTracer.delay();
+    Tracer.delay();
   }
 
   return plainText;

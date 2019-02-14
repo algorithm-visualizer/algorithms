@@ -1,4 +1,4 @@
-const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const gridSize = 10;
 const generations = 4;
@@ -21,7 +21,7 @@ for (let i = 0; i < gridSize; i++) {
 const tracer = new Array2DTracer();
 Layout.setRoot(new VerticalLayout([tracer]));
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {
@@ -72,7 +72,7 @@ function CellularAutomata(fillShape, emptyShape) {
     for (let j = 0; j < nextGrid[i].length; j++) {
       tracer.depatch(i, j, G[i][j]);
       tracer.select(i, j);
-      tracer.delay();
+      Tracer.delay();
       G[i][j] = nextGrid[i][j];
       if (G[i][j] === fillShape) {
         tracer.patch(i, j, G[i][j]);

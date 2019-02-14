@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];
@@ -36,14 +36,14 @@ for (let i = 0; i <= N - M; i++) {
   if (hashPattern === hashText) {
     let f = 0;
     tracer1.select(i, i + M - 1);
-    tracer1.delay();
+    Tracer.delay();
     tracer2.select(0, M - 1);
-    tracer2.delay();
+    Tracer.delay();
     for (let j = 0; j < M; j++) {
       tracer1.patch(i + j);
-      tracer1.delay();
+      Tracer.delay();
       tracer2.patch(j);
-      tracer2.delay();
+      Tracer.delay();
       if (text[i + j] !== pattern[j]) {
         f++;
       }

@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const D = new Randomize.Array2D(5, 5, new Randomize.Integer(1, 5)).create();
 const dataViewer = new Array2DTracer().set(D);
@@ -13,7 +13,7 @@ for (let i = 0; i < D.length; i++) {
   }
 }
 tracer.set(DP);
-tracer.delay();
+Tracer.delay();
 
 const N = DP.length;
 const M = DP[0].length;
@@ -21,9 +21,9 @@ const M = DP[0].length;
 function update(i, j, value) {
   DP[i][j] = value;
   dataViewer.select(i, j);
-  dataViewer.delay();
+  Tracer.delay();
   tracer.patch(i, j, DP[i][j]);
-  tracer.delay();
+  Tracer.delay();
   tracer.depatch(i, j);
   dataViewer.deselect(i, j);
 }

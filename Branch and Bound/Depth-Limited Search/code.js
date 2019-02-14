@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer();
 const logger = new LogTracer();
@@ -19,13 +19,13 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
 ];
 tracer.set(G);
 tracer.layoutTree(0);
-tracer.delay();
+Tracer.delay();
 
 // This is a sample DLS applications where
 // we try to find number of descendant of root within some depth
 function DLSCount(limit, node, parent) { // node = current node, parent = previous node
   tracer.visit(node, parent);
-  tracer.delay();
+  Tracer.delay();
   let child = 0;
   if (limit > 0) { // cut off the search
     for (let i = 0; i < G[node].length; i++) {

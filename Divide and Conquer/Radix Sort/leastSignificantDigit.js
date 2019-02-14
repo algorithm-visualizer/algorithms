@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
@@ -10,7 +10,7 @@ const D = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 tracer.set(D);
-tracer.delay();
+Tracer.delay();
 
 logger.println(`original array = [${D[0].join(', ')}]`);
 
@@ -32,49 +32,49 @@ for (let exp = 0; exp < 3; exp++) {
   for (i = 0; i < D[0].length; i++) {
     const d = digit(i, exp);
     tracer.select(0, i);
-    tracer.delay();
+    Tracer.delay();
     D[2][d] += 1;
     tracer.patch(2, d, D[2][d]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(2, d);
     tracer.deselect(0, i);
   }
   for (i = 1; i < 10; i++) {
     tracer.select(2, i - 1);
-    tracer.delay();
+    Tracer.delay();
     D[2][i] += D[2][i - 1];
     tracer.patch(2, i, D[2][i]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(2, i);
     tracer.deselect(2, i - 1);
   }
   for (i = D[0].length - 1; i >= 0; i--) {
     const d = digit(i, exp);
     tracer.select(0, i);
-    tracer.delay();
+    Tracer.delay();
     D[2][d] -= 1;
     tracer.patch(2, d, D[2][d]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(2, d);
     D[1][D[2][d]] = D[0][i];
     tracer.patch(1, D[2][d], D[1][D[2][d]]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(1, D[2][d]);
     tracer.deselect(0, i);
   }
   for (i = 0; i < D[0].length; i++) {
     tracer.select(1, i);
-    tracer.delay();
+    Tracer.delay();
     D[0][i] = D[1][i];
     tracer.patch(0, i, D[0][i]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(0, i);
     tracer.deselect(1, i);
   }
   for (i = 0; i < 10; i++) {
     D[2][i] = 0;
     tracer.patch(2, i, D[2][i]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(2, i);
   }
 }

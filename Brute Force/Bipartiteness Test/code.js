@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
@@ -32,7 +32,7 @@ function BFSCheckBipartiteness(s) {
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
     tracer.visit(node);
-    tracer.delay();
+    Tracer.delay();
 
     for (let i = 0; i < G[node].length; i++) {
       if (G[node][i]) {
@@ -42,7 +42,7 @@ function BFSCheckBipartiteness(s) {
 
           Q.push(i);
           tracer.visit(i, node);
-          tracer.delay();
+          Tracer.delay();
         } else if (Colors[i] === Colors[node]) {
           logger.println('Graph is not biparted');
           return false;

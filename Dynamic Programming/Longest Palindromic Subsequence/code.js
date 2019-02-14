@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Input Text');
 const matrix = new Array2DTracer('Matrix');
@@ -22,7 +22,7 @@ for (i = 0; i < N; i++) {
 
 tracer.set(seq);
 matrix.set(L);
-matrix.delay();
+Tracer.delay();
 
 function max(a, b) {
   if (a > b) {
@@ -38,9 +38,9 @@ for (i = 2; i <= N; i++) {
   for (j = 0; j < N - i + 1; j++) {
     const k = j + i - 1;
     tracer.select(j);
-    tracer.delay();
+    Tracer.delay();
     tracer.patch(k);
-    tracer.delay();
+    Tracer.delay();
 
     logger.println(`Comparing ${seq[j]} and ${seq[k]}`);
 
@@ -48,52 +48,52 @@ for (i = 2; i <= N; i++) {
       logger.println(`They are equal and size of the string in the interval${j} to ${k} is 2, so the Longest Palindromic Subsequence in the Given range is 2`);
 
       matrix.patch(j, k);
-      matrix.delay();
+      Tracer.delay();
 
       L[j][k] = 2;
       matrix.set(L);
 
       matrix.depatch(j, k);
-      matrix.delay();
+      Tracer.delay();
     } else if (seq[j] === seq[k]) {
       logger.println(`They are equal, so the Longest Palindromic Subsequence in the Given range is 2 + the Longest Increasing Subsequence between the indices ${j + 1} to ${k - 1}`);
 
       matrix.patch(j, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.select(j + 1, k - 1);
-      matrix.delay();
+      Tracer.delay();
 
       L[j][k] = L[j + 1][k - 1] + 2;
       matrix.set(L);
 
       matrix.depatch(j, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.deselect(j + 1, k - 1);
-      matrix.delay();
+      Tracer.delay();
     } else {
       logger.println(`They are NOT equal, so the Longest Palindromic Subsequence in the Given range is the maximum Longest Increasing Subsequence between the indices ${j + 1} to ${k} and ${j} to ${k - 1}`);
       matrix.patch(j, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.select(j + 1, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.select(j, k - 1);
-      matrix.delay();
+      Tracer.delay();
 
       L[j][k] = max(L[j + 1][k], L[j][k - 1]);
       matrix.set(L);
 
       matrix.depatch(j, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.deselect(j + 1, k);
-      matrix.delay();
+      Tracer.delay();
       matrix.deselect(j, k - 1);
-      matrix.delay();
+      Tracer.delay();
     }
     logger.println('--------------------------------------------------');
     tracer.deselect(j);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(k);
-    tracer.delay();
+    Tracer.delay();
   }
 }
 logger.println(`Longest Increasing Subsequence of the given string = L[0][${N - 1}]=${L[0][N - 1]}`);

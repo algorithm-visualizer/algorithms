@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const textTracer = new Array1DTracer('text');
 const pattTracer = new Array1DTracer('pattern');
@@ -31,7 +31,7 @@ function createZarr(concat) {
   right = 0;
   for (let i = 1; i < N; i++) {
     tracer.select(i);
-    tracer.delay();
+    Tracer.delay();
     if (i > right) {
       left = right = i;
       while (right < N && concat[right] === concat[right - left]) {
@@ -58,7 +58,7 @@ function createZarr(concat) {
       logger.println(`The substring from index ${i - left} will not cross the right end.`);
       concatTracer.patch(right - i + 1);
       concatTracer.select(i - left);
-      concatTracer.delay();
+      Tracer.delay();
       z[i] = z[i - left];
       concatTracer.depatch(right - i + 1);
       concatTracer.deselect(i - left);

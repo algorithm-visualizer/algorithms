@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -50,7 +50,7 @@ function lcaBT(parent, root, a, b) {
   if (left !== null && right !== null) return root;
   if (left === null && right === null) {
     treeTracer.leave(root, parent);
-    treeTracer.delay();
+    Tracer.delay();
   }
 
   return (left !== null ? left : right);

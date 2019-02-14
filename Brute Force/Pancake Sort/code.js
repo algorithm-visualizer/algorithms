@@ -1,4 +1,4 @@
-const { Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
@@ -6,23 +6,23 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(10).create();
 tracer.set(D);
-tracer.delay();
+Tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
 function flip(start) {
   tracer.select(start, N - 1);
-  tracer.delay();
+  Tracer.delay();
   let idx = 0;
   for (let i = start; i < (start + N) / 2; i++) {
     tracer.select(i);
-    tracer.delay();
+    Tracer.delay();
     const temp = D[i];
     D[i] = D[N - idx - 1];
     D[N - idx - 1] = temp;
     tracer.patch(i, D[i]);
     tracer.patch(N - idx - 1, D[N - idx - 1]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(i);
     tracer.depatch(N - idx - 1);
     tracer.deselect(i);

@@ -1,4 +1,4 @@
-const { Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
@@ -6,7 +6,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(10).create();
 tracer.set(D);
-tracer.delay();
+Tracer.delay();
 
 logger.println(`Original array = [${D.join(', ')}]`);
 
@@ -27,11 +27,11 @@ function heapSort(array, size) {
     tracer.patch(0, array[0]);
     tracer.patch(j, array[j]);
     logger.println(`Swapping elements : ${array[0]} & ${array[j]}`);
-    logger.delay();
+    Tracer.delay();
     tracer.depatch(0);
     tracer.depatch(j);
     tracer.select(j);
-    tracer.delay();
+    Tracer.delay();
 
     heapify(array, j, 0);
 
@@ -61,7 +61,7 @@ function heapify(array, size, root) {
     tracer.patch(root, array[root]);
     tracer.patch(largest, array[largest]);
     logger.println(`Swapping elements : ${array[root]} & ${array[largest]}`);
-    logger.delay();
+    Tracer.delay();
     tracer.depatch(root);
     tracer.depatch(largest);
 

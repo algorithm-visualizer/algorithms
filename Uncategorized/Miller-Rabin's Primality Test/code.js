@@ -1,4 +1,4 @@
-const { LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([logger])).delay();

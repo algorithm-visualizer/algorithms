@@ -1,5 +1,5 @@
 // import visualization libraries {
-const { Array1DTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
 // define tracer variables {
@@ -19,9 +19,8 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 9)).create();
   const counts = new Array(max + 1).fill(0);
   // visualize {
   arrayTracer.set(array);
-  countsTracer
-    .set(counts)
-    .delay();
+  countsTracer.set(counts);
+  Tracer.delay();
   // }
 
   // store counts of each number
@@ -30,10 +29,9 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 9)).create();
     counts[number]++;
     // visualize {
     arrayTracer.select(i);
-    countsTracer
-      .patch(number, counts[number])
-      .delay()
-      .depatch(number);
+    countsTracer.patch(number, counts[number]);
+    Tracer.delay();
+    countsTracer.depatch(number);
     arrayTracer.deselect(i);
     // }
   }
@@ -42,12 +40,12 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 9)).create();
   for (let i = 1; i <= max; i++) {
     counts[i] += counts[i - 1];
     // visualize {
-    countsTracer
-      .select(i - 1)
-      .patch(i, counts[i])
-      .delay()
-      .depatch(i)
-      .deselect(i - 1);
+    countsTracer;
+    countsTracer.select(i - 1);
+    countsTracer.patch(i, counts[i]);
+    Tracer.delay();
+    countsTracer.depatch(i);
+    countsTracer.deselect(i - 1);
     // }
   }
 
@@ -63,10 +61,9 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 9)).create();
     // visualize {
     arrayTracer.select(i);
     countsTracer.select(number);
-    sortedArrayTracer
-      .patch(count - 1, sortedArray[count - 1])
-      .delay()
-      .depatch(count - 1);
+    sortedArrayTracer.patch(count - 1, sortedArray[count - 1]);
+    Tracer.delay();
+    sortedArrayTracer.depatch(count - 1);
     countsTracer.deselect(number);
     arrayTracer.deselect(i);
     // }

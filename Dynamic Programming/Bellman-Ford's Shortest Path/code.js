@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
@@ -6,7 +6,7 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, .5, new Randomize.Integer(-2, 5)).weighted().create();
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function BELLMAN_FORD(src, dest) {
   const weights = new Array(G.length);
@@ -37,9 +37,9 @@ function BELLMAN_FORD(src, dest) {
             logger.println(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
           }
           tracer.visit(j, i, weights[j]);
-          tracer.delay();
+          Tracer.delay();
           tracer.leave(j, i);
-          tracer.delay();
+          Tracer.delay();
         }
       }
     }

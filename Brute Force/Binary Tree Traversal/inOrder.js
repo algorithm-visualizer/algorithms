@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -38,25 +38,25 @@ let index = 0;
 function inOrder(root, parent) {
   if (root === -1) {
     logger.println('No more nodes. Backtracking.');
-    logger.delay();
+    Tracer.delay();
     return;
   }
 
   logger.println(`Reached ${root}`);
   treeTracer.visit(root, parent);
-  treeTracer.delay();
+  Tracer.delay();
 
   logger.println(` Going left from ${root}`);
-  logger.delay();
+  Tracer.delay();
   inOrder(T[root][0], root);
 
   logger.println(`Printing ${root}`);
   treeTracer.leave(root);
   arrayTracer.patch(index++, root);
-  arrayTracer.delay();
+  Tracer.delay();
 
   logger.println(` Going right from ${root}`);
-  logger.delay();
+  Tracer.delay();
   inOrder(T[root][1], root);
 }
 

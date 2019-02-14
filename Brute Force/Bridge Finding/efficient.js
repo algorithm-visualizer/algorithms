@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const graphTracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
@@ -13,7 +13,7 @@ const G = [
 ];
 
 graphTracer.set(G);
-graphTracer.delay();
+Tracer.delay();
 
 /*
   NOTE: Code assumes NO parallel edges
@@ -32,9 +32,9 @@ const util = (u, disc, low, parent) => {
   logger.println('');
   logger.println(`Visiting node ${u}`);
   graphTracer.visit(u);
-  graphTracer.delay();
+  Tracer.delay();
   graphTracer.leave(u);
-  graphTracer.delay();
+  Tracer.delay();
 
   // visited [u] = true;
   disc[u] = low[u] = timer++;
@@ -46,9 +46,9 @@ const util = (u, disc, low, parent) => {
   }); */
   const trace = (v) => {
     graphTracer.visit(v, u);
-    graphTracer.delay();
+    Tracer.delay();
     graphTracer.leave(v, u);
-    graphTracer.delay();
+    Tracer.delay();
   };
 
   adj[u].forEach((v) => {

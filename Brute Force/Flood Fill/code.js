@@ -1,4 +1,4 @@
-const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer();
 Layout.setRoot(new VerticalLayout([tracer]));
@@ -14,7 +14,7 @@ const G = [
   ['#', '#', '#', '#', '#', '#', '#', '#', '#'],
 ];
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function FloodFill(i, j, oldColor, newColor) {
   if (i < 0 || i >= G.length || j < 0 || j >= G[i].length) return;
@@ -24,9 +24,9 @@ function FloodFill(i, j, oldColor, newColor) {
   G[i][j] = newColor;
 
   tracer.select(i, j);
-  tracer.delay();
+  Tracer.delay();
   tracer.patch(i, j, G[i][j]);
-  tracer.delay();
+  Tracer.delay();
 
   // next step four-way
   FloodFill(i + 1, j, oldColor, newColor);

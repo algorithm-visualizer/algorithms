@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 4; // just change the value of N and the visuals will reflect the configuration!
 const board = (function createArray(N) {
@@ -24,7 +24,7 @@ Layout.setRoot(new VerticalLayout([boardTracer, queenTracer, logger]));
 boardTracer.set(board);
 queenTracer.set(queens);
 logger.println(`N Queens: ${N}X${N}matrix, ${N} queens`);
-logger.delay();
+Tracer.delay();
 
 function validState(row, col, currentQueen) {
   for (let q = 0; q < currentQueen; q++) {
@@ -48,7 +48,7 @@ function nQ(currentQueen, currentCol) {
   let row = 0;
   while ((row < N) && (!found)) {
     boardTracer.select(row, currentCol);
-    boardTracer.delay();
+    Tracer.delay();
     logger.println(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);
 
     if (validState(row, currentCol, currentQueen)) {
@@ -56,20 +56,20 @@ function nQ(currentQueen, currentCol) {
       queens[currentQueen][1] = currentCol;
 
       queenTracer.patch(currentQueen, 0, row);
-      queenTracer.delay();
+      Tracer.delay();
       queenTracer.patch(currentQueen, 1, currentCol);
-      queenTracer.delay();
+      Tracer.delay();
       queenTracer.depatch(currentQueen, 0);
-      queenTracer.delay();
+      Tracer.delay();
       queenTracer.depatch(currentQueen, 1);
-      queenTracer.delay();
+      Tracer.delay();
 
       found = nQ(currentQueen + 1, currentCol + 1);
     }
 
     if (!found) {
       boardTracer.deselect(row, currentCol);
-      boardTracer.delay();
+      Tracer.delay();
       logger.println(`row ${row} & col ${currentCol} didn't work out. Going down`);
     }
     row++;

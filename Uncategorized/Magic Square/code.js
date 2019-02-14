@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const n = 7;
 const A = new Array(n);
@@ -48,10 +48,10 @@ for (let num = 1; num <= n * n;) {
   } else {
     A[i][j] = num++;
     tracer.patch(i, j, A[i][j]);
-    tracer.delay();
+    Tracer.delay();
     tracer.depatch(i, j);
     tracer.select(i, j);
-    tracer.delay();
+    Tracer.delay();
     j++;
     i--;
   }

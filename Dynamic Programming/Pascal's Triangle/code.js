@@ -1,4 +1,4 @@
-const { Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 9;
 const A = new Array(N);
@@ -15,18 +15,18 @@ for (let i = 0; i < N; i++) {
       A[i][j] = 1;
 
       tracer.patch(i, j, A[i][j]);
-      tracer.delay();
+      Tracer.delay();
       tracer.depatch(i, j);
     } else { // Other values are sum of values just above and left of above
       tracer.select(i - 1, j - 1);
-      tracer.delay();
+      Tracer.delay();
       tracer.select(i - 1, j);
-      tracer.delay();
+      Tracer.delay();
 
       A[i][j] = A[i - 1][j - 1] + A[i - 1][j];
 
       tracer.patch(i, j, A[i][j]);
-      tracer.delay();
+      Tracer.delay();
       tracer.depatch(i, j);
       tracer.deselect(i - 1, j - 1);
       tracer.deselect(i - 1, j);

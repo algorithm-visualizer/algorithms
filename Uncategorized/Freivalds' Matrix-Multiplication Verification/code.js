@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = [[2, 3], [3, 4]];
 const B = [[1, 0], [1, 2]];
@@ -35,7 +35,7 @@ function FreivaldsAlgorithm() {
       r.push((Math.random() < 0.5) << 0);
     }
     randomVectorTracer.set(r);
-    randomVectorTracer.delay();
+    Tracer.delay();
 
     // Compute Br, Cr
     const Br = [];
@@ -62,7 +62,7 @@ function FreivaldsAlgorithm() {
       P.push(tmp);
     }
     resultVectorTracer.set(P);
-    resultVectorTracer.delay();
+    Tracer.delay();
 
     for (i = 0; i < n; i++) {
       if (P[i] !== 0) {

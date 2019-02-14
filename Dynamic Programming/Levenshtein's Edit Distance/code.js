@@ -1,4 +1,4 @@
-const { Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array2DTracer('Distance Table');
 const logger = new LogTracer();
@@ -16,7 +16,7 @@ for (let i = 1; i < str2.length + 1; i++) {
 }
 
 tracer.set(table);
-tracer.delay();
+Tracer.delay();
 
 logger.println('Initialized DP Table');
 logger.println(`Y-Axis (Top to Bottom): ${str1}`);
@@ -35,20 +35,20 @@ const dist = (function editDistance(str1, str2, table) {
     for (let j = 1; j < str2.length + 1; j++) {
       if (str1[i - 1] === str2[j - 1]) {
         tracer.select(i - 1, j - 1);
-        tracer.delay();
+        Tracer.delay();
         table[i][j] = table[i - 1][j - 1];
         tracer.patch(i, j, table[i][j]);
-        tracer.delay();
+        Tracer.delay();
         tracer.depatch(i, j);
         tracer.deselect(i - 1, j - 1);
       } else {
         tracer.select(i - 1, j);
         tracer.select(i, j - 1);
         tracer.select(i - 1, j - 1);
-        tracer.delay();
+        Tracer.delay();
         table[i][j] = Math.min(table[i - 1][j], table[i][j - 1], table[i - 1][j - 1]) + 1;
         tracer.patch(i, j, table[i][j]);
-        tracer.delay();
+        Tracer.delay();
         tracer.depatch(i, j);
         tracer.deselect(i - 1, j);
         tracer.deselect(i, j - 1);

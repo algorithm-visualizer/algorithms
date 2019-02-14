@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
@@ -13,7 +13,7 @@ tracer.log(logger);
  ]; */
 const G = new Randomize.Graph(10, .4).directed(false).weighted().create();
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function prim() {
   // Finds a tree so that there exists a path between
@@ -34,7 +34,7 @@ function prim() {
         for (let j = 0; j < G.length; j++) {
           if (!D[j] && G[i][j]) {
             tracer.visit(i, j);
-            tracer.delay();
+            Tracer.delay();
             // Second node must not be visited and must be connected to first node
             if (G[i][j] < minD) {
               // Searching for cheapest edge which satisfies requirements
@@ -43,13 +43,13 @@ function prim() {
               minJ = j;
             }
             tracer.leave(i, j);
-            tracer.delay();
+            Tracer.delay();
           }
         }
       }
     }
     tracer.visit(minI, minJ);
-    tracer.delay();
+    Tracer.delay();
     D[minJ] = 1; // Visit second node and insert it into or tree
     sum += G[minI][minJ];
   }

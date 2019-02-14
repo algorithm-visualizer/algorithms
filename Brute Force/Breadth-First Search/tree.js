@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer();
 const logger = new LogTracer();
@@ -19,20 +19,20 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
 ];
 tracer.set(G);
 tracer.layoutTree(0);
-tracer.delay();
+Tracer.delay();
 
 function BFS(s) { // s = start node
   const Q = [];
   Q.push(s); // add start node to queue
   tracer.visit(s);
-  tracer.delay();
+  Tracer.delay();
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
     for (let i = 0; i < G[node].length; i++) {
       if (G[node][i]) { // if current node has the i-th node as a child
         Q.push(i); // add child node to queue
         tracer.visit(i, node);
-        tracer.delay();
+        Tracer.delay();
       }
     }
   }

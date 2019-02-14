@@ -1,4 +1,4 @@
-const { Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const jobId = ['a', 'b', 'c', 'd', 'e'];
 const deadline = [2, 1, 2, 1, 3];
@@ -38,7 +38,7 @@ tracer.set(jobId);
 tracer1.set(deadline);
 tracer2.set(profit);
 tracer3.set(result);
-tracer3.delay();
+Tracer.delay();
 
 // Initialise all slots to free
 for (let i = 0; i < N; i++) {
@@ -52,13 +52,13 @@ for (let i = 0; i < N; i++) {
      Find a slot for the job
      */
   tracer.select(i);
-  tracer.delay();
+  Tracer.delay();
   tracer1.select(i);
-  tracer1.delay();
+  Tracer.delay();
   for (let j = Math.min(N, deadline[i]) - 1; j >= 0; j--) {
     if (slot[j] === 0) {
       tracer3.patch(j, jobId[i]);
-      tracer3.delay();
+      Tracer.delay();
       result[j] = jobId[i];
       slot[j] = 1;
       tracer3.depatch(j);

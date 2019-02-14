@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
@@ -6,7 +6,7 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function BFS() {
   const W = []; // W[i] indicates the length of the shortest path from start node to the i-th node
@@ -19,7 +19,7 @@ function BFS() {
   W[s] = 0;
   Q.push(s); // add start node to queue
   tracer.visit(s, undefined, 0);
-  tracer.delay();
+  Tracer.delay();
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
     for (i = 0; i < G[node].length; i++) {
@@ -28,7 +28,7 @@ function BFS() {
           W[i] = W[node] + G[node][i]; // update the length of the shortest path
           Q.push(i); // add child node to queue
           tracer.visit(i, node, W[i]);
-          tracer.delay();
+          Tracer.delay();
         }
       }
     }

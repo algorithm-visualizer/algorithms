@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 let word = 'virgo';
 const suffixArray = (function skeleton(word) {
@@ -18,7 +18,7 @@ Layout.setRoot(new VerticalLayout([saTracer, wordTracer, logger]));
 
 saTracer.set(suffixArray);
 wordTracer.set(word);
-wordTracer.delay();
+Tracer.delay();
 
 word += '$'; // special character
 logger.println('Appended \'$\' at the end of word as terminating (special) character. Beginning filling of suffixes');
@@ -30,13 +30,13 @@ function selectSuffix(word, i) {
     wordTracer.select(i);
     i++;
   }
-  wordTracer.delay();
+  Tracer.delay();
 
   while (c < word.length - 1) {
     wordTracer.deselect(c);
     c++;
   }
-  wordTracer.delay();
+  Tracer.delay();
 }
 
 (function createSA(sa, word) {
@@ -45,9 +45,9 @@ function selectSuffix(word, i) {
 
     selectSuffix(word, i);
     saTracer.patch(i, 1, sa[i][1]);
-    saTracer.delay();
+    Tracer.delay();
     saTracer.depatch(i, 1);
-    saTracer.delay();
+    Tracer.delay();
   }
 }(suffixArray, word));
 
@@ -60,7 +60,7 @@ suffixArray.sort((a, b) => {
 for (let i = 0; i < word.length; i++) {
   saTracer.patch(i, 0, suffixArray[i][0]);
   saTracer.patch(i, 1, suffixArray[i][1]);
-  saTracer.delay();
+  Tracer.delay();
 
   saTracer.depatch(i, 0);
   saTracer.depatch(i, 1);

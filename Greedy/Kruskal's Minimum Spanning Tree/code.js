@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
@@ -12,7 +12,7 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
  ]; */
 const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function kruskal() {
   const vcount = G.length;
@@ -41,11 +41,11 @@ function kruskal() {
   for (let n = 0; n < vcount - 1 && edges.length > 0;) {
     const e = edges.shift(); // Get the edge of min weight
     tracer.visit(e[0], e[1]);
-    tracer.delay();
+    Tracer.delay();
     if (t[e[0]] === t[e[1]]) {
       // e[0] & e[1] already in the same tree, ignore
       tracer.leave(e[0], e[1]);
-      tracer.delay();
+      Tracer.delay();
       continue;
     }
 

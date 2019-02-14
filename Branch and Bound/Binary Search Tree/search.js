@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th node exists or not
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -33,11 +33,11 @@ const tracer = new GraphTracer(' Binary Search Tree ').set(G).layoutTree(5);
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
-tracer.delay();
+Tracer.delay();
 
 function bst(item, node, parent) { // node = current node , parent = previous node
   tracer.visit(node, parent);
-  tracer.delay();
+  Tracer.delay();
   if (item === node) { // key found
     logger.println(' Match Found ');
   } else if (item < node) { // key less than value of current node

@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const G = [
   [0, 0, 1, 1, 0, 0],
@@ -35,27 +35,27 @@ discTracer.set(disc);
 lowTracer.set(low);
 stackMemberTracer.set(stackMember);
 stTracer.set(st);
-stTracer.delay();
+Tracer.delay();
 
 function SCCVertex(u, disc, low, st, stackMember, carry) {
   graphTracer.visit(u);
-  graphTracer.delay();
+  Tracer.delay();
 
   disc[u] = ++carry.time;
   discTracer.patch(u, carry.time);
-  discTracer.delay();
+  Tracer.delay();
 
   low[u] = carry.time;
   lowTracer.patch(u, carry.time);
-  lowTracer.delay();
+  Tracer.delay();
 
   st.push(u);
   stTracer.set(st);
-  stTracer.delay();
+  Tracer.delay();
 
   stackMember[u] = true;
   stackMemberTracer.patch(u, true);
-  stackMemberTracer.delay();
+  Tracer.delay();
 
   // Go through all vertices adjacent to this
   for (let v = 0; v < G[u].length; v++) {
@@ -75,7 +75,7 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
       else if (stackMember[v] === true) {
         low[u] = Math.min(low[u], disc[v]);
         lowTracer.patch(u, low[u]);
-        lowTracer.delay();
+        Tracer.delay();
       }
     }
   }
@@ -86,27 +86,27 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
     while (st[st.length - 1] !== u) {
       w = st.pop();
       stTracer.set(st);
-      stTracer.delay();
+      Tracer.delay();
 
       logger.println(w);
-      logger.delay();
+      Tracer.delay();
 
       stackMember[w] = false;
       stackMemberTracer.patch(w, false);
-      stackMemberTracer.delay();
+      Tracer.delay();
     }
 
     w = st.pop();
     stTracer.set(st);
-    stTracer.delay();
+    Tracer.delay();
 
     logger.println(w);
-    logger.delay();
+    Tracer.delay();
     logger.println('------');
 
     stackMember[w] = false;
     stackMemberTracer.patch(w, false);
-    stackMemberTracer.delay();
+    Tracer.delay();
   }
 }
 

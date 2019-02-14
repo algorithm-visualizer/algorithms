@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const graphTracer = new GraphTracer().directed(false);
 const visitedTracer = new Array1DTracer('visited');
@@ -7,7 +7,7 @@ Layout.setRoot(new VerticalLayout([graphTracer, visitedTracer, logger]));
 graphTracer.log(logger);
 const G = new Randomize.Graph(8, .3).directed(false).create();
 graphTracer.set(G);
-graphTracer.delay();
+Tracer.delay();
 
 function DFSExplore(graph, source) {
   const stack = [[source, null]];
@@ -32,10 +32,10 @@ function DFSExplore(graph, source) {
 
       if (prev !== undefined && graph[node][prev]) {
         graphTracer.visit(node, prev);
-        graphTracer.delay();
+        Tracer.delay();
       } else {
         graphTracer.visit(node);
-        graphTracer.delay();
+        Tracer.delay();
       }
 
       for (i = 0; i < graph.length; i++) {

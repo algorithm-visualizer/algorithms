@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const tracerS = new Array1DTracer();
@@ -11,7 +11,7 @@ const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
 for (let i = 0; i < G.length; i++) S[i] = MAX_VALUE;
 tracerS.set(S);
-tracerS.delay();
+Tracer.delay();
 
 function Dijkstra(start, end) {
   let minIndex;
@@ -20,7 +20,7 @@ function Dijkstra(start, end) {
   for (let i = 0; i < G.length; i++) D.push(false);
   S[start] = 0; // Starting node is at distance 0 from itself
   tracerS.patch(start, S[start]);
-  tracerS.delay();
+  Tracer.delay();
   tracerS.depatch(start);
   tracerS.select(start);
   let k = G.length;
@@ -37,7 +37,7 @@ function Dijkstra(start, end) {
     D[minIndex] = true;
     tracerS.select(minIndex);
     tracer.visit(minIndex);
-    tracer.delay();
+    Tracer.delay();
     // For every unvisited neighbour of current node, we check
     // whether the path to it is shorter if going over the current node
     for (let i = 0; i < G.length; i++) {
@@ -45,14 +45,14 @@ function Dijkstra(start, end) {
         S[i] = S[minIndex] + G[minIndex][i];
         tracerS.patch(i, S[i]);
         tracer.visit(i, minIndex, S[i]);
-        tracer.delay();
+        Tracer.delay();
         tracerS.depatch(i);
         tracer.leave(i, minIndex);
-        tracer.delay();
+        Tracer.delay();
       }
     }
     tracer.leave(minIndex);
-    tracer.delay();
+    Tracer.delay();
   }
   if (S[end] === MAX_VALUE) {
     logger.println(`there is no path from ${start} to ${end}`);
@@ -67,5 +67,5 @@ do {
   e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
 logger.println(`finding the shortest path from ${s} to ${e}`);
-logger.delay();
+Tracer.delay();
 Dijkstra(s, e);

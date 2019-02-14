@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = [1, 3, 3, 2, 1, 1, 1];
 const N = A.length;
@@ -12,7 +12,7 @@ function isMajorityElement(element) {
   logger.println(`Verify majority element ${element}`);
   for (let i = N - 1; i >= 0; i--) {
     tracer.patch(i, A[i]);
-    tracer.delay();
+    Tracer.delay();
     if (A[i] === element) {
       count++;
     } else {
@@ -32,12 +32,12 @@ function findProbableElement() {
   let index = 0;
   let count = 1;
   tracer.select(index);
-  tracer.delay();
+  Tracer.delay();
   logger.println(`Beginning with assumed majority element : ${A[index]} count : ${count}`);
   logger.println('--------------------------------------------------------');
   for (let i = 1; i < N; i++) {
     tracer.patch(i, A[i]);
-    tracer.delay();
+    Tracer.delay();
     if (A[index] === A[i]) {
       count++;
       logger.println(`Same as assumed majority element! Count : ${count}`);
@@ -53,7 +53,7 @@ function findProbableElement() {
       index = i;
       count = 1;
       tracer.select(i);
-      tracer.delay();
+      Tracer.delay();
       logger.println(`New assumed majority element!${A[i]} Count : ${count}`);
       logger.println('--------------------------------------------------------');
     } else {

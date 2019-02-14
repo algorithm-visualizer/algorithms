@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
@@ -6,23 +6,23 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 function DFS(node, parent, weight) { // node = current node, parent = previous node
   if (minWeight < weight) return;
   if (node === e) {
     tracer.visit(node, parent, weight);
-    tracer.delay();
+    Tracer.delay();
     if (minWeight > weight) {
       minWeight = weight;
     }
     tracer.leave(node, parent, minWeight);
-    tracer.delay();
+    Tracer.delay();
     return;
   }
   D[node] = true; // label current node as discovered
   tracer.visit(node, parent, weight);
-  tracer.delay();
+  Tracer.delay();
   for (let i = 0; i < G[node].length; i++) {
     if (G[node][i]) { // if the path from current node to the i-th node exists
       if (!D[i]) { // if the i-th node is not labeled as discovered
@@ -32,7 +32,7 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
   }
   D[node] = false; // label current node as undiscovered
   tracer.leave(node, parent, 0);
-  tracer.delay();
+  Tracer.delay();
 }
 
 const s = new Randomize.Integer(0, G.length - 1).create(); // s = start node

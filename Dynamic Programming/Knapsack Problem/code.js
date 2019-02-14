@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const val = [1, 4, 5, 7]; // The value of all available items
 const wt = [1, 3, 4, 5]; // The weights of available items
@@ -28,15 +28,15 @@ for (let i = 0; i <= N; i++) {
       */
       DP[i][0] = 0;
       tracer.patch(i, j, DP[i][j]);
-      tracer.delay();
+      Tracer.delay();
       tracer.depatch(i, j);
     } else if (wt[i - 1] <= j) { // take the current item in our collection
       dataViewer1.select(i - 1);
-      dataViewer1.delay();
+      Tracer.delay();
       dataViewer2.select(i - 1);
-      dataViewer2.delay();
+      Tracer.delay();
       tracer.select(i - 1, j);
-      tracer.delay();
+      Tracer.delay();
 
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
       const B = DP[i - 1][j];
@@ -47,11 +47,11 @@ for (let i = 0; i <= N; i++) {
       if (A > B) {
         DP[i][j] = A;
         tracer.patch(i, j, DP[i][j]);
-        tracer.delay();
+        Tracer.delay();
       } else {
         DP[i][j] = B;
         tracer.patch(i, j, DP[i][j]);
-        tracer.delay();
+        Tracer.delay();
       }
 
       tracer.deselect(i - 1, j);
@@ -61,7 +61,7 @@ for (let i = 0; i <= N; i++) {
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
       tracer.patch(i, j, DP[i][j]);
-      tracer.delay();
+      Tracer.delay();
       tracer.depatch(i, j);
     }
   }

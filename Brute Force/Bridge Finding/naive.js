@@ -1,4 +1,4 @@
-const { GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new GraphTracer().directed(false);
 const logger = new LogTracer();
@@ -13,7 +13,7 @@ const G = [
 ];
 
 tracer.set(G);
-tracer.delay();
+Tracer.delay();
 
 // Depth First Search Exploration Algorithm to test connectedness of the Graph (see Graph Algorithms/DFS/exploration), without the tracer & logger commands
 function DFSExplore(graph, source) {
@@ -31,12 +31,6 @@ function DFSExplore(graph, source) {
 
     if (!visited[node]) {
       visited[node] = true;
-      // logger.println (node);
-
-      /*
-      if (prev !== undefined && graph [node] [prev]) { tracer.visit (node, prev).delay (); console.log ('tracer ' + prev + ', ' + node); }
-      else { tracer.visit (node).delay (); console.log ('tracer ' + node); }
-      */
 
       for (i = 0; i < graph.length; i++) {
         if (graph[node][i]) {
@@ -59,9 +53,9 @@ function findBridges(graph) {
       if (graph[i][j]) { // check if an edge exists
         logger.println(`Deleting edge ${i}->${j} and calling DFSExplore ()`);
         tracer.visit(j, i);
-        tracer.delay();
+        Tracer.delay();
         tracer.leave(j, i);
-        tracer.delay();
+        Tracer.delay();
 
         tempGraph = JSON.parse(JSON.stringify(graph));
         tempGraph[i][j] = 0;

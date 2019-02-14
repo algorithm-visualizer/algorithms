@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const A = new Randomize.Array1D(7).create();
 const N = A.length;
@@ -30,7 +30,7 @@ tracer2.set(holes);
 logTracer.println('Filling up holes');
 for (let i = 0; i < N; i++) {
   tracer1.select(i);
-  tracer1.delay();
+  Tracer.delay();
 
   holes[A[i] - min].push(A[i]);
 
@@ -43,10 +43,10 @@ let k = 0;
 for (let i = 0; i < range; i++) {
   for (let j = 0; j < holes[i].length; j++) {
     tracer2.select(i, j);
-    tracer2.delay();
+    Tracer.delay();
     A[k++] = holes[i][j];
     tracer1.patch(k - 1, A[k - 1]);
-    tracer1.delay();
+    Tracer.delay();
     tracer2.deselect(i, j);
     tracer1.depatch(k - 1);
   }

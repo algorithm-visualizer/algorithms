@@ -35,9 +35,11 @@ listDirectories(rootPath).forEach(category => {
       }
 
       const newContent = lines.join('\n');
-      console.log(newContent);
-      console.log('------------------------------------------------------------');
-      fs.writeFileSync(filePath, newContent, 'utf8');
+      if (newContent !== content) {
+        console.log(newContent);
+        console.log('------------------------------------------------------------');
+        fs.writeFileSync(filePath, newContent, 'utf8');
+      }
     });
   });
 });

@@ -1,4 +1,4 @@
-const { Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const chart = new ChartTracer();
 const tracer = new Array1DTracer().chart(chart);
@@ -6,7 +6,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15, new Randomize.Integer(0, 50)).sorted().create();
 tracer.set(D);
-tracer.delay();
+Tracer.delay();
 
 function BinarySearch(array, element) { // array = sorted array, element = element to be found
   let minIndex = 0;
@@ -18,10 +18,10 @@ function BinarySearch(array, element) { // array = sorted array, element = eleme
     testElement = array[middleIndex];
 
     tracer.select(minIndex, maxIndex);
-    tracer.delay();
+    Tracer.delay();
     tracer.patch(middleIndex);
     logger.println(`Searching at index: ${middleIndex}`);
-    logger.delay();
+    Tracer.delay();
     tracer.depatch(middleIndex);
     tracer.deselect(minIndex, maxIndex);
 

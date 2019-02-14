@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 function randString(length) {
   const result = Math.random().toString(36);
@@ -24,7 +24,7 @@ Layout.setRoot(new VerticalLayout([trackTracer, substrTracer, stringTracer, logg
 trackTracer.set(track);
 substrTracer.set(substring);
 stringTracer.set(string);
-stringTracer.delay();
+Tracer.delay();
 
 // Fix JS Negative number modulo Bug
 Number.prototype.mod = function (n) {
@@ -39,14 +39,14 @@ function tracker(substring) {
   substrTracer.select(j);
   while (i < track.length) {
     substrTracer.select(i);
-    substrTracer.delay();
+    Tracer.delay();
 
     while ((substring[i] !== substring[j]) && (j > 0)) {
       logger.println(`j = ${track[j - 1]}`);
       trackTracer.select(j - 1);
-      trackTracer.delay();
+      Tracer.delay();
       trackTracer.deselect(j - 1);
-      trackTracer.delay();
+      Tracer.delay();
 
       substrTracer.deselect(j);
       j = track[j - 1];
@@ -58,9 +58,9 @@ function tracker(substring) {
       substrTracer.deselect(j);
       track[i] = ++j;
       trackTracer.patch(i, track[i]);
-      trackTracer.delay();
+      Tracer.delay();
       trackTracer.depatch(i);
-      trackTracer.delay();
+      Tracer.delay();
       logger.println(`substring [ ${i} ] (${substring[i]}) equals substring [ ${j} ] (${substring[j]}), track [ ${i} ] updated to: ${track[i]}`);
 
       logger.println(`j = ${j}`);
@@ -69,13 +69,13 @@ function tracker(substring) {
       track[i] = 0;
       logger.println(`substring [ ${i} ] (${substring[i]}) is not equal to substring [ ${j} ] (${substring[j]}), setting track [${i}] to 0`);
       trackTracer.select(i);
-      trackTracer.delay();
+      Tracer.delay();
       trackTracer.deselect(i);
-      trackTracer.delay();
+      Tracer.delay();
     }
 
     substrTracer.deselect(i);
-    substrTracer.delay();
+    Tracer.delay();
     i++;
     logger.println(`i = ${i}`);
   }
@@ -98,9 +98,9 @@ function kmp(string, substr) {
   for (let i = 0; i < string.length; i++) {
     logger.println(`comparing string [${i}] (${string[i]}) and substring [${j}] (${substr[j]})...`);
     stringTracer.select(i);
-    stringTracer.delay();
+    Tracer.delay();
     stringTracer.select(j);
-    stringTracer.delay();
+    Tracer.delay();
 
     if (string[i] === substr[j]) {
       logger.println('they\'re equal!');
@@ -112,35 +112,35 @@ function kmp(string, substr) {
 
         logger.println(`Adding start position of the substring (${startPos}) to the results.`);
         stringTracer.select(startPos);
-        stringTracer.delay();
+        Tracer.delay();
       } else {
         stringTracer.deselect(j);
-        stringTracer.delay();
+        Tracer.delay();
         logger.println(`But j (${j}) does not equal length of substring (${substr.length}) Incrementing j and moving forward.`);
         j++;
         logger.println(`j = ${j}`);
         stringTracer.select(j);
-        stringTracer.delay();
+        Tracer.delay();
       }
     } else {
       const tempJ = (j - 1).mod(substr.length);
       logger.println('they\'re NOT equal');
       trackTracer.select(tempJ);
-      trackTracer.delay();
+      Tracer.delay();
       stringTracer.deselect(j);
-      stringTracer.delay();
+      Tracer.delay();
 
       j = track[tempJ]; // use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
 
       logger.println(`Setting j to ${j}`);
       stringTracer.select(j);
-      stringTracer.delay();
+      Tracer.delay();
       trackTracer.deselect(tempJ);
-      trackTracer.delay();
+      Tracer.delay();
     }
 
     stringTracer.deselect(i);
-    stringTracer.delay();
+    Tracer.delay();
   }
 
   return positions;
@@ -151,5 +151,5 @@ const positions = kmp(string, substring);
 logger.println(`Substring positions are: ${positions.length ? String(positions) : 'NONE'}`);
 for (let i = 0; i < positions.length; i++) {
   stringTracer.select(positions[i], positions[i] + substring.length - 1);
-  stringTracer.delay();
+  Tracer.delay();
 }

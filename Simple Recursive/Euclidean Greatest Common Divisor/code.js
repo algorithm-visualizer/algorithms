@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const tracer = new Array1DTracer('Euclidean Algorithm');
 const a = [];
@@ -18,7 +18,7 @@ if (a[0] > a[1]) {
   a[1] = tmp;
   logger.println('The first number is bigger than the second number. Switching the numbers.');
   tracer.set(a);
-  tracer.delay();
+  Tracer.delay();
 }
 
 while (a[0] > 0) {
@@ -26,14 +26,14 @@ while (a[0] > 0) {
   logger.println('Switching a[1] with a[1]%a[0]');
   a[1] %= a[0];
   tracer.patch(1, a[1]);
-  tracer.delay();
+  Tracer.delay();
   logger.println('Now switching the two values to keep a[0] < a[1]');
   const tmp = a[0];
   a[0] = a[1];
   a[1] = tmp;
   tracer.patch(0, a[0]);
   tracer.patch(1, a[1]);
-  tracer.delay();
+  Tracer.delay();
   tracer.depatch(0);
   tracer.depatch(1);
 }

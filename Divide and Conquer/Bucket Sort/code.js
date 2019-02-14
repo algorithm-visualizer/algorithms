@@ -1,5 +1,5 @@
 // import visualization libraries {
-const { Array1DTracer, Array2DTracer, ChartTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, ChartTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
 // define tracer variables {
@@ -18,12 +18,10 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
   // create K buckets
   const buckets = [...new Array(K)].map(() => []);
   // visualize {
-  arrayTracer
-    .chart(chartTracer)
-    .set(array);
-  bucketsTracer
-    .set(buckets)
-    .delay();
+  arrayTracer.chart(chartTracer);
+  arrayTracer.set(array);
+  bucketsTracer.set(buckets);
+  Tracer.delay();
   // }
 
   // find the maximum value that will be used for distribution
@@ -37,10 +35,9 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
     bucket.push(number);
     // visualize {
     arrayTracer.select(i);
-    bucketsTracer
-      .patch(bucketIndex, bucket.length - 1, number)
-      .delay()
-      .depatch(bucketIndex, bucket.length - 1);
+    bucketsTracer.patch(bucketIndex, bucket.length - 1, number);
+    Tracer.delay();
+    bucketsTracer.depatch(bucketIndex, bucket.length - 1);
     // }
 
     // insertion sort within the bucket
@@ -50,12 +47,11 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
       bucket[j - 1] = bucket[j];
       bucket[j] = temp;
       // visualize {
-      bucketsTracer
-        .patch(bucketIndex, j - 1, bucket[j - 1])
-        .patch(bucketIndex, j, bucket[j])
-        .delay()
-        .depatch(bucketIndex, j - 1)
-        .depatch(bucketIndex, j);
+      bucketsTracer.patch(bucketIndex, j - 1, bucket[j - 1]);
+      bucketsTracer.patch(bucketIndex, j, bucket[j]);
+      Tracer.delay();
+      bucketsTracer.depatch(bucketIndex, j - 1);
+      bucketsTracer.depatch(bucketIndex, j);
       // }
       j--;
     }
@@ -72,10 +68,9 @@ const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
       array[i] = bucket[j];
       // visualize {
       arrayTracer.patch(i, array[i]);
-      bucketsTracer
-        .select(bucketIndex, j)
-        .delay()
-        .deselect(bucketIndex, j);
+      bucketsTracer.select(bucketIndex, j);
+      Tracer.delay();
+      bucketsTracer.deselect(bucketIndex, j);
       arrayTracer.depatch(i);
       // }
       i++;

@@ -1,4 +1,4 @@
-const { Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const N = 15;
 const A = new Array(N);
@@ -23,16 +23,16 @@ for (let i = 1; i < N; i++) {
   A[i] = next;
 
   tracer.patch(i, A[i]);
-  tracer.delay();
+  Tracer.delay();
   tracer.depatch(i);
 
   if (next === M[0]) {
     I[0]++;
     M[0] = A[I[0]] * 2;
     tracer2.patch(0, M[0]);
-    tracer2.delay();
+    Tracer.delay();
     tracer3.patch(0, I[0]);
-    tracer3.delay();
+    Tracer.delay();
     tracer2.depatch(0);
     tracer3.depatch(0);
   }
@@ -40,9 +40,9 @@ for (let i = 1; i < N; i++) {
     I[1]++;
     M[1] = A[I[1]] * 3;
     tracer2.patch(1, M[1]);
-    tracer2.delay();
+    Tracer.delay();
     tracer3.patch(1, I[1]);
-    tracer3.delay();
+    Tracer.delay();
     tracer2.depatch(1);
     tracer3.depatch(1);
   }
@@ -50,9 +50,9 @@ for (let i = 1; i < N; i++) {
     I[2]++;
     M[2] = A[I[2]] * 5;
     tracer2.patch(2, M[2]);
-    tracer2.delay();
+    Tracer.delay();
     tracer3.patch(2, I[2]);
-    tracer3.delay();
+    Tracer.delay();
     tracer2.depatch(2);
     tracer3.depatch(2);
   }

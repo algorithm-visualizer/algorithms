@@ -1,4 +1,4 @@
-const { Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const string1 = 'AGGTAB';
 const string2 = 'GXTXAYB';
@@ -27,11 +27,11 @@ for (i = 0; i <= m; i++) {
       A[i][j] = i;
     } else if (string1[i - 1] === string2[j - 1]) {
       tracer1.select(i - 1);
-      tracer1.delay();
+      Tracer.delay();
       tracer2.select(j - 1);
-      tracer2.delay();
+      Tracer.delay();
       tracer3.select(i - 1, j - 1);
-      tracer3.delay();
+      Tracer.delay();
 
       A[i][j] = A[i - 1][j - 1] + 1;
 
@@ -40,9 +40,9 @@ for (i = 0; i <= m; i++) {
       tracer3.deselect(i - 1, j - 1);
     } else {
       tracer3.select(i - 1, j);
-      tracer3.delay();
+      Tracer.delay();
       tracer3.select(i, j - 1);
-      tracer3.delay();
+      Tracer.delay();
 
       if (A[i - 1][j] < A[i][j - 1]) {
         A[i][j] = 1 + A[i - 1][j];
@@ -54,7 +54,7 @@ for (i = 0; i <= m; i++) {
       tracer3.deselect(i, j - 1);
     }
     tracer3.patch(i, j, A[i][j]);
-    tracer3.delay();
+    Tracer.delay();
     tracer3.depatch(i, j);
   }
 }

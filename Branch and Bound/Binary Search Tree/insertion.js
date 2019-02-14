@@ -1,4 +1,4 @@
-const { Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+const { Tracer, Array1DTracer, GraphTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
 
 const T = {};
 
@@ -8,11 +8,11 @@ const elemTracer = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([graphTracer, elemTracer, logger]));
 graphTracer.log(logger);
-graphTracer.delay();
+Tracer.delay();
 
 function bstInsert(root, element, parent) { // root = current node , parent = previous node
   graphTracer.visit(root, parent);
-  graphTracer.delay();
+  Tracer.delay();
   const treeNode = T[root];
   let propName = '';
   if (element < root) {
@@ -27,7 +27,7 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
       graphTracer.addNode(element);
       graphTracer.addEdge(root, element);
       graphTracer.select(element, root);
-      graphTracer.delay();
+      Tracer.delay();
       graphTracer.deselect(element, root);
       logger.println(`${element} Inserted`);
     } else {
@@ -35,7 +35,7 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
     }
   }
   graphTracer.leave(root, parent);
-  graphTracer.delay();
+  Tracer.delay();
 }
 
 const Root = elements[0]; // take first element as root
@@ -46,8 +46,8 @@ logger.println(`${Root} Inserted as root of tree `);
 
 for (let i = 1; i < elements.length; i++) {
   elemTracer.select(i);
-  elemTracer.delay();
+  Tracer.delay();
   bstInsert(Root, elements[i]); // insert ith element
   elemTracer.deselect(i);
-  elemTracer.delay();
+  Tracer.delay();
 }
