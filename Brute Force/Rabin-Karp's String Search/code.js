@@ -35,11 +35,15 @@ for (let i = 0; i <= N - M; i++) {
   */
   if (hashPattern === hashText) {
     let f = 0;
-    tracer1.select(i, i + M - 1).delay();
-    tracer2.select(0, M - 1).delay();
+    tracer1.select(i, i + M - 1);
+    tracer1.delay();
+    tracer2.select(0, M - 1);
+    tracer2.delay();
     for (let j = 0; j < M; j++) {
-      tracer1.patch(i + j).delay();
-      tracer2.patch(j).delay();
+      tracer1.patch(i + j);
+      tracer1.delay();
+      tracer2.patch(j);
+      tracer2.delay();
       if (text[i + j] !== pattern[j]) {
         f++;
       }

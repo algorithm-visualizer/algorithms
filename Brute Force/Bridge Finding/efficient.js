@@ -12,7 +12,8 @@ const G = [
   [0, 0, 0, 1, 0, 0],
 ];
 
-graphTracer.set(G).delay();
+graphTracer.set(G);
+graphTracer.delay();
 
 /*
   NOTE: Code assumes NO parallel edges
@@ -30,8 +31,10 @@ const util = (u, disc, low, parent) => {
   // parent is the node that u came from
   logger.println('');
   logger.println(`Visiting node ${u}`);
-  graphTracer.visit(u).delay();
-  graphTracer.leave(u).delay();
+  graphTracer.visit(u);
+  graphTracer.delay();
+  graphTracer.leave(u);
+  graphTracer.delay();
 
   // visited [u] = true;
   disc[u] = low[u] = timer++;
@@ -42,8 +45,10 @@ const util = (u, disc, low, parent) => {
     graphTracer.leave (v, u).delay ();
   }); */
   const trace = (v) => {
-    graphTracer.visit(v, u).delay();
-    graphTracer.leave(v, u).delay();
+    graphTracer.visit(v, u);
+    graphTracer.delay();
+    graphTracer.leave(v, u);
+    graphTracer.delay();
   };
 
   adj[u].forEach((v) => {

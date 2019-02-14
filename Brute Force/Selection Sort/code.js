@@ -5,17 +5,21 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15).create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 for (let i = 0; i < D.length - 1; i++) {
   let minJ = i;
-  tracer.select(i).delay();
+  tracer.select(i);
+  tracer.delay();
   for (let j = i + 1; j < D.length; j++) {
-    tracer.select(j).delay();
+    tracer.select(j);
+    tracer.delay();
     if (D[j] < D[minJ]) {
       minJ = j;
-      tracer.patch(j).delay();
+      tracer.patch(j);
+      tracer.delay();
       tracer.depatch(j);
     }
     tracer.deselect(j);
@@ -25,8 +29,11 @@ for (let i = 0; i < D.length - 1; i++) {
     const temp = D[i];
     D[i] = D[minJ];
     D[minJ] = temp;
-    tracer.patch(i, D[i]).patch(minJ, D[minJ]).delay();
-    tracer.depatch(i).depatch(minJ);
+    tracer.patch(i, D[i]);
+    tracer.patch(minJ, D[minJ]);
+    tracer.delay();
+    tracer.depatch(i);
+    tracer.depatch(minJ);
   }
   tracer.deselect(i);
 }

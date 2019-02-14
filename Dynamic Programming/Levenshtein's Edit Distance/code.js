@@ -15,7 +15,8 @@ for (let i = 1; i < str2.length + 1; i++) {
   table[0][i] = i;
 }
 
-tracer.set(table).delay();
+tracer.set(table);
+tracer.delay();
 
 logger.println('Initialized DP Table');
 logger.println(`Y-Axis (Top to Bottom): ${str1}`);
@@ -33,17 +34,21 @@ const dist = (function editDistance(str1, str2, table) {
   for (let i = 1; i < str1.length + 1; i++) {
     for (let j = 1; j < str2.length + 1; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        tracer.select(i - 1, j - 1).delay();
+        tracer.select(i - 1, j - 1);
+        tracer.delay();
         table[i][j] = table[i - 1][j - 1];
-        tracer.patch(i, j, table[i][j]).delay();
+        tracer.patch(i, j, table[i][j]);
+        tracer.delay();
         tracer.depatch(i, j);
         tracer.deselect(i - 1, j - 1);
       } else {
         tracer.select(i - 1, j);
         tracer.select(i, j - 1);
-        tracer.select(i - 1, j - 1).delay();
+        tracer.select(i - 1, j - 1);
+        tracer.delay();
         table[i][j] = Math.min(table[i - 1][j], table[i][j - 1], table[i - 1][j - 1]) + 1;
-        tracer.patch(i, j, table[i][j]).delay();
+        tracer.patch(i, j, table[i][j]);
+        tracer.delay();
         tracer.depatch(i, j);
         tracer.deselect(i - 1, j);
         tracer.deselect(i, j - 1);

@@ -20,7 +20,8 @@ graphTracer.set(G);
 oecTracer.set(outgoingEdgeCounts);
 
 for (incomingNodes = []; incomingNodes.length < G.length; incomingNodes.push(filledArray(G.length, -1))) ;
-inTracer.set(incomingNodes).delay();
+inTracer.set(incomingNodes);
+inTracer.delay();
 
 /*
   PageRank Algorithm Version 2
@@ -51,8 +52,10 @@ logger.println('Calculate Outgoing Edge Count for each Node');
     outgoingEdgeCounts[i] = arraySum(relations);
     showOutgoingEdges(i);
 
-    oecTracer.patch(i, outgoingEdgeCounts[i]).delay();
-    oecTracer.depatch(i).delay();
+    oecTracer.patch(i, outgoingEdgeCounts[i]);
+    oecTracer.delay();
+    oecTracer.depatch(i);
+    oecTracer.delay();
   });
 }());
 
@@ -62,14 +65,18 @@ logger.println('determine incoming nodes for each node');
     for (let j = 0; j < G.length; j++) {
       if (G[i][j]) {
         // there's an edge FROM i TO j
-        graphTracer.visit(j, i).delay();
+        graphTracer.visit(j, i);
+        graphTracer.delay();
 
         const nextPos = incomingNodes[j].indexOf(-1);
         incomingNodes[j][nextPos] = i;
-        inTracer.patch(j, nextPos, i).delay();
-        inTracer.depatch(j, nextPos).delay();
+        inTracer.patch(j, nextPos, i);
+        inTracer.delay();
+        inTracer.depatch(j, nextPos);
+        inTracer.delay();
 
-        graphTracer.leave(j, i).delay();
+        graphTracer.leave(j, i);
+        graphTracer.delay();
       }
     }
   }
@@ -88,14 +95,18 @@ function updateRank(nodeIndex) {
   logger.println(`The incoming Nodes of ${nodeIndex} are being highlighted`);
 
   incomingNodes[nodeIndex].forEach((incoming, i) => {
-    inTracer.select(nodeIndex, i).delay();
+    inTracer.select(nodeIndex, i);
+    inTracer.delay();
     logger.println(`Outgoing edge count of ${incoming} is ${outgoingEdgeCounts[incoming]}`);
-    oecTracer.select(incoming).delay();
+    oecTracer.select(incoming);
+    oecTracer.delay();
 
     inNodeSummation += (ranks[incoming] / outgoingEdgeCounts[incoming]);
 
-    oecTracer.deselect(incoming).delay();
-    inTracer.deselect(nodeIndex, i).delay();
+    oecTracer.deselect(incoming);
+    oecTracer.delay();
+    inTracer.deselect(nodeIndex, i);
+    inTracer.delay();
   });
   logger.println(`In-Node summation of ${nodeIndex} = ${inNodeSummation}`);
 
@@ -120,8 +131,10 @@ logger.println('');
 while (iterations--) {
   for (let node = 0; node < ranks.length; node++) {
     ranks[node] = updateRank(node);
-    rankTracer.patch(node, ranks[node]).delay();
-    rankTracer.patch(node).delay();
+    rankTracer.patch(node, ranks[node]);
+    rankTracer.delay();
+    rankTracer.patch(node);
+    rankTracer.delay();
   }
 }
 

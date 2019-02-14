@@ -6,7 +6,8 @@ const ctTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([ptTracer, ctTracer, logger]));
 
-ptTracer.set(plainText).delay();
+ptTracer.set(plainText);
+ptTracer.delay();
 
 /*
  code assumes that plainText contains ONLY LOWER CASE ALPHABETS
@@ -37,7 +38,8 @@ function encrypt(plainText) {
   logger.println(`keys.a=${keys.a}, keys.b=${keys.b}, N=${N}`);
 
   for (const i in plainText) {
-    ptTracer.select(i).delay();
+    ptTracer.select(i);
+    ptTracer.delay();
     ptTracer.deselect(i);
 
     cypherText += cryptAlpha(plainText[i]);
@@ -76,13 +78,16 @@ function decrypt(cypherText) {
   logger.println(`keys.b=${keys.b}, N=${N}`);
 
   for (const i in cypherText) {
-    ctTracer.select(i).delay();
-    ctTracer.deselect(i).delay();
+    ctTracer.select(i);
+    ctTracer.delay();
+    ctTracer.deselect(i);
+    ctTracer.delay();
 
     plainText += decryptAlpha(cypherText[i]);
 
     ctTracer.patch(i, plainText.slice(-1)).delay();
-    ctTracer.depatch(i).delay();
+    ctTracer.depatch(i);
+    ctTracer.delay();
   }
 
   return plainText;

@@ -4,7 +4,8 @@ const tracer = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 const D = [-2, -3, 4, -1, -2, 1, 5, -3];
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 const maxSubarraySum = (function maxSubarray(array) {
   let maxSoFar = 0;

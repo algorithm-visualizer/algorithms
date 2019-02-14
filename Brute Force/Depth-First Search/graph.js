@@ -6,7 +6,8 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([graphTracer, visitedTracer, logger]));
 graphTracer.log(logger);
 const G = new Randomize.Graph(8, .3).directed(false).create();
-graphTracer.set(G).delay();
+graphTracer.set(G);
+graphTracer.delay();
 
 function DFSExplore(graph, source) {
   const stack = [[source, null]];
@@ -30,9 +31,11 @@ function DFSExplore(graph, source) {
       visitedTracer.patch(node, visited[node]);
 
       if (prev !== undefined && graph[node][prev]) {
-        graphTracer.visit(node, prev).delay();
+        graphTracer.visit(node, prev);
+        graphTracer.delay();
       } else {
-        graphTracer.visit(node).delay();
+        graphTracer.visit(node);
+        graphTracer.delay();
       }
 
       for (i = 0; i < graph.length; i++) {

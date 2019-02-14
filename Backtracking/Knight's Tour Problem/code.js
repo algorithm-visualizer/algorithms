@@ -40,8 +40,10 @@ function knightTour(x, y, moveNum) {
     const nextX = x + X[i];
     const nextY = y + Y[i];
 
-    posTracer.patch(0, nextX).delay();
-    posTracer.patch(1, nextY).delay();
+    posTracer.patch(0, nextX);
+    posTracer.delay();
+    posTracer.patch(1, nextY);
+    posTracer.delay();
     posTracer.depatch(0);
     posTracer.depatch(1);
     /*
@@ -52,7 +54,8 @@ function knightTour(x, y, moveNum) {
       board[nextX][nextY] = moveNum;
 
       logTracer.println(`Move to ${nextX},${nextY}`);
-      boardTracer.patch(nextX, nextY, moveNum).delay();
+      boardTracer.patch(nextX, nextY, moveNum);
+      boardTracer.delay();
       boardTracer.depatch(nextX, nextY);
       boardTracer.select(nextX, nextY);
 
@@ -62,7 +65,8 @@ function knightTour(x, y, moveNum) {
       }
       logTracer.println(`No place to move from ${nextX},${nextY}: Backtrack`);
       board[nextX][nextY] = -1; // backtrack
-      boardTracer.patch(nextX, nextY, -1).delay();
+      boardTracer.patch(nextX, nextY, -1);
+      boardTracer.delay();
       boardTracer.depatch(nextX, nextY);
       boardTracer.deselect(nextX, nextY);
     } else {
@@ -76,9 +80,12 @@ board[0][0] = 0; // start from this position
 pos[0] = 0;
 pos[0] = 0;
 
-boardTracer.patch(0, 0, 0).delay();
-posTracer.patch(0, 0).delay();
-posTracer.patch(1, 0).delay();
+boardTracer.patch(0, 0, 0);
+boardTracer.delay();
+posTracer.patch(0, 0);
+posTracer.delay();
+posTracer.patch(1, 0);
+posTracer.delay();
 boardTracer.depatch(0, 0);
 boardTracer.depatch(0, 0);
 posTracer.depatch(0);

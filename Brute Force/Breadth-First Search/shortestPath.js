@@ -5,7 +5,8 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function BFS() {
   const W = []; // W[i] indicates the length of the shortest path from start node to the i-th node
@@ -17,7 +18,8 @@ function BFS() {
   }
   W[s] = 0;
   Q.push(s); // add start node to queue
-  tracer.visit(s, undefined, 0).delay();
+  tracer.visit(s, undefined, 0);
+  tracer.delay();
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
     for (i = 0; i < G[node].length; i++) {
@@ -25,7 +27,8 @@ function BFS() {
         if (W[i] > W[node] + G[node][i]) { // if current path is shorter than the previously shortest path
           W[i] = W[node] + G[node][i]; // update the length of the shortest path
           Q.push(i); // add child node to queue
-          tracer.visit(i, node, W[i]).delay();
+          tracer.visit(i, node, W[i]);
+          tracer.delay();
         }
       }
     }

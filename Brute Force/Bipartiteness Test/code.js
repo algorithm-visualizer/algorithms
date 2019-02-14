@@ -31,7 +31,8 @@ function BFSCheckBipartiteness(s) {
 
   while (Q.length > 0) {
     const node = Q.shift(); // dequeue
-    tracer.visit(node).delay();
+    tracer.visit(node);
+    tracer.delay();
 
     for (let i = 0; i < G[node].length; i++) {
       if (G[node][i]) {
@@ -40,7 +41,8 @@ function BFSCheckBipartiteness(s) {
           colorsTracer.patch(i, 1 - Colors[node]);
 
           Q.push(i);
-          tracer.visit(i, node).delay();
+          tracer.visit(i, node);
+          tracer.delay();
         } else if (Colors[i] === Colors[node]) {
           logger.println('Graph is not biparted');
           return false;

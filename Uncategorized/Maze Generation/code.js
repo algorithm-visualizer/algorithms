@@ -56,7 +56,8 @@ for (let i = 0; i < vEnd; i++) { // by row
   }
 }
 
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function buildMaze() {
   const mySet = new disjointSet();
@@ -179,13 +180,16 @@ function buildMaze() {
       if (currentWall.down === false) {
         G[j * 2 + 2][i * 3 + 1] = ' ';
         G[j * 2 + 2][i * 3 + 2] = ' ';
-        tracer.select(j * 2 + 2, i * 3 + 1).delay();
-        tracer.select(j * 2 + 2, i * 3 + 2).delay();
+        tracer.select(j * 2 + 2, i * 3 + 1);
+        tracer.delay();
+        tracer.select(j * 2 + 2, i * 3 + 2);
+        tracer.delay();
       }
 
       if (currentWall.right === false) {
         G[j * 2 + 1][i * 3 + 3] = ' ';
-        tracer.select(j * 2 + 1, i * 3 + 3).delay();
+        tracer.select(j * 2 + 1, i * 3 + 3);
+        tracer.delay();
       }
       tracer.set(G);
     }

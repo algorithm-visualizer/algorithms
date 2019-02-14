@@ -34,7 +34,8 @@ function FreivaldsAlgorithm() {
       P.push(-1);
       r.push((Math.random() < 0.5) << 0);
     }
-    randomVectorTracer.set(r).delay();
+    randomVectorTracer.set(r);
+    randomVectorTracer.delay();
 
     // Compute Br, Cr
     const Br = [];
@@ -60,7 +61,8 @@ function FreivaldsAlgorithm() {
       }
       P.push(tmp);
     }
-    resultVectorTracer.set(P).delay();
+    resultVectorTracer.set(P);
+    resultVectorTracer.delay();
 
     for (i = 0; i < n; i++) {
       if (P[i] !== 0) {

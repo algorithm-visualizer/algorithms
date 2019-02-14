@@ -8,7 +8,8 @@ const D = [
   new Randomize.Array1D(20, new Randomize.Integer(0, 0)).create(),
 ];
 
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D[0].join(', ')}]`);
 

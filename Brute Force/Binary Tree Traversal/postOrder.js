@@ -37,22 +37,27 @@ let index = 0;
 
 function postOrder(root, parent) {
   if (root === -1) {
-    logger.println('No more nodes. Backtracking.').delay();
+    logger.println('No more nodes. Backtracking.');
+    logger.delay();
     return;
   }
 
   logger.println(`Reached ${root}`);
-  treeTracer.visit(root, parent).delay();
+  treeTracer.visit(root, parent);
+  treeTracer.delay();
 
-  logger.println(` Going left from ${root}`).delay();
+  logger.println(` Going left from ${root}`);
+  logger.delay();
   postOrder(T[root][0], root);
 
-  logger.println(` Going right from ${root}`).delay();
+  logger.println(` Going right from ${root}`);
+  logger.delay();
   postOrder(T[root][1], root);
 
   logger.println(`Printing ${root}`);
   treeTracer.leave(root);
-  arrayTracer.patch(index++, root).delay();
+  arrayTracer.patch(index++, root);
+  arrayTracer.delay();
 }
 
 postOrder(5); // node with key 5 is the root

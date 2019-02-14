@@ -30,19 +30,24 @@ function createZarr(concat) {
   left = 0;
   right = 0;
   for (let i = 1; i < N; i++) {
-    tracer.select(i).delay();
+    tracer.select(i);
+    tracer.delay();
     if (i > right) {
       left = right = i;
       while (right < N && concat[right] === concat[right - left]) {
-        concatTracer.patch(right).select(right - left);
+        concatTracer.patch(right);
+        concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
-        concatTracer.depatch(right).deselect(right - left);
+        concatTracer.depatch(right);
+        concatTracer.deselect(right - left);
         right++;
       }
       if (right < N) {
-        concatTracer.patch(right).select(right - left);
+        concatTracer.patch(right);
+        concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
-        concatTracer.depatch(right).deselect(right - left);
+        concatTracer.depatch(right);
+        concatTracer.deselect(right - left);
       }
       z[i] = (right - left);
       logger.println('--------------------------------');
@@ -51,22 +56,29 @@ function createZarr(concat) {
       right--;
     } else if (z[i - left] < (right - i + 1)) {
       logger.println(`The substring from index ${i - left} will not cross the right end.`);
-      concatTracer.patch(right - i + 1).select(i - left).delay();
+      concatTracer.patch(right - i + 1);
+      concatTracer.select(i - left);
+      concatTracer.delay();
       z[i] = z[i - left];
-      concatTracer.depatch(right - i + 1).deselect(i - left);
+      concatTracer.depatch(right - i + 1);
+      concatTracer.deselect(i - left);
     } else {
       logger.println(`The substring from index ${i - left} will cross the right end.`);
       left = i;
       while (right < N && concat[right] === concat[right - left]) {
-        concatTracer.patch(right).select(right - left);
+        concatTracer.patch(right);
+        concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`).delay();
-        concatTracer.depatch(right).deselect(right - left);
+        concatTracer.depatch(right);
+        concatTracer.deselect(right - left);
         right++;
       }
       if (right < N) {
-        concatTracer.patch(right).select(right - left);
+        concatTracer.patch(right);
+        concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`).delay();
-        concatTracer.depatch(right).deselect(right - left);
+        concatTracer.depatch(right);
+        concatTracer.deselect(right - left);
       }
       z[i] = (right - left);
       right--;
@@ -74,7 +86,8 @@ function createZarr(concat) {
       logger.println(`Value of z[${i}] = the length of the substring starting from ${i} which is also the prefix of the concatinated string(=${right - left})`);
       logger.println('--------------------------------');
     }
-    tracer.deselect(i).set(z);
+    tracer.deselect(i);
+    tracer.set(z);
   }
 }
 

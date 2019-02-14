@@ -5,20 +5,26 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(10).create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
 function flip(start) {
-  tracer.select(start, N - 1).delay();
+  tracer.select(start, N - 1);
+  tracer.delay();
   let idx = 0;
   for (let i = start; i < (start + N) / 2; i++) {
-    tracer.select(i).delay();
+    tracer.select(i);
+    tracer.delay();
     const temp = D[i];
     D[i] = D[N - idx - 1];
     D[N - idx - 1] = temp;
-    tracer.patch(i, D[i]).patch(N - idx - 1, D[N - idx - 1]).delay();
-    tracer.depatch(i).depatch(N - idx - 1);
+    tracer.patch(i, D[i]);
+    tracer.patch(N - idx - 1, D[N - idx - 1]);
+    tracer.delay();
+    tracer.depatch(i);
+    tracer.depatch(N - idx - 1);
     tracer.deselect(i);
     idx++;
   }

@@ -17,7 +17,8 @@ const logger = new LogTracer('Progress');
 Layout.setRoot(new VerticalLayout([saTracer, wordTracer, logger]));
 
 saTracer.set(suffixArray);
-wordTracer.set(word).delay();
+wordTracer.set(word);
+wordTracer.delay();
 
 word += '$'; // special character
 logger.println('Appended \'$\' at the end of word as terminating (special) character. Beginning filling of suffixes');
@@ -43,8 +44,10 @@ function selectSuffix(word, i) {
     sa[i][1] = word.slice(i);
 
     selectSuffix(word, i);
-    saTracer.patch(i, 1, sa[i][1]).delay();
-    saTracer.depatch(i, 1).delay();
+    saTracer.patch(i, 1, sa[i][1]);
+    saTracer.delay();
+    saTracer.depatch(i, 1);
+    saTracer.delay();
   }
 }(suffixArray, word));
 
@@ -56,7 +59,8 @@ suffixArray.sort((a, b) => {
 
 for (let i = 0; i < word.length; i++) {
   saTracer.patch(i, 0, suffixArray[i][0]);
-  saTracer.patch(i, 1, suffixArray[i][1]).delay();
+  saTracer.patch(i, 1, suffixArray[i][1]);
+  saTracer.delay();
 
   saTracer.depatch(i, 0);
   saTracer.depatch(i, 1);

@@ -5,7 +5,8 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, 1).weighted().create();
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function FloydWarshall() {
   // Finds the shortest path between all nodes
@@ -26,18 +27,22 @@ function FloydWarshall() {
   for (let k = 0; k < G.length; k++) {
     for (let i = 0; i < G.length; i++) {
       if (k === i) continue;
-      tracer.visit(k, i).delay();
+      tracer.visit(k, i);
+      tracer.delay();
       for (let j = 0; j < G.length; j++) {
         if (i === j || j === k) continue;
-        tracer.visit(j, k).delay();
+        tracer.visit(j, k);
+        tracer.delay();
         if (S[i][j] > S[i][k] + S[k][j]) {
-          tracer.visit(j, i, S[i][j]).delay();
+          tracer.visit(j, i, S[i][j]);
+          tracer.delay();
           S[i][j] = S[i][k] + S[k][j];
           tracer.leave(j, i, S[i][j]);
         }
         tracer.leave(j, k);
       }
-      tracer.leave(k, i).delay();
+      tracer.leave(k, i);
+      tracer.delay();
     }
   }
   for (let i = 0; i < G.length; i++) {

@@ -7,10 +7,12 @@ const graphTracer = new GraphTracer(' BST - Elements marked red indicates the cu
 const elemTracer = new Array1DTracer(' Elements ').set(elements);
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([graphTracer, elemTracer, logger]));
-graphTracer.log(logger).delay();
+graphTracer.log(logger);
+graphTracer.delay();
 
 function bstInsert(root, element, parent) { // root = current node , parent = previous node
-  graphTracer.visit(root, parent).delay();
+  graphTracer.visit(root, parent);
+  graphTracer.delay();
   const treeNode = T[root];
   let propName = '';
   if (element < root) {
@@ -22,22 +24,30 @@ function bstInsert(root, element, parent) { // root = current node , parent = pr
     if (!(propName in treeNode)) { // insert as left child of root
       treeNode[propName] = element;
       T[element] = {};
-      graphTracer.addNode(element).addEdge(root, element).select(element, root).delay().deselect(element, root);
+      graphTracer.addNode(element);
+      graphTracer.addEdge(root, element);
+      graphTracer.select(element, root);
+      graphTracer.delay();
+      graphTracer.deselect(element, root);
       logger.println(`${element} Inserted`);
     } else {
       bstInsert(treeNode[propName], element, root);
     }
   }
-  graphTracer.leave(root, parent).delay();
+  graphTracer.leave(root, parent);
+  graphTracer.delay();
 }
 
 const Root = elements[0]; // take first element as root
 T[Root] = {};
-graphTracer.addNode(Root).layoutTree(Root, true);
+graphTracer.addNode(Root);
+graphTracer.layoutTree(Root, true);
 logger.println(`${Root} Inserted as root of tree `);
 
 for (let i = 1; i < elements.length; i++) {
-  elemTracer.select(i).delay();
+  elemTracer.select(i);
+  elemTracer.delay();
   bstInsert(Root, elements[i]); // insert ith element
-  elemTracer.deselect(i).delay();
+  elemTracer.deselect(i);
+  elemTracer.delay();
 }

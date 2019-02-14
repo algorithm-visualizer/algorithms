@@ -14,15 +14,19 @@ for (let i = 0; i < N; i++) {
     if (j === i || j === 0) { // First and last values in every row are 1
       A[i][j] = 1;
 
-      tracer.patch(i, j, A[i][j]).delay();
+      tracer.patch(i, j, A[i][j]);
+      tracer.delay();
       tracer.depatch(i, j);
     } else { // Other values are sum of values just above and left of above
-      tracer.select(i - 1, j - 1).delay();
-      tracer.select(i - 1, j).delay();
+      tracer.select(i - 1, j - 1);
+      tracer.delay();
+      tracer.select(i - 1, j);
+      tracer.delay();
 
       A[i][j] = A[i - 1][j - 1] + A[i - 1][j];
 
-      tracer.patch(i, j, A[i][j]).delay();
+      tracer.patch(i, j, A[i][j]);
+      tracer.delay();
       tracer.depatch(i, j);
       tracer.deselect(i - 1, j - 1);
       tracer.deselect(i - 1, j);

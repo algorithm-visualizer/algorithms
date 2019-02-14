@@ -12,7 +12,8 @@ for (let i = 0; i <= integer; i++) {
   D[i][1] = 1;
   for (let j = 0; j <= integer; j++) D[i][j] = 0;
 }
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 function partition(A, n, p) {
   if (n === 0) logger.println(`[${A.join(', ')}]`);
@@ -32,9 +33,11 @@ function integerPartition(n) {
     // We are allowed to use numbers from 2 to i
     for (let j = 1; j <= i; j++) {
       // Number of partitions without j number + number of partitions with max j
-      tracer.select(i, j).delay();
+      tracer.select(i, j);
+      tracer.delay();
       D[i][j] = D[i][j - 1] + D[i - j][Math.max(j, i - j)];
-      tracer.patch(i, j, D[i][j]).delay();
+      tracer.patch(i, j, D[i][j]);
+      tracer.delay();
       tracer.depatch(i, j);
       tracer.deselect(i, j);
     }

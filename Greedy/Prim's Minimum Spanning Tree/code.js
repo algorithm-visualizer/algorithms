@@ -12,7 +12,8 @@ tracer.log(logger);
  [0, 1, 3, 0, 0]
  ]; */
 const G = new Randomize.Graph(10, .4).directed(false).weighted().create();
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function prim() {
   // Finds a tree so that there exists a path between
@@ -32,7 +33,8 @@ function prim() {
       {
         for (let j = 0; j < G.length; j++) {
           if (!D[j] && G[i][j]) {
-            tracer.visit(i, j).delay();
+            tracer.visit(i, j);
+            tracer.delay();
             // Second node must not be visited and must be connected to first node
             if (G[i][j] < minD) {
               // Searching for cheapest edge which satisfies requirements
@@ -40,12 +42,14 @@ function prim() {
               minI = i;
               minJ = j;
             }
-            tracer.leave(i, j).delay();
+            tracer.leave(i, j);
+            tracer.delay();
           }
         }
       }
     }
-    tracer.visit(minI, minJ).delay();
+    tracer.visit(minI, minJ);
+    tracer.delay();
     D[minJ] = 1; // Visit second node and insert it into or tree
     sum += G[minI][minJ];
   }

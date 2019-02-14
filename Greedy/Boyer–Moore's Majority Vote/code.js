@@ -11,7 +11,8 @@ function isMajorityElement(element) {
   let count = 0;
   logger.println(`Verify majority element ${element}`);
   for (let i = N - 1; i >= 0; i--) {
-    tracer.patch(i, A[i]).delay();
+    tracer.patch(i, A[i]);
+    tracer.delay();
     if (A[i] === element) {
       count++;
     } else {
@@ -30,11 +31,13 @@ function isMajorityElement(element) {
 function findProbableElement() {
   let index = 0;
   let count = 1;
-  tracer.select(index).delay();
+  tracer.select(index);
+  tracer.delay();
   logger.println(`Beginning with assumed majority element : ${A[index]} count : ${count}`);
   logger.println('--------------------------------------------------------');
   for (let i = 1; i < N; i++) {
-    tracer.patch(i, A[i]).delay();
+    tracer.patch(i, A[i]);
+    tracer.delay();
     if (A[index] === A[i]) {
       count++;
       logger.println(`Same as assumed majority element! Count : ${count}`);
@@ -49,7 +52,8 @@ function findProbableElement() {
       tracer.depatch(i);
       index = i;
       count = 1;
-      tracer.select(i).delay();
+      tracer.select(i);
+      tracer.delay();
       logger.println(`New assumed majority element!${A[i]} Count : ${count}`);
       logger.println('--------------------------------------------------------');
     } else {

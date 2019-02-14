@@ -11,7 +11,8 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
  [0, 1, 3, 0, 0]
  ]; */
 const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function kruskal() {
   const vcount = G.length;
@@ -39,10 +40,12 @@ function kruskal() {
   let wsum = 0;
   for (let n = 0; n < vcount - 1 && edges.length > 0;) {
     const e = edges.shift(); // Get the edge of min weight
-    tracer.visit(e[0], e[1]).delay();
+    tracer.visit(e[0], e[1]);
+    tracer.delay();
     if (t[e[0]] === t[e[1]]) {
       // e[0] & e[1] already in the same tree, ignore
-      tracer.leave(e[0], e[1]).delay();
+      tracer.leave(e[0], e[1]);
+      tracer.delay();
       continue;
     }
 

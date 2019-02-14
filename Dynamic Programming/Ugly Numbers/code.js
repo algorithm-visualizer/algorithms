@@ -22,30 +22,37 @@ for (let i = 1; i < N; i++) {
   logger.println(` Minimum of ${M[0]}, ${M[1]}, ${M[2]} : ${next}`);
   A[i] = next;
 
-  tracer.patch(i, A[i]).delay();
+  tracer.patch(i, A[i]);
+  tracer.delay();
   tracer.depatch(i);
 
   if (next === M[0]) {
     I[0]++;
     M[0] = A[I[0]] * 2;
-    tracer2.patch(0, M[0]).delay();
-    tracer3.patch(0, I[0]).delay();
+    tracer2.patch(0, M[0]);
+    tracer2.delay();
+    tracer3.patch(0, I[0]);
+    tracer3.delay();
     tracer2.depatch(0);
     tracer3.depatch(0);
   }
   if (next === M[1]) {
     I[1]++;
     M[1] = A[I[1]] * 3;
-    tracer2.patch(1, M[1]).delay();
-    tracer3.patch(1, I[1]).delay();
+    tracer2.patch(1, M[1]);
+    tracer2.delay();
+    tracer3.patch(1, I[1]);
+    tracer3.delay();
     tracer2.depatch(1);
     tracer3.depatch(1);
   }
   if (next === M[2]) {
     I[2]++;
     M[2] = A[I[2]] * 5;
-    tracer2.patch(2, M[2]).delay();
-    tracer3.patch(2, I[2]).delay();
+    tracer2.patch(2, M[2]);
+    tracer2.delay();
+    tracer3.patch(2, I[2]);
+    tracer3.delay();
     tracer2.depatch(2);
     tracer3.depatch(2);
   }

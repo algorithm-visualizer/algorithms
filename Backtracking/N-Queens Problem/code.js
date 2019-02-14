@@ -23,7 +23,8 @@ Layout.setRoot(new VerticalLayout([boardTracer, queenTracer, logger]));
 
 boardTracer.set(board);
 queenTracer.set(queens);
-logger.println(`N Queens: ${N}X${N}matrix, ${N} queens`).delay();
+logger.println(`N Queens: ${N}X${N}matrix, ${N} queens`);
+logger.delay();
 
 function validState(row, col, currentQueen) {
   for (let q = 0; q < currentQueen; q++) {
@@ -46,23 +47,29 @@ function nQ(currentQueen, currentCol) {
   let found = false;
   let row = 0;
   while ((row < N) && (!found)) {
-    boardTracer.select(row, currentCol).delay();
+    boardTracer.select(row, currentCol);
+    boardTracer.delay();
     logger.println(`Trying queen ${currentQueen} at row ${row} & col ${currentCol}`);
 
     if (validState(row, currentCol, currentQueen)) {
       queens[currentQueen][0] = row;
       queens[currentQueen][1] = currentCol;
 
-      queenTracer.patch(currentQueen, 0, row).delay();
-      queenTracer.patch(currentQueen, 1, currentCol).delay();
-      queenTracer.depatch(currentQueen, 0).delay();
-      queenTracer.depatch(currentQueen, 1).delay();
+      queenTracer.patch(currentQueen, 0, row);
+      queenTracer.delay();
+      queenTracer.patch(currentQueen, 1, currentCol);
+      queenTracer.delay();
+      queenTracer.depatch(currentQueen, 0);
+      queenTracer.delay();
+      queenTracer.depatch(currentQueen, 1);
+      queenTracer.delay();
 
       found = nQ(currentQueen + 1, currentCol + 1);
     }
 
     if (!found) {
-      boardTracer.deselect(row, currentCol).delay();
+      boardTracer.deselect(row, currentCol);
+      boardTracer.delay();
       logger.println(`row ${row} & col ${currentCol} didn't work out. Going down`);
     }
     row++;

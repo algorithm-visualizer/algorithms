@@ -32,10 +32,12 @@ const key = new Randomize.Integer(0, G.length - 1).create(); // item to be searc
 const tracer = new GraphTracer(' Binary Search Tree ').set(G).layoutTree(5);
 const logger = new LogTracer(' Log ');
 Layout.setRoot(new VerticalLayout([tracer, logger]));
-tracer.log(logger).delay();
+tracer.log(logger);
+tracer.delay();
 
 function bst(item, node, parent) { // node = current node , parent = previous node
-  tracer.visit(node, parent).delay();
+  tracer.visit(node, parent);
+  tracer.delay();
   if (item === node) { // key found
     logger.println(' Match Found ');
   } else if (item < node) { // key less than value of current node

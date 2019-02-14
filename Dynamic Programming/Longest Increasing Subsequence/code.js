@@ -5,7 +5,8 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 const A = new Randomize.Array1D(10, new Randomize.Integer(0, 10)).create();
 const LIS = new Array(A.length);
-tracer.set(A).delay();
+tracer.set(A);
+tracer.delay();
 
 // Initialize LIS values for all indexes
 for (let i = 0; i < A.length; i++) {
@@ -18,7 +19,8 @@ for (let i = 1; i < A.length; i++) {
   tracer.select(i);
   logger.println(` LIS[${i}] = ${LIS[i]}`);
   for (let j = 0; j < i; j++) {
-    tracer.patch(j).delay();
+    tracer.patch(j);
+    tracer.delay();
     tracer.depatch(j);
     if (A[i] > A[j] && LIS[i] < LIS[j] + 1) {
       LIS[i] = LIS[j] + 1;

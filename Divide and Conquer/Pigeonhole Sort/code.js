@@ -29,7 +29,8 @@ tracer2.set(holes);
 
 logTracer.println('Filling up holes');
 for (let i = 0; i < N; i++) {
-  tracer1.select(i).delay();
+  tracer1.select(i);
+  tracer1.delay();
 
   holes[A[i] - min].push(A[i]);
 
@@ -41,9 +42,11 @@ logTracer.println('Building sorted array');
 let k = 0;
 for (let i = 0; i < range; i++) {
   for (let j = 0; j < holes[i].length; j++) {
-    tracer2.select(i, j).delay();
+    tracer2.select(i, j);
+    tracer2.delay();
     A[k++] = holes[i][j];
-    tracer1.patch(k - 1, A[k - 1]).delay();
+    tracer1.patch(k - 1, A[k - 1]);
+    tracer1.delay();
     tracer2.deselect(i, j);
     tracer1.depatch(k - 1);
   }

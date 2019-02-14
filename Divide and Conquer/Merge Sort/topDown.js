@@ -5,7 +5,8 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15).create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 
@@ -33,12 +34,14 @@ mergeSort.merge = (start, middle, end) => {
     if (i < leftSize) {
       left.push(D[start + i]);
       tracer.select(start + i);
-      logger.println(`insert value into left array[${i}] = ${D[start + i]}`).delay();
+      logger.println(`insert value into left array[${i}] = ${D[start + i]}`);
+      logger.delay();
     }
     if (i < rightSize) {
       right.push(D[middle + i]);
       tracer.select(middle + i);
-      logger.println(`insert value into right array[${i}] = ${D[middle + i]}`).delay();
+      logger.println(`insert value into right array[${i}] = ${D[middle + i]}`);
+      logger.delay();
     }
   }
   logger.println(`left array = [${left.join(', ')}], ` + `right array = [${right.join(', ')}]`);
@@ -62,7 +65,8 @@ mergeSort.merge = (start, middle, end) => {
     }
 
     tracer.deselect(start + i);
-    tracer.patch(start + i, D[start + i]).delay();
+    tracer.patch(start + i, D[start + i]);
+    tracer.delay();
     tracer.depatch(start + i);
     i++;
   }

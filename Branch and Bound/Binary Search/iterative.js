@@ -5,7 +5,8 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15, new Randomize.Integer(0, 50)).sorted().create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 function BinarySearch(array, element) { // array = sorted array, element = element to be found
   let minIndex = 0;
@@ -16,9 +17,11 @@ function BinarySearch(array, element) { // array = sorted array, element = eleme
     const middleIndex = Math.floor((minIndex + maxIndex) / 2);
     testElement = array[middleIndex];
 
-    tracer.select(minIndex, maxIndex).delay();
+    tracer.select(minIndex, maxIndex);
+    tracer.delay();
     tracer.patch(middleIndex);
-    logger.println(`Searching at index: ${middleIndex}`).delay();
+    logger.println(`Searching at index: ${middleIndex}`);
+    logger.delay();
     tracer.depatch(middleIndex);
     tracer.deselect(minIndex, maxIndex);
 

@@ -34,22 +34,28 @@ for (let i = 0; i < G.length; i++) {
 discTracer.set(disc);
 lowTracer.set(low);
 stackMemberTracer.set(stackMember);
-stTracer.set(st).delay();
+stTracer.set(st);
+stTracer.delay();
 
 function SCCVertex(u, disc, low, st, stackMember, carry) {
-  graphTracer.visit(u).delay();
+  graphTracer.visit(u);
+  graphTracer.delay();
 
   disc[u] = ++carry.time;
-  discTracer.patch(u, carry.time).delay();
+  discTracer.patch(u, carry.time);
+  discTracer.delay();
 
   low[u] = carry.time;
-  lowTracer.patch(u, carry.time).delay();
+  lowTracer.patch(u, carry.time);
+  lowTracer.delay();
 
   st.push(u);
-  stTracer.set(st).delay();
+  stTracer.set(st);
+  stTracer.delay();
 
   stackMember[u] = true;
-  stackMemberTracer.patch(u, true).delay();
+  stackMemberTracer.patch(u, true);
+  stackMemberTracer.delay();
 
   // Go through all vertices adjacent to this
   for (let v = 0; v < G[u].length; v++) {
@@ -68,7 +74,8 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
       // (i.e. it's a back edge, not cross edge).
       else if (stackMember[v] === true) {
         low[u] = Math.min(low[u], disc[v]);
-        lowTracer.patch(u, low[u]).delay();
+        lowTracer.patch(u, low[u]);
+        lowTracer.delay();
       }
     }
   }
@@ -78,22 +85,28 @@ function SCCVertex(u, disc, low, st, stackMember, carry) {
   if (low[u] === disc[u]) {
     while (st[st.length - 1] !== u) {
       w = st.pop();
-      stTracer.set(st).delay();
+      stTracer.set(st);
+      stTracer.delay();
 
-      logger.println(w).delay();
+      logger.println(w);
+      logger.delay();
 
       stackMember[w] = false;
-      stackMemberTracer.patch(w, false).delay();
+      stackMemberTracer.patch(w, false);
+      stackMemberTracer.delay();
     }
 
     w = st.pop();
-    stTracer.set(st).delay();
+    stTracer.set(st);
+    stTracer.delay();
 
-    logger.println(w).delay();
+    logger.println(w);
+    logger.delay();
     logger.println('------');
 
     stackMember[w] = false;
-    stackMemberTracer.patch(w, false).delay();
+    stackMemberTracer.patch(w, false);
+    stackMemberTracer.delay();
   }
 }
 

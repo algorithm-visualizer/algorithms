@@ -11,18 +11,23 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger])).delay();
 
 A[0] = 1;
-tracer.patch(0, A[0]).delay();
+tracer.patch(0, A[0]);
+tracer.delay();
 tracer.depatch(0);
 A[1] = 1;
-tracer.patch(1, A[1]).delay();
+tracer.patch(1, A[1]);
+tracer.delay();
 tracer.depatch(1);
 
 for (let i = 2; i <= N; i++) {
   for (let j = 0; j < i; j++) {
     A[i] += A[j] * A[i - j - 1];
-    tracer.select(j).delay();
-    tracer.select(i - j - 1).delay();
-    tracer.patch(i, A[i]).delay();
+    tracer.select(j);
+    tracer.delay();
+    tracer.select(i - j - 1);
+    tracer.delay();
+    tracer.patch(i, A[i]);
+    tracer.delay();
     tracer.deselect(j);
     tracer.deselect(i - j - 1);
     tracer.depatch(i);
@@ -30,4 +35,5 @@ for (let i = 2; i <= N; i++) {
 }
 
 logger.println(` The ${N}th Catalan Number is ${A[N]}`);
-tracer.select(N).delay();
+tracer.select(N);
+tracer.delay();

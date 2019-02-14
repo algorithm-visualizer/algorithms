@@ -27,12 +27,16 @@ for (let i = 0; i <= N; i++) {
       then the total weight in our collection is 0
       */
       DP[i][0] = 0;
-      tracer.patch(i, j, DP[i][j]).delay();
+      tracer.patch(i, j, DP[i][j]);
+      tracer.delay();
       tracer.depatch(i, j);
     } else if (wt[i - 1] <= j) { // take the current item in our collection
-      dataViewer1.select(i - 1).delay();
-      dataViewer2.select(i - 1).delay();
-      tracer.select(i - 1, j).delay();
+      dataViewer1.select(i - 1);
+      dataViewer1.delay();
+      dataViewer2.select(i - 1);
+      dataViewer2.delay();
+      tracer.select(i - 1, j);
+      tracer.delay();
 
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
       const B = DP[i - 1][j];
@@ -42,10 +46,12 @@ for (let i = 0; i <= N; i++) {
        */
       if (A > B) {
         DP[i][j] = A;
-        tracer.patch(i, j, DP[i][j]).delay();
+        tracer.patch(i, j, DP[i][j]);
+        tracer.delay();
       } else {
         DP[i][j] = B;
-        tracer.patch(i, j, DP[i][j]).delay();
+        tracer.patch(i, j, DP[i][j]);
+        tracer.delay();
       }
 
       tracer.deselect(i - 1, j);
@@ -54,7 +60,8 @@ for (let i = 0; i <= N; i++) {
       dataViewer1.deselect(i - 1);
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
-      tracer.patch(i, j, DP[i][j]).delay();
+      tracer.patch(i, j, DP[i][j]);
+      tracer.delay();
       tracer.depatch(i, j);
     }
   }

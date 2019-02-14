@@ -20,7 +20,8 @@ for (let i = 0; i < gridSize; i++) {
 }
 const tracer = new Array2DTracer();
 Layout.setRoot(new VerticalLayout([tracer]));
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {
@@ -70,7 +71,8 @@ function CellularAutomata(fillShape, emptyShape) {
   for (let i = 0; i < nextGrid.length; i++) {
     for (let j = 0; j < nextGrid[i].length; j++) {
       tracer.depatch(i, j, G[i][j]);
-      tracer.select(i, j).delay();
+      tracer.select(i, j);
+      tracer.delay();
       G[i][j] = nextGrid[i][j];
       if (G[i][j] === fillShape) {
         tracer.patch(i, j, G[i][j]);

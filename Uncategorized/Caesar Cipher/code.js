@@ -16,7 +16,8 @@ const decryptTracer = new Array1DTracer('Decryption');
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([encryptTracer, decryptTracer, logger]));
 
-encryptTracer.set(string).delay();
+encryptTracer.set(string);
+encryptTracer.delay();
 
 function getPosUp(pos) {
   return (pos === alphabet.length - 1) ? 0 : pos + 1;
@@ -46,12 +47,14 @@ function cipher(str, rotation, direction, cipherTracer) {
       let r = rotation;
 
       logger.println(`Rotating ${currChar} ${direction} ${rotation} times`);
-      cipherTracer.select(i).delay();
+      cipherTracer.select(i);
+      cipherTracer.delay();
 
       // perform given amount of rotations in the given direction
       while (r-- > 0) {
         currChar = getNextChar(currChar, direction);
-        cipherTracer.patch(i, currChar).delay();
+        cipherTracer.patch(i, currChar);
+        cipherTracer.delay();
       }
     } else {
       logger.println('Ignore this character');

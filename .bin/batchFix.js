@@ -14,30 +14,30 @@ listDirectories(rootPath).forEach(category => {
       const filePath = path.resolve(algorithmPath, file);
       const content = fs.readFileSync(filePath, 'utf8');
 
-      const variables = [];
-      let lineNumber = -1;
-      let needDelay = false;
-      const lines = content.split('\n').map((line, i) => {
-        const match = /^\s*const (\w+) = new \w*Tracer\(/g.exec(line);
-        if (match) {
-          variables.push(match[1]);
-          lineNumber = i;
-          line = line.replace(/\.delay\(\s*\)/g, () => {
-            needDelay = true;
-            return '';
-          });
-        }
-        return line.replace(' } = require(\'algorithm-visualizer\')', ', Layout, VerticalLayout } = require(\'algorithm-visualizer\')');
-      });
+      /*
+      TODO:
+        1. Break method chains (except for directed()/weighted()/layout*()
+        2. Call static method delay() instead of member method delay()
+      */
 
-      if (~lineNumber) {
-        const line = `Layout.setRoot(new VerticalLayout([${variables.join(', ')}]))${needDelay ? '.delay()' : ''};`;
-        lines.splice(lineNumber + 1, 0, line);
-        const newContent = lines.join('\n');
-        fs.writeFileSync(filePath, newContent, 'utf8');
-      } else {
-        console.error('wtf');
+      const lines = content.split('\n');
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.includes('Randomize')) continue;
+        const match = /^(\s*)(\w+)(\.\w+\([^(]*\))(\.\w+\([^(]*\))(.+)$/.exec(line);
+        if (match) {
+          const [, first, variable, method1, method2, last] = match;
+          const firstLine = `${first}${variable}${method1};`;
+          const secondLine = `${first}${variable}${method2}${last}`;
+          lines.splice(i, 1, firstLine, secondLine);
+        }
       }
+
+      const newContent = lines.join('\n');
+      console.log(newContent);
+      console.log('------------------------------------------------------------');
+      fs.writeFileSync(filePath, newContent, 'utf8');
     });
   });
 });

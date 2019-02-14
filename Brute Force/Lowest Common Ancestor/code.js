@@ -49,7 +49,8 @@ function lcaBT(parent, root, a, b) {
 
   if (left !== null && right !== null) return root;
   if (left === null && right === null) {
-    treeTracer.leave(root, parent).delay();
+    treeTracer.leave(root, parent);
+    treeTracer.delay();
   }
 
   return (left !== null ? left : right);

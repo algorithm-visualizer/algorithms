@@ -10,7 +10,8 @@ tracer.set(G);
 const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
 for (let i = 0; i < G.length; i++) S[i] = MAX_VALUE;
-tracerS.set(S).delay();
+tracerS.set(S);
+tracerS.delay();
 
 function Dijkstra(start, end) {
   let minIndex;
@@ -18,7 +19,9 @@ function Dijkstra(start, end) {
   const D = []; // D[i] indicates whether the i-th node is discovered or not
   for (let i = 0; i < G.length; i++) D.push(false);
   S[start] = 0; // Starting node is at distance 0 from itself
-  tracerS.patch(start, S[start]).delay().depatch(start);
+  tracerS.patch(start, S[start]);
+  tracerS.delay();
+  tracerS.depatch(start);
   tracerS.select(start);
   let k = G.length;
   while (k--) {
@@ -33,19 +36,23 @@ function Dijkstra(start, end) {
     if (minDistance === MAX_VALUE) break; // If there is no edge from current node, jump out of loop
     D[minIndex] = true;
     tracerS.select(minIndex);
-    tracer.visit(minIndex).delay();
+    tracer.visit(minIndex);
+    tracer.delay();
     // For every unvisited neighbour of current node, we check
     // whether the path to it is shorter if going over the current node
     for (let i = 0; i < G.length; i++) {
       if (G[minIndex][i] && S[i] > S[minIndex] + G[minIndex][i]) {
         S[i] = S[minIndex] + G[minIndex][i];
         tracerS.patch(i, S[i]);
-        tracer.visit(i, minIndex, S[i]).delay();
+        tracer.visit(i, minIndex, S[i]);
+        tracer.delay();
         tracerS.depatch(i);
-        tracer.leave(i, minIndex).delay();
+        tracer.leave(i, minIndex);
+        tracer.delay();
       }
     }
-    tracer.leave(minIndex).delay();
+    tracer.leave(minIndex);
+    tracer.delay();
   }
   if (S[end] === MAX_VALUE) {
     logger.println(`there is no path from ${start} to ${end}`);
@@ -59,5 +66,6 @@ let e; // e = end node
 do {
   e = new Randomize.Integer(0, G.length - 1).create();
 } while (s === e);
-logger.println(`finding the shortest path from ${s} to ${e}`).delay();
+logger.println(`finding the shortest path from ${s} to ${e}`);
+logger.delay();
 Dijkstra(s, e);

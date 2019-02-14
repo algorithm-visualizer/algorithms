@@ -12,15 +12,18 @@ for (let i = 0; i < D.length; i++) {
     DP[i].push(Infinity);
   }
 }
-tracer.set(DP).delay();
+tracer.set(DP);
+tracer.delay();
 
 const N = DP.length;
 const M = DP[0].length;
 
 function update(i, j, value) {
   DP[i][j] = value;
-  dataViewer.select(i, j).delay();
-  tracer.patch(i, j, DP[i][j]).delay();
+  dataViewer.select(i, j);
+  dataViewer.delay();
+  tracer.patch(i, j, DP[i][j]);
+  tracer.delay();
   tracer.depatch(i, j);
   dataViewer.deselect(i, j);
 }
@@ -38,9 +41,11 @@ for (let i = 0; i < N; i++) {
       update(i, j, DP[i - 1][j] + D[i][j]);
       tracer.deselect(i - 1, j);
     } else {
-      tracer.select(i, j - 1).select(i - 1, j);
+      tracer.select(i, j - 1);
+      tracer.select(i - 1, j);
       update(i, j, Math.max(DP[i][j - 1], DP[i - 1][j]) + D[i][j]);
-      tracer.deselect(i, j - 1).deselect(i - 1, j);
+      tracer.deselect(i, j - 1);
+      tracer.deselect(i - 1, j);
     }
   }
 }

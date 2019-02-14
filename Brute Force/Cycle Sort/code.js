@@ -5,7 +5,8 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15).create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -21,7 +22,9 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   tracer.select(cycleStart);
 
   for (let i = cycleStart + 1; i <= N - 1; i++) {
-    tracer.select(i).delay().deselect(i);
+    tracer.select(i);
+    tracer.delay();
+    tracer.deselect(i);
     if (D[i] < item) {
       pos++;
     }
@@ -50,16 +53,23 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
   } else {
     logger.println(`Rewrite ${D[pos]} to index ${pos}`);
   }
-  tracer.select(pos).delay().deselect(pos);
-  tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
-  tracer.depatch(pos).depatch(cycleStart);
+  tracer.select(pos);
+  tracer.delay();
+  tracer.deselect(pos);
+  tracer.patch(pos, D[pos]);
+  tracer.patch(cycleStart, D[cycleStart]);
+  tracer.delay();
+  tracer.depatch(pos);
+  tracer.depatch(cycleStart);
 
   // rotate the rest of the cycle
   while (pos !== cycleStart) {
     pos = cycleStart;
 
     for (let i = cycleStart + 1; i <= N - 1; i++) {
-      tracer.select(i).delay().deselect(i);
+      tracer.select(i);
+      tracer.delay();
+      tracer.deselect(i);
       if (D[i] < item) {
         pos++;
       }
@@ -78,9 +88,14 @@ for (let cycleStart = 0; cycleStart <= N - 2; cycleStart++) {
     } else {
       logger.println(`Rewrite ${D[pos]} to index ${pos}`);
     }
-    tracer.select(pos).delay().deselect(pos);
-    tracer.patch(pos, D[pos]).patch(cycleStart, D[cycleStart]).delay();
-    tracer.depatch(pos).depatch(cycleStart);
+    tracer.select(pos);
+    tracer.delay();
+    tracer.deselect(pos);
+    tracer.patch(pos, D[pos]);
+    tracer.patch(cycleStart, D[cycleStart]);
+    tracer.delay();
+    tracer.depatch(pos);
+    tracer.depatch(cycleStart);
 
     writes++;
   }

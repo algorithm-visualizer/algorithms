@@ -47,9 +47,11 @@ for (let num = 1; num <= n * n;) {
     i++;
   } else {
     A[i][j] = num++;
-    tracer.patch(i, j, A[i][j]).delay();
+    tracer.patch(i, j, A[i][j]);
+    tracer.delay();
     tracer.depatch(i, j);
-    tracer.select(i, j).delay();
+    tracer.select(i, j);
+    tracer.delay();
     j++;
     i--;
   }

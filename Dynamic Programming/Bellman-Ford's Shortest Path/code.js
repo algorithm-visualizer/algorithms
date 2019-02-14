@@ -5,7 +5,8 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
 const G = new Randomize.Graph(5, .5, new Randomize.Integer(-2, 5)).weighted().create();
-tracer.set(G).delay();
+tracer.set(G);
+tracer.delay();
 
 function BELLMAN_FORD(src, dest) {
   const weights = new Array(G.length);
@@ -35,8 +36,10 @@ function BELLMAN_FORD(src, dest) {
             weights[j] = weights[i] + G[i][j];
             logger.println(`weights[${j}] = weights[${i}] + ${G[i][j]}`);
           }
-          tracer.visit(j, i, weights[j]).delay();
-          tracer.leave(j, i).delay();
+          tracer.visit(j, i, weights[j]);
+          tracer.delay();
+          tracer.leave(j, i);
+          tracer.delay();
         }
       }
     }

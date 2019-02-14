@@ -5,7 +5,8 @@ const tracer = new Array1DTracer().chart(chart);
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
 const D = new Randomize.Array1D(15).create();
-tracer.set(D).delay();
+tracer.set(D);
+tracer.delay();
 
 logger.println(`original array = [${D.join(', ')}]`);
 const N = D.length;
@@ -24,7 +25,9 @@ do {
   swapped = false; // initialize swapped
   // a single comb over the input list
   for (let i = 0; i + gap < N; i++) {
-    tracer.select(i).select(i + gap).delay();
+    tracer.select(i);
+    tracer.select(i + gap);
+    tracer.delay();
 
     if (D[i] > D[i + gap]) {
       logger.println(`swap ${D[i]} and ${D[i + gap]}`); // log swap event
@@ -33,11 +36,15 @@ do {
       D[i] = D[i + gap];
       D[i + gap] = temp;
 
-      tracer.patch(i, D[i]).patch(i + gap, D[i + gap]).delay();
-      tracer.depatch(i).depatch(i + gap);
+      tracer.patch(i, D[i]);
+      tracer.patch(i + gap, D[i + gap]);
+      tracer.delay();
+      tracer.depatch(i);
+      tracer.depatch(i + gap);
 
       swapped = true; // Flag swapped has happened and list is not guaranteed sorted
     }
-    tracer.deselect(i).deselect(i + gap);
+    tracer.deselect(i);
+    tracer.deselect(i + gap);
   } // End of combing
 } while (gap !== 1 || swapped);
