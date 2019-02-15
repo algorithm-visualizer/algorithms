@@ -1,6 +1,4 @@
-import org.algorithm_visualizer.ChartTracer;
-import org.algorithm_visualizer.LogTracer;
-import org.algorithm_visualizer.Randomize;
+import org.algorithm_visualizer.*;
 
 import java.util.Arrays;
 
@@ -17,18 +15,20 @@ public class Main {
         int length = array.length;
 
         logTracer.printf("original array = %s\n",Arrays.toString(array));
-
-        chartTracer.set(array).delay();
+        chartTracer.set(array);
+        Layout.setRoot(new VerticalLayout(new Commander[]{chartTracer, logTracer}));
+        Tracer.delay();
 
         boolean flag;
 
         for (int i = length - 1; i > 0; i--) {
             flag = true;
             for (int j = 0; j < i; j++) {
-                chartTracer.select(j).delay();
-                chartTracer.select(j + 1).delay();
+                chartTracer.select(j);
+                chartTracer.select(j + 1);
+                Tracer.delay();
                 if (array[j] > array[j + 1]) {
-                    logTracer.printf("swap %s and %s \n",array[j],array[j + 1]);
+                    logTracer.printf("swap %s and %s\n",array[j],array[j + 1]);
                     swap(j, j + 1, array);
                     flag = false;
                 }
@@ -41,7 +41,7 @@ public class Main {
         }
 
 
-        logTracer.printf("\n sorted array = %s",Arrays.toString(array));
+        logTracer.printf("sorted array = %s\n",Arrays.toString(array));
 
     }
 
@@ -49,8 +49,11 @@ public class Main {
         int temp = array[x];
         array[x] = array[y];
         array[y] = temp;
-        chartTracer.patch(x, array[x]).patch(y, array[y]).delay();
-        chartTracer.depatch(x).depatch(y);
+        chartTracer.patch(x, array[x]);
+        chartTracer.patch(y, array[y]);
+        Tracer.delay();
+        chartTracer.depatch(x);
+        chartTracer.depatch(y);
     }
 
 }
