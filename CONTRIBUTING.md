@@ -3,13 +3,16 @@
 > #### Table of Contents
 > - [Learning About Tracers](#learning-about-tracers)
 > - [Running on Scratch Paper](#running-on-scratch-paper)
+> - [Directory Structures](#directory-structures)
 > - [Creating a Pull Request](#creating-a-pull-request)
+
+Are you a first-timer in contributing to open source? [These guidelines](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution) from GitHub might help!
 
 ## Learning About Tracers
 
 The project [Algorithm Visualizer](https://github.com/algorithm-visualizer) has a visualization library in each supported language ([JavaScript](https://github.com/algorithm-visualizer/tracers.js), [C++](https://github.com/algorithm-visualizer/tracers.cpp), and [Java](https://github.com/algorithm-visualizer/tracers.java)) to visualize codes.
 
-There are five tracers in the library to visualize different types of data.
+There are five tracers in the library to visualize different types of data:
 
 - [Array1DTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/Array1DTracer)
 - [Array2DTracer](https://github.com/algorithm-visualizer/algorithm-visualizer/wiki/Array2DTracer)
@@ -27,6 +30,21 @@ At the bottom left corner of [algorithm-visualizer.org](https://algorithm-visual
 
 We highly encourage you to test your visualization on Scratch Paper several times before creating a pull request.
 
+## Directory Structures
+
+- **Category A/**
+    - **Algorithm A/**
+        - **code.js**
+        - **code.cpp**
+        - **code.java**
+        - **README.md**
+    - **Algorithm B/**
+    - **Algorithm C/**
+    - ...
+- **Category B/**
+- **Category C/**
+- ...
+
 ## Creating a Pull Request
 
 1. Fork this repository.
@@ -41,7 +59,7 @@ We highly encourage you to test your visualization on Scratch Paper several time
     
 3. Make changes.
 
-    Understand the [directory structure](https://github.com/algorithm-visualizer/algorithm-visualizer/blob/master/PROJECT_DETAILS.md#algorithms), and create or edit files accordingly.
+    Understand the [directory structure](#directory-structures), and create or edit files accordingly.
     
     If you want to create a directory, check out this [Stack Overflow answer](https://stackoverflow.com/questions/18773598/creating-folders-inside-github-com-repo-without-using-git).
     
