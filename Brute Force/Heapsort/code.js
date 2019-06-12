@@ -16,7 +16,7 @@ function heapSort(array, size) {
   let j;
   let temp;
 
-  for (i = Math.ceil(size / 2) - 1; i >= 0; i--) {
+  for (i = Math.floor(size / 2) - 1; i >= 0; i--) {
     heapify(array, size, i);
   }
 
