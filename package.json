@@ -1,0 +1,12 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node .validate"
+  },
+  "dependencies": {
+    "fs-extra": "^8.0.1",
+    "signale": "^1.4.0",
+    "algorithm-visualizer": "latest"
+  }
+}
