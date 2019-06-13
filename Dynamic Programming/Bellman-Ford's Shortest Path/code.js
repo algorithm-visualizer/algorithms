@@ -4,7 +4,7 @@ const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
-const G = new Randomize.Graph(5, .5, new Randomize.Integer(-2, 5)).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: .5, value: () => Randomize.Integer({ min: -2, max: 5 }), weighted: true });
 tracer.set(G);
 Tracer.delay();
 
@@ -66,7 +66,7 @@ function BELLMAN_FORD(src, dest) {
   return weights[dest];
 }
 
-const src = new Randomize.Integer(0, G.length - 1).create();
+const src = Randomize.Integer({ min: 0, max: G.length - 1 });
 let dest;
 let MAX_VALUE = 0x7fffffff;
 let minWeight;
@@ -77,7 +77,7 @@ let minWeight;
  */
 
 do {
-  dest = new Randomize.Integer(0, G.length - 1).create();
+  dest = Randomize.Integer({ min: 0, max: G.length - 1 });
 }
 while (src === dest);
 

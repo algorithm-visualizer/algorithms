@@ -30,6 +30,7 @@ function max(a, b) {
   }
   return b;
 }
+
 logger.println('LPS for any string with length = 1 is 1');
 for (i = 2; i <= N; i++) {
   logger.println('--------------------------------------------------');

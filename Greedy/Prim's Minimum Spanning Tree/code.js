@@ -11,7 +11,7 @@ tracer.log(logger);
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ]; */
-const G = new Randomize.Graph(10, .4).directed(false).weighted().create();
+const G = Randomize.Graph({ N: 10, ratio: .4, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
 

@@ -1,6 +1,6 @@
 const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
-const D = new Randomize.Array2D(5, 5, new Randomize.Integer(1, 5)).create();
+const D = Randomize.Array2D({ N: 5, M: 5, value: () => Randomize.Integer({ min: 1, max: 5 }) });
 const dataViewer = new Array2DTracer();
 const tracer = new Array2DTracer('Results Table');
 const logger = new LogTracer();

@@ -1,6 +1,6 @@
 const { Tracer, Array1DTracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 
-const A = new Randomize.Array1D(7).create();
+const A = Randomize.Array1D({ N: 7 });
 const N = A.length;
 
 const tracer1 = new Array1DTracer('Array');

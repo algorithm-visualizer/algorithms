@@ -11,7 +11,7 @@ Layout.setRoot(new VerticalLayout([arrayTracer, countsTracer, sortedArrayTracer]
 
 // define input variables
 const N = 20; // the size of an array
-const array = new Randomize.Array1D(N, new Randomize.Integer(0, 9)).create();
+const array = Randomize.Array1D({ N, value: () => Randomize.Integer({ min: 0, max: 9 }) });
 
 (function main() {
   // find the maximum value that will decide the size of counts array

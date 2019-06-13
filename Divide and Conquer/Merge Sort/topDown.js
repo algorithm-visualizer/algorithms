@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
-const D = new Randomize.Array1D(15).create();
+const D = Randomize.Array1D({ N: 15 });
 tracer.set(D);
 tracer.chart(chart);
 Tracer.delay();

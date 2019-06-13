@@ -4,8 +4,8 @@ const tracer = new Array2DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 const D = [
-  new Randomize.Array1D(20, new Randomize.Integer(0, 50)).create(),
-  new Randomize.Array1D(20, new Randomize.Integer(0, 0)).create(),
+  Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: 0, max: 50 }) }),
+  Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: 0, max: 0 }) }),
 ];
 
 tracer.set(D);

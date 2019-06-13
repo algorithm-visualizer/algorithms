@@ -3,7 +3,7 @@ const { Tracer, Array1DTracer, LogTracer, Randomize, Layout, VerticalLayout } = 
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
-const D = new Randomize.Array1D(20, new Randomize.Integer(-5, 5)).create();
+const D = Randomize.Array1D({ N: 20, value: () => Randomize.Integer({ min: -5, max: 5 }) });
 tracer.set(D);
 Tracer.delay();
 

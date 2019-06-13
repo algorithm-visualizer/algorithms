@@ -39,7 +39,7 @@ function createZarr(concat) {
         concatTracer.patch(right);
         concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);
-Tracer.delay();
+        Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
         right++;
@@ -48,7 +48,7 @@ Tracer.delay();
         concatTracer.patch(right);
         concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);
-Tracer.delay();
+        Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
       }
@@ -72,7 +72,7 @@ Tracer.delay();
         concatTracer.patch(right);
         concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is equal to ${concat[right - left]} (at index ${right - left})`);
-Tracer.delay();
+        Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
         right++;
@@ -81,7 +81,7 @@ Tracer.delay();
         concatTracer.patch(right);
         concatTracer.select(right - left);
         logger.println(`${concat[right]} (at index ${right}) is NOT equal to ${concat[right - left]} (at index ${right - left})`);
-Tracer.delay();
+        Tracer.delay();
         concatTracer.depatch(right);
         concatTracer.deselect(right - left);
       }

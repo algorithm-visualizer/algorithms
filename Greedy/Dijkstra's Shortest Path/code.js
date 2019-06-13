@@ -5,7 +5,7 @@ const tracerS = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, tracerS, logger]));
 tracer.log(logger);
-const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
@@ -61,10 +61,10 @@ function Dijkstra(start, end) {
   }
 }
 
-const s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
+const s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node
 let e; // e = end node
 do {
-  e = new Randomize.Integer(0, G.length - 1).create();
+  e = Randomize.Integer({ min: 0, max: G.length - 1 });
 } while (s === e);
 logger.println(`finding the shortest path from ${s} to ${e}`);
 Tracer.delay();

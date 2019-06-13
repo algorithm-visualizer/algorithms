@@ -45,7 +45,7 @@ function encrypt(plainText) {
     cypherText += cryptAlpha(plainText[i]);
 
     ptTracer.patch(i, cypherText.slice(-1));
-Tracer.delay();
+    Tracer.delay();
     ptTracer.depatch(i);
   }
 
@@ -87,7 +87,7 @@ function decrypt(cypherText) {
     plainText += decryptAlpha(cypherText[i]);
 
     ctTracer.patch(i, plainText.slice(-1));
-Tracer.delay();
+    Tracer.delay();
     ctTracer.depatch(i);
     Tracer.delay();
   }

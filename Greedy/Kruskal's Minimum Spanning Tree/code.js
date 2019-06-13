@@ -10,7 +10,7 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
  [0, 2, 0, 0, 1],
  [0, 1, 3, 0, 0]
  ]; */
-const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
 

@@ -5,7 +5,7 @@ const visitedTracer = new Array1DTracer('visited');
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([graphTracer, visitedTracer, logger]));
 graphTracer.log(logger);
-const G = new Randomize.Graph(8, .3).directed(false).create();
+const G = Randomize.Graph({ N: 8, ratio: .3, directed: false });
 graphTracer.set(G);
 Tracer.delay();
 

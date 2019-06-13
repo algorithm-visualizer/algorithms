@@ -4,7 +4,7 @@ const chart = new ChartTracer();
 const tracer = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
-const D = new Randomize.Array1D(15, new Randomize.Integer(0, 50)).sorted().create();
+const D = Randomize.Array1D({ N: 15, value: () => Randomize.Integer({ min: 0, max: 50 }), sorted: true });
 tracer.set(D);
 tracer.chart(chart);
 Tracer.delay();
@@ -46,7 +46,7 @@ function BinarySearch(array, element, minIndex, maxIndex) { // array = sorted ar
   return -1;
 }
 
-const element = D[new Randomize.Integer(0, D.length - 1).create()];
+const element = D[Randomize.Integer({ min: 0, max: D.length - 1 })];
 
 logger.println(`Using binary search to find ${element}`);
 BinarySearch(D, element, 0, D.length - 1);

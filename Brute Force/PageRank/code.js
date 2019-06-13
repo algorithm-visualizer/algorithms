@@ -4,7 +4,7 @@ function filledArray(length, value) {
   return Array(...Array(length)).map(Number.prototype.valueOf, value);
 }
 
-const G = new Randomize.Graph(5, .4).create();
+const G = Randomize.Graph({ N: 5, ratio: .4 });
 let ranks;
 const outgoingEdgeCounts = filledArray(G.length, 0);
 let incomingNodes;

@@ -4,7 +4,7 @@ const tracer = new GraphTracer().weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
-const G = new Randomize.Graph(5, 1).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: 1, weighted: true });
 tracer.set(G);
 Tracer.delay();
 

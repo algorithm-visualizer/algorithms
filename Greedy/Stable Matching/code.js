@@ -68,9 +68,9 @@ while ((a = extractUnstable(A))) {
     b.stable = a;
 
     tracerA.select(_aKeys.indexOf(a.key));
-Tracer.delay();
+    Tracer.delay();
     tracerB.select(_bKeys.indexOf(b.key));
-Tracer.delay();
+    Tracer.delay();
   } else {
     const rankAinB = b.rankKeys.indexOf(a.key);
     const rankPrevAinB = b.rankKeys.indexOf(b.stable.key);
@@ -80,15 +80,15 @@ Tracer.delay();
 
       A[b.stable.key].stable = false;
       tracerA.deselect(_aKeys.indexOf(b.stable.key));
-Tracer.delay();
+      Tracer.delay();
 
       a.stable = b;
       b.stable = a;
 
       tracerA.select(_aKeys.indexOf(a.key));
-Tracer.delay();
+      Tracer.delay();
       tracerB.select(_bKeys.indexOf(b.key));
-Tracer.delay();
+      Tracer.delay();
     }
   }
 }

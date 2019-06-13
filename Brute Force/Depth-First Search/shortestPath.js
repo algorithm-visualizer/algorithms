@@ -4,7 +4,7 @@ const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
-const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
 
@@ -35,10 +35,10 @@ function DFS(node, parent, weight) { // node = current node, parent = previous n
   Tracer.delay();
 }
 
-const s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
+const s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node
 let e; // e = end node
 do {
-  e = new Randomize.Integer(0, G.length - 1).create();
+  e = Randomize.Integer({ min: 0, max: G.length - 1 });
 } while (s === e);
 const MAX_VALUE = Infinity;
 let minWeight = MAX_VALUE;

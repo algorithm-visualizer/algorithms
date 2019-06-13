@@ -4,7 +4,7 @@ const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.log(logger);
-const G = new Randomize.Graph(5, 1).directed(false).weighted().create();
+const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
 
@@ -36,10 +36,10 @@ function BFS() {
   return W[e];
 }
 
-let s = new Randomize.Integer(0, G.length - 1).create(); // s = start node
+let s = Randomize.Integer({ min: 0, max: G.length - 1 }); // s = start node
 let e; // e = start node
 do {
-  e = new Randomize.Integer(0, G.length - 1).create();
+  e = Randomize.Integer({ min: 0, max: G.length - 1 });
 } while (s === e);
 let MAX_VALUE = 0x7fffffff;
 logger.println(`finding the shortest path from ${s} to ${e}`);

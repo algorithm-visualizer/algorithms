@@ -12,7 +12,7 @@ Layout.setRoot(new VerticalLayout([chartTracer, arrayTracer, bucketsTracer]));
 // define input variables
 const N = 25; // the size of an array
 const K = 5; // the number of buckets
-const array = new Randomize.Array1D(N, new Randomize.Integer(0, 999)).create();
+const array = Randomize.Array1D({ N, value: () => Randomize.Integer({ min: 0, max: 999 }) });
 
 (function main() {
   // create K buckets
