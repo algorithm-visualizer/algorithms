@@ -75,7 +75,7 @@ class Main {
         //}
         
         //Randomizing adjacancy matrix and displaying on log screen{
-        logTracer.println("The adjacancy Matrix is");
+        logTracer.println("The adjacancy matrix is");
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 adjacencyMatrix[i][j]=r.nextInt(2);
@@ -90,7 +90,7 @@ class Main {
         graphTracer.set(adjacencyMatrix);
         // }
         
-        logTracer.println("the possible solutios are");
+        logTracer.println("The possible solutions are");
         ham(1);
         if(found==0)
             logTracer.println("No cycles are found Try with a different graph ");
