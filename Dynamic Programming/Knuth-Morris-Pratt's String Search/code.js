@@ -12,6 +12,8 @@ const substring = string.substr(startIndex, 5); // Substring of `string` of leng
 
 // let string = 'abcxabcdabxabcdabcdabxabcda', substring = 'xabcda';
 // let string = 'abcxabcdabxabcdabcdabcyiuhsiuhduiahdubhbuuabcdabcysbhbh', substring = 'abcdabcy';
+// let string = 'abcaabcaabcabcaabaabc', substring = 'abcaabc';
+// let string = 'abacaabacabacabaabb', substring = 'abacab';
 
 let track = Array(...Array(substring.length)).map(Number.prototype.valueOf, 0);
 
@@ -25,11 +27,6 @@ trackTracer.set(track);
 substrTracer.set(substring);
 stringTracer.set(string);
 Tracer.delay();
-
-// Fix JS Negative number modulo Bug
-Number.prototype.mod = function (n) {
-  return ((this % n) + n) % n;
-};
 
 function tracker(substring) {
   let i = 1;
@@ -49,9 +46,10 @@ function tracker(substring) {
       Tracer.delay();
 
       substrTracer.deselect(j);
+      Tracer.delay();
       j = track[j - 1];
-      logger.println(`j = ${j}`);
       substrTracer.select(j);
+      Tracer.delay();
     }
 
     if (substring[i] === substring[j]) {
@@ -62,12 +60,14 @@ function tracker(substring) {
       trackTracer.depatch(i);
       Tracer.delay();
       logger.println(`substring [ ${i} ] (${substring[i]}) equals substring [ ${j} ] (${substring[j]}), track [ ${i} ] updated to: ${track[i]}`);
-
       logger.println(`j = ${j}`);
       substrTracer.select(j);
     } else {
-      track[i] = 0;
-      logger.println(`substring [ ${i} ] (${substring[i]}) is not equal to substring [ ${j} ] (${substring[j]}), setting track [${i}] to 0`);
+      track[i] = j;
+      trackTracer.patch(i, track[i]);
+      Tracer.delay();
+      trackTracer.depatch(i);
+      logger.println(`substring [ ${i} ] (${substring[i]}) is not equal to substring [ ${j} ] (${substring[j]}), setting track [${i}] to ${j}`);
       trackTracer.select(i);
       Tracer.delay();
       trackTracer.deselect(i);
@@ -79,6 +79,7 @@ function tracker(substring) {
     i++;
     logger.println(`i = ${i}`);
   }
+  substrTracer.deselect(j);
 
   return track;
 }
@@ -99,46 +100,64 @@ function kmp(string, substr) {
     logger.println(`comparing string [${i}] (${string[i]}) and substring [${j}] (${substr[j]})...`);
     stringTracer.select(i);
     Tracer.delay();
-    stringTracer.select(j);
+    substrTracer.select(j);
     Tracer.delay();
 
-    if (string[i] === substr[j]) {
-      logger.println('they\'re equal!');
-
-      if (j === substr.length - 1) {
-        logger.println(`j (${j}) equals length of substring - 1 (${substr.length}-1), we've found a new match in the string!`);
-        startPos = i - substr.length + 1;
-        positions.push(startPos);
-
-        logger.println(`Adding start position of the substring (${startPos}) to the results.`);
-        stringTracer.select(startPos);
-        Tracer.delay();
-      } else {
-        stringTracer.deselect(j);
-        Tracer.delay();
-        logger.println(`But j (${j}) does not equal length of substring (${substr.length}) Incrementing j and moving forward.`);
-        j++;
-        logger.println(`j = ${j}`);
-        stringTracer.select(j);
-        Tracer.delay();
-      }
-    } else {
-      const tempJ = (j - 1).mod(substr.length);
+    while (string[i] != substr[j] && (j > 0)) {
       logger.println('they\'re NOT equal');
-      trackTracer.select(tempJ);
+      logger.println(`j = ${track[j - 1]}`);
+      trackTracer.select(j - 1);
       Tracer.delay();
-      stringTracer.deselect(j);
+      trackTracer.deselect(j - 1);
       Tracer.delay();
 
-      j = track[tempJ]; // use modulo to wrap around, i.e., if index = -1, access the LAST element of array (PYTHON-LIKE)
-
-      logger.println(`Setting j to ${j}`);
-      stringTracer.select(j);
+      substrTracer.deselect(j);
       Tracer.delay();
-      trackTracer.deselect(tempJ);
+      j = track[j - 1];
+      logger.println(`j = ${j}`);
+      substrTracer.select(j);
       Tracer.delay();
     }
 
+    if (string[i] === substr[j]) {
+      logger.println('they\'re equal!');
+      ++j;
+      logger.println(`j = ${j}`);
+
+      if (j === substr.length) {
+        logger.println(`j (${j}) equals length of substring (${substr.length}), we've found a new match in the string!`);
+        startPos = i - substr.length + 1;
+        positions.push(startPos);
+        logger.println(`Adding start position of the substring (${startPos}) to the results.`);
+        stringTracer.select(startPos, startPos + substring.length - 1);
+        Tracer.delay();
+        stringTracer.deselect(startPos, startPos + substring.length - 1);
+        Tracer.delay();
+        logger.println(`j = ${track[j - 1]}`);
+        trackTracer.select(j - 1);
+        Tracer.delay();
+        trackTracer.deselect(j - 1);
+        Tracer.delay()
+        substrTracer.deselect(j - 1);
+        Tracer.delay();
+        j = track[j - 1];
+        substrTracer.select(j);
+        Tracer.delay();
+      } else {
+        substrTracer.deselect(j - 1);
+        Tracer.delay();
+        substrTracer.select(j);
+        Tracer.delay();
+        logger.println(`But j (${j}) does not equal length of substring (${substr.length}) Incrementing j and moving forward.`);
+      }
+    } else {
+      logger.println('they\'re NOT equal');
+      trackTracer.select(j);
+      Tracer.delay();
+    }
+
+    trackTracer.deselect(j);
+    substrTracer.deselect(j);
     stringTracer.deselect(i);
     Tracer.delay();
   }
@@ -151,5 +170,7 @@ const positions = kmp(string, substring);
 logger.println(`Substring positions are: ${positions.length ? String(positions) : 'NONE'}`);
 for (let i = 0; i < positions.length; i++) {
   stringTracer.select(positions[i], positions[i] + substring.length - 1);
+  Tracer.delay();
+  stringTracer.deselect(positions[i], positions[i] + substring.length - 1);
   Tracer.delay();
 }
