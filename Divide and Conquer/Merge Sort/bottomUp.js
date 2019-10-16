@@ -1,4 +1,4 @@
-// import visualize libraries {
+// import visualization libraries {
 const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
