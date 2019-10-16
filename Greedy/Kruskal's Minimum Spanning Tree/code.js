@@ -1,5 +1,8 @@
+// import visualization libraries {
 const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
+// define tracer variables {
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
@@ -13,6 +16,7 @@ Layout.setRoot(new VerticalLayout([tracer, logger]));
 const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
+// }
 
 function kruskal() {
   const vcount = G.length;
@@ -40,12 +44,16 @@ function kruskal() {
   let wsum = 0;
   for (let n = 0; n < vcount - 1 && edges.length > 0;) {
     const e = edges.shift(); // Get the edge of min weight
+    // visualize {
     tracer.visit(e[0], e[1]);
     Tracer.delay();
+    // }
     if (t[e[0]] === t[e[1]]) {
       // e[0] & e[1] already in the same tree, ignore
+      // visualize {
       tracer.leave(e[0], e[1]);
       Tracer.delay();
+      // }
       continue;
     }
 
@@ -61,7 +69,9 @@ function kruskal() {
     n += 1;
   }
 
+  // logger {
   logger.println(`The sum of all edges is: ${wsum}`);
+  // }
 }
 
 kruskal();

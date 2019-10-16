@@ -1,5 +1,8 @@
+// import visualization libraries {
 const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
+// define tracer variables {
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
@@ -10,8 +13,11 @@ const D = [
 
 tracer.set(D);
 Tracer.delay();
+// }
 
+// logger {
 logger.println(`original array = [${D[0].join(', ')}]`);
+// }
 
 function mergeSort(start, end) {
   if (Math.abs(end - start) <= 1) return;
@@ -121,4 +127,6 @@ function copy(mergeFrom, mergeTo, start, end) {
 }
 
 mergeSort(0, D[0].length);
+// logger {
 logger.println(`sorted array = [${D[0].join(', ')}]`);
+// }

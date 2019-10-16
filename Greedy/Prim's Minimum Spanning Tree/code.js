@@ -1,5 +1,8 @@
+// import visualization libraries {
 const { Tracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
+// define tracer variables {
 const tracer = new GraphTracer().directed(false).weighted();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
@@ -14,6 +17,7 @@ tracer.log(logger);
 const G = Randomize.Graph({ N: 10, ratio: .4, directed: false, weighted: true });
 tracer.set(G);
 Tracer.delay();
+// }
 
 function prim() {
   // Finds a tree so that there exists a path between
@@ -33,8 +37,10 @@ function prim() {
       {
         for (let j = 0; j < G.length; j++) {
           if (!D[j] && G[i][j]) {
+            // visualize {
             tracer.visit(i, j);
             Tracer.delay();
+            // }
             // Second node must not be visited and must be connected to first node
             if (G[i][j] < minD) {
               // Searching for cheapest edge which satisfies requirements
@@ -42,19 +48,27 @@ function prim() {
               minI = i;
               minJ = j;
             }
+            // visualize {
             tracer.leave(i, j);
             Tracer.delay();
+            // }
           }
         }
       }
     }
+    // visualize {
     tracer.visit(minI, minJ);
     Tracer.delay();
+    // }
     D[minJ] = 1; // Visit second node and insert it into or tree
     sum += G[minI][minJ];
   }
+  // logger {
   logger.println(`The sum of all edges is: ${sum}`);
+  // }
 }
 
+// logger {
 logger.println('nodes that belong to minimum spanning tree are: ');
+// }
 prim();

@@ -1,5 +1,8 @@
+// import visualization libraries {
 const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
+// define tracer variables {
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
@@ -14,9 +17,12 @@ for (let i = 0; i <= integer; i++) {
 }
 tracer.set(D);
 Tracer.delay();
+// }
 
 function partition(A, n, p) {
+  // logger {
   if (n === 0) logger.println(`[${A.join(', ')}]`);
+  // }
   else {
     let end = n;
     if (p !== 0 && A[p - 1] < n) end = A[p - 1];
@@ -33,19 +39,27 @@ function integerPartition(n) {
     // We are allowed to use numbers from 2 to i
     for (let j = 1; j <= i; j++) {
       // Number of partitions without j number + number of partitions with max j
+      // visualize {
       tracer.select(i, j);
       Tracer.delay();
+      // }
       D[i][j] = D[i][j - 1] + D[i - j][Math.max(j, i - j)];
+      // visualize {
       tracer.patch(i, j, D[i][j]);
       Tracer.delay();
       tracer.depatch(i, j);
       tracer.deselect(i, j);
+      // }
     }
   }
   return D[n][n];
 }
 
+// logger {
 logger.println(`Partitioning: ${integer}`);
+// }
 partition(A, integer, 0);
 const part = integerPartition(integer);
+// logger {
 logger.println(part);
+// }

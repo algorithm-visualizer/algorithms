@@ -1,4 +1,6 @@
+// import visualization libraries {
 const { Tracer, Array2DTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
 const gridSize = 10;
 const generations = 4;
@@ -18,11 +20,15 @@ for (let i = 0; i < gridSize; i++) {
     nextG[i][j] = '#';
   }
 }
+
+// define tracer variables {
 const tracer = new Array2DTracer();
 Layout.setRoot(new VerticalLayout([tracer]));
 tracer.set(G);
 Tracer.delay();
+// }
 
+// visualize {
 for (let gi = 0; gi < G.length; gi++) {
   for (let gj = 0; gj < G[gi].length; gj++) {
     if (G[gi][gj] === '#') {
@@ -30,6 +36,7 @@ for (let gi = 0; gi < G.length; gi++) {
     }
   }
 }
+// }
 
 function CellularAutomata(fillShape, emptyShape) {
   const nextGrid = [];
@@ -70,10 +77,13 @@ function CellularAutomata(fillShape, emptyShape) {
 
   for (let i = 0; i < nextGrid.length; i++) {
     for (let j = 0; j < nextGrid[i].length; j++) {
+      // visualize {
       tracer.depatch(i, j, G[i][j]);
       tracer.select(i, j);
       Tracer.delay();
+      // }
       G[i][j] = nextGrid[i][j];
+      // visualize {
       if (G[i][j] === fillShape) {
         tracer.patch(i, j, G[i][j]);
       } else {
@@ -81,6 +91,7 @@ function CellularAutomata(fillShape, emptyShape) {
         tracer.depatch(i, j, G[i][j]);
         tracer.deselect(i, j);
       }
+      // }
     }
   }
 }
