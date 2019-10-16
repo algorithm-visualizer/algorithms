@@ -1,4 +1,6 @@
+// import visualization libraries {
 const { Tracer, Array1DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
 const text = ['h', 'e', 'l', 'l', 'o', ' ', 's', 'i', 'r', ' ', 'h', 'e', 'l', 'l', 'o'];
 const pattern = ['h', 'e', 'l', 'l', 'o'];
@@ -6,6 +8,7 @@ const pattern = ['h', 'e', 'l', 'l', 'o'];
 const Q = 101; // A prime number
 const D = 256; // number of characters in the input alphabet
 
+// define tracer variables {
 const logger = new LogTracer();
 const tracer1 = new Array1DTracer('Text');
 const tracer2 = new Array1DTracer('Pattern');
@@ -13,6 +16,7 @@ Layout.setRoot(new VerticalLayout([logger, tracer1, tracer2]));
 tracer1.set(text);
 tracer2.set(pattern);
 Tracer.delay();
+// }
 
 const N = text.length;
 const M = pattern.length;
@@ -38,27 +42,35 @@ for (let i = 0; i <= N - M; i++) {
   */
   if (hashPattern === hashText) {
     let f = 0;
+    // visualize {
     tracer1.select(i, i + M - 1);
     Tracer.delay();
     tracer2.select(0, M - 1);
     Tracer.delay();
+    // }
     for (let j = 0; j < M; j++) {
+      // visualize {
       tracer1.patch(i + j);
       Tracer.delay();
       tracer2.patch(j);
       Tracer.delay();
+      // }
       if (text[i + j] !== pattern[j]) {
         f++;
       }
+      // visualize {
       tracer1.depatch(i + j);
       tracer2.depatch(j);
+      // }
     }
 
+    // visualize {
     if (f === 0) {
       logger.println(` Pattern found at index ${i}`);
     }
     tracer1.deselect(i, i + M);
     tracer2.deselect(0, M - 1);
+    // }
   }
 
   /*

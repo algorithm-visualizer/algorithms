@@ -1,8 +1,7 @@
+// import visualization libraries {
 const { Tracer, Array2DTracer, LogTracer, Layout, VerticalLayout } = require('algorithm-visualizer');
+// }
 
-const tracer = new Array2DTracer();
-const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, logger]));
 const n = 6; // rows (change these!)
 const m = 6; // columns (change these!)
 
@@ -56,8 +55,13 @@ for (let i = 0; i < vEnd; i++) { // by row
   }
 }
 
+// define tracer variables {
+const tracer = new Array2DTracer();
+const logger = new LogTracer();
+Layout.setRoot(new VerticalLayout([tracer, logger]));
 tracer.set(G);
 Tracer.delay();
+// }
 
 function buildMaze() {
   const mySet = new disjointSet();
@@ -73,7 +77,9 @@ function buildMaze() {
 
   mySet.addElements(width * height);
 
+  // logger {
   logger.println('initializing grid (all walls are up)');
+  // }
   // init 'graph'
   // each room has two walls, a down and right wall.
   for (let i = 0; i < width; i++) {
@@ -91,7 +97,9 @@ function buildMaze() {
         G[j * 2 + 1][i * 3 + 1] = locationString[0];
         G[j * 2 + 1][i * 3 + 2] = locationString[1];
 
+        // visualize {
         tracer.set(G);
+        // }
       }
 
       rightWalls.push({ x: i, y: j });
@@ -100,7 +108,9 @@ function buildMaze() {
     }
   }
 
+  // logger {
   logger.println('shuffled the walls for random selection');
+  // }
   // Randomly shuffle the walls
   shuffle(rightWalls);
   shuffle(downWalls);
@@ -117,26 +127,34 @@ function buildMaze() {
       if (iYdown < height) {
         const u = graph[iX][iY];
         const v = graph[iX][iYdown];
+        // visualize {
         tracer.patch(iY * 2 + 1, iX * 3 + 1);
         tracer.patch(iY * 2 + 1, iX * 3 + 2);
         tracer.patch(iYdown * 2 + 1, iX * 3 + 1);
         tracer.patch(iYdown * 2 + 1, iX * 3 + 2);
+        // }
         if (mySet.find(u) !== mySet.find(v)) {
+          // logger {
           logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           Tracer.delay();
+          // }
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].down = false;
         } else {
+          // logger {
           logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           Tracer.delay();
+          // }
         }
+        // visualize {
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
         tracer.depatch(iY * 2 + 1, iX * 3 + 2);
         tracer.depatch(iYdown * 2 + 1, iX * 3 + 1);
         tracer.depatch(iYdown * 2 + 1, iX * 3 + 2);
+        // }
       }
     } else if (randomWall === 2 && rightWalls.length > 0) {
       // Right Wall
@@ -147,31 +165,41 @@ function buildMaze() {
       if (iXright < width) {
         const u = graph[iX][iY];
         const v = graph[iXright][iY];
+        // visualize {
         tracer.patch(iY * 2 + 1, iX * 3 + 1);
         tracer.patch(iY * 2 + 1, iX * 3 + 2);
         tracer.patch(iY * 2 + 1, iXright * 3 + 1);
         tracer.patch(iY * 2 + 1, iXright * 3 + 2);
+        // }
         if (mySet.find(u) !== mySet.find(v)) {
+          // logger {
           logger.println(`Rooms: ${u} & ${v} now belong to the same set, delete wall between them`);
 
           Tracer.delay();
+          // }
           mySet.setUnion(u, v);
           setSize++;
           // delete wall
           walls[u].right = false;
         } else {
+          // logger {
           logger.println(`Rooms: ${u} & ${v} would create a cycle! This is not good!`);
           Tracer.delay();
+          // }
         }
+        // visualize {
         tracer.depatch(iY * 2 + 1, iX * 3 + 1);
         tracer.depatch(iY * 2 + 1, iX * 3 + 2);
         tracer.depatch(iY * 2 + 1, iXright * 3 + 1);
         tracer.depatch(iY * 2 + 1, iXright * 3 + 2);
+        // }
       }
     }
   }
 
+  // logger {
   logger.println('deleting the walls');
+  // }
   // update deleted walls
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
@@ -180,28 +208,38 @@ function buildMaze() {
       if (currentWall.down === false) {
         G[j * 2 + 2][i * 3 + 1] = ' ';
         G[j * 2 + 2][i * 3 + 2] = ' ';
+        // visualize {
         tracer.select(j * 2 + 2, i * 3 + 1);
         Tracer.delay();
         tracer.select(j * 2 + 2, i * 3 + 2);
         Tracer.delay();
+        // }
       }
 
       if (currentWall.right === false) {
         G[j * 2 + 1][i * 3 + 3] = ' ';
+        // visualize {
         tracer.select(j * 2 + 1, i * 3 + 3);
         Tracer.delay();
+        // }
       }
+      // visualize {
       tracer.set(G);
+      // }
     }
   }
+  // logger {
   logger.println('cleaning up the grid!');
+  // }
   cleanUpGrid(width, height);
 
   // Clear out walls for the start and end locations.
   const randomStart = Math.floor(Math.random() * width);
   const randomEnd = Math.floor(Math.random() * width);
 
+  // logger {
   logger.println('setting the Start (S) & End (E) locations');
+  // }
 
   // Start Location
   G[0][randomStart * 3 + 1] = ' ';
@@ -216,10 +254,14 @@ function buildMaze() {
   cleanUpStartLocation(randomStart);
   cleanUpEndLocation(randomEnd);
 
+  // logger {
   logger.println('maze is completed!');
+  // }
 
   // set the data
+  // visualize {
   tracer.set(G);
+  // }
 }
 
 function cleanUpStartLocation(start) {
