@@ -12,13 +12,13 @@ for (let i = 0; i < 3; i++) {
   let a = Math.floor(Math.random() * 300);
   if (a % 2 === 0) a += 1;
   testProbablyPrime(a);
-  // logger {
+  // visualize {
   logger.println('----------');
   // }
 }
 
 testProbablyPrime(151);
-// logger {
+// visualize {
 logger.println('----------');
 // }
 
@@ -47,18 +47,18 @@ function power(x, y, p) {
  * @return {Boolean}
  */
 function testProbablyPrime(n, k = 5) {
-  // logger {
+  // visualize {
   logger.println(`==> Testing number ${n}`);
   // }
 
   if (n === 1 || n === 3) {
-    // logger {
+    // visualize {
     logger.println('==> Simple case, N is 1 or 3');
     // }
     return true;
   }
   if (n % 2 === 0) {
-    // logger {
+    // visualize {
     logger.println(`==> Simple case, ${n} mod 2 = 0`);
     // }
     return false;
@@ -69,19 +69,19 @@ function testProbablyPrime(n, k = 5) {
   while (d % 2 === 0) {
     d /= 2;
   }
-  // logger {
+  // visualize {
   logger.println(`d = ${d}`);
   // }
 
   const P = 100 * (1 - (1 / Math.pow(4, k)));
 
   WitnessLoop: do {
-    // logger {
+    // visualize {
     logger.println(`Remaining iterations: #${k}`);
     // }
 
     const a = 2 + Math.floor(Math.random() * (n - 4));
-    // logger {
+    // visualize {
     logger.println(`--> first test with random = ${a}`);
     // }
 
@@ -89,13 +89,13 @@ function testProbablyPrime(n, k = 5) {
     let x = power(a, d, n);
 
     if (x === 1 || x === n - 1) {
-      // logger {
+      // visualize {
       logger.println('--> continue WitnessLoop, x = 1 or x = n-1');
       // }
       continue;
     }
 
-    // logger {
+    // visualize {
     logger.println('--> second test');
     // }
 
@@ -110,27 +110,27 @@ function testProbablyPrime(n, k = 5) {
       i *= 2;
 
       if (x === 1) {
-        // logger {
+        // visualize {
         logger.println(`--> exiting, ${n} is composite`);
         // }
         return false;
       }
 
       if (x === n - 1) {
-        // logger {
+        // visualize {
         logger.println('--> continue WitnessLoop');
         // }
         continue WitnessLoop;
       }
     }
 
-    // logger {
+    // visualize {
     logger.println(`--> exiting, ${n} is composite 'cause (n-1) is reached`);
     // }
     return false;
   } while (--k);
 
-  // logger {
+  // visualize {
   logger.println(`End of tests, ${n} is probably prime with probabilty of ${P}%`);
   // }
   return true;

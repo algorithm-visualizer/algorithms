@@ -2,6 +2,7 @@
 const { Tracer, Array1DTracer, GraphTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
+const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 const MAX_VALUE = Infinity;
 const S = []; // S[end] returns the distance from start node to end node
 for (let i = 0; i < G.length; i++) S[i] = MAX_VALUE;
@@ -12,7 +13,6 @@ const tracerS = new Array1DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, tracerS, logger]));
 tracer.log(logger);
-const G = Randomize.Graph({ N: 5, ratio: 1, directed: false, weighted: true });
 tracer.set(G);
 tracerS.set(S);
 Tracer.delay();

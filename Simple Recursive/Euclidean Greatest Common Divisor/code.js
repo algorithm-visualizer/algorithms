@@ -27,9 +27,10 @@ if (a[0] > a[1]) {
   // logger {
   logger.println('The first number is bigger than the second number. Switching the numbers.');
   // }
-  
+  // visualize {
   tracer.set(a);
   Tracer.delay();
+  // }
 }
 
 while (a[0] > 0) {
@@ -38,19 +39,23 @@ while (a[0] > 0) {
   logger.println('Switching a[1] with a[1]%a[0]');
   // }
   a[1] %= a[0];
+  // visualize {
   tracer.patch(1, a[1]);
   Tracer.delay();
+  // }
   // logger {
   logger.println('Now switching the two values to keep a[0] < a[1]');
   // }
   const tmp = a[0];
   a[0] = a[1];
   a[1] = tmp;
+  // visualize {
   tracer.patch(0, a[0]);
   tracer.patch(1, a[1]);
   Tracer.delay();
   tracer.depatch(0);
   tracer.depatch(1);
+  // }
 }
 
 // logger {

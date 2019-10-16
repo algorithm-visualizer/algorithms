@@ -1,4 +1,4 @@
-// import visualization libraries {
+// import visualize libraries {
 const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
 // }
 
@@ -27,7 +27,7 @@ function mergeSort(start, end) {
   let width;
   let i;
   for (width = 1; width < end; width *= 2) {
-    // visualization {
+    // visualize {
     logger.println(`merging arrays of width: ${width}`);
     // }
     for (i = 0; i < end; i += 2 * width) {
@@ -40,7 +40,7 @@ function mergeSort(start, end) {
     mergeTo = 1 - mergeFrom;
   }
   if (mergeFrom !== 0) {
-    // visualization {
+    // visualize {
     logger.println('final copy to original');
     // }
     copy(mergeFrom, mergeTo, start, end);
@@ -53,7 +53,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
   let k;
   // in an actual merge implementation, mergeFrom and mergeTo would be arrays
   // here for the ability to trace what is going on better, the arrays are D[mergeFrom] and D[mergeTo]
-  // visualization {
+  // visualize {
   logger.println(`merging segments [${start}..${middle}] and [${middle}..${end}]`);
   tracer.selectRow(mergeFrom, start, end - 1);
   Tracer.delay();
@@ -61,7 +61,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
   // }
 
   for (k = start; k < end; k++) {
-    // visualization {
+    // visualize {
     if (j < end) {
       tracer.select(mergeFrom, j);
     }
@@ -75,7 +75,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
     // }
 
     if (i < middle && (j >= end || D[mergeFrom][i] <= D[mergeFrom][j])) {
-      // visualization {
+      // visualize {
       if (j < end) {
         logger.println('writing smaller value to output');
       } else {
@@ -90,7 +90,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
       D[mergeTo][k] = D[mergeFrom][i];
       i += 1;
     } else {
-      // visualization {
+      // visualize {
       if (i < middle) {
         logger.println('writing smaller value to output');
       } else {
@@ -111,7 +111,7 @@ function merge(mergeFrom, start, middle, end, mergeTo) {
 function copy(mergeFrom, mergeTo, start, end) {
   let i;
   for (i = start; i < end; i++) {
-    // visualization {
+    // visualize {
     tracer.select(mergeFrom, i);
     tracer.patch(mergeTo, i, D[mergeFrom][i]);
     Tracer.delay();
@@ -119,7 +119,7 @@ function copy(mergeFrom, mergeTo, start, end) {
 
     D[mergeTo][i] = D[mergeFrom][i];
 
-    // visualization {
+    // visualize {
     tracer.deselect(mergeFrom, i);
     tracer.depatch(mergeTo, i);
     // }
