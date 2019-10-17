@@ -27,7 +27,7 @@ Tracer.delay();
 // }
 
 function DFS(node, parent) { // node = current node, parent = previous node
-  // visualize {/
+  // visualize {
   tracer.visit(node, parent);
   Tracer.delay();
   // }
