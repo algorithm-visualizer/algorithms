@@ -75,11 +75,13 @@ for (let i = 0; i <= N; i++) {
       }
 
       // visualize {
+      //opt subproblem depatch
+      tracer.depatch(i - 1,j - wt[i - 1]);
       tracer.deselect(i - 1, j);
       tracer.depatch(i, j);
       dataViewer2.deselect(i - 1);
       dataViewer1.deselect(i - 1);
-      tracer.depatch(i - 1,j - wt[i - 1]);
+      
       // }
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
