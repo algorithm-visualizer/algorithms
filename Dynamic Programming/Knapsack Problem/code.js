@@ -51,6 +51,10 @@ for (let i = 0; i <= N; i++) {
       // }
 
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
+      //visualize{
+      tracer.patch(i - 1,j - wt[i - 1]);
+      Tracer.delay();
+      //}
       const B = DP[i - 1][j];
       /*
       find the maximum of these two values
@@ -82,6 +86,7 @@ for (let i = 0; i <= N; i++) {
       tracer.patch(i, j, DP[i][j]);
       Tracer.delay();
       tracer.depatch(i, j);
+      tracer.depatch(i - 1,j - wt[i - 1]);
       // }
     }
   }
