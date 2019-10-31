@@ -79,6 +79,7 @@ for (let i = 0; i <= N; i++) {
       tracer.depatch(i, j);
       dataViewer2.deselect(i - 1);
       dataViewer1.deselect(i - 1);
+      tracer.depatch(i - 1,j - wt[i - 1]);
       // }
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
@@ -86,7 +87,6 @@ for (let i = 0; i <= N; i++) {
       tracer.patch(i, j, DP[i][j]);
       Tracer.delay();
       tracer.depatch(i, j);
-      tracer.depatch(i - 1,j - wt[i - 1]);
       // }
     }
   }
