@@ -17,13 +17,13 @@ for (let i = 0; i < N + 1; i++) {
 
 // define tracer variables {
 const tracer = new Array2DTracer('Knapsack Table');
-const dataViewer1 = new Array1DTracer('Values');
-const dataViewer2 = new Array1DTracer('Weights');
+const valuesTracer = new Array1DTracer('Values');
+const weightsTracer = new Array1DTracer('Weights');
 const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([tracer, dataViewer1, dataViewer2, logger]));
+Layout.setRoot(new VerticalLayout([tracer, valuesTracer, weightsTracer, logger]));
 tracer.set(DP);
-dataViewer1.set(val);
-dataViewer2.set(wt);
+valuesTracer.set(val);
+weightsTracer.set(wt);
 Tracer.delay();
 // }
 
@@ -42,19 +42,14 @@ for (let i = 0; i <= N; i++) {
       // }
     } else if (wt[i - 1] <= j) { // take the current item in our collection
       // visualize {
-      dataViewer1.select(i - 1);
+      weightsTracer.select(i - 1);
+      valuesTracer.select(i - 1);
       Tracer.delay();
-      dataViewer2.select(i - 1);
-      Tracer.delay();
+      tracer.select(i - 1, j - wt[i - 1]);
       tracer.select(i - 1, j);
       Tracer.delay();
       // }
-
       const A = val[i - 1] + DP[i - 1][j - wt[i - 1]];
-      //visualize{
-      tracer.patch(i - 1,j - wt[i - 1]);
-      Tracer.delay();
-      //}
       const B = DP[i - 1][j];
       /*
       find the maximum of these two values
@@ -73,15 +68,13 @@ for (let i = 0; i <= N; i++) {
         Tracer.delay();
         // }
       }
-
       // visualize {
-      //opt subproblem depatch
-      tracer.depatch(i - 1,j - wt[i - 1]);
-      tracer.deselect(i - 1, j);
+      // opt subproblem depatch
       tracer.depatch(i, j);
-      dataViewer2.deselect(i - 1);
-      dataViewer1.deselect(i - 1);
-      
+      tracer.deselect(i - 1, j);
+      tracer.deselect(i - 1, j - wt[i - 1]);
+      valuesTracer.deselect(i - 1);
+      weightsTracer.deselect(i - 1);
       // }
     } else { // leave the current item from our collection
       DP[i][j] = DP[i - 1][j];
