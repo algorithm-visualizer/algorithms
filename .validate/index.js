@@ -1,14 +1,11 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const { listDirectories, listFiles } = require('./utils');
+const { listDirectories, listFiles, signale } = require('./utils');
 const { rootDir } = require('./constants');
-const validate = {
-  js: require('./js'),
-};
+const validators = require('./validators');
 
 const categories = listDirectories(rootDir).filter(dir => dir !== 'node_modules');
-let hasError = false;
 for (const category of categories) {
   const categoryDir = path.resolve(rootDir, category);
   const algorithms = listDirectories(categoryDir);
@@ -17,16 +14,28 @@ for (const category of categories) {
     const files = listFiles(algorithmDir);
     for (const file of files) {
       const ext = file.split('.').pop();
-      const validator = validate[ext];
+      const validator = validators[ext];
       if (validator) {
+        const errors = [];
+        const error = message => errors.push(message);
+        const warns = [];
+        const warn = message => warns.push(message);
         const filePath = path.resolve(algorithmDir, file);
         const content = fs.readFileSync(filePath, 'utf-8');
-        if (!validator(category, algorithm, file, content)) {
-          hasError = true;
-        }
+        validator(error, warn, category, algorithm, file, content)
+          .then(() => {
+            if (errors.length || warns.length) {
+              signale.log(`${category}/${algorithm}/${file}`);
+              errors.forEach(error => signale.error(error));
+              warns.forEach(error => signale.warn(error));
+              signale.log();
+            }
+            if (errors.length) {
+              process.exitCode = 1;
+            }
+          })
+          .catch(console.error);
       }
     }
   }
 }
-
-process.exit(hasError ? 1 : 0);

@@ -5,8 +5,10 @@
     "test": "node .validate"
   },
   "dependencies": {
+    "algorithm-visualizer": "latest",
     "fs-extra": "^8.0.1",
-    "signale": "^1.4.0",
-    "algorithm-visualizer": "latest"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "signale": "^1.4.0"
   }
 }
