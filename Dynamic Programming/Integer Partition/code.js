@@ -8,7 +8,7 @@ const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
 const integer = Randomize.Integer({ min: 5, max: 14 });;
 const D = [];
-const A = [];
+const A = "";
 for (let i = 0; i <= integer; i++) {
   D.push([]);
   D[i][0] = 1
@@ -19,17 +19,13 @@ Tracer.delay();
 // }
 
 function partition(A, n, p) {
-  // logger {
-  if (n === 0) logger.println(`[${A.join(', ')}]`);
-  // }
-  else {
-    let end = n;
-    if (p !== 0 && A[p - 1] < n) end = A[p - 1];
-    for (let i = end; i > 0; i--) {
-      A[p] = i;
-      partition(A, n - i, p + 1);
+    // logger {
+    if (p == 0) logger.println(`[${A.split('').join(', ')}]`);
+    // }
+    else {
+        if (n > 1) partition(A, n - 1, p);
+        if (n <= p) partition(n + A, n, p - n);
     }
-  }
 }
 
 function integerPartition(n) {
@@ -75,7 +71,7 @@ function integerPartition(n) {
 // logger {
 logger.println(`Partitioning: ${integer}`);
 // }
-partition(A, integer, 0);
+partition(A, integer, integer);
 const part = integerPartition(integer);
 // logger {
 logger.println(part);
