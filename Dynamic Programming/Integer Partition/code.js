@@ -6,7 +6,7 @@ const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
-const integer = Randomize.Integer({ min: 5, max: 14 });;
+const integer = Randomize.Integer({ min: 5, max: 14 });
 const D = [];
 const A = "";
 for (let i = 0; i <= integer; i++) {
