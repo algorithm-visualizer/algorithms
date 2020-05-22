@@ -6,14 +6,13 @@ const { Tracer, Array2DTracer, LogTracer, Randomize, Layout, VerticalLayout } = 
 const tracer = new Array2DTracer();
 const logger = new LogTracer();
 Layout.setRoot(new VerticalLayout([tracer, logger]));
-const integer = Randomize.Integer({ min: 5, max: 14 });
+const integer = Randomize.Integer({ min: 5, max: 14 });;
 const D = [];
 const A = [];
 for (let i = 0; i <= integer; i++) {
   D.push([]);
-  D[0][i] = 1;
-  D[i][1] = 1;
-  for (let j = 0; j <= integer; j++) D[i][j] = 0;
+  D[i][0] = 1
+  for (let j = 1; j <= integer; j++) D[i][j] = 0;
 }
 tracer.set(D);
 Tracer.delay();
@@ -34,22 +33,37 @@ function partition(A, n, p) {
 }
 
 function integerPartition(n) {
-  // Calculate number of partitions for all numbers from 1 to n
-  for (let i = 2; i <= n; i++) {
-    // We are allowed to use numbers from 2 to i
-    for (let j = 1; j <= i; j++) {
-      // Number of partitions without j number + number of partitions with max j
-      // visualize {
-      tracer.select(i, j);
-      Tracer.delay();
-      // }
-      D[i][j] = D[i][j - 1] + D[i - j][Math.max(j, i - j)];
-      // visualize {
-      tracer.patch(i, j, D[i][j]);
-      Tracer.delay();
-      tracer.depatch(i, j);
-      tracer.deselect(i, j);
-      // }
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (i > j)  {
+        // visualize {
+        tracer.select(i, j);
+        Tracer.delay();
+        // }
+        D[i][j] = D[i - 1][j];
+        // visualize {
+        tracer.patch(i, j, D[i][j]);
+        Tracer.delay();
+        tracer.depatch(i, j);
+        tracer.deselect(i, j);
+        // }
+      }
+      else {
+        // visualize {
+          tracer.select(i, j);
+          Tracer.delay();
+        // }
+        const left = D[i - 1][j];
+        const above = D[i][j - i];
+        D[i][j] = left + above;
+        // visualize {
+          tracer.patch(i, j, D[i][j]);
+          Tracer.delay();
+          tracer.depatch(i, j);
+          tracer.deselect(i, j);
+        // }
+      }
     }
   }
   return D[n][n];
