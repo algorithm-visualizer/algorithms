@@ -34,6 +34,7 @@ function partition(A, n, p) {
 
 function integerPartition(n) {
 
+  // cycle through each cell of matrix
   for (let i = 1; i <= n; i++) {
     for (let j = 1; j <= n; j++) {
       if (i > j)  {
@@ -41,6 +42,7 @@ function integerPartition(n) {
         tracer.select(i, j);
         Tracer.delay();
         // }
+        // set cell to cell above it
         D[i][j] = D[i - 1][j];
         // visualize {
         tracer.patch(i, j, D[i][j]);
@@ -54,9 +56,10 @@ function integerPartition(n) {
           tracer.select(i, j);
           Tracer.delay();
         // }
-        const left = D[i - 1][j];
-        const above = D[i][j - i];
-        D[i][j] = left + above;
+        // grab above cell and add it to previous cell
+        const above = D[i - 1][j];
+        const left = D[i][j - i];
+        D[i][j] = above + left;
         // visualize {
           tracer.patch(i, j, D[i][j]);
           Tracer.delay();
