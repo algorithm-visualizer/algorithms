@@ -58,15 +58,16 @@ const array = Randomize.Array1D({ N, value: () => Randomize.Integer({ min: 0, ma
     const number = array[i];
     const count = counts[number];
     sortedArray[count - 1] = number;
+    counts[number]--;
     // visualize {
     arrayTracer.select(i);
     countsTracer.select(number);
     sortedArrayTracer.patch(count - 1, sortedArray[count - 1]);
+    countsTracer.patch(number, counts[number]);
     Tracer.delay();
     sortedArrayTracer.depatch(count - 1);
     countsTracer.deselect(number);
     arrayTracer.deselect(i);
     // }
-    counts[number]--;
   }
 })();
