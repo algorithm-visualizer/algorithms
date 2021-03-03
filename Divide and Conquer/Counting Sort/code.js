@@ -66,6 +66,7 @@ const array = Randomize.Array1D({ N, value: () => Randomize.Integer({ min: 0, ma
     countsTracer.patch(number, counts[number]);
     Tracer.delay();
     sortedArrayTracer.depatch(count - 1);
+    countsTracer.depatch(number);
     countsTracer.deselect(number);
     arrayTracer.deselect(i);
     // }
