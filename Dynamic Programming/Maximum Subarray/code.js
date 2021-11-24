@@ -13,11 +13,11 @@ Tracer.delay();
 // }
 
 const maxSubarraySum = (function maxSubarray(array) {
-  let maxSoFar = 0;
+  let maxSoFar = Number.MIN_SAFE_INTEGER;
   let maxEndingHere = 0;
 
   // logger {
-  logger.println('Initializing maxSoFar = 0 & maxEndingHere = 0');
+  logger.println('Initializing maxSoFar = MIN_SAFE_INTEGER & maxEndingHere = 0');
   // }
 
   for (let i = 0; i < array.length; i++) {
@@ -31,21 +31,21 @@ const maxSubarraySum = (function maxSubarray(array) {
     // logger {
     logger.println(`=> ${maxEndingHere}`);
     // }
-
-    if (maxEndingHere < 0) {
-      // logger {
-      logger.println('maxEndingHere is negative, set to 0');
-      // }
-      maxEndingHere = 0;
-    }
-
+    
     if (maxSoFar < maxEndingHere) {
       // logger {
       logger.println(`maxSoFar < maxEndingHere, setting maxSoFar to maxEndingHere (${maxEndingHere})`);
       // }
       maxSoFar = maxEndingHere;
     }
-
+    
+    if (maxEndingHere < 0) {
+      // logger {
+      logger.println('maxEndingHere is negative, set to 0');
+      // }
+      maxEndingHere = 0;
+    }
+    
     // visualize {
     Tracer.delay();
     tracer.deselect(i);
@@ -58,3 +58,4 @@ const maxSubarraySum = (function maxSubarray(array) {
 // logger {
 logger.println(`Maximum Subarray's Sum is: ${maxSubarraySum}`);
 // }
+
