@@ -16,17 +16,24 @@ const G = [ // G[i][j] indicates whether the path from the i-th node to the j-th
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-// define tracer variables {
-const tracer = new GraphTracer();
-const logger = new LogTracer();
-tracer.log(logger);
-Layout.setRoot(new VerticalLayout([tracer, logger]));
-tracer.set(G);
-tracer.layoutTree(0);
-Tracer.delay();
-// }
+/**
+ * Traverse a tree in breadth-first order.
+ * 
+ * @param G The tree to be traversed, represented by an adjacency matrix.
+ * @param s The starting node.
+ */
+function BFS(G, s) {
 
-function BFS(s) { // s = start node
+  // define tracer variables {
+  const tracer = new GraphTracer();
+  const logger = new LogTracer();
+  tracer.log(logger);
+  Layout.setRoot(new VerticalLayout([tracer, logger]));
+  tracer.set(G);
+  tracer.layoutTree(0);
+  Tracer.delay();
+  // }
+
   const Q = [];
   Q.push(s); // add start node to queue
   // visualize {
@@ -47,4 +54,4 @@ function BFS(s) { // s = start node
   }
 }
 
-BFS(0);
+BFS(G, 0);
