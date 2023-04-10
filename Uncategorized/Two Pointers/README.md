@@ -25,3 +25,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 ## Complexity
 * **Time**: O(n)
 * **Space**: O(1)
+
+## References:
+
+* [DSA: Two-pointers algorithm. Review with the step-by-step guide](https://medium.com/@alexeyskrobot/dsa-two-pointers-algorithm-review-with-the-step-by-step-guide-e8368e11a144)
